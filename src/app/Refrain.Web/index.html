@@ -11,11 +11,11 @@
 			{
 				map = new google.maps.Map(document.getElementById('map-canvas'), {
 					zoom: 4,
-					center: { lat: 0, lng: 0 }
+					center: { lat: 50, lng: 20 }
 				});
 
 				// Load GeoJSON.
-				map.data.loadGeoJson('ne-countries-50m.json');
+				map.data.loadGeoJson('Countries.json');
 
 				// Color each letter gray. Change the color when the isColorful property
 				// is set to true.
