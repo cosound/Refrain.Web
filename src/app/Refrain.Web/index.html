@@ -11,23 +11,19 @@
 			{
 				map = new google.maps.Map(document.getElementById('map-canvas'), {
 					zoom: 4,
-					center: { lat: 50, lng: 20 }
+					center: { lat: 51.5, lng: 13.7 },
+					disableDefaultUI: true
 				});
 
 				// Load GeoJSON.
 				map.data.loadGeoJson('Countries.json');
 
-				// Color each letter gray. Change the color when the isColorful property
-				// is set to true.
 				map.data.setStyle(function (feature) {
-					var color = 'gray';
-					if (feature.getProperty('isColorful')) {
-						color = feature.getProperty('color');
-					}
+					var color = '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
 					return {
 						fillColor: color,
 						strokeColor: color,
-						strokeWeight: 2
+						strokeWeight: 1
 					};
 				});
 			});
@@ -35,7 +31,7 @@
 	</head>
 	<body>
 		<div>
-			<div id="map-canvas" style="width: 800px; height: 600px;">
+			<div id="map-canvas" style="width: 850px; height: 700px;">
 
 			</div>
 		</div>
