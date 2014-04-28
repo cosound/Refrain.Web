@@ -10,7 +10,7 @@
 		<script type="text/javascript">
 			$(document).ready(function()
 			{
-				map = new google.maps.Map(document.getElementById('map-canvas'), {
+				var map = new google.maps.Map(document.getElementById('map-canvas'), {
 					zoom: 4,
 					center: { lat: 51.5, lng: 13.7 },
 					disableDefaultUI: true
@@ -31,100 +31,96 @@
 		</script>
 	</head>
 	<body>
-		<div>
-			<div id="map-canvas" style="width: 850px; height: 700px;">
-
-			</div>
-			<a class="twitter-timeline" href="https://twitter.com/Eurovision" data-widget-id="460609701009313793">Tweets by @Eurovision</a>
-		</div>
-		<!---<div id="headcontainer">
-				<div class="transdarkblue"></div>
-				<div id="headtext">
-					<div class="wbg">
-						<div class="menublock" style="text-align: left;">
-							<table style="margin: 0px; padding: 0px; width: 900px;">
-								<tbody>
-									<tr>
-										<td><img width="280" src="refrain_white_280.png" alt="refrain"></td>
-										<td style="text-align: right;">
-											<span class="small">PRESENTED BY</span>&nbsp;
-											<a href="http://www.cosound.dk" target="_blank"><img src="cosound_logo.png" style="vertical-align: middle; width: 150px;" alt="refrain"></a>
-											&nbsp;
-											<a href="http://www.danishsound.org" target="_blank"><img src="danishsound_long.png" style="vertical-align: middle; width: 150px;" alt="refrain"></a>
-										</td>
-									</tr>
-									<tr><td colspan="2"><div style="height: 12px;"></div></td></tr>
-									<tr>
-										<td style="text-align: left;" colspan="2">
-											<a class="menubutton" href="#">SONG MATCH</a>&nbsp;
-											<a class="menubutton" href="#">MOOD OF EUROPE</a>&nbsp;
-											<a class="menubutton" href="#">DISCOVERIES</a>&nbsp;
-											<a class="menubutton" href="#">ABOUT</a>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
+		<div id="headcontainer">
+			<div class="transdarkblue"></div>
+			<div id="headtext">
+				<div class="wbg">
+					<div class="menublock" style="text-align: left;">
+						<table style="margin: 0px; padding: 0px; width: 900px;">
+							<tbody>
+								<tr>
+									<td><img width="280" src="Images/refrain_white_280.png" alt="refrain"></td>
+									<td style="text-align: right;">
+										<span class="small">PRESENTED BY</span>&nbsp;
+										<a href="http://www.cosound.dk" target="_blank"><img src="Images/cosound_logo.png" style="vertical-align: middle; width: 150px;" alt="refrain"></a>
+										&nbsp;
+										<a href="http://www.danishsound.org" target="_blank"><img src="Images/danishsound_long.png" style="vertical-align: middle; width: 150px;" alt="refrain"></a>
+									</td>
+								</tr>
+								<tr><td colspan="2"><div style="height: 12px;"></div></td></tr>
+								<tr>
+									<td style="text-align: left;" colspan="2">
+										<a class="menubutton" href="#">SONG MATCH</a>&nbsp;
+										<a class="menubutton" href="#">MOOD OF EUROPE</a>&nbsp;
+										<a class="menubutton" href="#">DISCOVERIES</a>&nbsp;
+										<a class="menubutton" href="#">ABOUT</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
-			<div class="wbg">
-				<div class="mainblock">
-					Explore the realm of Eurovision Song Contest.<br>
-					<p>
-						<br>
-					</p>
-					<p>
-						<a class="button" href="#">SONG MATCH</a>
-						<br>
-					</p>
-					<p>
-						<a class="buttonsqpink" href="#">?</a>
-					</p>
-					<p>
-						<a class="buttonsqpink" href="#">►</a> And this a some text.
-					</p>
-					<p>
-						<a class="buttonsqpink" href="#">+</a>
-					</p>
-					<p>
-						<a class="buttonsqblue" href="#">✓</a> And this a some text.
-					</p>
-					<p>
-						<img src="cosound_logo_86.png" alt="refrain"> about page logo
-					</p>
-					<p>
-						<img src="danishsound_long_86.png" alt="refrain"> about page logo
-					</p>
-					<p>
-						<img src="geckon.png" alt="refrain"> about page logo
-					</p>
-					<p>
-						<img src="DTU.png" alt="refrain"> about page logo
-					</p>
-					<p>
-						<br>
-					</p>
-					<p>
-						<a href="http://www.cosound.dk" target="_blank" class="text">CoSound</a> link to cosound
-					</p>
-					<p>
-					</p><div class="bglightblue" style="display: inline-block; height: 24px; line-height: 24px; padding: 10px;">This is white text on lightblue background</div>
-					<p>
-						<a href="#">
-							<img onmouseout=" this.src = 'share_50.png' " onmouseover=" this.src = 'share_hover_50.png' " src="share_50.png">
-						</a>
-					</p>
-					<p>
-						<img src="linkblue_40.png">
-					</p>
-					<p>
-						<a href="#">
-							<img onmouseout=" this.src = 'blue_arrow_900_40.png' " onmouseover=" this.src = 'pink_arrow_900_40.png' " src="blue_arrow_900_40.png">
-						</a>
-						&copy;
-					</p>
-				</div>
-			</div>-->
+		</div>
+		<div class="wbg">
+			<div class="mainblock">
+				Explore the realm of Eurovision Song Contest.<br>
+				<p>
+					<br>
+				</p>
+				<p>
+					<a class="button" href="#">SONG MATCH</a>
+					<br>
+				</p>
+				<div id="map-canvas" style="width: 850px; height: 700px;"></div>
+				<a class="twitter-timeline" href="https://twitter.com/Eurovision" data-widget-id="460609701009313793">Tweets by @Eurovision</a>
+				<p>
+					<a class="buttonsqpink" href="#">?</a>
+				</p>
+				<p>
+					<a class="buttonsqpink" href="#">►</a> And this a some text.
+				</p>
+				<p>
+					<a class="buttonsqpink" href="#">+</a>
+				</p>
+				<p>
+					<a class="buttonsqblue" href="#">✓</a> And this a some text.
+				</p>
+				<p>
+					<img src="Images/cosound_logo_86.png" alt="refrain"> about page logo
+				</p>
+				<p>
+					<img src="Images/danishsound_long_86.png" alt="refrain"> about page logo
+				</p>
+				<p>
+					<img src="Images/geckon.png" alt="refrain"> about page logo
+				</p>
+				<p>
+					<img src="Images/DTU.png" alt="refrain"> about page logo
+				</p>
+				<p>
+					<br>
+				</p>
+				<p>
+					<a href="http://www.cosound.dk" target="_blank" class="text">CoSound</a> link to cosound
+				</p>
+				<p>
+				</p><div class="bglightblue" style="display: inline-block; height: 24px; line-height: 24px; padding: 10px;">This is white text on lightblue background</div>
+				<p>
+					<a href="#">
+						<img onmouseout=" this.src = 'share_50.png' " onmouseover=" this.src = 'share_hover_50.png' " src="Images/share_50.png">
+					</a>
+				</p>
+				<p>
+					<img src="Images/linkblue_40.png">
+				</p>
+				<p>
+					<a href="#">
+						<img onmouseout=" this.src = 'Images/blue_arrow_900_40.png'" onmouseover="	this.src = 'Images/pink_arrow_900_40.png' " src="Images/blue_arrow_900_40.png">
+					</a>
+					&copy;
+				</p>
+			</div>
+		</div>
 	</body>
 </html>

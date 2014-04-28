@@ -17,6 +17,17 @@
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="Images\bg640.jpg" />
+    <Content Include="Images\blue_arrow_900_40.png" />
+    <Content Include="Images\cosound_logo.png" />
+    <Content Include="Images\cosound_logo_86.png" />
+    <Content Include="Images\danishsound_long.png" />
+    <Content Include="Images\danishsound_long_86.png" />
+    <Content Include="Images\DTU.png" />
+    <Content Include="Images\geckon.png" />
+    <Content Include="Images\linkblue_40.png" />
+    <Content Include="Images\refrain_white_280.png" />
+    <Content Include="Images\share_50.png" />
     <Content Include="index.html" />
     <Content Include="Main.css" />
     <Content Include="web.config" />
