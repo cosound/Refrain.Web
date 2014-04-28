@@ -23,6 +23,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="region_un_Europe_subunits.json" />
+    <Content Include="ne-countries-110m.json" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
