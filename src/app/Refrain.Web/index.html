@@ -4,30 +4,16 @@
 	<head>
 		<title>Refrain</title>
 		<link type="text/css" rel="stylesheet" href="Main.css"/>
-		<script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+		<script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
 		<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyDYMEgXXaemmCDhs3D_z6s_KPb5nMcB5MA&sensor=false"></script>
-		<script type="text/javascript" src="//platform.twitter.com/widgets.js" async=""></script>
+		<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+		<script type="text/javascript" src="Refrain.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function()
-			{
-				var map = new google.maps.Map(document.getElementById('map-canvas'), {
-					zoom: 4,
-					center: { lat: 51.5, lng: 13.7 },
-					disableDefaultUI: true
+				{
+					ko.applyBindings(new MainViewModel());
 				});
-
-				// Load GeoJSON.
-				map.data.loadGeoJson('Countries.json');
-
-				map.data.setStyle(function (feature) {
-					var color = '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
-					return {
-						fillColor: color,
-						strokeColor: color,
-						strokeWeight: 1
-					};
-				});
-			});
 		</script>
 	</head>
 	<body>
@@ -35,25 +21,35 @@
 			<div class="transdarkblue"></div>
 			<div id="headtext">
 				<div class="wbg">
-					<div class="menublock" style="text-align: left;">
-						<table style="margin: 0px; padding: 0px; width: 900px;">
+					<div class="menublock">
+						<table>
 							<tbody>
 								<tr>
-									<td><img width="280" src="Images/refrain_white_280.png" alt="refrain"></td>
+									<td>
+										<img width="280" src="Images/refrain_white_280.png" alt="refrain" />
+									</td>
 									<td style="text-align: right;">
 										<span class="small">PRESENTED BY</span>&nbsp;
-										<a href="http://www.cosound.dk" target="_blank"><img src="Images/cosound_logo.png" style="vertical-align: middle; width: 150px;" alt="refrain"></a>
+										<a href="http://www.cosound.dk" target="_blank">
+											<img src="Images/cosound_logo.png" style="vertical-align: middle; width: 150px;" alt="refrain" />
+										</a>
 										&nbsp;
-										<a href="http://www.danishsound.org" target="_blank"><img src="Images/danishsound_long.png" style="vertical-align: middle; width: 150px;" alt="refrain"></a>
+										<a href="http://www.danishsound.org" target="_blank">
+											<img src="Images/danishsound_long.png" style="vertical-align: middle; width: 150px;" alt="refrain" />
+										</a>
 									</td>
 								</tr>
-								<tr><td colspan="2"><div style="height: 12px;"></div></td></tr>
+								<tr>
+									<td colspan="2">
+										<div style="height: 12px;"></div>
+									</td>
+								</tr>
 								<tr>
 									<td style="text-align: left;" colspan="2">
-										<a class="menubutton" href="#">SONG MATCH</a>&nbsp;
-										<a class="menubutton" href="#">MOOD OF EUROPE</a>&nbsp;
-										<a class="menubutton" href="#">DISCOVERIES</a>&nbsp;
-										<a class="menubutton" href="#">ABOUT</a>
+										<a class="menubutton" href="#Match">SONG MATCH</a>&nbsp;
+										<a class="menubutton" href="#Mood">MOOD OF EUROPE</a>&nbsp;
+										<a class="menubutton" href="#Discovery">DISCOVERIES</a>&nbsp;
+										<a class="menubutton" href="#About">ABOUT</a>
 									</td>
 								</tr>
 							</tbody>
@@ -63,7 +59,8 @@
 			</div>
 		</div>
 		<div class="wbg">
-			<div class="mainblock">
+			<div class="mainblock" data-bind="with: CurrentPageViewModel">
+				<!-- ko if: $parent.CurrentPage() == "Home" -->
 				Explore the realm of Eurovision Song Contest.<br>
 				<p>
 					<br>
@@ -72,8 +69,6 @@
 					<a class="button" href="#">SONG MATCH</a>
 					<br>
 				</p>
-				<div id="map-canvas" style="width: 850px; height: 700px;"></div>
-				<a class="twitter-timeline" href="https://twitter.com/Eurovision" data-widget-id="460609701009313793">Tweets by @Eurovision</a>
 				<p>
 					<a class="buttonsqpink" href="#">?</a>
 				</p>
@@ -120,6 +115,21 @@
 					</a>
 					&copy;
 				</p>
+				<!-- /ko -->
+				<!-- ko if: $parent.CurrentPage() == "Match" -->
+				<h1>Match</h1>
+				<!-- /ko -->
+				<!-- ko if: $parent.CurrentPage() == "Mood" -->
+				<h1>Mood</h1>
+				<div id="map-canvas" style="width: 850px; height: 700px;"></div>
+				<a class="twitter-timeline" href="https://twitter.com/Eurovision" data-widget-id="460609701009313793">Tweets by @Eurovision</a>
+				<!-- /ko -->
+				<!-- ko if: $parent.CurrentPage() == "Discovery" -->
+				<h1>Discovery</h1>
+				<!-- /ko -->
+				<!-- ko if: $parent.CurrentPage() == "About" -->
+				<h1>About</h1>
+				<!-- /ko -->
 			</div>
 		</div>
 	</body>

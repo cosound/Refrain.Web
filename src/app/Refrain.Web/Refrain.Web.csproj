@@ -30,6 +30,7 @@
     <Content Include="Images\share_50.png" />
     <Content Include="index.html" />
     <Content Include="Main.css" />
+    <Content Include="Refrain.js" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -41,6 +42,14 @@
       <DependentUpon>web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="App\MainViewModel.ts" />
+    <TypeScriptCompile Include="App\MoodViewModel.ts" />
+    <TypeScriptCompile Include="TypescriptDefinitions\google.maps.d.ts" />
+    <TypeScriptCompile Include="TypescriptDefinitions\jquery.d.ts" />
+    <TypeScriptCompile Include="TypescriptDefinitions\knockout.d.ts" />
+  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -69,10 +78,12 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-    <TypeScriptTarget>ES5</TypeScriptTarget>
-    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptTarget>ES3</TypeScriptTarget>
+    <TypeScriptRemoveComments>True</TypeScriptRemoveComments>
     <TypeScriptSourceMap>true</TypeScriptSourceMap>
-    <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
+    <TypeScriptModuleKind>none</TypeScriptModuleKind>
+    <TypeScriptOutFile>Refrain.js</TypeScriptOutFile>
+    <TypeScriptNoImplicitAny>True</TypeScriptNoImplicitAny>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <TypeScriptTarget>ES5</TypeScriptTarget>

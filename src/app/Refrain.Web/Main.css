@@ -13,7 +13,6 @@
 	margin: 0px;
 }
 
-
 .small {
 	font-size: 18px;
 }
@@ -29,7 +28,6 @@
 .huge {
 	font-size: 32px;
 }
-
 
 /* Colors */
 
@@ -73,14 +71,50 @@
 	background-color: #0099FF;
 }
 
-/* divs */
+/* Header */
 
 div.menublock {
 	color: #ffffff;
 	font-size: 22px;
 	padding: 10px;
 	width: 900px;
+	text-align: left;
 }
+
+div.menublock table{
+	margin: 0;
+	padding: 0;
+	width: 900px;
+}
+
+.menubutton {
+	background-color: transparent;
+	color: #ffffff;
+	display: inline-block;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 22px;
+	font-weight: bold;
+	height: 24px;
+	line-height: 24px;
+	padding: 10px;
+	text-align: center;
+	text-decoration: none;
+	width: 200px;
+}
+
+.menubutton:hover {
+	background-color: #cc0099;
+	color: #ffffff;
+}
+
+.menubutton:active {
+	background-color: #cc0099;
+	color: #ffffff;
+	position: relative;
+	top: 1px;
+}
+
+/* divs */
 
 div.mainblock {
 	color: #ffffff;
@@ -96,7 +130,6 @@ div.wbg {
 	padding: 0px;
 	width: 900px;
 }
-
 
 #headcontainer {
 	height: 139px;
@@ -184,35 +217,6 @@ a.text:visited {
 	text-decoration: none;
 }
 
-
-.menubutton {
-	background-color: transparent;
-	color: #ffffff;
-	display: inline-block;
-	font-family: verdana, arial, helvetica, sans-serif;
-	font-size: 22px;
-	font-weight: bold;
-	height: 24px;
-	line-height: 24px;
-	padding: 10px;
-	text-align: center;
-	text-decoration: none;
-	width: 200px;
-}
-
-.menubutton:hover {
-	background-color: #cc0099;
-	color: #ffffff;
-}
-
-.menubutton:active {
-	background-color: #cc0099;
-	color: #ffffff;
-	position: relative;
-	top: 1px;
-}
-
-
 .button {
 	background-color: #cc0099;
 	color: #ffffff;
@@ -265,7 +269,6 @@ a.text:visited {
 	position: relative;
 	top: 1px;
 }
-
 
 .buttonsqblue {
 	background-color: #0099FF;
