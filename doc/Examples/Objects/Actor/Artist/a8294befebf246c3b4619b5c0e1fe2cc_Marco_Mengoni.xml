@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <ActorArtist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CoSound_Object_Actor_Country_R001a.xsd">
+  <Names>
+    <Main>
+      <Name>Marco Mengoni</Name>
+      <LanguageCode>
+        <Code>ISO6391:en</Code>
+      </LanguageCode>
+      <LanguageCode>
+        <Code>ISO6393:eng</Code>
+      </LanguageCode>
+      <Source>DTU Dataset</Source>
+    </Main>
+    <Sorts>
+      <Name>Marco Mengoni</Name>
+      <LanguageCode>
+        <Code>Other:Unknown</Code>
+      </LanguageCode>
+      <Source>Wiki</Source>
+    </Sorts>
+  </Names>
+  <Location>
+    <Country>
+      <Names>
+        <Main>
+          <Name>Italy</Name>
+        </Main>
+      </Names>
+      <HardCodedObjectReference>
+        <TargetGUID>1e08958124a241a8bb084d7cac4d4c50</TargetGUID>
+        <TargetTest>Italy</TargetTest>
+      </HardCodedObjectReference>
+    </Country>
+  </Location>
+  <ForeignReferences>
+    <ForeignReference>
+      <Description>Wikipedia</Description>
+      <Type>Data</Type>
+      <Id/> 
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://en.wikipedia.org/wiki/Marco_Mengoni</URI>
+      <Other>Short Text: Marco Mengoni (born 25 December 1988) is an Italian singer-songwriter. He rose to fame in 2009, after winning the third series of Italian talent show X Factor. </Other>
+    </ForeignReference>
+  </ForeignReferences>
+</ActorArtist>

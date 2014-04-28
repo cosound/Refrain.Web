@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: 
+	Attached to objects of type "Actor" 
+	
+	Status: Early draft
+	
+	Priority: Must-have 
+	
+	Authors: 
+	
+	::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+	
+<xs:schema id="CoSound.Actor.Artist.R001a" elementFormDefault="qualified" 	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:include schemaLocation="_CoSound_Object_Generic_BasicTypes_R001a.xsd" 		/>
+	<xs:include schemaLocation="_CoSound_Object_Generic_ForeignReference_R001a.xsd" 	/>
+	<!--   <xs:include schemaLocation="_CoSound_Object_Generic_Location_R001a.xsd" 			/> --> 
+	<xs:include schemaLocation="_CoSound_Object_Generic_Timeline_R001a.xsd" 			/>
+	<xs:include schemaLocation="_CoSound_Object_Generic_Location_R001a.xsd" 			/>
+	<xs:include schemaLocation="_CoSound_Object_Generic_ObjectReference_R001a.xsd" 	/> 
+	<xs:include schemaLocation="_CoSound_Object_Generic_NamesTitles_R001a.xsd" 	/>
+	
+	<!-- A General Actor?Artist -->
+	<xs:element name="ActorArtist" type="CoSoundActorArtist" />
+	<xs:complexType name="CoSoundActorArtist">
+		<xs:sequence>													
+			<xs:element name="Names" 			type="CoSoundNames" 			minOccurs="1" maxOccurs="1" /> 		<!-- The official name of the label.The label name should be represented as found on media sleeves, including use of characters from non latin charsets, stylized characters, etc.If a label is renamed a new label should be created and a label rename relationship created between the two.  If there exists multiple slightly different names for the label (eg: The Verve Music Artist, Verve Music Artist, VMG), you should use the most commonly used name, or the one used on the label's official site. Labels are not always named uniquely, and different labels may share the same label name. To help differentiate between identically named labels, you should use a disambiguation comment and possibly an annotation as well.-->						
+
+			<xs:element name="Members"			type="CoSoundArtistMembers" 	maxOccurs="1" minOccurs="0" /> <!-- NOTE USUALLY THIS WILL BE VIA RELATIONS ! -->			
+			<xs:element name="Locations" 		type="CoSoundLocations" 				minOccurs="0" maxOccurs="1" /> 		<!-- The official name of the label.The label name should be represented as found on media sleeves, including use of characters from non latin charsets, stylized characters, etc.If a label is renamed a new label should be created and a label rename relationship created between the two.  If there exists multiple slightly different names for the label (eg: The Verve Music Artist, Verve Music Artist, VMG), you should use the most commonly used name, or the one used on the label's official site. Labels are not always named uniquely, and different labels may share the same label name. To help differentiate between identically named labels, you should use a disambiguation comment and possibly an annotation as well.-->			
+			<xs:element name="Timelines"		type="CoSoundTimelines" 		maxOccurs="1" minOccurs="0" /> <!-- NOTE USUALLY THIS WILL BE VIA RELATIONS ! -->			
+			
+		</xs:sequence>			
+	</xs:complexType>
+	
+	<xs:complexType name="CoSoundArtistMembers">
+		<xs:sequence>
+		<xs:element name="Member"			type="CoSoundArtistMember" 		maxOccurs="unbounded" minOccurs="0" /> <!-- NOTE USUALLY THIS WILL BE VIA RELATIONS ! -->
+		</xs:sequence>
+	</xs:complexType>		
+	
+	
+	<xs:complexType name="CoSoundArtistMember">
+		<xs:sequence>
+			<xs:element name="MembersAsNames"		type="xs:string" 						maxOccurs="1"	minOccurs="0" /> <!-- NOTE USUALLY THIS WILL BE VIA RELATIONS ! -->
+			<xs:element name="HardCodedObjectReference"	type="CoSoundHardCodedObjectReference" 	maxOccurs="1"	minOccurs="0" /> <!-- NOTE USUALLY THIS WILL BE VIA RELATIONS ! -->
+		</xs:sequence>
+	</xs:complexType>		
+
+
+</xs:schema>
+	

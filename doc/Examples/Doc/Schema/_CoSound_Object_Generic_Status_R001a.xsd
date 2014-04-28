@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+	Attached to object
+	
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+-->
+<xs:schema id="CoSound.Object.Generic.Status.R001a" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="Status" type="CoSoundStatus" />
+	<xs:complexType name="CoSoundStatuss">
+		<xs:sequence>									
+			<xs:element name="Status" 	type="CoSoundStatus" maxOccurs="unbounded" minOccurs="1" />								
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CoSoundStatus">
+		<xs:sequence>									
+			<xs:element name="Status" 	type="xs:string" maxOccurs="unbounded" minOccurs="1" />					
+			<xs:element name="TODO" 	type="xs:string" maxOccurs="unbounded" minOccurs="1" />
+			<xs:element name="Other" 	type="xs:string" maxOccurs="unbounded" minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>		
+</xs:schema>

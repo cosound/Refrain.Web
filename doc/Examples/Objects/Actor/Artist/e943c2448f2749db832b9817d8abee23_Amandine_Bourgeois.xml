@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <ActorArtist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CoSound_Object_Actor_Country_R001a.xsd">
+  <Names>
+    <Main>
+      <Name>Amandine Bourgeois</Name>
+      <LanguageCode>
+        <Code>ISO6391:en</Code>
+      </LanguageCode>
+      <LanguageCode>
+        <Code>ISO6393:eng</Code>
+      </LanguageCode>
+      <Source>DTU Dataset</Source>
+    </Main>
+    <Sorts>
+      <Name>Amandine Bourgeois</Name>
+      <LanguageCode>
+        <Code>Other:Unknown</Code>
+      </LanguageCode>
+      <Source>Wiki</Source>
+    </Sorts>
+  </Names>
+  <Location>
+    <Country>
+      <Names>
+        <Main>
+          <Name>France</Name>
+        </Main>
+      </Names>
+      <HardCodedObjectReference>
+        <TargetGUID>d28cae6911d849f284bb7c0473aaba38</TargetGUID>
+        <TargetTest>France</TargetTest>
+      </HardCodedObjectReference>
+    </Country>
+  </Location>
+  <ForeignReferences>
+    <ForeignReference>
+      <Description>Wikipedia</Description>
+      <Type>Data</Type>
+      <Id/> 
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://en.wikipedia.org/wiki/Amandine_Bourgeois</URI>
+      <Other>Short Text: Amandine Bourgeois (born 12 June 1979, Angoulême, Charente) is a French singer. She was the winner of the sixth edition of the French version of the Pop Idol series Nouvelle Star in 2008.</Other>
+    </ForeignReference>
+  </ForeignReferences>
+</ActorArtist>

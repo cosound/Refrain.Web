@@ -1,0 +1,1316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: 
+	An Audio Feature is ... Attached to objects of type "AudioSegment" or "AudioRecording". 
+	Status: Highly Unstable, to be tested Priority: Must-have Authors: Bjørn 
+	Sand Jensen <bjje@dtu.dk>, Kræn Hansen <kh@bitblueprint.com>, Markus Færevaag 
+	<mf@bitblueprint.com> 
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+<xs:schema id="CoSound.Generic.GeoTypes.R001a"	elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:include schemaLocation="_CoSound_Object_Generic_BasicTypes_R001a.xsd" 		/>
+	
+	<xs:simpleType name="CoSoundCountryCode">
+    	<xs:union memberTypes="CoSoundCountryCodeEnum CoSoundBasicType_EnumOtherStringPatternType"/>
+	</xs:simpleType>	
+	<xs:simpleType name="CoSoundCountryCodeEnum">
+		<xs:annotation>
+			<xs:documentation>http://www.iso.org/iso/home/standards/country_codes/iso-3166-1_decoding_table.htm
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ISO3161:AA" />
+			<xs:enumeration value="ISO3161:AC" />
+			<xs:enumeration value="ISO3161:AD" />
+			<xs:enumeration value="ISO3161:AE" />
+			<xs:enumeration value="ISO3161:AF" />
+			<xs:enumeration value="ISO3161:AG" />
+			<xs:enumeration value="ISO3161:AI" />
+			<xs:enumeration value="ISO3161:AL" />
+			<xs:enumeration value="ISO3161:AM" />
+			<xs:enumeration value="ISO3161:AN" />
+			<xs:enumeration value="ISO3161:AO" />
+			<xs:enumeration value="ISO3161:AP" />
+			<xs:enumeration value="ISO3161:AQ" />
+			<xs:enumeration value="ISO3161:AR" />
+			<xs:enumeration value="ISO3161:AS" />
+			<xs:enumeration value="ISO3161:AT" />
+			<xs:enumeration value="ISO3161:AU" />
+			<xs:enumeration value="ISO3161:AW" />
+			<xs:enumeration value="ISO3161:AX" />
+			<xs:enumeration value="ISO3161:AZ" />
+			<xs:enumeration value="ISO3161:BA" />
+			<xs:enumeration value="ISO3161:BB" />
+			<xs:enumeration value="ISO3161:BD" />
+			<xs:enumeration value="ISO3161:BE" />
+			<xs:enumeration value="ISO3161:BF" />
+			<xs:enumeration value="ISO3161:BG" />
+			<xs:enumeration value="ISO3161:BH" />
+			<xs:enumeration value="ISO3161:BI" />
+			<xs:enumeration value="ISO3161:BJ" />
+			<xs:enumeration value="ISO3161:BL" />
+			<xs:enumeration value="ISO3161:BM" />
+			<xs:enumeration value="ISO3161:BN" />
+			<xs:enumeration value="ISO3161:BO" />
+			<xs:enumeration value="ISO3161:BQ" />
+			<xs:enumeration value="ISO3161:BR" />
+			<xs:enumeration value="ISO3161:BS" />
+			<xs:enumeration value="ISO3161:BT" />
+			<xs:enumeration value="ISO3161:BU" />
+			<xs:enumeration value="ISO3161:BV" />
+			<xs:enumeration value="ISO3161:BW" />
+			<xs:enumeration value="ISO3161:BX" />
+			<xs:enumeration value="ISO3161:BY" />
+			<xs:enumeration value="ISO3161:BZ" />
+			<xs:enumeration value="ISO3161:CA" />
+			<xs:enumeration value="ISO3161:CC" />
+			<xs:enumeration value="ISO3161:CD" />
+			<xs:enumeration value="ISO3161:CF" />
+			<xs:enumeration value="ISO3161:CG" />
+			<xs:enumeration value="ISO3161:CH" />
+			<xs:enumeration value="ISO3161:CI" />
+			<xs:enumeration value="ISO3161:CK" />
+			<xs:enumeration value="ISO3161:CL" />
+			<xs:enumeration value="ISO3161:CM" />
+			<xs:enumeration value="ISO3161:CN" />
+			<xs:enumeration value="ISO3161:CO" />
+			<xs:enumeration value="ISO3161:CP" />
+			<xs:enumeration value="ISO3161:CR" />
+			<xs:enumeration value="ISO3161:CS" />
+			<xs:enumeration value="ISO3161:CU" />
+			<xs:enumeration value="ISO3161:CV" />
+			<xs:enumeration value="ISO3161:CW" />
+			<xs:enumeration value="ISO3161:CX" />
+			<xs:enumeration value="ISO3161:CY" />
+			<xs:enumeration value="ISO3161:CZ" />
+			<xs:enumeration value="ISO3161:DE" />
+			<xs:enumeration value="ISO3161:DG" />
+			<xs:enumeration value="ISO3161:DJ" />
+			<xs:enumeration value="ISO3161:DK" />
+			<xs:enumeration value="ISO3161:DM" />
+			<xs:enumeration value="ISO3161:DO" />
+			<xs:enumeration value="ISO3161:DY" />
+			<xs:enumeration value="ISO3161:DZ" />
+			<xs:enumeration value="ISO3161:EA" />
+			<xs:enumeration value="ISO3161:EC" />
+			<xs:enumeration value="ISO3161:EE" />
+			<xs:enumeration value="ISO3161:EF" />
+			<xs:enumeration value="ISO3161:EG" />
+			<xs:enumeration value="ISO3161:EH" />
+			<xs:enumeration value="ISO3161:EM" />
+			<xs:enumeration value="ISO3161:EP" />
+			<xs:enumeration value="ISO3161:ER" />
+			<xs:enumeration value="ISO3161:ES" />
+			<xs:enumeration value="ISO3161:ET" />
+			<xs:enumeration value="ISO3161:EU" />
+			<xs:enumeration value="ISO3161:EV" />
+			<xs:enumeration value="ISO3161:EW" />
+			<xs:enumeration value="ISO3161:FI" />
+			<xs:enumeration value="ISO3161:FJ" />
+			<xs:enumeration value="ISO3161:FK" />
+			<xs:enumeration value="ISO3161:FL" />
+			<xs:enumeration value="ISO3161:FM" />
+			<xs:enumeration value="ISO3161:FO" />
+			<xs:enumeration value="ISO3161:FR" />
+			<xs:enumeration value="ISO3161:FX" />
+			<xs:enumeration value="ISO3161:GA" />
+			<xs:enumeration value="ISO3161:GB" />
+			<xs:enumeration value="ISO3161:GC" />
+			<xs:enumeration value="ISO3161:GD" />
+			<xs:enumeration value="ISO3161:GE" />
+			<xs:enumeration value="ISO3161:GF" />
+			<xs:enumeration value="ISO3161:GG" />
+			<xs:enumeration value="ISO3161:GH" />
+			<xs:enumeration value="ISO3161:GI" />
+			<xs:enumeration value="ISO3161:GL" />
+			<xs:enumeration value="ISO3161:GM" />
+			<xs:enumeration value="ISO3161:GN" />
+			<xs:enumeration value="ISO3161:GP" />
+			<xs:enumeration value="ISO3161:GQ" />
+			<xs:enumeration value="ISO3161:GR" />
+			<xs:enumeration value="ISO3161:GS" />
+			<xs:enumeration value="ISO3161:GT" />
+			<xs:enumeration value="ISO3161:GU" />
+			<xs:enumeration value="ISO3161:GW" />
+			<xs:enumeration value="ISO3161:GY" />
+			<xs:enumeration value="ISO3161:HK" />
+			<xs:enumeration value="ISO3161:HM" />
+			<xs:enumeration value="ISO3161:HN" />
+			<xs:enumeration value="ISO3161:HR" />
+			<xs:enumeration value="ISO3161:HT" />
+			<xs:enumeration value="ISO3161:HU" />
+			<xs:enumeration value="ISO3161:IB" />
+			<xs:enumeration value="ISO3161:IC" />
+			<xs:enumeration value="ISO3161:ID" />
+			<xs:enumeration value="ISO3161:IE" />
+			<xs:enumeration value="ISO3161:IL" />
+			<xs:enumeration value="ISO3161:IM" />
+			<xs:enumeration value="ISO3161:IN" />
+			<xs:enumeration value="ISO3161:IO" />
+			<xs:enumeration value="ISO3161:IQ" />
+			<xs:enumeration value="ISO3161:IR" />
+			<xs:enumeration value="ISO3161:IS" />
+			<xs:enumeration value="ISO3161:IT" />
+			<xs:enumeration value="ISO3161:JA" />
+			<xs:enumeration value="ISO3161:JE" />
+			<xs:enumeration value="ISO3161:JM" />
+			<xs:enumeration value="ISO3161:JO" />
+			<xs:enumeration value="ISO3161:JP" />
+			<xs:enumeration value="ISO3161:KE" />
+			<xs:enumeration value="ISO3161:KG" />
+			<xs:enumeration value="ISO3161:KH" />
+			<xs:enumeration value="ISO3161:KI" />
+			<xs:enumeration value="ISO3161:KM" />
+			<xs:enumeration value="ISO3161:KN" />
+			<xs:enumeration value="ISO3161:KP" />
+			<xs:enumeration value="ISO3161:KR" />
+			<xs:enumeration value="ISO3161:KW" />
+			<xs:enumeration value="ISO3161:KY" />
+			<xs:enumeration value="ISO3161:KZ" />
+			<xs:enumeration value="ISO3161:LA" />
+			<xs:enumeration value="ISO3161:LB" />
+			<xs:enumeration value="ISO3161:LC" />
+			<xs:enumeration value="ISO3161:LF" />
+			<xs:enumeration value="ISO3161:LI" />
+			<xs:enumeration value="ISO3161:LK" />
+			<xs:enumeration value="ISO3161:LR" />
+			<xs:enumeration value="ISO3161:LS" />
+			<xs:enumeration value="ISO3161:LT" />
+			<xs:enumeration value="ISO3161:LU" />
+			<xs:enumeration value="ISO3161:LV" />
+			<xs:enumeration value="ISO3161:LY" />
+			<xs:enumeration value="ISO3161:MA" />
+			<xs:enumeration value="ISO3161:MC" />
+			<xs:enumeration value="ISO3161:MD" />
+			<xs:enumeration value="ISO3161:ME" />
+			<xs:enumeration value="ISO3161:MF" />
+			<xs:enumeration value="ISO3161:MG" />
+			<xs:enumeration value="ISO3161:MH" />
+			<xs:enumeration value="ISO3161:MK" />
+			<xs:enumeration value="ISO3161:ML" />
+			<xs:enumeration value="ISO3161:MM" />
+			<xs:enumeration value="ISO3161:MN" />
+			<xs:enumeration value="ISO3161:MO" />
+			<xs:enumeration value="ISO3161:MP" />
+			<xs:enumeration value="ISO3161:MQ" />
+			<xs:enumeration value="ISO3161:MR" />
+			<xs:enumeration value="ISO3161:MS" />
+			<xs:enumeration value="ISO3161:MT" />
+			<xs:enumeration value="ISO3161:MU" />
+			<xs:enumeration value="ISO3161:MV" />
+			<xs:enumeration value="ISO3161:MW" />
+			<xs:enumeration value="ISO3161:MX" />
+			<xs:enumeration value="ISO3161:MY" />
+			<xs:enumeration value="ISO3161:MZ" />
+			<xs:enumeration value="ISO3161:NA" />
+			<xs:enumeration value="ISO3161:NC" />
+			<xs:enumeration value="ISO3161:NE" />
+			<xs:enumeration value="ISO3161:NF" />
+			<xs:enumeration value="ISO3161:NG" />
+			<xs:enumeration value="ISO3161:NI" />
+			<xs:enumeration value="ISO3161:NL" />
+			<xs:enumeration value="ISO3161:NO" />
+			<xs:enumeration value="ISO3161:NP" />
+			<xs:enumeration value="ISO3161:NR" />
+			<xs:enumeration value="ISO3161:NT" />
+			<xs:enumeration value="ISO3161:NU" />
+			<xs:enumeration value="ISO3161:NZ" />
+			<xs:enumeration value="ISO3161:OA" />
+			<xs:enumeration value="ISO3161:OM" />
+			<xs:enumeration value="ISO3161:PA" />
+			<xs:enumeration value="ISO3161:PE" />
+			<xs:enumeration value="ISO3161:PF" />
+			<xs:enumeration value="ISO3161:PG" />
+			<xs:enumeration value="ISO3161:PH" />
+			<xs:enumeration value="ISO3161:PI" />
+			<xs:enumeration value="ISO3161:PK" />
+			<xs:enumeration value="ISO3161:PL" />
+			<xs:enumeration value="ISO3161:PM" />
+			<xs:enumeration value="ISO3161:PN" />
+			<xs:enumeration value="ISO3161:PR" />
+			<xs:enumeration value="ISO3161:PS" />
+			<xs:enumeration value="ISO3161:PT" />
+			<xs:enumeration value="ISO3161:PW" />
+			<xs:enumeration value="ISO3161:PY" />
+			<xs:enumeration value="ISO3161:QA" />
+			<xs:enumeration value="ISO3161:QM" />
+			<xs:enumeration value="ISO3161:QN" />
+			<xs:enumeration value="ISO3161:QO" />
+			<xs:enumeration value="ISO3161:QP" />
+			<xs:enumeration value="ISO3161:QQ" />
+			<xs:enumeration value="ISO3161:QR" />
+			<xs:enumeration value="ISO3161:QS" />
+			<xs:enumeration value="ISO3161:QT" />
+			<xs:enumeration value="ISO3161:QU" />
+			<xs:enumeration value="ISO3161:QV" />
+			<xs:enumeration value="ISO3161:QW" />
+			<xs:enumeration value="ISO3161:QX" />
+			<xs:enumeration value="ISO3161:QY" />
+			<xs:enumeration value="ISO3161:QZ" />
+			<xs:enumeration value="ISO3161:RA" />
+			<xs:enumeration value="ISO3161:RB" />
+			<xs:enumeration value="ISO3161:RC" />
+			<xs:enumeration value="ISO3161:RE" />
+			<xs:enumeration value="ISO3161:RH" />
+			<xs:enumeration value="ISO3161:RI" />
+			<xs:enumeration value="ISO3161:RL" />
+			<xs:enumeration value="ISO3161:RM" />
+			<xs:enumeration value="ISO3161:RN" />
+			<xs:enumeration value="ISO3161:RO" />
+			<xs:enumeration value="ISO3161:RP" />
+			<xs:enumeration value="ISO3161:RS" />
+			<xs:enumeration value="ISO3161:RU" />
+			<xs:enumeration value="ISO3161:RW" />
+			<xs:enumeration value="ISO3161:SA" />
+			<xs:enumeration value="ISO3161:SB" />
+			<xs:enumeration value="ISO3161:SC" />
+			<xs:enumeration value="ISO3161:SD" />
+			<xs:enumeration value="ISO3161:SE" />
+			<xs:enumeration value="ISO3161:SF" />
+			<xs:enumeration value="ISO3161:SG" />
+			<xs:enumeration value="ISO3161:SH" />
+			<xs:enumeration value="ISO3161:SI" />
+			<xs:enumeration value="ISO3161:SJ" />
+			<xs:enumeration value="ISO3161:SK" />
+			<xs:enumeration value="ISO3161:SL" />
+			<xs:enumeration value="ISO3161:SM" />
+			<xs:enumeration value="ISO3161:SN" />
+			<xs:enumeration value="ISO3161:SO" />
+			<xs:enumeration value="ISO3161:SR" />
+			<xs:enumeration value="ISO3161:SS" />
+			<xs:enumeration value="ISO3161:ST" />
+			<xs:enumeration value="ISO3161:SU" />
+			<xs:enumeration value="ISO3161:SV" />
+			<xs:enumeration value="ISO3161:SX" />
+			<xs:enumeration value="ISO3161:SY" />
+			<xs:enumeration value="ISO3161:SZ" />
+			<xs:enumeration value="ISO3161:TA" />
+			<xs:enumeration value="ISO3161:TC" />
+			<xs:enumeration value="ISO3161:TD" />
+			<xs:enumeration value="ISO3161:TF" />
+			<xs:enumeration value="ISO3161:TG" />
+			<xs:enumeration value="ISO3161:TH" />
+			<xs:enumeration value="ISO3161:TJ" />
+			<xs:enumeration value="ISO3161:TK" />
+			<xs:enumeration value="ISO3161:TL" />
+			<xs:enumeration value="ISO3161:TM" />
+			<xs:enumeration value="ISO3161:TN" />
+			<xs:enumeration value="ISO3161:TO" />
+			<xs:enumeration value="ISO3161:TP" />
+			<xs:enumeration value="ISO3161:TR" />
+			<xs:enumeration value="ISO3161:TT" />
+			<xs:enumeration value="ISO3161:TV" />
+			<xs:enumeration value="ISO3161:TW" />
+			<xs:enumeration value="ISO3161:TZ" />
+			<xs:enumeration value="ISO3161:UA" />
+			<xs:enumeration value="ISO3161:UG" />
+			<xs:enumeration value="ISO3161:UK" />
+			<xs:enumeration value="ISO3161:UM" />
+			<xs:enumeration value="ISO3161:US" />
+			<xs:enumeration value="ISO3161:UY" />
+			<xs:enumeration value="ISO3161:UZ" />
+			<xs:enumeration value="ISO3161:VA" />
+			<xs:enumeration value="ISO3161:VC" />
+			<xs:enumeration value="ISO3161:VE" />
+			<xs:enumeration value="ISO3161:VG" />
+			<xs:enumeration value="ISO3161:VI" />
+			<xs:enumeration value="ISO3161:VN" />
+			<xs:enumeration value="ISO3161:VU" />
+			<xs:enumeration value="ISO3161:WF" />
+			<xs:enumeration value="ISO3161:WG" />
+			<xs:enumeration value="ISO3161:WL" />
+			<xs:enumeration value="ISO3161:WO" />
+			<xs:enumeration value="ISO3161:WS" />
+			<xs:enumeration value="ISO3161:WV" />
+			<xs:enumeration value="ISO3161:XA" />
+			<xs:enumeration value="ISO3161:XB" />
+			<xs:enumeration value="ISO3161:XC" />
+			<xs:enumeration value="ISO3161:XD" />
+			<xs:enumeration value="ISO3161:XE" />
+			<xs:enumeration value="ISO3161:XF" />
+			<xs:enumeration value="ISO3161:XG" />
+			<xs:enumeration value="ISO3161:XH" />
+			<xs:enumeration value="ISO3161:XI" />
+			<xs:enumeration value="ISO3161:XJ" />
+			<xs:enumeration value="ISO3161:XK" />
+			<xs:enumeration value="ISO3161:XL" />
+			<xs:enumeration value="ISO3161:XM" />
+			<xs:enumeration value="ISO3161:XN" />
+			<xs:enumeration value="ISO3161:XO" />
+			<xs:enumeration value="ISO3161:XP" />
+			<xs:enumeration value="ISO3161:XQ" />
+			<xs:enumeration value="ISO3161:XR" />
+			<xs:enumeration value="ISO3161:XS" />
+			<xs:enumeration value="ISO3161:XT" />
+			<xs:enumeration value="ISO3161:XU" />
+			<xs:enumeration value="ISO3161:XV" />
+			<xs:enumeration value="ISO3161:XW" />
+			<xs:enumeration value="ISO3161:XX" />
+			<xs:enumeration value="ISO3161:XY" />
+			<xs:enumeration value="ISO3161:XZ" />
+			<xs:enumeration value="ISO3161:YE" />
+			<xs:enumeration value="ISO3161:YT" />
+			<xs:enumeration value="ISO3161:YU" />
+			<xs:enumeration value="ISO3161:YV" />
+			<xs:enumeration value="ISO3161:ZA" />
+			<xs:enumeration value="ISO3161:ZM" />
+			<xs:enumeration value="ISO3161:ZR" />
+			<xs:enumeration value="ISO3161:ZW" />
+			<xs:enumeration value="ISO3161:ZZ" />	
+					
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- Should really be a GUID -->
+	<xs:complexType name="CoSoundLanguage">
+		<xs:sequence>							
+			<xs:element 	name="Name"		type="CoSoundLanuageNameString" 	maxOccurs="1"	minOccurs="0" />														
+			<xs:choice>										
+				<xs:element name="Code" 	type="CoSoundlanguageCodeISO639" 	maxOccurs="1"	minOccurs="0"	/>										
+			</xs:choice>
+		</xs:sequence>			
+	</xs:complexType>
+	
+	<xs:simpleType name="CoSoundlanguageCodeISO639">
+    	<xs:union memberTypes="CoSoundlanguageCodeISO639Enum CoSoundBasicType_EnumOtherStringPatternType"/>
+	</xs:simpleType>	
+	<xs:simpleType name="CoSoundlanguageCodeISO639Enum">
+		<xs:annotation>
+			<xs:documentation>http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes   639-3 format!
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+<xs:enumeration value="ISO6391:ab"/>
+<xs:enumeration value="ISO6391:aa"/>
+<xs:enumeration value="ISO6391:af"/>
+<xs:enumeration value="ISO6391:ak"/>
+<xs:enumeration value="ISO6391:sq"/>
+<xs:enumeration value="ISO6391:am"/>
+<xs:enumeration value="ISO6391:ar"/>
+<xs:enumeration value="ISO6391:an"/>
+<xs:enumeration value="ISO6391:hy"/>
+<xs:enumeration value="ISO6391:as"/>
+<xs:enumeration value="ISO6391:av"/>
+<xs:enumeration value="ISO6391:ae"/>
+<xs:enumeration value="ISO6391:ay"/>
+<xs:enumeration value="ISO6391:az"/>
+<xs:enumeration value="ISO6391:bm"/>
+<xs:enumeration value="ISO6391:ba"/>
+<xs:enumeration value="ISO6391:eu"/>
+<xs:enumeration value="ISO6391:be"/>
+<xs:enumeration value="ISO6391:bn"/>
+<xs:enumeration value="ISO6391:bh"/>
+<xs:enumeration value="ISO6391:bi"/>
+<xs:enumeration value="ISO6391:bs"/>
+<xs:enumeration value="ISO6391:br"/>
+<xs:enumeration value="ISO6391:bg"/>
+<xs:enumeration value="ISO6391:my"/>
+<xs:enumeration value="ISO6391:ca"/>
+<xs:enumeration value="ISO6391:ch"/>
+<xs:enumeration value="ISO6391:ce"/>
+<xs:enumeration value="ISO6391:ny"/>
+<xs:enumeration value="ISO6391:zh"/>
+<xs:enumeration value="ISO6391:cv"/>
+<xs:enumeration value="ISO6391:kw"/>
+<xs:enumeration value="ISO6391:co"/>
+<xs:enumeration value="ISO6391:cr"/>
+<xs:enumeration value="ISO6391:hr"/>
+<xs:enumeration value="ISO6391:cs"/>
+<xs:enumeration value="ISO6391:da"/>
+<xs:enumeration value="ISO6391:dv"/>
+<xs:enumeration value="ISO6391:nl"/>
+<xs:enumeration value="ISO6391:dz"/>
+<xs:enumeration value="ISO6391:en"/>
+<xs:enumeration value="ISO6391:eo"/>
+<xs:enumeration value="ISO6391:et"/>
+<xs:enumeration value="ISO6391:ee"/>
+<xs:enumeration value="ISO6391:fo"/>
+<xs:enumeration value="ISO6391:fj"/>
+<xs:enumeration value="ISO6391:fi"/>
+<xs:enumeration value="ISO6391:fr"/>
+<xs:enumeration value="ISO6391:ff"/>
+<xs:enumeration value="ISO6391:gl"/>
+<xs:enumeration value="ISO6391:ka"/>
+<xs:enumeration value="ISO6391:de"/>
+<xs:enumeration value="ISO6391:el"/>
+<xs:enumeration value="ISO6391:gn"/>
+<xs:enumeration value="ISO6391:gu"/>
+<xs:enumeration value="ISO6391:ht"/>
+<xs:enumeration value="ISO6391:ha"/>
+<xs:enumeration value="ISO6391:he"/>
+<xs:enumeration value="ISO6391:hz"/>
+<xs:enumeration value="ISO6391:hi"/>
+<xs:enumeration value="ISO6391:ho"/>
+<xs:enumeration value="ISO6391:hu"/>
+<xs:enumeration value="ISO6391:ia"/>
+<xs:enumeration value="ISO6391:id"/>
+<xs:enumeration value="ISO6391:ie"/>
+<xs:enumeration value="ISO6391:ga"/>
+<xs:enumeration value="ISO6391:ig"/>
+<xs:enumeration value="ISO6391:ik"/>
+<xs:enumeration value="ISO6391:io"/>
+<xs:enumeration value="ISO6391:is"/>
+<xs:enumeration value="ISO6391:it"/>
+<xs:enumeration value="ISO6391:iu"/>
+<xs:enumeration value="ISO6391:ja"/>
+<xs:enumeration value="ISO6391:jv"/>
+<xs:enumeration value="ISO6391:kl"/>
+<xs:enumeration value="ISO6391:kn"/>
+<xs:enumeration value="ISO6391:kr"/>
+<xs:enumeration value="ISO6391:ks"/>
+<xs:enumeration value="ISO6391:kk"/>
+<xs:enumeration value="ISO6391:km"/>
+<xs:enumeration value="ISO6391:ki"/>
+<xs:enumeration value="ISO6391:rw"/>
+<xs:enumeration value="ISO6391:ky"/>
+<xs:enumeration value="ISO6391:kv"/>
+<xs:enumeration value="ISO6391:kg"/>
+<xs:enumeration value="ISO6391:ko"/>
+<xs:enumeration value="ISO6391:ku"/>
+<xs:enumeration value="ISO6391:kj"/>
+<xs:enumeration value="ISO6391:la"/>
+<xs:enumeration value="ISO6391:lb"/>
+<xs:enumeration value="ISO6391:lg"/>
+<xs:enumeration value="ISO6391:li"/>
+<xs:enumeration value="ISO6391:ln"/>
+<xs:enumeration value="ISO6391:lo"/>
+<xs:enumeration value="ISO6391:lt"/>
+<xs:enumeration value="ISO6391:lu"/>
+<xs:enumeration value="ISO6391:lv"/>
+<xs:enumeration value="ISO6391:gv"/>
+<xs:enumeration value="ISO6391:mk"/>
+<xs:enumeration value="ISO6391:mg"/>
+<xs:enumeration value="ISO6391:ms"/>
+<xs:enumeration value="ISO6391:ml"/>
+<xs:enumeration value="ISO6391:mt"/>
+<xs:enumeration value="ISO6391:mi"/>
+<xs:enumeration value="ISO6391:mr"/>
+<xs:enumeration value="ISO6391:mh"/>
+<xs:enumeration value="ISO6391:mn"/>
+<xs:enumeration value="ISO6391:na"/>
+<xs:enumeration value="ISO6391:nv"/>
+<xs:enumeration value="ISO6391:nb"/>
+<xs:enumeration value="ISO6391:nd"/>
+<xs:enumeration value="ISO6391:ne"/>
+<xs:enumeration value="ISO6391:ng"/>
+<xs:enumeration value="ISO6391:nn"/>
+<xs:enumeration value="ISO6391:no"/>
+<xs:enumeration value="ISO6391:ii"/>
+<xs:enumeration value="ISO6391:nr"/>
+<xs:enumeration value="ISO6391:oc"/>
+<xs:enumeration value="ISO6391:oj"/>
+<xs:enumeration value="ISO6391:cu"/>
+<xs:enumeration value="ISO6391:om"/>
+<xs:enumeration value="ISO6391:or"/>
+<xs:enumeration value="ISO6391:os"/>
+<xs:enumeration value="ISO6391:pa"/>
+<xs:enumeration value="ISO6391:pi"/>
+<xs:enumeration value="ISO6391:fa"/>
+<xs:enumeration value="ISO6391:pl"/>
+<xs:enumeration value="ISO6391:ps"/>
+<xs:enumeration value="ISO6391:pt"/>
+<xs:enumeration value="ISO6391:qu"/>
+<xs:enumeration value="ISO6391:rm"/>
+<xs:enumeration value="ISO6391:rn"/>
+<xs:enumeration value="ISO6391:ro"/>
+<xs:enumeration value="ISO6391:ru"/>
+<xs:enumeration value="ISO6391:sa"/>
+<xs:enumeration value="ISO6391:sc"/>
+<xs:enumeration value="ISO6391:sd"/>
+<xs:enumeration value="ISO6391:se"/>
+<xs:enumeration value="ISO6391:sm"/>
+<xs:enumeration value="ISO6391:sg"/>
+<xs:enumeration value="ISO6391:sr"/>
+<xs:enumeration value="ISO6391:gd"/>
+<xs:enumeration value="ISO6391:sn"/>
+<xs:enumeration value="ISO6391:si"/>
+<xs:enumeration value="ISO6391:sk"/>
+<xs:enumeration value="ISO6391:sl"/>
+<xs:enumeration value="ISO6391:so"/>
+<xs:enumeration value="ISO6391:st"/>
+<xs:enumeration value="ISO6391:es"/>
+<xs:enumeration value="ISO6391:su"/>
+<xs:enumeration value="ISO6391:sw"/>
+<xs:enumeration value="ISO6391:ss"/>
+<xs:enumeration value="ISO6391:sv"/>
+<xs:enumeration value="ISO6391:ta"/>
+<xs:enumeration value="ISO6391:te"/>
+<xs:enumeration value="ISO6391:tg"/>
+<xs:enumeration value="ISO6391:th"/>
+<xs:enumeration value="ISO6391:ti"/>
+<xs:enumeration value="ISO6391:bo"/>
+<xs:enumeration value="ISO6391:tk"/>
+<xs:enumeration value="ISO6391:tl"/>
+<xs:enumeration value="ISO6391:tn"/>
+<xs:enumeration value="ISO6391:to"/>
+<xs:enumeration value="ISO6391:tr"/>
+<xs:enumeration value="ISO6391:ts"/>
+<xs:enumeration value="ISO6391:tt"/>
+<xs:enumeration value="ISO6391:tw"/>
+<xs:enumeration value="ISO6391:ty"/>
+<xs:enumeration value="ISO6391:ug"/>
+<xs:enumeration value="ISO6391:uk"/>
+<xs:enumeration value="ISO6391:ur"/>
+<xs:enumeration value="ISO6391:uz"/>
+<xs:enumeration value="ISO6391:ve"/>
+<xs:enumeration value="ISO6391:vi"/>
+<xs:enumeration value="ISO6391:vo"/>
+<xs:enumeration value="ISO6391:wa"/>
+<xs:enumeration value="ISO6391:cy"/>
+<xs:enumeration value="ISO6391:wo"/>
+<xs:enumeration value="ISO6391:fy"/>
+<xs:enumeration value="ISO6391:xh"/>
+<xs:enumeration value="ISO6391:yi"/>
+<xs:enumeration value="ISO6391:yo"/>
+<xs:enumeration value="ISO6391:za"/>
+<xs:enumeration value="ISO6391:zu"/>
+<xs:enumeration value="ISO6393:aar" />
+			<xs:enumeration value="ISO6393:abk" />
+			<xs:enumeration value="ISO6393:ace" />
+			<xs:enumeration value="ISO6393:ach" />
+			<xs:enumeration value="ISO6393:ada" />
+			<xs:enumeration value="ISO6393:ady" />
+			<xs:enumeration value="ISO6393:afa" />
+			<xs:enumeration value="ISO6393:afh" />
+			<xs:enumeration value="ISO6393:afr" />
+			<xs:enumeration value="ISO6393:ain" />
+			<xs:enumeration value="ISO6393:aka" />
+			<xs:enumeration value="ISO6393:akk" />
+			<xs:enumeration value="ISO6393:alb" />
+			<xs:enumeration value="ISO6393:sqi" />
+			<xs:enumeration value="ISO6393:ale" />
+			<xs:enumeration value="ISO6393:alg" />
+			<xs:enumeration value="ISO6393:alt" />
+			<xs:enumeration value="ISO6393:amh" />
+			<xs:enumeration value="ISO6393:ang" />
+			<xs:enumeration value="ISO6393:anp" />
+			<xs:enumeration value="ISO6393:apa" />
+			<xs:enumeration value="ISO6393:ara" />
+			<xs:enumeration value="ISO6393:arc" />
+			<xs:enumeration value="ISO6393:arg" />
+			<xs:enumeration value="ISO6393:arm" />
+			<xs:enumeration value="ISO6393:hye" />
+			<xs:enumeration value="ISO6393:arn" />
+			<xs:enumeration value="ISO6393:arp" />
+			<xs:enumeration value="ISO6393:art" />
+			<xs:enumeration value="ISO6393:arw" />
+			<xs:enumeration value="ISO6393:asm" />
+			<xs:enumeration value="ISO6393:ast" />
+			<xs:enumeration value="ISO6393:ath" />
+			<xs:enumeration value="ISO6393:aus" />
+			<xs:enumeration value="ISO6393:ava" />
+			<xs:enumeration value="ISO6393:ave" />
+			<xs:enumeration value="ISO6393:awa" />
+			<xs:enumeration value="ISO6393:aym" />
+			<xs:enumeration value="ISO6393:aze" />
+			<xs:enumeration value="ISO6393:bad" />
+			<xs:enumeration value="ISO6393:bai" />
+			<xs:enumeration value="ISO6393:bak" />
+			<xs:enumeration value="ISO6393:bal" />
+			<xs:enumeration value="ISO6393:bam" />
+			<xs:enumeration value="ISO6393:ban" />
+			<xs:enumeration value="ISO6393:baq" />
+			<xs:enumeration value="ISO6393:eus" />
+			<xs:enumeration value="ISO6393:bas" />
+			<xs:enumeration value="ISO6393:bat" />
+			<xs:enumeration value="ISO6393:bej" />
+			<xs:enumeration value="ISO6393:bel" />
+			<xs:enumeration value="ISO6393:bem" />
+			<xs:enumeration value="ISO6393:ben" />
+			<xs:enumeration value="ISO6393:ber" />
+			<xs:enumeration value="ISO6393:bho" />
+			<xs:enumeration value="ISO6393:bih" />
+			<xs:enumeration value="ISO6393:bik" />
+			<xs:enumeration value="ISO6393:bin" />
+			<xs:enumeration value="ISO6393:bis" />
+			<xs:enumeration value="ISO6393:bla" />
+			<xs:enumeration value="ISO6393:bnt" />
+			<xs:enumeration value="ISO6393:tib" />
+			<xs:enumeration value="ISO6393:bod" />
+			<xs:enumeration value="ISO6393:bos" />
+			<xs:enumeration value="ISO6393:bra" />
+			<xs:enumeration value="ISO6393:bre" />
+			<xs:enumeration value="ISO6393:btk" />
+			<xs:enumeration value="ISO6393:bua" />
+			<xs:enumeration value="ISO6393:bug" />
+			<xs:enumeration value="ISO6393:bul" />
+			<xs:enumeration value="ISO6393:bur" />
+			<xs:enumeration value="ISO6393:mya" />
+			<xs:enumeration value="ISO6393:byn" />
+			<xs:enumeration value="ISO6393:cad" />
+			<xs:enumeration value="ISO6393:cai" />
+			<xs:enumeration value="ISO6393:car" />
+			<xs:enumeration value="ISO6393:cat" />
+			<xs:enumeration value="ISO6393:cau" />
+			<xs:enumeration value="ISO6393:ceb" />
+			<xs:enumeration value="ISO6393:cel" />
+			<xs:enumeration value="ISO6393:cze" />
+			<xs:enumeration value="ISO6393:ces" />
+			<xs:enumeration value="ISO6393:cha" />
+			<xs:enumeration value="ISO6393:chb" />
+			<xs:enumeration value="ISO6393:che" />
+			<xs:enumeration value="ISO6393:chg" />
+			<xs:enumeration value="ISO6393:chi" />
+			<xs:enumeration value="ISO6393:zho" />
+			<xs:enumeration value="ISO6393:chk" />
+			<xs:enumeration value="ISO6393:chm" />
+			<xs:enumeration value="ISO6393:chn" />
+			<xs:enumeration value="ISO6393:cho" />
+			<xs:enumeration value="ISO6393:chp" />
+			<xs:enumeration value="ISO6393:chr" />
+			<xs:enumeration value="ISO6393:chu" />
+			<xs:enumeration value="ISO6393:chv" />
+			<xs:enumeration value="ISO6393:chy" />
+			<xs:enumeration value="ISO6393:cmc" />
+			<xs:enumeration value="ISO6393:cop" />
+			<xs:enumeration value="ISO6393:cor" />
+			<xs:enumeration value="ISO6393:cos" />
+			<xs:enumeration value="ISO6393:cpe" />
+			<xs:enumeration value="ISO6393:cpf" />
+			<xs:enumeration value="ISO6393:cpp" />
+			<xs:enumeration value="ISO6393:cre" />
+			<xs:enumeration value="ISO6393:crh" />
+			<xs:enumeration value="ISO6393:crp" />
+			<xs:enumeration value="ISO6393:csb" />
+			<xs:enumeration value="ISO6393:cus" />
+			<xs:enumeration value="ISO6393:wel" />
+			<xs:enumeration value="ISO6393:cym" />
+			<xs:enumeration value="ISO6393:cze" />
+			<xs:enumeration value="ISO6393:ces" />
+			<xs:enumeration value="ISO6393:dak" />
+			<xs:enumeration value="ISO6393:dan" />
+			<xs:enumeration value="ISO6393:dar" />
+			<xs:enumeration value="ISO6393:day" />
+			<xs:enumeration value="ISO6393:del" />
+			<xs:enumeration value="ISO6393:den" />
+			<xs:enumeration value="ISO6393:ger" />
+			<xs:enumeration value="ISO6393:deu" />
+			<xs:enumeration value="ISO6393:dgr" />
+			<xs:enumeration value="ISO6393:din" />
+			<xs:enumeration value="ISO6393:div" />
+			<xs:enumeration value="ISO6393:doi" />
+			<xs:enumeration value="ISO6393:dra" />
+			<xs:enumeration value="ISO6393:dsb" />
+			<xs:enumeration value="ISO6393:dua" />
+			<xs:enumeration value="ISO6393:dum" />
+			<xs:enumeration value="ISO6393:dut" />
+			<xs:enumeration value="ISO6393:nld" />
+			<xs:enumeration value="ISO6393:dyu" />
+			<xs:enumeration value="ISO6393:dzo" />
+			<xs:enumeration value="ISO6393:efi" />
+			<xs:enumeration value="ISO6393:egy" />
+			<xs:enumeration value="ISO6393:eka" />
+			<xs:enumeration value="ISO6393:gre" />
+			<xs:enumeration value="ISO6393:ell" />
+			<xs:enumeration value="ISO6393:elx" />
+			<xs:enumeration value="ISO6393:eng" />
+			<xs:enumeration value="ISO6393:enm" />
+			<xs:enumeration value="ISO6393:epo" />
+			<xs:enumeration value="ISO6393:est" />
+			<xs:enumeration value="ISO6393:baq" />
+			<xs:enumeration value="ISO6393:eus" />
+			<xs:enumeration value="ISO6393:ewe" />
+			<xs:enumeration value="ISO6393:ewo" />
+			<xs:enumeration value="ISO6393:fan" />
+			<xs:enumeration value="ISO6393:fao" />
+			<xs:enumeration value="ISO6393:per" />
+			<xs:enumeration value="ISO6393:fas" />
+			<xs:enumeration value="ISO6393:fat" />
+			<xs:enumeration value="ISO6393:fij" />
+			<xs:enumeration value="ISO6393:fil" />
+			<xs:enumeration value="ISO6393:fin" />
+			<xs:enumeration value="ISO6393:fiu" />
+			<xs:enumeration value="ISO6393:fon" />
+			<xs:enumeration value="ISO6393:fre" />
+			<xs:enumeration value="ISO6393:fra" />
+			<xs:enumeration value="ISO6393:fre" />
+			<xs:enumeration value="ISO6393:fra" />
+			<xs:enumeration value="ISO6393:frm" />
+			<xs:enumeration value="ISO6393:fro" />
+			<xs:enumeration value="ISO6393:frr" />
+			<xs:enumeration value="ISO6393:frs" />
+			<xs:enumeration value="ISO6393:fry" />
+			<xs:enumeration value="ISO6393:ful" />
+			<xs:enumeration value="ISO6393:fur" />
+			<xs:enumeration value="ISO6393:gaa" />
+			<xs:enumeration value="ISO6393:gay" />
+			<xs:enumeration value="ISO6393:gba" />
+			<xs:enumeration value="ISO6393:gem" />
+			<xs:enumeration value="ISO6393:geo" />
+			<xs:enumeration value="ISO6393:kat" />
+			<xs:enumeration value="ISO6393:ger" />
+			<xs:enumeration value="ISO6393:deu" />
+			<xs:enumeration value="ISO6393:gez" />
+			<xs:enumeration value="ISO6393:gil" />
+			<xs:enumeration value="ISO6393:gla" />
+			<xs:enumeration value="ISO6393:gle" />
+			<xs:enumeration value="ISO6393:glg" />
+			<xs:enumeration value="ISO6393:glv" />
+			<xs:enumeration value="ISO6393:gmh" />
+			<xs:enumeration value="ISO6393:goh" />
+			<xs:enumeration value="ISO6393:gon" />
+			<xs:enumeration value="ISO6393:gor" />
+			<xs:enumeration value="ISO6393:got" />
+			<xs:enumeration value="ISO6393:grb" />
+			<xs:enumeration value="ISO6393:grc" />
+			<xs:enumeration value="ISO6393:gre" />
+			<xs:enumeration value="ISO6393:ell" />
+			<xs:enumeration value="ISO6393:grn" />
+			<xs:enumeration value="ISO6393:gsw" />
+			<xs:enumeration value="ISO6393:guj" />
+			<xs:enumeration value="ISO6393:gwi" />
+			<xs:enumeration value="ISO6393:hai" />
+			<xs:enumeration value="ISO6393:hat" />
+			<xs:enumeration value="ISO6393:hau" />
+			<xs:enumeration value="ISO6393:haw" />
+			<xs:enumeration value="ISO6393:heb" />
+			<xs:enumeration value="ISO6393:her" />
+			<xs:enumeration value="ISO6393:hil" />
+			<xs:enumeration value="ISO6393:him" />
+			<xs:enumeration value="ISO6393:hin" />
+			<xs:enumeration value="ISO6393:hit" />
+			<xs:enumeration value="ISO6393:hmn" />
+			<xs:enumeration value="ISO6393:hmo" />
+			<xs:enumeration value="ISO6393:hrv" />
+			<xs:enumeration value="ISO6393:hsb" />
+			<xs:enumeration value="ISO6393:hun" />
+			<xs:enumeration value="ISO6393:hup" />
+			<xs:enumeration value="ISO6393:arm" />
+			<xs:enumeration value="ISO6393:hye" />
+			<xs:enumeration value="ISO6393:iba" />
+			<xs:enumeration value="ISO6393:ibo" />
+			<xs:enumeration value="ISO6393:ice" />
+			<xs:enumeration value="ISO6393:isl" />
+			<xs:enumeration value="ISO6393:ido" />
+			<xs:enumeration value="ISO6393:iii" />
+			<xs:enumeration value="ISO6393:ijo" />
+			<xs:enumeration value="ISO6393:iku" />
+			<xs:enumeration value="ISO6393:ile" />
+			<xs:enumeration value="ISO6393:ilo" />
+			<xs:enumeration value="ISO6393:ina" />
+			<xs:enumeration value="ISO6393:inc" />
+			<xs:enumeration value="ISO6393:ind" />
+			<xs:enumeration value="ISO6393:ine" />
+			<xs:enumeration value="ISO6393:inh" />
+			<xs:enumeration value="ISO6393:ipk" />
+			<xs:enumeration value="ISO6393:ira" />
+			<xs:enumeration value="ISO6393:iro" />
+			<xs:enumeration value="ISO6393:ice" />
+			<xs:enumeration value="ISO6393:isl" />
+			<xs:enumeration value="ISO6393:ita" />
+			<xs:enumeration value="ISO6393:jav" />
+			<xs:enumeration value="ISO6393:jbo" />
+			<xs:enumeration value="ISO6393:jpn" />
+			<xs:enumeration value="ISO6393:jpr" />
+			<xs:enumeration value="ISO6393:jrb" />
+			<xs:enumeration value="ISO6393:kaa" />
+			<xs:enumeration value="ISO6393:kab" />
+			<xs:enumeration value="ISO6393:kac" />
+			<xs:enumeration value="ISO6393:kal" />
+			<xs:enumeration value="ISO6393:kam" />
+			<xs:enumeration value="ISO6393:kan" />
+			<xs:enumeration value="ISO6393:kar" />
+			<xs:enumeration value="ISO6393:kas" />
+			<xs:enumeration value="ISO6393:geo" />
+			<xs:enumeration value="ISO6393:kat" />
+			<xs:enumeration value="ISO6393:kau" />
+			<xs:enumeration value="ISO6393:kaw" />
+			<xs:enumeration value="ISO6393:kaz" />
+			<xs:enumeration value="ISO6393:kbd" />
+			<xs:enumeration value="ISO6393:kha" />
+			<xs:enumeration value="ISO6393:khi" />
+			<xs:enumeration value="ISO6393:khm" />
+			<xs:enumeration value="ISO6393:kho" />
+			<xs:enumeration value="ISO6393:kik" />
+			<xs:enumeration value="ISO6393:kin" />
+			<xs:enumeration value="ISO6393:kir" />
+			<xs:enumeration value="ISO6393:kmb" />
+			<xs:enumeration value="ISO6393:kok" />
+			<xs:enumeration value="ISO6393:kom" />
+			<xs:enumeration value="ISO6393:kon" />
+			<xs:enumeration value="ISO6393:kor" />
+			<xs:enumeration value="ISO6393:kos" />
+			<xs:enumeration value="ISO6393:kpe" />
+			<xs:enumeration value="ISO6393:krc" />
+			<xs:enumeration value="ISO6393:krl" />
+			<xs:enumeration value="ISO6393:kro" />
+			<xs:enumeration value="ISO6393:kru" />
+			<xs:enumeration value="ISO6393:kua" />
+			<xs:enumeration value="ISO6393:kum" />
+			<xs:enumeration value="ISO6393:kur" />
+			<xs:enumeration value="ISO6393:kut" />
+			<xs:enumeration value="ISO6393:lad" />
+			<xs:enumeration value="ISO6393:lah" />
+			<xs:enumeration value="ISO6393:lam" />
+			<xs:enumeration value="ISO6393:lao" />
+			<xs:enumeration value="ISO6393:lat" />
+			<xs:enumeration value="ISO6393:lav" />
+			<xs:enumeration value="ISO6393:lez" />
+			<xs:enumeration value="ISO6393:lim" />
+			<xs:enumeration value="ISO6393:lin" />
+			<xs:enumeration value="ISO6393:lit" />
+			<xs:enumeration value="ISO6393:lol" />
+			<xs:enumeration value="ISO6393:loz" />
+			<xs:enumeration value="ISO6393:ltz" />
+			<xs:enumeration value="ISO6393:lua" />
+			<xs:enumeration value="ISO6393:lub" />
+			<xs:enumeration value="ISO6393:lug" />
+			<xs:enumeration value="ISO6393:lui" />
+			<xs:enumeration value="ISO6393:lun" />
+			<xs:enumeration value="ISO6393:luo" />
+			<xs:enumeration value="ISO6393:lus" />
+			<xs:enumeration value="ISO6393:mac" />
+			<xs:enumeration value="ISO6393:mkd" />
+			<xs:enumeration value="ISO6393:mad" />
+			<xs:enumeration value="ISO6393:mag" />
+			<xs:enumeration value="ISO6393:mah" />
+			<xs:enumeration value="ISO6393:mai" />
+			<xs:enumeration value="ISO6393:mak" />
+			<xs:enumeration value="ISO6393:mal" />
+			<xs:enumeration value="ISO6393:man" />
+			<xs:enumeration value="ISO6393:mao" />
+			<xs:enumeration value="ISO6393:mri" />
+			<xs:enumeration value="ISO6393:map" />
+			<xs:enumeration value="ISO6393:mar" />
+			<xs:enumeration value="ISO6393:mas" />
+			<xs:enumeration value="ISO6393:may" />
+			<xs:enumeration value="ISO6393:msa" />
+			<xs:enumeration value="ISO6393:mdf" />
+			<xs:enumeration value="ISO6393:mdr" />
+			<xs:enumeration value="ISO6393:men" />
+			<xs:enumeration value="ISO6393:mga" />
+			<xs:enumeration value="ISO6393:mic" />
+			<xs:enumeration value="ISO6393:min" />
+			<xs:enumeration value="ISO6393:mis" />
+			<xs:enumeration value="ISO6393:mac" />
+			<xs:enumeration value="ISO6393:mkd" />
+			<xs:enumeration value="ISO6393:mkh" />
+			<xs:enumeration value="ISO6393:mlg" />
+			<xs:enumeration value="ISO6393:mlt" />
+			<xs:enumeration value="ISO6393:mnc" />
+			<xs:enumeration value="ISO6393:mni" />
+			<xs:enumeration value="ISO6393:mno" />
+			<xs:enumeration value="ISO6393:moh" />
+			<xs:enumeration value="ISO6393:mon" />
+			<xs:enumeration value="ISO6393:mos" />
+			<xs:enumeration value="ISO6393:mao" />
+			<xs:enumeration value="ISO6393:mri" />
+			<xs:enumeration value="ISO6393:may" />
+			<xs:enumeration value="ISO6393:msa" />
+			<xs:enumeration value="ISO6393:mul" />
+			<xs:enumeration value="ISO6393:mun" />
+			<xs:enumeration value="ISO6393:mus" />
+			<xs:enumeration value="ISO6393:mwl" />
+			<xs:enumeration value="ISO6393:mwr" />
+			<xs:enumeration value="ISO6393:bur" />
+			<xs:enumeration value="ISO6393:mya" />
+			<xs:enumeration value="ISO6393:myn" />
+			<xs:enumeration value="ISO6393:myv" />
+			<xs:enumeration value="ISO6393:nah" />
+			<xs:enumeration value="ISO6393:nai" />
+			<xs:enumeration value="ISO6393:nap" />
+			<xs:enumeration value="ISO6393:nau" />
+			<xs:enumeration value="ISO6393:nav" />
+			<xs:enumeration value="ISO6393:nbl" />
+			<xs:enumeration value="ISO6393:nde" />
+			<xs:enumeration value="ISO6393:ndo" />
+			<xs:enumeration value="ISO6393:nds" />
+			<xs:enumeration value="ISO6393:nep" />
+			<xs:enumeration value="ISO6393:new" />
+			<xs:enumeration value="ISO6393:nia" />
+			<xs:enumeration value="ISO6393:nic" />
+			<xs:enumeration value="ISO6393:niu" />
+			<xs:enumeration value="ISO6393:dut" />
+			<xs:enumeration value="ISO6393:nld" />
+			<xs:enumeration value="ISO6393:nno" />
+			<xs:enumeration value="ISO6393:nob" />
+			<xs:enumeration value="ISO6393:nog" />
+			<xs:enumeration value="ISO6393:non" />
+			<xs:enumeration value="ISO6393:nor" />
+			<xs:enumeration value="ISO6393:nqo" />
+			<xs:enumeration value="ISO6393:nso" />
+			<xs:enumeration value="ISO6393:nub" />
+			<xs:enumeration value="ISO6393:nwc" />
+			<xs:enumeration value="ISO6393:nya" />
+			<xs:enumeration value="ISO6393:nym" />
+			<xs:enumeration value="ISO6393:nyn" />
+			<xs:enumeration value="ISO6393:nyo" />
+			<xs:enumeration value="ISO6393:nzi" />
+			<xs:enumeration value="ISO6393:oci" />
+			<xs:enumeration value="ISO6393:oji" />
+			<xs:enumeration value="ISO6393:ori" />
+			<xs:enumeration value="ISO6393:orm" />
+			<xs:enumeration value="ISO6393:osa" />
+			<xs:enumeration value="ISO6393:oss" />
+			<xs:enumeration value="ISO6393:ota" />
+			<xs:enumeration value="ISO6393:oto" />
+			<xs:enumeration value="ISO6393:paa" />
+			<xs:enumeration value="ISO6393:pag" />
+			<xs:enumeration value="ISO6393:pal" />
+			<xs:enumeration value="ISO6393:pam" />
+			<xs:enumeration value="ISO6393:pan" />
+			<xs:enumeration value="ISO6393:pap" />
+			<xs:enumeration value="ISO6393:pau" />
+			<xs:enumeration value="ISO6393:peo" />
+			<xs:enumeration value="ISO6393:per" />
+			<xs:enumeration value="ISO6393:fas" />
+			<xs:enumeration value="ISO6393:phi" />
+			<xs:enumeration value="ISO6393:phn" />
+			<xs:enumeration value="ISO6393:pli" />
+			<xs:enumeration value="ISO6393:pol" />
+			<xs:enumeration value="ISO6393:pon" />
+			<xs:enumeration value="ISO6393:por" />
+			<xs:enumeration value="ISO6393:pra" />
+			<xs:enumeration value="ISO6393:pro" />
+			<xs:enumeration value="ISO6393:pus" />
+			<xs:enumeration value="ISO6393:qaa" />
+			<xs:enumeration value="ISO6393:qtz" />
+			<xs:enumeration value="ISO6393:que" />
+			<xs:enumeration value="ISO6393:raj" />
+			<xs:enumeration value="ISO6393:rap" />
+			<xs:enumeration value="ISO6393:rar" />
+			<xs:enumeration value="ISO6393:roa" />
+			<xs:enumeration value="ISO6393:roh" />
+			<xs:enumeration value="ISO6393:rom" />
+			<xs:enumeration value="ISO6393:rum" />
+			<xs:enumeration value="ISO6393:ron" />
+			<xs:enumeration value="ISO6393:rum" />
+			<xs:enumeration value="ISO6393:ron" />
+			<xs:enumeration value="ISO6393:run" />
+			<xs:enumeration value="ISO6393:rup" />
+			<xs:enumeration value="ISO6393:rus" />
+			<xs:enumeration value="ISO6393:sad" />
+			<xs:enumeration value="ISO6393:sag" />
+			<xs:enumeration value="ISO6393:sah" />
+			<xs:enumeration value="ISO6393:sai" />
+			<xs:enumeration value="ISO6393:sal" />
+			<xs:enumeration value="ISO6393:sam" />
+			<xs:enumeration value="ISO6393:san" />
+			<xs:enumeration value="ISO6393:sas" />
+			<xs:enumeration value="ISO6393:sat" />
+			<xs:enumeration value="ISO6393:scn" />
+			<xs:enumeration value="ISO6393:sco" />
+			<xs:enumeration value="ISO6393:sel" />
+			<xs:enumeration value="ISO6393:sem" />
+			<xs:enumeration value="ISO6393:sga" />
+			<xs:enumeration value="ISO6393:sgn" />
+			<xs:enumeration value="ISO6393:shn" />
+			<xs:enumeration value="ISO6393:sid" />
+			<xs:enumeration value="ISO6393:sin" />
+			<xs:enumeration value="ISO6393:sio" />
+			<xs:enumeration value="ISO6393:sit" />
+			<xs:enumeration value="ISO6393:sla" />
+			<xs:enumeration value="ISO6393:slo" />
+			<xs:enumeration value="ISO6393:slk" />
+			<xs:enumeration value="ISO6393:slo" />
+			<xs:enumeration value="ISO6393:slk" />
+			<xs:enumeration value="ISO6393:slv" />
+			<xs:enumeration value="ISO6393:sma" />
+			<xs:enumeration value="ISO6393:sme" />
+			<xs:enumeration value="ISO6393:smi" />
+			<xs:enumeration value="ISO6393:smj" />
+			<xs:enumeration value="ISO6393:smn" />
+			<xs:enumeration value="ISO6393:smo" />
+			<xs:enumeration value="ISO6393:sms" />
+			<xs:enumeration value="ISO6393:sna" />
+			<xs:enumeration value="ISO6393:snd" />
+			<xs:enumeration value="ISO6393:snk" />
+			<xs:enumeration value="ISO6393:sog" />
+			<xs:enumeration value="ISO6393:som" />
+			<xs:enumeration value="ISO6393:son" />
+			<xs:enumeration value="ISO6393:sot" />
+			<xs:enumeration value="ISO6393:spa" />
+			<xs:enumeration value="ISO6393:alb" />
+			<xs:enumeration value="ISO6393:sqi" />
+			<xs:enumeration value="ISO6393:srd" />
+			<xs:enumeration value="ISO6393:srn" />
+			<xs:enumeration value="ISO6393:srp" />
+			<xs:enumeration value="ISO6393:srr" />
+			<xs:enumeration value="ISO6393:ssa" />
+			<xs:enumeration value="ISO6393:ssw" />
+			<xs:enumeration value="ISO6393:suk" />
+			<xs:enumeration value="ISO6393:sun" />
+			<xs:enumeration value="ISO6393:sus" />
+			<xs:enumeration value="ISO6393:sux" />
+			<xs:enumeration value="ISO6393:swa" />
+			<xs:enumeration value="ISO6393:swe" />
+			<xs:enumeration value="ISO6393:syc" />
+			<xs:enumeration value="ISO6393:syr" />
+			<xs:enumeration value="ISO6393:tah" />
+			<xs:enumeration value="ISO6393:tai" />
+			<xs:enumeration value="ISO6393:tam" />
+			<xs:enumeration value="ISO6393:tat" />
+			<xs:enumeration value="ISO6393:tel" />
+			<xs:enumeration value="ISO6393:tem" />
+			<xs:enumeration value="ISO6393:ter" />
+			<xs:enumeration value="ISO6393:tet" />
+			<xs:enumeration value="ISO6393:tgk" />
+			<xs:enumeration value="ISO6393:tgl" />
+			<xs:enumeration value="ISO6393:tha" />
+			<xs:enumeration value="ISO6393:tib" />
+			<xs:enumeration value="ISO6393:bod" />
+			<xs:enumeration value="ISO6393:tig" />
+			<xs:enumeration value="ISO6393:tir" />
+			<xs:enumeration value="ISO6393:tiv" />
+			<xs:enumeration value="ISO6393:tkl" />
+			<xs:enumeration value="ISO6393:tlh" />
+			<xs:enumeration value="ISO6393:tli" />
+			<xs:enumeration value="ISO6393:tmh" />
+			<xs:enumeration value="ISO6393:tog" />
+			<xs:enumeration value="ISO6393:ton" />
+			<xs:enumeration value="ISO6393:tpi" />
+			<xs:enumeration value="ISO6393:tsi" />
+			<xs:enumeration value="ISO6393:tsn" />
+			<xs:enumeration value="ISO6393:tso" />
+			<xs:enumeration value="ISO6393:tuk" />
+			<xs:enumeration value="ISO6393:tum" />
+			<xs:enumeration value="ISO6393:tup" />
+			<xs:enumeration value="ISO6393:tur" />
+			<xs:enumeration value="ISO6393:tut" />
+			<xs:enumeration value="ISO6393:tvl" />
+			<xs:enumeration value="ISO6393:twi" />
+			<xs:enumeration value="ISO6393:tyv" />
+			<xs:enumeration value="ISO6393:udm" />
+			<xs:enumeration value="ISO6393:uga" />
+			<xs:enumeration value="ISO6393:uig" />
+			<xs:enumeration value="ISO6393:ukr" />
+			<xs:enumeration value="ISO6393:umb" />
+			<xs:enumeration value="ISO6393:und" />
+			<xs:enumeration value="ISO6393:urd" />
+			<xs:enumeration value="ISO6393:uzb" />
+			<xs:enumeration value="ISO6393:vai" />
+			<xs:enumeration value="ISO6393:ven" />
+			<xs:enumeration value="ISO6393:vie" />
+			<xs:enumeration value="ISO6393:vol" />
+			<xs:enumeration value="ISO6393:vot" />
+			<xs:enumeration value="ISO6393:wak" />
+			<xs:enumeration value="ISO6393:wal" />
+			<xs:enumeration value="ISO6393:war" />
+			<xs:enumeration value="ISO6393:was" />
+			<xs:enumeration value="ISO6393:wel" />
+			<xs:enumeration value="ISO6393:cym" />
+			<xs:enumeration value="ISO6393:wen" />
+			<xs:enumeration value="ISO6393:wln" />
+			<xs:enumeration value="ISO6393:wol" />
+			<xs:enumeration value="ISO6393:xal" />
+			<xs:enumeration value="ISO6393:xho" />
+			<xs:enumeration value="ISO6393:yao" />
+			<xs:enumeration value="ISO6393:yap" />
+			<xs:enumeration value="ISO6393:yid" />
+			<xs:enumeration value="ISO6393:yor" />
+			<xs:enumeration value="ISO6393:ypk" />
+			<xs:enumeration value="ISO6393:zap" />
+			<xs:enumeration value="ISO6393:zbl" />
+			<xs:enumeration value="ISO6393:zen" />
+			<xs:enumeration value="ISO6393:zgh" />
+			<xs:enumeration value="ISO6393:zha" />
+			<xs:enumeration value="ISO6393:chi" />
+			<xs:enumeration value="ISO6393:zho" />
+			<xs:enumeration value="ISO6393:znd" />
+			<xs:enumeration value="ISO6393:zul" />
+			<xs:enumeration value="ISO6393:zun" />
+			<xs:enumeration value="ISO6393:zxx" />
+			<xs:enumeration value="ISO6393:zza" />
+			</xs:restriction>
+		</xs:simpleType>		
+	
+			
+		
+<xs:simpleType name="CoSoundLanuageNameString">
+    	<xs:union memberTypes="CoSoundLanuageNameEnum CoSoundBasicType_EnumOtherStringPatternType"/>
+	</xs:simpleType>	
+	<xs:simpleType name="CoSoundLanuageNameEnum">
+		<xs:annotation>
+			<xs:documentation>http://www.iso.org/iso/home/standards/country_codes/iso-3166-1_decoding_table.htm
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+<xs:enumeration value="Family=Northwest Caucasian,Name=Abkhaz,NaviteName=аҧсуа бызшәа, аҧсшәа"/>
+<xs:enumeration value="Family=Afro-Asiatic,Name=Afar,NaviteName=Afaraf"/>
+<xs:enumeration value="Family=Indo-European,Name=Afrikaans,NaviteName=Afrikaans"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Akan,NaviteName=Akan"/>
+<xs:enumeration value="Family=Indo-European,Name=Albanian,NaviteName=gjuha shqipe"/>
+<xs:enumeration value="Family=Afro-Asiatic,Name=Amharic,NaviteName=አማርኛ"/>
+<xs:enumeration value="Family=Afro-Asiatic,Name=Arabic,NaviteName=العربية"/>
+<xs:enumeration value="Family=Indo-European,Name=Aragonese,NaviteName=aragonés"/>
+<xs:enumeration value="Family=Indo-European,Name=Armenian,NaviteName=Հայերեն"/>
+<xs:enumeration value="Family=Indo-European,Name=Assamese,NaviteName=অসমীয়া"/>
+<xs:enumeration value="Family=Northeast Caucasian,Name=Avaric,NaviteName=авар мацӀ, магӀарул мацӀ"/>
+<xs:enumeration value="Family=Indo-European,Name=Avestan,NaviteName=avesta"/>
+<xs:enumeration value="Family=Aymaran,Name=Aymara,NaviteName=aymar aru"/>
+<xs:enumeration value="Family=Turkic,Name=Azerbaijani,NaviteName=azərbaycan dili"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Bambara,NaviteName=bamanankan"/>
+<xs:enumeration value="Family=Turkic,Name=Bashkir,NaviteName=башҡорт теле"/>
+<xs:enumeration value="Family=Language isolate,Name=Basque,NaviteName=euskara, euskera"/>
+<xs:enumeration value="Family=Indo-European,Name=Belarusian,NaviteName=беларуская мова"/>
+<xs:enumeration value="Family=Indo-European,Name=Bengali;Bangla,NaviteName=বাংলা"/>
+<xs:enumeration value="Family=Indo-European,Name=Bihari,NaviteName=भोजपुरी"/>
+<xs:enumeration value="Family=Creole,Name=Bislama,NaviteName=Bislama"/>
+<xs:enumeration value="Family=Indo-European,Name=Bosnian,NaviteName=bosanski jezik"/>
+<xs:enumeration value="Family=Indo-European,Name=Breton,NaviteName=brezhoneg"/>
+<xs:enumeration value="Family=Indo-European,Name=Bulgarian,NaviteName=български език"/>
+<xs:enumeration value="Family=Sino-Tibetan,Name=Burmese,NaviteName=ဗမာစာ"/>
+<xs:enumeration value="Family=Indo-European,Name=Catalan;Valencian,NaviteName=català, valencià"/>
+<xs:enumeration value="Family=Austronesian,Name=Chamorro,NaviteName=Chamoru"/>
+<xs:enumeration value="Family=Northeast Caucasian,Name=Chechen,NaviteName=нохчийн мотт"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Chichewa; Chewa; Nyanja,NaviteName=chiCheŵa, chinyanja"/>
+<xs:enumeration value="Family=Sino-Tibetan,Name=Chinese,NaviteName=中文 (Zhōngwén), 汉语, 漢語"/>
+<xs:enumeration value="Family=Turkic,Name=Chuvash,NaviteName=чӑваш чӗлхи"/>
+<xs:enumeration value="Family=Indo-European,Name=Cornish,NaviteName=Kernewek"/>
+<xs:enumeration value="Family=Indo-European,Name=Corsican,NaviteName=corsu, lingua corsa"/>
+<xs:enumeration value="Family=Algonquian,Name=Cree,NaviteName=ᓀᐦᐃᔭᐍᐏᐣ"/>
+<xs:enumeration value="Family=Indo-European,Name=Croatian,NaviteName=hrvatski jezik"/>
+<xs:enumeration value="Family=Indo-European,Name=Czech,NaviteName=čeština, český jazyk"/>
+<xs:enumeration value="Family=Indo-European,Name=Danish,NaviteName=Dansk"/>
+<xs:enumeration value="Family=Indo-European,Name=Divehi; Dhivehi; Maldivian;,NaviteName=ދިވެހި"/>
+<xs:enumeration value="Family=Indo-European,Name=Dutch,NaviteName=Nederlands, Vlaams"/>
+<xs:enumeration value="Family=Sino-Tibetan,Name=Dzongkha,NaviteName=རྫོང་ཁ"/>
+<xs:enumeration value="Family=Indo-European,Name=English,NaviteName=English"/>
+<xs:enumeration value="Family=Constructed,Name=Esperanto,NaviteName=Esperanto"/>
+<xs:enumeration value="Family=Uralic,Name=Estonian,NaviteName=eesti,eesti keel"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Ewe,NaviteName=Eʋegbe"/>
+<xs:enumeration value="Family=Indo-European,Name=Faroese,NaviteName=føroyskt"/>
+<xs:enumeration value="Family=Austronesian,Name=Fijian,NaviteName=vosa Vakaviti"/>
+<xs:enumeration value="Family=Uralic,Name=Finnish,NaviteName=suomi,suomen kieli"/>
+<xs:enumeration value="Family=Indo-European,Name=French,NaviteName=français, langue française"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Fula;Fulah; Pulaar; Pular,NaviteName=Fulfulde, Pulaar, Pular"/>
+<xs:enumeration value="Family=Indo-European,Name=Galician,NaviteName=galego"/>
+<xs:enumeration value="Family=South Caucasian,Name=Georgian,NaviteName=ქართული"/>
+<xs:enumeration value="Family=Indo-European,Name=German,NaviteName=Deutsch"/>
+<xs:enumeration value="Family=Indo-European,Name=Greek, Modern,NaviteName=ελληνικά"/>
+<xs:enumeration value="Family=Tupian,Name=Guaraní,NaviteName=Avañe'ẽ"/>
+<xs:enumeration value="Family=Indo-European,Name=Gujarati,NaviteName=ગુજરાતી"/>
+<xs:enumeration value="Family=Creole,Name=Haitian; Haitian Creole,NaviteName=Kreyòl ayisyen"/>
+<xs:enumeration value="Family=Afro-Asiatic,Name=Hausa,NaviteName=(Hausa) هَوُسَ"/>
+<xs:enumeration value="Family=Afro-Asiatic,Name=Hebrew (modern),NaviteName=עברית"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Herero,NaviteName=Otjiherero"/>
+<xs:enumeration value="Family=Indo-European,Name=Hindi,NaviteName=हिन्दी, हिंदी"/>
+<xs:enumeration value="Family=Austronesian,Name=Hiri Motu,NaviteName=Hiri Motu"/>
+<xs:enumeration value="Family=Uralic,Name=Hungarian,NaviteName=magyar"/>
+<xs:enumeration value="Family=Constructed,Name=Interlingua,NaviteName=Interlingua"/>
+<xs:enumeration value="Family=Austronesian,Name=Indonesian,NaviteName=Bahasa Indonesia"/>
+<xs:enumeration value="Family=Constructed,Name=Interlingue,NaviteName=Originally called Occidental; then Interlingue after WWII"/>
+<xs:enumeration value="Family=Indo-European,Name=Irish,NaviteName=Gaeilge"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Igbo,NaviteName=Asụsụ Igbo"/>
+<xs:enumeration value="Family=Eskimo–Aleut,Name=Inupiaq,NaviteName=Iñupiaq, Iñupiatun"/>
+<xs:enumeration value="Family=Constructed,Name=Ido,NaviteName=Ido"/>
+<xs:enumeration value="Family=Indo-European,Name=Icelandic,NaviteName=Íslenska"/>
+<xs:enumeration value="Family=Indo-European,Name=Italian,NaviteName=italiano"/>
+<xs:enumeration value="Family=Eskimo–Aleut,Name=Inuktitut,NaviteName=ᐃᓄᒃᑎᑐᑦ"/>
+<xs:enumeration value="Family=Japonic,Name=Japanese,NaviteName=日本語 (にほんご)"/>
+<xs:enumeration value="Family=Austronesian,Name=Javanese,NaviteName=basa Jawa"/>
+<xs:enumeration value="Family=Eskimo–Aleut,Name=Kalaallisut, Greenlandic,NaviteName=kalaallisut, kalaallit oqaasii"/>
+<xs:enumeration value="Family=Dravidian,Name=Kannada,NaviteName=ಕನ್ನಡ"/>
+<xs:enumeration value="Family=Nilo-Saharan,Name=Kanuri,NaviteName=Kanuri"/>
+<xs:enumeration value="Family=Indo-European,Name=Kashmiri,NaviteName=कश्मीरी, كشميري‎"/>
+<xs:enumeration value="Family=Turkic,Name=Kazakh,NaviteName=қазақ тілі"/>
+<xs:enumeration value="Family=Austroasiatic,Name=Khmer,NaviteName=ខ្មែរ, ខេមរភាសា, ភាសាខ្មែរ"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Kikuyu, Gikuyu,NaviteName=Gĩkũyũ"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Kinyarwanda,NaviteName=Ikinyarwanda"/>
+<xs:enumeration value="Family=Turkic,Name=Kyrgyz,NaviteName=Кыргызча, Кыргыз тили"/>
+<xs:enumeration value="Family=Uralic,Name=Komi,NaviteName=коми кыв"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Kongo,NaviteName=KiKongo"/>
+<xs:enumeration value="Family=Koreanic,Name=Korean,NaviteName=한국어, 조선어"/>
+<xs:enumeration value="Family=Indo-European,Name=Kurdish,NaviteName=Kurdî, كوردی‎"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Kwanyama, Kuanyama,NaviteName=Kuanyama"/>
+<xs:enumeration value="Family=Indo-European,Name=Latin,NaviteName=latine, lingua latina"/>
+<xs:enumeration value="Family=Indo-European,Name=Luxembourgish, Letzeburgesch,NaviteName=Lëtzebuergesch"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Ganda,NaviteName=Luganda"/>
+<xs:enumeration value="Family=Indo-European,Name=Limburgish, Limburgan, Limburger,NaviteName=Limburgs"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Lingala,NaviteName=Lingála"/>
+<xs:enumeration value="Family=Tai–Kadai,Name=Lao,NaviteName=ພາສາລາວ"/>
+<xs:enumeration value="Family=Indo-European,Name=Lithuanian,NaviteName=lietuvių kalba"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Luba-Katanga,NaviteName=Tshiluba"/>
+<xs:enumeration value="Family=Indo-European,Name=Latvian,NaviteName=latviešu valoda"/>
+<xs:enumeration value="Family=Indo-European,Name=Manx,NaviteName=Gaelg, Gailck"/>
+<xs:enumeration value="Family=Indo-European,Name=Macedonian,NaviteName=македонски јазик"/>
+<xs:enumeration value="Family=Austronesian,Name=Malagasy,NaviteName=fiteny malagasy"/>
+<xs:enumeration value="Family=Austronesian,Name=Malay,NaviteName=bahasa Melayu, بهاس ملايو‎"/>
+<xs:enumeration value="Family=Dravidian,Name=Malayalam,NaviteName=മലയാളം"/>
+<xs:enumeration value="Family=Afro-Asiatic,Name=Maltese,NaviteName=Malti"/>
+<xs:enumeration value="Family=Austronesian,Name=Māori,NaviteName=te reo Māori"/>
+<xs:enumeration value="Family=Indo-European,Name=Marathi (Marāṭhī),NaviteName=मराठी"/>
+<xs:enumeration value="Family=Austronesian,Name=Marshallese,NaviteName=Kajin M̧ajeļ"/>
+<xs:enumeration value="Family=Mongolic,Name=Mongolian,NaviteName=монгол"/>
+<xs:enumeration value="Family=Austronesian,Name=Nauru,NaviteName=Ekakairũ Naoero"/>
+<xs:enumeration value="Family=Dené–Yeniseian,Name=Navajo, Navaho,NaviteName=Diné bizaad, Dinékʼehǰí"/>
+<xs:enumeration value="Family=Indo-European,Name=Norwegian Bokmål,NaviteName=Norsk bokmål"/>
+<xs:enumeration value="Family=Niger–Congo,Name=North Ndebele,NaviteName=isiNdebele"/>
+<xs:enumeration value="Family=Indo-European,Name=Nepali,NaviteName=नेपाली"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Ndonga,NaviteName=Owambo"/>
+<xs:enumeration value="Family=Indo-European,Name=Norwegian Nynorsk,NaviteName=Norsk nynorsk"/>
+<xs:enumeration value="Family=Indo-European,Name=Norwegian,NaviteName=Norsk"/>
+<xs:enumeration value="Family=Sino-Tibetan,Name=Nuosu,NaviteName=ꆈꌠ꒿ Nuosuhxop"/>
+<xs:enumeration value="Family=Niger–Congo,Name=South Ndebele,NaviteName=isiNdebele"/>
+<xs:enumeration value="Family=Indo-European,Name=Occitan,NaviteName=occitan, lenga d'òc"/>
+<xs:enumeration value="Family=Algonquian,Name=Ojibwe, Ojibwa,NaviteName=ᐊᓂᔑᓈᐯᒧᐎᓐ"/>
+<xs:enumeration value="Family=Indo-European,Name=Old Church Slavonic, Church Slavonic, Old Bulgarian,NaviteName=ѩзыкъ словѣньскъ"/>
+<xs:enumeration value="Family=Afro-Asiatic,Name=Oromo,NaviteName=Afaan Oromoo"/>
+<xs:enumeration value="Family=Indo-European,Name=Oriya,NaviteName=ଓଡ଼ିଆ"/>
+<xs:enumeration value="Family=Indo-European,Name=Ossetian, Ossetic,NaviteName=ирон æвзаг"/>
+<xs:enumeration value="Family=Indo-European,Name=Panjabi, Punjabi,NaviteName=ਪੰਜਾਬੀ, پنجابی‎"/>
+<xs:enumeration value="Family=Indo-European,Name=Pāli,NaviteName=पाऴि"/>
+<xs:enumeration value="Family=Indo-European,Name=Persian (Farsi),NaviteName=فارسی"/>
+<xs:enumeration value="Family=Indo-European,Name=Polish,NaviteName=język polski, polszczyzna"/>
+<xs:enumeration value="Family=Indo-European,Name=Pashto, Pushto,NaviteName=پښتو"/>
+<xs:enumeration value="Family=Indo-European,Name=Portuguese,NaviteName=português"/>
+<xs:enumeration value="Family=Quechuan,Name=Quechua,NaviteName=Runa Simi, Kichwa"/>
+<xs:enumeration value="Family=Indo-European,Name=Romansh,NaviteName=rumantsch grischun"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Kirundi,NaviteName=Ikirundi"/>
+<xs:enumeration value="Family=Indo-European,Name=Romanian,NaviteName=limba română"/>
+<xs:enumeration value="Family=Indo-European,Name=Russian,NaviteName=русский язык"/>
+<xs:enumeration value="Family=Indo-European,Name=Sanskrit (Saṁskṛta),NaviteName=संस्कृतम्"/>
+<xs:enumeration value="Family=Indo-European,Name=Sardinian,NaviteName=sardu"/>
+<xs:enumeration value="Family=Indo-European,Name=Sindhi,NaviteName=सिन्धी, سنڌي، سندھی‎"/>
+<xs:enumeration value="Family=Uralic,Name=Northern Sami,NaviteName=Davvisámegiella"/>
+<xs:enumeration value="Family=Austronesian,Name=Samoan,NaviteName=gagana fa'a Samoa"/>
+<xs:enumeration value="Family=Creole,Name=Sango,NaviteName=yângâ tî sängö"/>
+<xs:enumeration value="Family=Indo-European,Name=Serbian,NaviteName=српски језик"/>
+<xs:enumeration value="Family=Indo-European,Name=Scottish Gaelic; Gaelic,NaviteName=Gàidhlig"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Shona,NaviteName=chiShona"/>
+<xs:enumeration value="Family=Indo-European,Name=Sinhala, Sinhalese,NaviteName=සිංහල"/>
+<xs:enumeration value="Family=Indo-European,Name=Slovak,NaviteName=slovenčina, slovenský jazyk"/>
+<xs:enumeration value="Family=Indo-European,Name=Slovene,NaviteName=slovenski jezik, slovenščina"/>
+<xs:enumeration value="Family=Afro-Asiatic,Name=Somali,NaviteName=Soomaaliga, af Soomaali"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Southern Sotho,NaviteName=Sesotho"/>
+<xs:enumeration value="Family=Indo-European,Name=Spanish; Castilian,NaviteName=español, castellano"/>
+<xs:enumeration value="Family=Austronesian,Name=Sundanese,NaviteName=Basa Sunda"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Swahili,NaviteName=Kiswahili"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Swati,NaviteName=SiSwati"/>
+<xs:enumeration value="Family=Indo-European,Name=Swedish,NaviteName=Svenska"/>
+<xs:enumeration value="Family=Dravidian,Name=Tamil,NaviteName=தமிழ்"/>
+<xs:enumeration value="Family=Dravidian,Name=Telugu,NaviteName=తెలుగు"/>
+<xs:enumeration value="Family=Indo-European,Name=Tajik,NaviteName=тоҷикӣ, toğikī, تاجیکی‎"/>
+<xs:enumeration value="Family=Tai–Kadai,Name=Thai,NaviteName=ไทย"/>
+<xs:enumeration value="Family=Afro-Asiatic,Name=Tigrinya,NaviteName=ትግርኛ"/>
+<xs:enumeration value="Family=Sino-Tibetan,Name=Tibetan Standard, Tibetan, Central,NaviteName=བོད་ཡིག"/>
+<xs:enumeration value="Family=Turkic,Name=Turkmen,NaviteName=Türkmen, Түркмен"/>
+<xs:enumeration value="Family=Austronesian,Name=Tagalog,NaviteName=Wikang Tagalog, ᜏᜒᜃᜅ᜔ ᜆᜄᜎᜓᜄ᜔"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Tswana,NaviteName=Setswana"/>
+<xs:enumeration value="Family=Austronesian,Name=Tonga (Tonga Islands),NaviteName=faka Tonga"/>
+<xs:enumeration value="Family=Turkic,Name=Turkish,NaviteName=Türkçe"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Tsonga,NaviteName=Xitsonga"/>
+<xs:enumeration value="Family=Turkic,Name=Tatar,NaviteName=татар теле, tatar tele"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Twi,NaviteName=Twi"/>
+<xs:enumeration value="Family=Austronesian,Name=Tahitian,NaviteName=Reo Tahiti"/>
+<xs:enumeration value="Family=Turkic,Name=Uyghur, Uighur,NaviteName=Uyƣurqə, ئۇيغۇرچە‎"/>
+<xs:enumeration value="Family=Indo-European,Name=Ukrainian,NaviteName=українська мова"/>
+<xs:enumeration value="Family=Indo-European,Name=Urdu,NaviteName=اردو"/>
+<xs:enumeration value="Family=Turkic,Name=Uzbek,NaviteName=O‘zbek, Ўзбек, أۇزبېك‎"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Venda,NaviteName=Tshivenḓa"/>
+<xs:enumeration value="Family=Austroasiatic,Name=Vietnamese,NaviteName=Tiếng Việt"/>
+<xs:enumeration value="Family=Constructed,Name=Volapük,NaviteName=Volapük"/>
+<xs:enumeration value="Family=Indo-European,Name=Walloon,NaviteName=walon"/>
+<xs:enumeration value="Family=Indo-European,Name=Welsh,NaviteName=Cymraeg"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Wolof,NaviteName=Wollof"/>
+<xs:enumeration value="Family=Indo-European,Name=Western Frisian,NaviteName=Frysk"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Xhosa,NaviteName=isiXhosa"/>
+<xs:enumeration value="Family=Indo-European,Name=Yiddish,NaviteName=ייִדיש"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Yoruba,NaviteName=Yorùbá"/>
+<xs:enumeration value="Family=Tai–Kadai,Name=Zhuang, Chuang,NaviteName=Saɯ cueŋƅ, Saw cuengh"/>
+<xs:enumeration value="Family=Niger–Congo,Name=Zulu,NaviteName=isiZulu"/>
+			</xs:restriction>
+		</xs:simpleType>	
+		
+		
+</xs:schema>

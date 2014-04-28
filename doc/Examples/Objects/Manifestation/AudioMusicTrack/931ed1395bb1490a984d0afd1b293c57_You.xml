@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <ManifestationAudioMusicTrack xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CoSound_Object_Manifestation_Audio_R001a.xsd">
+  <Titles>
+    <Main>
+      <Title>You</Title>
+      <LanguageCode>
+        <Code>Other:English</Code>
+      </LanguageCode>
+    </Main>
+    <Sorts>
+      <Title>—</Title>
+      <LanguageCode>
+        <Code>ISO6391:en</Code>
+      </LanguageCode>
+      <LanguageCode>
+        <Code>ISO6393:eng</Code>
+      </LanguageCode>
+    </Sorts>
+    <Sorts>
+      <Title>—</Title>
+      <LanguageCode>
+        <Code>ISO6391:en</Code>
+      </LanguageCode>
+      <LanguageCode>
+        <Code>ISO6393:eng</Code>
+      </LanguageCode>
+    </Sorts>
+  </Titles>
+  <Artist>
+    <Names>
+      <Main>
+        <Name>Robin Stjernberg</Name>
+        <LanguageCode>
+          <Code>ISO6391:en</Code>
+        </LanguageCode>
+        <LanguageCode>
+          <Code>ISO6393:eng</Code>
+        </LanguageCode>
+        <Source>DTU Dataset</Source>
+      </Main>
+      <Sorts>
+        <Name>Robin Stjernberg</Name>
+        <LanguageCode>
+          <Code>Other:Unknown</Code>
+        </LanguageCode>
+        <Source>Wiki</Source>
+      </Sorts>
+    </Names>
+    <HardCodedObjectReference>
+      <TargetGUID>9d8ab8a0c4ce4c0ba1881b0372038a90</TargetGUID>
+    </HardCodedObjectReference>
+    <Location>
+      <Country>
+        <Names>
+          <Main>
+            <Name>Sweden</Name>
+            <LanguageCode>
+              <Code>ISO6391:en</Code>
+            </LanguageCode>
+            <LanguageCode>
+              <Code>ISO6393:eng</Code>
+            </LanguageCode>
+          </Main>
+          <Sorts>
+            <Name>Sverige</Name>
+            <LanguageCode>
+              <Code>Other:Unknown</Code>
+            </LanguageCode>
+          </Sorts>
+        </Names>
+        <HardCodedObjectReference>
+          <TargetGUID>8b34b45d7f884e88a1f2d7472566cb65</TargetGUID>
+        </HardCodedObjectReference>
+      </Country>
+    </Location>
+  </Artist>
+  <Timelines>
+    <Timeline>
+      <Description>Event:MetaDataGenerated</Description>
+      <Timeline>
+        <Type>Point</Type>
+        <Domain>Countinious</Domain>
+        <Reference>Absolute</Reference>
+        <AtDateTime>2014-04-22T01:45:18</AtDateTime>
+      </Timeline>
+    </Timeline>
+    <Timeline>
+      <Description>Audio:Details</Description>
+      <Timeline>
+        <Type>Interval</Type>
+        <Domain>Discrete</Domain>
+        <Reference>Releative</Reference>
+        <StartAtTimeSecons>0</StartAtTimeSecons>
+        <EndsAtTimeSeconds>181.608425</EndsAtTimeSeconds>
+      </Timeline>
+    </Timeline>
+    <Timeline>
+      <Description>Event:Apperance</Description>
+      <Timeline>
+        <Type>Point</Type>
+        <Domain>Countinious</Domain>
+        <Reference>Absolute</Reference>
+        <AtDate>Thursday 16 May 2013</AtDate>
+        <AtYear>2013</AtYear>
+      </Timeline>
+    </Timeline>
+  </Timelines>
+  <CreateAtDateTime>735711.073129178</CreateAtDateTime>
+  <Source>
+    <Name>ESC Giga Collection</Name>
+    <Version>Copy</Version>
+    <Revision>
+      <ID>1</ID>
+    </Revision>
+  </Source>
+  <Identifiers>
+    <Identifier>
+      <Type>File:SourceFileName</Type>
+      <ID>ea71ff0fa31e54165882d7e2cc34bf6c.mp3</ID>
+    </Identifier>
+    <Identifier>
+      <Type>File:SourceFileName:MD5</Type>
+      <ID>facb8923e3fe03fda9734f1a8324c13a</ID>
+    </Identifier>
+    <Identifier>
+      <Type>Other:FileName</Type>
+      <ID>\\comp-nas3.compute.dtu.dk\dtu-compute\cosound\data\_esc\mp3\2013\F13 SE - Robin Stjernberg - You.mp3</ID>
+    </Identifier>
+  </Identifiers>
+  <Format>
+    <Encoding>mp3</Encoding>
+    <DataRate>320</DataRate>
+    <EncoderString/> 
+    <WordLength/> 
+    <SamplingRate>44100</SamplingRate>
+    <ChannelConfiguration>2</ChannelConfiguration>
+  </Format>
+  <ForeignReferences>
+    <ForeignReference>
+      <Description>DTU Compute Echonest AudioFeatures</Description>
+      <Type>SourceFile:Metadata:</Type>
+      <Id/> 
+      <IdPrefix>file://</IdPrefix>
+      <URI>\\comp-nas3.compute.dtu.dk\dtu-compute\cosound\data\_esc\mp3_features\2013\ea71ff0fa31e54165882d7e2cc34bf6c.mp3.mat</URI>
+      <Other>Giga Collection AudioFeatures from Echonest</Other>
+      <Status/> 
+    </ForeignReference>
+    <ForeignReference>
+      <Description>Other:Youtube (Matched)</Description>
+      <Type>Stream:Content</Type>
+      <Id>jBUJ0u7ZVaE</Id>
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://www.youtube.com/watch?v=jBUJ0u7ZVaE</URI>
+      <Other>Powered by: http://www.eurovision.tv Robin Stjernberg will represent Sweden at the 2013 Eurovision Song Contest in Malmö with the song You. After a very exci ...</Other>
+      <Status/> 
+    </ForeignReference>
+    <ForeignReference>
+      <Description>Other:Spotify (Matched)</Description>
+      <Type>Stream:Content</Type>
+      <Id>4jRtTlCKit8DcqGAjEZX9V</Id>
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://spotify</URI>
+      <Other/> 
+      <Status/> 
+    </ForeignReference>
+    <ForeignReference>
+      <Description>Wikipedia</Description>
+      <Type>Data</Type>
+      <Id/> 
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://en.wikipedia.org/wiki/YouTube</URI>
+      <Other>Short Text: YouTube is a video-sharing website, created by three former PayPal employees in February 2005 and owned by Google since late 2006, on which users can upload, view and share videos. </Other>
+      <Status>Other:Automatic wiki search</Status>
+    </ForeignReference>
+  </ForeignReferences>
+</ManifestationAudioMusicTrack>

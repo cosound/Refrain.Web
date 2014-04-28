@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+	NOT FINISHED YET - SEE EXAMPLES !
+	
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+-->
+<xs:schema id="CoSound.Object.Generic.Similarity.R001a" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="Similarity" 	type="CoSoundSimilarity" />	
+	<xs:element name="Similarities" type="CoSoundSimilarities" />
+	
+	<xs:complexType name="CoSoundSimilarities">
+		<xs:sequence>									
+			<xs:element name="Similarity" 	type="CoSoundSimilarity" maxOccurs="unbounded" minOccurs="1" />								
+		</xs:sequence>
+	</xs:complexType>
+		
+	<xs:complexType name="CoSoundSimilarity">
+		<xs:sequence>									
+			<xs:element name="Basics" 		type="CoSoundSimBasics" 		maxOccurs="1" minOccurs="1" />	<!-- TODO -->				
+			<xs:element name="MetricSpace" 	type="CoSoundSimMetricSpace" 	maxOccurs="1" minOccurs="1" /> <!-- TODO -->
+			<xs:element name="Data" 		type="CoSoundSimData" 			maxOccurs="1" minOccurs="1" /> <!-- TODO -->
+			<xs:element name="Project" 		type="CoSoundProject" 		maxOccurs="1" minOccurs="0" /> <!-- TODO -->
+		</xs:sequence>
+	</xs:complexType>		
+	
+	<xs:complexType name="CoSoundSimBasics">
+		<xs:sequence>									
+			<xs:element name="TODO" 		type="xs:string" maxOccurs="1" minOccurs="1" />	<!-- TODO -->							
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="CoSoundSimMetricSpace">
+		<xs:sequence>									
+			<xs:element name="TODO" 		type="xs:string" maxOccurs="1" minOccurs="1" />	<!-- TODO -->							
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="CoSoundSimData">
+		<xs:sequence>									
+			<xs:element name="TODO" 		type="xs:string" maxOccurs="1" minOccurs="1" />	<!-- TODO -->							
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="CoSoundProject">
+		<xs:sequence>									
+			<xs:element name="TODO" 		type="xs:string" maxOccurs="1" minOccurs="1" />	<!-- TODO -->							
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- TODO TODO TODO -->
+	
+	
+</xs:schema>
+	

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	
+	An Audio Feature is ...
+
+	Attached to objects of type "AudioSegment" or "AudioRecording".	
+
+	Status: Highly Unstable, to be tested 
+
+	Priority: Must-have
+	
+	Authors: Bjørn Sand Jensen <bjje@dtu.dk>, Kræn Hansen <kh@bitblueprint.com>,
+			 Markus Færevaag <mf@bitblueprint.com>
+
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+-->
+<xs:schema id="CoSound.AudioFeatures.R001" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<!-- Root Element -->
+	<xs:element name="AudioFeatures">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Description" 	type="CoSoundDescription" 	maxOccurs="1" minOccurs="1" />
+				<xs:element name="Source" 		type="CoSoundAlgorithm" 	maxOccurs="1" minOccurs="1" />
+				<xs:element name="TimeLine" 	type="CoSoundTimeline" 		maxOccurs="1" minOccurs="1" />				
+				<xs:element name="Data" 		type="CoSoundData" 			maxOccurs="1" minOccurs="1" />
+				<!--  todo choice between inline data or a binary file ! -->
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="CoSoundDescription">  <!-- Can be either a user or a radio person -->
+		<xs:sequence>
+			<xs:element name="Text" type="xs:string" maxOccurs="1" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CoSoundAlgorithm">  <!-- TODO: Support VAMP? -->
+		<xs:sequence>
+			<xs:element name="AlgorithmID" 	type="xs:string" maxOccurs="1" minOccurs="1" />
+			<xs:element name="Name" 		type="xs:string" maxOccurs="1" minOccurs="1" />
+			<xs:element name="Parameters" 	type="xs:string" maxOccurs="1" minOccurs="1" />
+			<xs:element name="Source" 		type="xs:string" maxOccurs="1" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CoSoundTimeline">
+		<xs:sequence>
+			<!-- TODO: TIMELINE, POINT; INTERVAL; TIMELINEMAP -->
+			<xs:element name="TimelineType" 	type="CoSoundTimelineType" 	maxOccurs="1" minOccurs="1" />
+			<xs:element name="WindowStart" 		type="CoSoundFrameTime" 	maxOccurs="1" minOccurs="0" />
+			<xs:element name="WindowHop" 		type="xs:decimal" 			maxOccurs="1" minOccurs="0" />
+			<xs:element name="WindowEnd" 		type="CoSoundFrameTime" 	maxOccurs="1" minOccurs="0" />
+			<xs:element name="WindowLength" 	type="xs:decimal" 			maxOccurs="1" minOccurs="0" />
+			<xs:element name="SampleRate" 		type="xs:decimal" 			maxOccurs="1" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CoSoundData">  <!-- Note can be one or more segments, similarity etc -->
+		<xs:sequence>
+			<xs:element name="DataType" type="CoSoundFeatureTypes" maxOccurs="1" minOccurs="1" />
+			<xs:element name="Dimensions" type="CoSoundVector" maxOccurs="1" minOccurs="1" />
+			<xs:element name="Labels" type="CoSoundAxisLabels" maxOccurs="unbounded" minOccurs="0" />
+			<xs:element name="Values" type="CoSoundVector" maxOccurs="1" minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- HELPERS -->
+	<xs:simpleType name="CoSoundVector">
+		<xs:list itemType="xs:decimal" />
+	</xs:simpleType>
+
+	<xs:simpleType name="CoSoundFrameTime">
+		<xs:list itemType="xs:decimal" />
+	</xs:simpleType>
+
+
+	<xs:complexType name="CoSoundFrameNo">
+		<xs:attribute name="FrameNo" type="xs:integer" />
+	</xs:complexType>
+
+	<xs:simpleType name="CoSoundFeatureTypes">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="GenericScalarType" />
+			<xs:enumeration value="GenericVectorType" />
+			<xs:enumeration value="GenericMatrixType" />
+			<xs:enumeration value="GenericTensorType" />
+			<xs:enumeration value="GenericSimilarity" />
+			<xs:enumeration value="GenericSegment" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CoSoundTimelineType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Point" />
+			<xs:enumeration value="Interval" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="CoSoundAxisLabels">  <!-- Note can also be a segment -->
+		<xs:sequence>
+			<xs:element name="AxisNumber" type="xs:integer" maxOccurs="1" minOccurs="1" />
+			<xs:element name="Dimension" type="xs:integer" maxOccurs="1" minOccurs="1" />
+			<xs:element name="Label" type="xs:string" maxOccurs="unbounded" minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

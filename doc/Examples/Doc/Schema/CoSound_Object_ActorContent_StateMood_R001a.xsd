@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CoSound.Actor.Content.State.Mood.R001a" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<!-- <xs:include schemaLocation="_CoSound_Object_Generic_BasicTypes_R001a.xsd" 			/>-->
+	<xs:include schemaLocation="_CoSound_Object_Generic_ForeignReference_R001a.xsd" 		/>
+	<!--   <xs:include schemaLocation="_CoSound_Object_Generic_Location_R001a.xsd" 			/> --> 
+	<xs:include schemaLocation="_CoSound_Object_Generic_Timeline_R001a.xsd" 				/>
+	<xs:include schemaLocation="_CoSound_Object_Generic_ObjectReference_R001a.xsd" 			/>  
+	<!-- <xs:include schemaLocation="_CoSound_Object_Generic_NamesTitles_R001a.xsd" 		/> -->
+	 		 	
+	<xs:element name="StateMood" type="CoSoundStateMood" 	 /> 	<!-- Main element -->
+	<xs:element name="StateMoods" type="CoSoundStateMoods"   /> 	<!-- For multiple  history version -->
+	
+	<xs:complexType name="CoSoundStateMoods">	
+		<xs:sequence>
+			<xs:element name="StateMood" type="CoSoundStateMood" /> 	<!-- Main element -->
+		</xs:sequence>
+	</xs:complexType>
+		
+	<xs:complexType name="CoSoundStateMood">
+		<xs:sequence>
+			<xs:element name="Basics" 					type="CoSoundStateMoodBasics" 			maxOccurs="1" minOccurs="1" />	 	 <!-- Basic information, on dates -->								
+			<xs:element name="Source"					type="CoSoundStateMoodSource" 			maxOccurs="1" minOccurs="1" />		 <!-- Who created the analysis and data -->
+			<xs:element name="Analysis"					type="CoSoundStateMoodAnalysis" 		maxOccurs="1" minOccurs="1" />		 <!-- When and who created the ata -->							
+			<xs:element name="HardcodedObjectReference"	type="CoSoundHardCodedObjectReference" 	maxOccurs="1" minOccurs="0" />   	 <!-- Reference to the Actor object, note can replace/compliment the Relation between the Actor:Country and (this) ActorContent  -->
+		</xs:sequence>
+	</xs:complexType>
+	
+		<xs:complexType name="CoSoundStateMoodBasics">
+		<xs:sequence>
+			<xs:element name="CreatedDateTime" 	type="xs:dateTime" 				maxOccurs="1" minOccurs="1" />
+			<xs:element name="Description" 		type="xs:string" 				maxOccurs="1" minOccurs="0" />					
+			<xs:element name="Category" 		type="xs:string" 				maxOccurs="1" minOccurs="0" />  <!-- = Mood:Twitter -->			
+			<xs:element name="Series" 			type="CoSoundStateMoodSeries" 	maxOccurs="1" minOccurs="0" />	<!-- Can be used to select the newest and correct result -->		
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="CoSoundStateMoodSource"> <!-- This is a ad-hoc light version of the full CoSound Source class -->
+		<xs:sequence>
+			<xs:element name="Description" 		type="xs:string" 	maxOccurs="1" minOccurs="1" /> <!-- = External Service by DTU -->					
+			<xs:element name="Type" 			type="xs:string" 	maxOccurs="1" minOccurs="1" /> <!-- = External:DTU -->
+			<xs:element name="RevisionNumber" 	type="xs:string" 	maxOccurs="1" minOccurs="1" />			
+			<xs:element name="RevisionDate" 	type="xs:string" 	maxOccurs="1" minOccurs="1" />
+			<xs:element name="Repository" 		type="xs:string" 	maxOccurs="1" minOccurs="0" /> <!-- github / svn revision number and uri -->
+			<xs:element name="Contact" 			type="xs:string" 	maxOccurs="1" minOccurs="0" /> <!-- Author email + name -->		
+		</xs:sequence>
+	</xs:complexType>
+	
+
+	<xs:complexType name="CoSoundStateMoodAnalysis">
+		<xs:sequence>
+			<xs:element name="Timeline" 		type="CoSoundTimeline" 				maxOccurs="1" minOccurs="1" />		 <!-- Analysis period, CoSOund timeline class! -->
+			<xs:element name="ResultSummary"	type="CoSoundStateMoodResults" 		maxOccurs="1" minOccurs="1" />		 <!-- Overall results, aorusal/valance -->			
+			<xs:element name="ResultDetails" 	type="CoSoundStateMoodDetails" 		maxOccurs="1" minOccurs="0" />		 <!-- Detailed results and example tweets -->
+	</xs:sequence>
+	</xs:complexType>
+	
+			
+	<xs:complexType name="CoSoundStateMoodResults">
+		<xs:sequence>								
+			<xs:element name="Result" 			type="CoSoundStateMoodResult" 	maxOccurs="unbounded" minOccurs="1" />							
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CoSoundStateMoodResult">
+		<xs:sequence>
+			<xs:element name="Type" 			type="xs:string" 		maxOccurs="1" minOccurs="1" />	<!-- TODO should be enum, for now = Mood:Twitter -->					
+			<xs:element name="Value" 			type="xs:decimal" 		maxOccurs="1" minOccurs="1" /> 	<!-- Predicted  value  -->
+			<xs:element name="Variance" 		type="xs:decimal" 		maxOccurs="1" minOccurs="0" /> 	<!-- Variance  -->
+			<xs:element name="Notes" 			type="xs:string" 		maxOccurs="1" minOccurs="0" />											
+		</xs:sequence>
+	</xs:complexType>
+			
+	<xs:complexType name="CoSoundStateMoodDetails">
+		<xs:sequence>
+			<xs:element name="Description" 			type="xs:string" 			maxOccurs="1" minOccurs="0" />
+			<xs:element name="SampleSizeTotal" 		type="xs:integer" 			maxOccurs="1" minOccurs="1" />		<!-- Totoal number of tweets  -->				
+			<xs:element name="SampleSizeAnalysis" 	type="xs:integer" 			maxOccurs="1" minOccurs="1" />		<!-- Number of tweets in analysis  -->
+			<xs:element name="SampleSizeIncluded" 	type="xs:integer" 			maxOccurs="1" minOccurs="1" />		<!-- Number of tweets included as examples etc  -->										
+			<xs:element name="Data" 				type="CoSoundMoodDataset" 	maxOccurs="1" minOccurs="0" />		<!-- Full dataste or samples from the dataset (with analysis) -->	
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CoSoundMoodDataset">
+		<xs:sequence>
+			<xs:element name="DataPoint" 			type="CoSoundMoodDataPoint" 		maxOccurs="unbounded" minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CoSoundMoodDataPoint">
+		<xs:sequence>
+			<xs:element name="Series" 				type="CoSoundStateMoodSeries" 		maxOccurs="1" minOccurs="0" />
+			<xs:element name="Results" 				type="CoSoundStateMoodResults" 		maxOccurs="1" minOccurs="0" />						
+			<xs:element name="ForeignReferences" 	type="CoSoundForeignReferences" 	maxOccurs="1" minOccurs="0" /> <!-- Refernce to tweet, the tweet text and author+name  -->
+		</xs:sequence>
+	</xs:complexType>
+				
+	<xs:complexType name="CoSoundStateMoodSeries">
+		<xs:sequence>
+			<xs:element name="SeriesId" 		type="xs:string" 	maxOccurs="1" minOccurs="1" /> <!-- The series id e.g. 2 -->
+			<xs:element name="SerialNumber" 	type="xs:string" 	maxOccurs="1" minOccurs="0" /> <!-- The series id e.g. inc for each submission to the webservice for this country -->									
+		</xs:sequence>
+	</xs:complexType>
+		
+</xs:schema>
+	
+	

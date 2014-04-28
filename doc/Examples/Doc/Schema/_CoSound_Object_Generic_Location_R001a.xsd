@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+	Attached to object: Any often as subclass
+
+	Status: Unstable
+	(If final, "Fixed" will be used as status)
+
+	Priority: Must have
+
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+-->
+<xs:schema id="CoSound.Generic.Location.R001a" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="Location" type="CoSoundLocation" />
+	<xs:element name="Locations" type="CoSoundLocations" />
+	
+	<xs:complexType name="CoSoundLocations">
+		<xs:sequence>
+			<xs:element name="Location" type="CoSoundLocation" 	maxOccurs="unbounded"	minOccurs="1" />
+		</xs:sequence>			
+	</xs:complexType>
+	
+	<xs:complexType name="CoSoundLocation">
+		<xs:sequence>
+			<xs:element name="Type" 		type="xs:string" 	maxOccurs="unbounded"	minOccurs="0" />
+			
+			<xs:element name="AddressLine" 	type="xs:string" 	maxOccurs="unbounded"	minOccurs="0" />
+			<xs:element name="PostalCode" 	type="xs:string" 	maxOccurs="1"			minOccurs="0" />
+			<xs:element name="City" 		type="xs:string" 	maxOccurs="1"			minOccurs="0" />
+			<xs:element name="Country" 		type="xs:string" 	maxOccurs="1"			minOccurs="0" />			
+			<xs:element name="Geo" 			type="xs:string" 	minOccurs="0" 			maxOccurs="0" /> <!--  GPS location -->
+		</xs:sequence>
+	</xs:complexType>
+	
+</xs:schema>
+	

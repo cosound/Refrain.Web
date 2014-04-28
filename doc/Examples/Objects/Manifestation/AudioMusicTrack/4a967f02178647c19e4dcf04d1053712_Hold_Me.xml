@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <ManifestationAudioMusicTrack xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CoSound_Object_Manifestation_Audio_R001a.xsd">
+  <Titles>
+    <Main>
+      <Title>Hold Me</Title>
+      <LanguageCode>
+        <Code>Other:English</Code>
+      </LanguageCode>
+    </Main>
+    <Sorts>
+      <Title>—</Title>
+      <LanguageCode>
+        <Code>ISO6391:en</Code>
+      </LanguageCode>
+      <LanguageCode>
+        <Code>ISO6393:eng</Code>
+      </LanguageCode>
+    </Sorts>
+    <Sorts>
+      <Title>—</Title>
+      <LanguageCode>
+        <Code>ISO6391:en</Code>
+      </LanguageCode>
+      <LanguageCode>
+        <Code>ISO6393:eng</Code>
+      </LanguageCode>
+    </Sorts>
+  </Titles>
+  <Artist>
+    <Names>
+      <Main>
+        <Name>Farid Mammadov</Name>
+        <LanguageCode>
+          <Code>ISO6391:en</Code>
+        </LanguageCode>
+        <LanguageCode>
+          <Code>ISO6393:eng</Code>
+        </LanguageCode>
+        <Source>DTU Dataset</Source>
+      </Main>
+      <Sorts>
+        <Name>Farid Mammadov</Name>
+        <LanguageCode>
+          <Code>Other:Unknown</Code>
+        </LanguageCode>
+        <Source>Wiki</Source>
+      </Sorts>
+    </Names>
+    <HardCodedObjectReference>
+      <TargetGUID>30e15482a31a4d518c8f440517fba855</TargetGUID>
+    </HardCodedObjectReference>
+    <Location>
+      <Country>
+        <Names>
+          <Main>
+            <Name>Azerbaijan</Name>
+            <LanguageCode>
+              <Code>ISO6391:en</Code>
+            </LanguageCode>
+            <LanguageCode>
+              <Code>ISO6393:eng</Code>
+            </LanguageCode>
+          </Main>
+          <Sorts>
+            <Name>Azǝrbaycan</Name>
+            <LanguageCode>
+              <Code>Other:Unknown</Code>
+            </LanguageCode>
+          </Sorts>
+        </Names>
+        <HardCodedObjectReference>
+          <TargetGUID>f885d0bff05c424daba69a0a7cb480f7</TargetGUID>
+        </HardCodedObjectReference>
+      </Country>
+    </Location>
+  </Artist>
+  <Timelines>
+    <Timeline>
+      <Description>Event:MetaDataGenerated</Description>
+      <Timeline>
+        <Type>Point</Type>
+        <Domain>Countinious</Domain>
+        <Reference>Absolute</Reference>
+        <AtDateTime>2014-04-22T01:45:57</AtDateTime>
+      </Timeline>
+    </Timeline>
+    <Timeline>
+      <Description>Audio:Details</Description>
+      <Timeline>
+        <Type>Interval</Type>
+        <Domain>Discrete</Domain>
+        <Reference>Releative</Reference>
+        <StartAtTimeSecons>0</StartAtTimeSecons>
+        <EndsAtTimeSeconds>181.7338775</EndsAtTimeSeconds>
+      </Timeline>
+    </Timeline>
+    <Timeline>
+      <Description>Event:Apperance</Description>
+      <Timeline>
+        <Type>Point</Type>
+        <Domain>Countinious</Domain>
+        <Reference>Absolute</Reference>
+        <AtDate>Thursday 16 May 2013</AtDate>
+        <AtYear>2013</AtYear>
+      </Timeline>
+    </Timeline>
+  </Timelines>
+  <CreateAtDateTime>735711.073585012</CreateAtDateTime>
+  <Source>
+    <Name>ESC Giga Collection</Name>
+    <Version>Copy</Version>
+    <Revision>
+      <ID>1</ID>
+    </Revision>
+  </Source>
+  <Identifiers>
+    <Identifier>
+      <Type>File:SourceFileName</Type>
+      <ID>dd36de37ad61650c105c0bf8c1cfd8ac.mp3</ID>
+    </Identifier>
+    <Identifier>
+      <Type>File:SourceFileName:MD5</Type>
+      <ID>23ea715c45199a8115a4e9acd268b007</ID>
+    </Identifier>
+    <Identifier>
+      <Type>Other:FileName</Type>
+      <ID>\\comp-nas3.compute.dtu.dk\dtu-compute\cosound\data\_esc\mp3\2013\Farid Mammadov - Hold Me (Azerbaijan) 2013 Eurovision Song Contest.mp3</ID>
+    </Identifier>
+  </Identifiers>
+  <Format>
+    <Encoding>mp3</Encoding>
+    <DataRate>128</DataRate>
+    <EncoderString/> 
+    <WordLength/> 
+    <SamplingRate>44100</SamplingRate>
+    <ChannelConfiguration>2</ChannelConfiguration>
+  </Format>
+  <ForeignReferences>
+    <ForeignReference>
+      <Description>DTU Compute Echonest AudioFeatures</Description>
+      <Type>SourceFile:Metadata:</Type>
+      <Id/> 
+      <IdPrefix>file://</IdPrefix>
+      <URI>\\comp-nas3.compute.dtu.dk\dtu-compute\cosound\data\_esc\mp3_features\2013\dd36de37ad61650c105c0bf8c1cfd8ac.mp3.mat</URI>
+      <Other>Giga Collection AudioFeatures from Echonest</Other>
+      <Status/> 
+    </ForeignReference>
+    <ForeignReference>
+      <Description>Other:Youtube (Matched)</Description>
+      <Type>Stream:Content</Type>
+      <Id>iN3d_V7KVLE</Id>
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://www.youtube.com/watch?v=iN3d_V7KVLE</URI>
+      <Other>Powered by http://www.eurovision.tv Azerbaijan: Farid Mammadov - Hold Me live at the Eurovision Song Contest 2013 Grand Final.</Other>
+      <Status/> 
+    </ForeignReference>
+    <ForeignReference>
+      <Description>Other:Spotify (Matched)</Description>
+      <Type>Stream:Content</Type>
+      <Id>1176Ga8Qwqlcx0ZfaVSj9R</Id>
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://spotify</URI>
+      <Other/> 
+      <Status/> 
+    </ForeignReference>
+    <ForeignReference>
+      <Description>Wikipedia</Description>
+      <Type>Data</Type>
+      <Id/> 
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://en.wikipedia.org/wiki/Hold_Me</URI>
+      <Other>Short Text: Hold Me may refer to:</Other>
+      <Status>Other:Automatic wiki search</Status>
+    </ForeignReference>
+  </ForeignReferences>
+</ManifestationAudioMusicTrack>

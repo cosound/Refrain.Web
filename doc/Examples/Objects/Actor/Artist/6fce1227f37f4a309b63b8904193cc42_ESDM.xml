@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <ActorArtist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CoSound_Object_Actor_Country_R001a.xsd">
+  <Names>
+    <Main>
+      <Name>ESDM</Name>
+      <LanguageCode>
+        <Code>ISO6391:en</Code>
+      </LanguageCode>
+      <LanguageCode>
+        <Code>ISO6393:eng</Code>
+      </LanguageCode>
+      <Source>DTU Dataset</Source>
+    </Main>
+    <Sorts>
+      <Name>ESDM</Name>
+      <LanguageCode>
+        <Code>Other:Unknown</Code>
+      </LanguageCode>
+      <Source>Wiki</Source>
+    </Sorts>
+  </Names>
+  <Location>
+    <Country>
+      <Names>
+        <Main>
+          <Name>Spain</Name>
+        </Main>
+      </Names>
+      <HardCodedObjectReference>
+        <TargetGUID>0d16c074ceb6473696eee747025c4721</TargetGUID>
+        <TargetTest>Spain</TargetTest>
+      </HardCodedObjectReference>
+    </Country>
+  </Location>
+  <ForeignReferences>
+    <ForeignReference>
+      <Description>Wikipedia</Description>
+      <Type>Data</Type>
+      <Id/> 
+      <IdPrefix>http://</IdPrefix>
+      <URI/> 
+      <Other>Short Text: </Other>
+    </ForeignReference>
+  </ForeignReferences>
+</ActorArtist>

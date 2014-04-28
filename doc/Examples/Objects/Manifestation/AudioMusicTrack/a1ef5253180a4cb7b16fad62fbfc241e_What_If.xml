@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <ManifestationAudioMusicTrack xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CoSound_Object_Manifestation_Audio_R001a.xsd">
+  <Titles>
+    <Main>
+      <Title>What If</Title>
+      <LanguageCode>
+        <Code>Other:English</Code>
+      </LanguageCode>
+    </Main>
+    <Sorts>
+      <Title>—</Title>
+      <LanguageCode>
+        <Code>ISO6391:en</Code>
+      </LanguageCode>
+      <LanguageCode>
+        <Code>ISO6393:eng</Code>
+      </LanguageCode>
+    </Sorts>
+    <Sorts>
+      <Title>—</Title>
+      <LanguageCode>
+        <Code>ISO6391:en</Code>
+      </LanguageCode>
+      <LanguageCode>
+        <Code>ISO6393:eng</Code>
+      </LanguageCode>
+    </Sorts>
+  </Titles>
+  <Artist>
+    <Names>
+      <Main>
+        <Name>Dina Garipova</Name>
+        <LanguageCode>
+          <Code>ISO6391:en</Code>
+        </LanguageCode>
+        <LanguageCode>
+          <Code>ISO6393:eng</Code>
+        </LanguageCode>
+        <Source>DTU Dataset</Source>
+      </Main>
+      <Sorts>
+        <Name>Dina Garipova</Name>
+        <LanguageCode>
+          <Code>Other:Unknown</Code>
+        </LanguageCode>
+        <Source>Wiki</Source>
+      </Sorts>
+    </Names>
+    <HardCodedObjectReference>
+      <TargetGUID>c24b30d7e35042a5abcd700f5bf43b33</TargetGUID>
+    </HardCodedObjectReference>
+    <Location>
+      <Country>
+        <Names>
+          <Main>
+            <Name>Russia</Name>
+            <LanguageCode>
+              <Code>ISO6391:en</Code>
+            </LanguageCode>
+            <LanguageCode>
+              <Code>ISO6393:eng</Code>
+            </LanguageCode>
+          </Main>
+          <Sorts>
+            <Name>Rossiya</Name>
+            <LanguageCode>
+              <Code>Other:Unknown</Code>
+            </LanguageCode>
+          </Sorts>
+        </Names>
+        <HardCodedObjectReference>
+          <TargetGUID>94bfe89a7850443085a10109aad11167</TargetGUID>
+        </HardCodedObjectReference>
+      </Country>
+    </Location>
+  </Artist>
+  <Timelines>
+    <Timeline>
+      <Description>Event:MetaDataGenerated</Description>
+      <Timeline>
+        <Type>Point</Type>
+        <Domain>Countinious</Domain>
+        <Reference>Absolute</Reference>
+        <AtDateTime>2014-04-22T01:44:30</AtDateTime>
+      </Timeline>
+    </Timeline>
+    <Timeline>
+      <Description>Audio:Details</Description>
+      <Timeline>
+        <Type>Interval</Type>
+        <Domain>Discrete</Domain>
+        <Reference>Releative</Reference>
+        <StartAtTimeSecons>0</StartAtTimeSecons>
+        <EndsAtTimeSeconds>184.6595918</EndsAtTimeSeconds>
+      </Timeline>
+    </Timeline>
+    <Timeline>
+      <Description>Event:Apperance</Description>
+      <Timeline>
+        <Type>Point</Type>
+        <Domain>Countinious</Domain>
+        <Reference>Absolute</Reference>
+        <AtDate>Thursday 16 May 2013</AtDate>
+        <AtYear>2013</AtYear>
+      </Timeline>
+    </Timeline>
+  </Timelines>
+  <CreateAtDateTime>735711.072580197</CreateAtDateTime>
+  <Source>
+    <Name>ESC Giga Collection</Name>
+    <Version>Copy</Version>
+    <Revision>
+      <ID>1</ID>
+    </Revision>
+  </Source>
+  <Identifiers>
+    <Identifier>
+      <Type>File:SourceFileName</Type>
+      <ID>8df4679ad91288fa353ef0bc09391bac.mp3</ID>
+    </Identifier>
+    <Identifier>
+      <Type>File:SourceFileName:MD5</Type>
+      <ID>54b02de81f119f7f9e15ea9b000d0bca</ID>
+    </Identifier>
+    <Identifier>
+      <Type>Other:FileName</Type>
+      <ID>\\comp-nas3.compute.dtu.dk\dtu-compute\cosound\data\_esc\mp3\2013\F13 RU - Dina Garipova - What If.mp3</ID>
+    </Identifier>
+  </Identifiers>
+  <Format>
+    <Encoding>mp3</Encoding>
+    <DataRate>225.912</DataRate>
+    <EncoderString/> 
+    <WordLength/> 
+    <SamplingRate>44100</SamplingRate>
+    <ChannelConfiguration>2</ChannelConfiguration>
+  </Format>
+  <ForeignReferences>
+    <ForeignReference>
+      <Description>DTU Compute Echonest AudioFeatures</Description>
+      <Type>SourceFile:Metadata:</Type>
+      <Id/> 
+      <IdPrefix>file://</IdPrefix>
+      <URI>\\comp-nas3.compute.dtu.dk\dtu-compute\cosound\data\_esc\mp3_features\2013\8df4679ad91288fa353ef0bc09391bac.mp3.mat</URI>
+      <Other>Giga Collection AudioFeatures from Echonest</Other>
+      <Status/> 
+    </ForeignReference>
+    <ForeignReference>
+      <Description>Other:Youtube (Matched)</Description>
+      <Type>Stream:Content</Type>
+      <Id>1VwzdeRNjtA</Id>
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://www.youtube.com/watch?v=1VwzdeRNjtA</URI>
+      <Other>powered by: http://www.eurovision.tv Dina Garipova will represent Russia at the 2013 Eurovision Song Contest in Malmo, Sweden with the song What If.</Other>
+      <Status/> 
+    </ForeignReference>
+    <ForeignReference>
+      <Description>Other:Spotify (Matched)</Description>
+      <Type>Stream:Content</Type>
+      <Id>164MZsresrOc4nw2xYzff3</Id>
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://spotify</URI>
+      <Other/> 
+      <Status/> 
+    </ForeignReference>
+    <ForeignReference>
+      <Description>Wikipedia</Description>
+      <Type>Data</Type>
+      <Id/> 
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://en.wikipedia.org/wiki/What_If</URI>
+      <Other>Short Text: What if? is a question that often is used in the context of:</Other>
+      <Status>Other:Automatic wiki search</Status>
+    </ForeignReference>
+  </ForeignReferences>
+</ManifestationAudioMusicTrack>

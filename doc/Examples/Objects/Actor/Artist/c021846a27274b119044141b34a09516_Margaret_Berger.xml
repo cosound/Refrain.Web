@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <ActorArtist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CoSound_Object_Actor_Country_R001a.xsd">
+  <Names>
+    <Main>
+      <Name>Margaret Berger</Name>
+      <LanguageCode>
+        <Code>ISO6391:en</Code>
+      </LanguageCode>
+      <LanguageCode>
+        <Code>ISO6393:eng</Code>
+      </LanguageCode>
+      <Source>DTU Dataset</Source>
+    </Main>
+    <Sorts>
+      <Name>Margaret Berger</Name>
+      <LanguageCode>
+        <Code>Other:Unknown</Code>
+      </LanguageCode>
+      <Source>Wiki</Source>
+    </Sorts>
+  </Names>
+  <Location>
+    <Country>
+      <Names>
+        <Main>
+          <Name>Norway</Name>
+        </Main>
+      </Names>
+      <HardCodedObjectReference>
+        <TargetGUID>08a2cee6147c4f1aa514f64db7d2e582</TargetGUID>
+        <TargetTest>Norway</TargetTest>
+      </HardCodedObjectReference>
+    </Country>
+  </Location>
+  <ForeignReferences>
+    <ForeignReference>
+      <Description>Wikipedia</Description>
+      <Type>Data</Type>
+      <Id/> 
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://en.wikipedia.org/wiki/Margaret_Berger</URI>
+      <Other>Short Text: Margaret Berger (born 11 October 1985) is a Norwegian electropop singer-songwriter. She made her debut on Sony BMG after she placed second on the second season of Norwegian Idol in 2004.</Other>
+    </ForeignReference>
+  </ForeignReferences>
+</ActorArtist>

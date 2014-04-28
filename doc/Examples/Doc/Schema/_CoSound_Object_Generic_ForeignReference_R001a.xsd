@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+	Often a subclass or attached to any object
+
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+-->
+<xs:schema id="CoSound.ForeignReference.R001" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:include schemaLocation="_CoSound_Object_Generic_BasicTypes_R001a.xsd" 		/>				
+	
+	<xs:element name="ForeignReferences" type="CoSoundForeignReferences" />
+	<xs:element name="ForeignReference"  type="CoSoundForeignReference" />
+	
+	<xs:complexType name="CoSoundForeignReferences">
+		<xs:sequence>														
+				<xs:element name="ForeignReference" type="CoSoundForeignReference" 	maxOccurs="unbounded" minOccurs="1" />													
+			</xs:sequence>
+	</xs:complexType>
+									
+	<xs:complexType name="CoSoundForeignReference">
+		<xs:sequence>		
+			<xs:element name="Description" 	type="xs:string" 				minOccurs="0" 	maxOccurs="1" /> <!-- eg spotify track id BUT with a specific file not that the track also has an id...TOOD consider! -->
+			<xs:element name="Type" 		type="CosoundFRefType" 			minOccurs="1" 	maxOccurs="1" />
+			<xs:element name="Id" 			type="xs:string" 				minOccurs="1" 	maxOccurs="1" />					
+			<xs:element name="URI"			type="xs:anyURI" 				minOccurs="0" 	maxOccurs="1" />			
+			<xs:element name="DateTime" 	type="xs:dateTime" 				minOccurs="0" 	maxOccurs="1" />
+			<xs:element name="Text" 		type="xs:string" 				minOccurs="0" 	maxOccurs="1" />
+			<xs:element name="Status" 		type="CoSosoundReferenceStatus" minOccurs="0" 	maxOccurs="1" />
+			<xs:element name="Other" 		type="xs:string" 				minOccurs="0" 	maxOccurs="1" />
+		</xs:sequence>		
+	</xs:complexType>
+				
+	<xs:simpleType name="CosoundFRefType">
+    	<xs:union memberTypes="CosoundFRefTypeEnum CoSoundBasicType_EnumOtherStringPatternType"/>
+	</xs:simpleType>	
+	<xs:simpleType name="CosoundFRefTypeEnum">
+		<xs:annotation>
+			<xs:documentation>http://www.iso.org/iso/home/standards/country_codes/iso-3166-1_decoding_table.htm
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Content:Stream" />
+			<xs:enumeration value="Content:File" />						
+			<xs:enumeration value="Data" />								
+			<xs:enumeration value="TODO NOT COMPLETE USE OTHER:TXT FOR NEW TYPES" />
+			</xs:restriction>
+		</xs:simpleType>
+				
+	<xs:simpleType name="CoSosoundReferenceStatus">
+    	<xs:union memberTypes="CoSosoundReferenceStatusEnum CoSoundBasicType_EnumOtherStringPatternType"/>
+	</xs:simpleType>	
+	<xs:simpleType name="CoSosoundReferenceStatusEnum">
+		<xs:annotation>
+			<xs:documentation>http://www.iso.org/iso/home/standards/country_codes/iso-3166-1_decoding_table.htm
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Validated" />
+			<xs:enumeration value="Not-Validated" />									
+			<xs:enumeration value="Automatic" />
+			</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

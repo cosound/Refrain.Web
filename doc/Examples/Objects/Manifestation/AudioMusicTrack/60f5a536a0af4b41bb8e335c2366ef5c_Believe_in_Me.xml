@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <ManifestationAudioMusicTrack xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CoSound_Object_Manifestation_Audio_R001a.xsd">
+  <Titles>
+    <Main>
+      <Title>Believe in Me</Title>
+      <LanguageCode>
+        <Code>Other:English</Code>
+      </LanguageCode>
+    </Main>
+    <Sorts>
+      <Title>—</Title>
+      <LanguageCode>
+        <Code>ISO6391:en</Code>
+      </LanguageCode>
+      <LanguageCode>
+        <Code>ISO6393:eng</Code>
+      </LanguageCode>
+    </Sorts>
+    <Sorts>
+      <Title>—</Title>
+      <LanguageCode>
+        <Code>ISO6391:en</Code>
+      </LanguageCode>
+      <LanguageCode>
+        <Code>ISO6393:eng</Code>
+      </LanguageCode>
+    </Sorts>
+  </Titles>
+  <Artist>
+    <Names>
+      <Main>
+        <Name>Bonnie Tyler</Name>
+        <LanguageCode>
+          <Code>ISO6391:en</Code>
+        </LanguageCode>
+        <LanguageCode>
+          <Code>ISO6393:eng</Code>
+        </LanguageCode>
+        <Source>DTU Dataset</Source>
+      </Main>
+      <Sorts>
+        <Name>Bonnie Tyler</Name>
+        <LanguageCode>
+          <Code>Other:Unknown</Code>
+        </LanguageCode>
+        <Source>Wiki</Source>
+      </Sorts>
+    </Names>
+    <HardCodedObjectReference>
+      <TargetGUID>42a6211f804040ec84243e65583e3a17</TargetGUID>
+    </HardCodedObjectReference>
+    <Location>
+      <Country>
+        <Names>
+          <Main>
+            <Name>United Kingdom</Name>
+            <LanguageCode>
+              <Code>ISO6391:en</Code>
+            </LanguageCode>
+            <LanguageCode>
+              <Code>ISO6393:eng</Code>
+            </LanguageCode>
+          </Main>
+          <Sorts>
+            <Name>United Kingdom</Name>
+            <LanguageCode>
+              <Code>Other:Unknown</Code>
+            </LanguageCode>
+          </Sorts>
+        </Names>
+        <HardCodedObjectReference>
+          <TargetGUID>3963b00e573c472c907a4b2d37e40939</TargetGUID>
+        </HardCodedObjectReference>
+      </Country>
+    </Location>
+  </Artist>
+  <Timelines>
+    <Timeline>
+      <Description>Event:MetaDataGenerated</Description>
+      <Timeline>
+        <Type>Point</Type>
+        <Domain>Countinious</Domain>
+        <Reference>Absolute</Reference>
+        <AtDateTime>2014-04-22T01:45:11</AtDateTime>
+      </Timeline>
+    </Timeline>
+    <Timeline>
+      <Description>Audio:Details</Description>
+      <Timeline>
+        <Type>Interval</Type>
+        <Domain>Discrete</Domain>
+        <Reference>Releative</Reference>
+        <StartAtTimeSecons>0</StartAtTimeSecons>
+        <EndsAtTimeSeconds>184.9991836</EndsAtTimeSeconds>
+      </Timeline>
+    </Timeline>
+    <Timeline>
+      <Description>Event:Apperance</Description>
+      <Timeline>
+        <Type>Point</Type>
+        <Domain>Countinious</Domain>
+        <Reference>Absolute</Reference>
+        <AtDate>Thursday 16 May 2013</AtDate>
+        <AtYear>2013</AtYear>
+      </Timeline>
+    </Timeline>
+  </Timelines>
+  <CreateAtDateTime>735711.073045058</CreateAtDateTime>
+  <Source>
+    <Name>ESC Giga Collection</Name>
+    <Version>Copy</Version>
+    <Revision>
+      <ID>1</ID>
+    </Revision>
+  </Source>
+  <Identifiers>
+    <Identifier>
+      <Type>File:SourceFileName</Type>
+      <ID>f9f6b2fe1f3f5f2272b9d4bc87438deb.mp3</ID>
+    </Identifier>
+    <Identifier>
+      <Type>File:SourceFileName:MD5</Type>
+      <ID>2decc1a7d6271780eba3b9f74a45e62c</ID>
+    </Identifier>
+    <Identifier>
+      <Type>Other:FileName</Type>
+      <ID>\\comp-nas3.compute.dtu.dk\dtu-compute\cosound\data\_esc\mp3\2013\Bonnie Tyler - Believe In Me (United Kingdom) 2013 Eurovision Song Contest Official Video.mp3</ID>
+    </Identifier>
+  </Identifiers>
+  <Format>
+    <Encoding>mp3</Encoding>
+    <DataRate>128.016</DataRate>
+    <EncoderString/> 
+    <WordLength/> 
+    <SamplingRate>44100</SamplingRate>
+    <ChannelConfiguration>2</ChannelConfiguration>
+  </Format>
+  <ForeignReferences>
+    <ForeignReference>
+      <Description>DTU Compute Echonest AudioFeatures</Description>
+      <Type>SourceFile:Metadata:</Type>
+      <Id/> 
+      <IdPrefix>file://</IdPrefix>
+      <URI>\\comp-nas3.compute.dtu.dk\dtu-compute\cosound\data\_esc\mp3_features\2013\f9f6b2fe1f3f5f2272b9d4bc87438deb.mp3.mat</URI>
+      <Other>Giga Collection AudioFeatures from Echonest</Other>
+      <Status/> 
+    </ForeignReference>
+    <ForeignReference>
+      <Description>Other:Youtube (Matched)</Description>
+      <Type>Stream:Content</Type>
+      <Id>cqXk_FRw62Q</Id>
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://www.youtube.com/watch?v=cqXk_FRw62Q</URI>
+      <Other>http://www.bbc.co.uk/eurovision Bonnie Tyler will represent the United Kingdom with &quot;Believe in Me&quot; at the Eurovision Song Contest 2013 in Malmo, Sweden.</Other>
+      <Status/> 
+    </ForeignReference>
+    <ForeignReference>
+      <Description>Other:Spotify (Matched)</Description>
+      <Type>Stream:Content</Type>
+      <Id>7ETQI29eljiTBIK5y8enek</Id>
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://spotify</URI>
+      <Other/> 
+      <Status/> 
+    </ForeignReference>
+    <ForeignReference>
+      <Description>Wikipedia</Description>
+      <Type>Data</Type>
+      <Id/> 
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://en.wikipedia.org/wiki/Believe_in_Me</URI>
+      <Other>Short Text: Believe in Me may refer to:</Other>
+      <Status>Other:Automatic wiki search</Status>
+    </ForeignReference>
+  </ForeignReferences>
+</ManifestationAudioMusicTrack>

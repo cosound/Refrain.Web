@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+-->
+<xs:schema id="CoSound.FingerPrint.R001" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="FingerPrints" type="CoSoundFingerPrints" />
+	<xs:complexType name="CoSoundFingerPrints">
+		<xs:sequence>							
+			<xs:element name="FingerPrint" 		type="CoSoundFingerPrint"	maxOccurs="unbounded" minOccurs="0" />								
+		</xs:sequence>
+	</xs:complexType>
+		
+	<xs:complexType name="CoSoundFingerPrint">
+		<xs:sequence>		
+			<xs:element name="Name" 		type="CoSoundFingerPrintName" 	minOccurs="1" maxOccurs="1" /> 				<!-- eg spotify track id BUT with a specific file not that the track also has an id...TOOD consider! -->
+			<xs:element name="Timeline" 	type="CoSoundTimeline" 			minOccurs="0" maxOccurs="1" /> 	<!-- if code not calc'ed on full signal! -->
+			<xs:element name="Version" 		type="xs:string"		 		minOccurs="1" maxOccurs="1" />
+			<xs:element name="ID" 			type="xs:string" 				minOccurs="1" maxOccurs="1" />
+			<xs:element name="URL" 			type="xs:anyURI" 				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>		
+	</xs:complexType>
+	
+	<xs:complexType name="CoSoundFingerPrintName">
+		<xs:sequence>		
+			<xs:element name="Type" 		type="CoSoundFingerPrintType" 	minOccurs="0" maxOccurs="1" /> 				<!-- eg spotify track id BUT with a specific file not that the track also has an id...TOOD consider! -->
+			<xs:element name="Version" 		type="xs:string" 				minOccurs="0" maxOccurs="1" /> 				<!-- eg spotify track id BUT with a specific file not that the track also has an id...TOOD consider! -->
+			<xs:element name="Name" 		type="xs:string" 				minOccurs="0" maxOccurs="1" /> 	<!-- if code not calc'ed on full signal! -->			
+		</xs:sequence>		
+	</xs:complexType>
+	
+	<xs:simpleType name="CoSoundFingerPrintType">	
+		<xs:restriction base="xs:string">	
+			<xs:enumeration value="MD5"/>
+			<xs:enumeration value="SHA1"/>
+			<xs:enumeration value="SHA256"/>						
+			<xs:enumeration value="SHA384" />
+			<xs:enumeration value="SHA512" /> 					 		
+			<xs:enumeration value="PUID" /> 	 <!-- see MO -->			
+			<xs:enumeration value="EchoNestFingerPrint" />
+			<xs:enumeration value="EchoPrint" />
+			<xs:enumeration value="Gracenote" /> 	
+			<xs:enumeration value="MusicBrainz" /> 								
+			<xs:enumeration value="Shazam" />
+			<xs:enumeration value="CoSoundAudioFingerPrint" />
+			<xs:enumeration value="Other" /> 									
+		</xs:restriction>	
+	</xs:simpleType>
+	
+</xs:schema>

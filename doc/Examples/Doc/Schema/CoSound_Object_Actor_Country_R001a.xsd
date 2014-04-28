@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+	
+
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+-->
+<xs:schema id="CoSound.Actor.Country.R001a" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:include schemaLocation="_CoSound_Object_Generic_BasicTypes_R001a.xsd" 		/>
+	<xs:include schemaLocation="_CoSound_Object_Generic_ForeignReference_R001a.xsd" 	/>
+	<!--   <xs:include schemaLocation="_CoSound_Object_Generic_Location_R001a.xsd" 			/> --> 
+	<xs:include schemaLocation="_CoSound_Object_Generic_Timeline_R001a.xsd" 			/>
+	<xs:include schemaLocation="_CoSound_Object_Generic_ObjectReference_R001a.xsd" 	/> 
+	<xs:include schemaLocation="_CoSound_Object_Generic_NamesTitles_R001a.xsd" 	/>
+	 	
+
+	<xs:element name="ActorCountry" type="CoSoundActorCountry" />
+	
+	<xs:complexType name="CoSoundActorCountry">
+		<xs:sequence>
+			<xs:element name="Name" type="CoSoundNames" maxOccurs="unbounded" minOccurs="1" />			
+			
+			<!-- MAJOR TODO -->
+			
+			<xs:element name="AnyOtherDataForNow" type="xs:string" maxOccurs="unbounded" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	
+</xs:schema>
+	

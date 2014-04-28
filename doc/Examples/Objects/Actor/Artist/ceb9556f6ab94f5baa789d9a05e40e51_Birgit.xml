@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <ActorArtist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CoSound_Object_Actor_Country_R001a.xsd">
+  <Names>
+    <Main>
+      <Name>Birgit</Name>
+      <LanguageCode>
+        <Code>ISO6391:en</Code>
+      </LanguageCode>
+      <LanguageCode>
+        <Code>ISO6393:eng</Code>
+      </LanguageCode>
+      <Source>DTU Dataset</Source>
+    </Main>
+    <Sorts>
+      <Name>Birgit</Name>
+      <LanguageCode>
+        <Code>Other:Unknown</Code>
+      </LanguageCode>
+      <Source>Wiki</Source>
+    </Sorts>
+  </Names>
+  <Location>
+    <Country>
+      <Names>
+        <Main>
+          <Name>Estonia</Name>
+        </Main>
+      </Names>
+      <HardCodedObjectReference>
+        <TargetGUID>0ca377e37e3843d381e363046564be19</TargetGUID>
+        <TargetTest>Estonia</TargetTest>
+      </HardCodedObjectReference>
+    </Country>
+  </Location>
+  <ForeignReferences>
+    <ForeignReference>
+      <Description>Wikipedia</Description>
+      <Type>Data</Type>
+      <Id/> 
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://en.wikipedia.org/wiki/Birgit_Nilsson</URI>
+      <Other>Short Text: [[File:Birgitnhat.jpg|right|thumb|Birgit Nilsson in 1948. Photo by Gunnar Harnesk. [http://www.birgitnilsson.com The Birgit Nilsson official website]]]</Other>
+    </ForeignReference>
+  </ForeignReferences>
+</ActorArtist>

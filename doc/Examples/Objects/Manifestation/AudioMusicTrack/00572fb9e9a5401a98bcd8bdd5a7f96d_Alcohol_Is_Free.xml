@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <ManifestationAudioMusicTrack xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CoSound_Object_Manifestation_Audio_R001a.xsd">
+  <Titles>
+    <Main>
+      <Title>Alcohol Is Free</Title>
+      <LanguageCode>
+        <Code>Other:Greek1</Code>
+      </LanguageCode>
+    </Main>
+    <Sorts>
+      <Title>—</Title>
+      <LanguageCode>
+        <Code>ISO6391:en</Code>
+      </LanguageCode>
+      <LanguageCode>
+        <Code>ISO6393:eng</Code>
+      </LanguageCode>
+    </Sorts>
+    <Sorts>
+      <Title>—</Title>
+      <LanguageCode>
+        <Code>ISO6391:en</Code>
+      </LanguageCode>
+      <LanguageCode>
+        <Code>ISO6393:eng</Code>
+      </LanguageCode>
+    </Sorts>
+  </Titles>
+  <Artist>
+    <Names>
+      <Main>
+        <Name>Koza Mostra featuring Agathon Iakovidis</Name>
+        <LanguageCode>
+          <Code>ISO6391:en</Code>
+        </LanguageCode>
+        <LanguageCode>
+          <Code>ISO6393:eng</Code>
+        </LanguageCode>
+        <Source>DTU Dataset</Source>
+      </Main>
+      <Sorts>
+        <Name>Koza Mostra featuring Agathon Iakovidis</Name>
+        <LanguageCode>
+          <Code>Other:Unknown</Code>
+        </LanguageCode>
+        <Source>Wiki</Source>
+      </Sorts>
+    </Names>
+    <HardCodedObjectReference>
+      <TargetGUID>508ec4d1af6d415895018e9d9e805da5</TargetGUID>
+    </HardCodedObjectReference>
+    <Location>
+      <Country>
+        <Names>
+          <Main>
+            <Name>Greece</Name>
+            <LanguageCode>
+              <Code>ISO6391:en</Code>
+            </LanguageCode>
+            <LanguageCode>
+              <Code>ISO6393:eng</Code>
+            </LanguageCode>
+          </Main>
+          <Sorts>
+            <Name>Elláda</Name>
+            <LanguageCode>
+              <Code>Other:Unknown</Code>
+            </LanguageCode>
+          </Sorts>
+        </Names>
+        <HardCodedObjectReference>
+          <TargetGUID>f9a0f706de064d2d89837d38f31f6ad7</TargetGUID>
+        </HardCodedObjectReference>
+      </Country>
+    </Location>
+  </Artist>
+  <Timelines>
+    <Timeline>
+      <Description>Event:MetaDataGenerated</Description>
+      <Timeline>
+        <Type>Point</Type>
+        <Domain>Countinious</Domain>
+        <Reference>Absolute</Reference>
+        <AtDateTime>2014-04-22T01:46:04</AtDateTime>
+      </Timeline>
+    </Timeline>
+    <Timeline>
+      <Description>Audio:Details</Description>
+      <Timeline>
+        <Type>Interval</Type>
+        <Domain>Discrete</Domain>
+        <Reference>Releative</Reference>
+        <StartAtTimeSecons>0</StartAtTimeSecons>
+        <EndsAtTimeSeconds>177.899</EndsAtTimeSeconds>
+      </Timeline>
+    </Timeline>
+    <Timeline>
+      <Description>Event:Apperance</Description>
+      <Timeline>
+        <Type>Point</Type>
+        <Domain>Countinious</Domain>
+        <Reference>Absolute</Reference>
+        <AtDate>Thursday 16 May 2013</AtDate>
+        <AtYear>2013</AtYear>
+      </Timeline>
+    </Timeline>
+  </Timelines>
+  <CreateAtDateTime>735711.073667373</CreateAtDateTime>
+  <Source>
+    <Name>ESC Giga Collection</Name>
+    <Version>Copy</Version>
+    <Revision>
+      <ID>1</ID>
+    </Revision>
+  </Source>
+  <Identifiers>
+    <Identifier>
+      <Type>File:SourceFileName</Type>
+      <ID>4c0ca6622aadec66067f707efb06003b.mp3</ID>
+    </Identifier>
+    <Identifier>
+      <Type>File:SourceFileName:MD5</Type>
+      <ID>34bbaa91485478878da3869a941a9ef5</ID>
+    </Identifier>
+    <Identifier>
+      <Type>Other:FileName</Type>
+      <ID>\\comp-nas3.compute.dtu.dk\dtu-compute\cosound\data\_esc\mp3\2013\F13 GR - Koza Mostra - Alcohol is free.mp3</ID>
+    </Identifier>
+  </Identifiers>
+  <Format>
+    <Encoding>mp3</Encoding>
+    <DataRate>320</DataRate>
+    <EncoderString/> 
+    <WordLength/> 
+    <SamplingRate>44100</SamplingRate>
+    <ChannelConfiguration>2</ChannelConfiguration>
+  </Format>
+  <ForeignReferences>
+    <ForeignReference>
+      <Description>DTU Compute Echonest AudioFeatures</Description>
+      <Type>SourceFile:Metadata:</Type>
+      <Id/> 
+      <IdPrefix>file://</IdPrefix>
+      <URI>\\comp-nas3.compute.dtu.dk\dtu-compute\cosound\data\_esc\mp3_features\2013\4c0ca6622aadec66067f707efb06003b.mp3.mat</URI>
+      <Other>Giga Collection AudioFeatures from Echonest</Other>
+      <Status/> 
+    </ForeignReference>
+    <ForeignReference>
+      <Description>Other:Youtube (Matched)</Description>
+      <Type>Stream:Content</Type>
+      <Id>q_xQTlRbLJY</Id>
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://www.youtube.com/watch?v=q_xQTlRbLJY</URI>
+      <Other>Buy &quot;Keep up the Rhythm &quot; Koza Mostra Album : http://goo.gl/NiwLw Buy on: i-Tunes - http://goo.gl/WxgF6 Wind: http://goo.gl/vKlSm Cosmote: http://goo.gl/o4dx...</Other>
+      <Status/> 
+    </ForeignReference>
+    <ForeignReference>
+      <Description>Other:Echonest/Spotify (Matched)</Description>
+      <Type>Content:Stream</Type>
+      <Id/> 
+      <IdPrefix>http://</IdPrefix>
+      <URI/> 
+      <Other>Missing</Other>
+      <Status/> 
+    </ForeignReference>
+    <ForeignReference>
+      <Description>Wikipedia</Description>
+      <Type>Data</Type>
+      <Id/> 
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://en.wikipedia.org/wiki/Alcohol_Is_Free</URI>
+      <Other>Short Text: &quot;Alcohol Is Free&quot; is a song performed by Koza Mostra and Agathonas Iakovidis. It was the Greek entry in Eurovision Song Contest 2013, which came 6th at the finals. </Other>
+      <Status>Other:Automatic wiki search</Status>
+    </ForeignReference>
+  </ForeignReferences>
+</ManifestationAudioMusicTrack>

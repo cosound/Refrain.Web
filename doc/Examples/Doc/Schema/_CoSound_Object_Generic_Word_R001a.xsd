@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+	Attached to object: Word
+
+	Status: Stable
+	(If final, "Fixed" will be used as status)
+
+	Priority: Nice-to-have
+
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+-->
+<xs:schema id="CoSound.Level1.Word" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="Word" type="CoSoundWord" />
+	<xs:complexType name="CoSoundWord">
+		<xs:sequence>
+			<xs:element name="Word" 	type="xs:string" maxOccurs="1" minOccurs="1" />
+			<xs:element name="Language" type="xs:string" maxOccurs="1" minOccurs="1" /> <!-- TODO ENUM -->
+		</xs:sequence>
+	</xs:complexType>
+	
+</xs:schema>
+	

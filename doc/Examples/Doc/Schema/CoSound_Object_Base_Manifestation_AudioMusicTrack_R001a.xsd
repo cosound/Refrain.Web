@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+	Attached to object: Manifestation
+
+	Note: 
+
+	Status: Unstable
+	(If final, "Fixed" will be used as status)
+
+	Priority: Must-have
+	
+	Inspiration: https://musicbrainz.org/doc/Audio and Musicontology
+
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+-->
+<xs:schema id="CoSound.Manifestation.Audio.MusicTrack.Core.R001a" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:include schemaLocation="_CoSound_Object_Generic_BasicTypes_R001a.xsd" 		/>
+	<xs:include schemaLocation="_CoSound_Object_Generic_GeoTypes_R001a.xsd" 		/>
+	<xs:include schemaLocation="_CoSound_Object_Generic_ForeignReference_R001a.xsd" 	/>
+	<!--   <xs:include schemaLocation="_CoSound_Object_Generic_Location_R001a.xsd" 			/> --> 
+	<xs:include schemaLocation="_CoSound_Object_Generic_Timeline_R001a.xsd" 			/>
+	<xs:include schemaLocation="_CoSound_Object_Generic_ObjectReference_R001a.xsd" 	/> 
+	<xs:include schemaLocation="_CoSound_Object_Generic_NamesTitles_R001a.xsd" 	/>
+	 	
+	<xs:element name="ManifestationAudioMusicTrackCore" type="CoSoundManifestationAudioMusicTrackCore" />
+	<xs:complexType name="CoSoundManifestationAudioMusicTrackCore">
+		<xs:sequence>
+			<xs:element name="Titles" 						type="CoSoundTitles" 					maxOccurs="1" minOccurs="1" />
+			
+			<!-- Track Title  -->
+			<xs:element name="Description" 					type="xs:string" 						maxOccurs="1" minOccurs="1" />						
+						
+			<!-- Source  -->
+			<xs:element name="Source" 						type="CoSoundAudioSources" 			maxOccurs="1" minOccurs="0" />
+			
+			<!-- Various Identifiers  -->			
+			<xs:element name="Identifiers"					type="CoSoundManifestationIdentifiers"	maxOccurs="unbounded" minOccurs="0" />
+			
+			<!-- EmbeddedMetaData  -->
+			<xs:element name="EmbeddedMetaData"				type="xs:string" 						maxOccurs="1" minOccurs="0" />																																																																											
+						
+			<!-- Encoding/format  -->											
+			<xs:element name="Format"						type="CoSoundFormat"					maxOccurs="1" minOccurs="0" /> 			 <!-- Note that chaos has inbuild func for this... so optinal -->
+																			
+			<!-- Timeline(s) -->			 		
+			<xs:element name="Timelines" 					type="CoSoundTimelines" 				maxOccurs="unbounded" minOccurs="0" />	  <!-- Can be a relative and a abaolsute timelines e.g.  -->		
+												
+			<!-- OPTIONAL: Foreign References , can also be set directly on the object-->						
+			<xs:element name="ForeignReferences"			type="CoSoundForeignReferences" 		maxOccurs="1" minOccurs="0" />
+						
+			<!-- OPTIONAL: Internal Object References, for test/debug mainly  -->			
+			<xs:element name="HardCodedObjectReferenes"	 	type="CoSoundHardCodedObjectReference"			maxOccurs="1" minOccurs="0" />											
+		</xs:sequence>
+	</xs:complexType>
+		
+				
+			
+	<xs:complexType name="CoSoundAudioSources"> 
+		<xs:sequence>		
+			<xs:element name="Sources" type="CoSoundManifestationSource" 	maxOccurs="unbounded" minOccurs="1" />
+		</xs:sequence>		
+	</xs:complexType>
+			
+	<xs:complexType name="CoSoundManifestationSource"> 
+		<xs:sequence>						
+			<xs:element name="Description" 			type="xs:string" 					maxOccurs="1" minOccurs="0" />
+			<xs:element name="FileVersion" 			type="CoSoundAudioVersion" 		maxOccurs="1" minOccurs="0" />		
+			<xs:element name="ContentVersion" 		type="CoSoundAudioVersion" 		maxOccurs="1" minOccurs="0" />
+			<xs:element name="RelationVersion" 		type="CoSoundAudioVersion" 		maxOccurs="1" minOccurs="0" />			
+			<xs:element name="RevisionTag"			type="CoSoundAudioRevision"		maxOccurs="1" minOccurs="0" />	
+		</xs:sequence>		
+	</xs:complexType>		
+			
+			
+	<xs:complexType name="CoSoundAudioRevision"> 
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="Language" 	type="CoSoundLanguage" 		  maxOccurs="1" minOccurs="1" />
+				<xs:element name="Number" 		type="xs:decimal" 			  maxOccurs="1" minOccurs="1" />				
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>	
+				
+	
+	<xs:simpleType name="CoSoundAudioVersion">
+    	<xs:union memberTypes="CoSoundAudioVersionEnum CoSoundBasicType_EnumOtherStringPatternType"/>
+	</xs:simpleType>									 
+	<xs:simpleType name="CoSoundAudioVersionEnum">	
+		<xs:restriction base="xs:string">	
+			<xs:enumeration value="Content:Backup" />
+			<xs:enumeration value="Content:Orginal" />			
+			<xs:enumeration value="Content:Transcoded-From-Orginal" />
+			<xs:enumeration value="Content:Transcoded-From-Copy" />			
+			
+		
+			<xs:enumeration value="Work:Cover"/>
+			<xs:enumeration value="Work:Derivative"/>
+			<xs:enumeration value="Work:Copy" />			
+			
+			<xs:enumeration value="Production:Orginal" />
+			<xs:enumeration value="Production:Edit" />			
+			<xs:enumeration value="Production:Remix" />
+			<xs:enumeration value="Production:Remaster" />								
+			<xs:enumeration value="Production:Unknown" />	
+						
+		</xs:restriction>			
+	</xs:simpleType>
+
+			
+	<xs:complexType name="CoSoundManifestationIdentifiers"> 
+		<xs:sequence>		
+			<xs:element name="CoSoundManifestationIdentifier" type="CoSoundManifestationIdentifierID" maxOccurs="1" minOccurs="1" />
+		</xs:sequence>		
+	</xs:complexType>
+			
+	<xs:complexType name="CoSoundManifestationIdentifierID"> 
+		<xs:sequence>		
+			<xs:element name="Type" 		type="CoSoundAudioIDType" 	maxOccurs="1" minOccurs="1" />
+			<xs:element name="ID" 			type="xs:string" 		  		maxOccurs="1" minOccurs="1" />
+			<xs:element name="Description" 	type="xs:string" 				maxOccurs="1" minOccurs="0" />
+		</xs:sequence>		
+	</xs:complexType>
+	
+	<xs:simpleType name="CoSoundAudioIDType">
+    	<xs:union memberTypes="CoSoundAudioIDTypeEnum CoSoundBasicType_EnumOtherStringPatternType"/>
+	</xs:simpleType>
+	<xs:simpleType name="CoSoundAudioIDTypeEnum">	
+		<xs:restriction base="xs:string">	
+			<xs:enumeration value="ISRC"  /> 	<!--  TODO: ONLY PUBLISHED TRACKS WILL RECIEVE AN ID, THUS THIS IS REDUNDAT SINECE TRACKS HAVE THEIR OWN OBJECT, BUT LETS KEEP IT! -->
+			<xs:enumeration value="File:SourceFileName" />
+			<xs:enumeration value="File:FileName" />
+			<xs:enumeration value="File:MD5" />						
+			<!-- Other" /> AS EN EXTENSION/UNION -->			
+		</xs:restriction>	
+	</xs:simpleType>
+		
+	<xs:complexType name="CoSoundFormat">
+		<xs:sequence>								
+			<xs:element name="Description"			type="xs:string" 			maxOccurs="1" minOccurs="0" />
+			<xs:element name="Encoding"				type="xs:string" 			maxOccurs="1" minOccurs="0" />		 			
+			<xs:element name="EncoderDetails"		type="xs:string" 			maxOccurs="1" minOccurs="0" />
+			
+			<xs:element name="DataRate"				type="xs:string" 			maxOccurs="1" minOccurs="0" />
+			<xs:element name="WordLength"			type="xs:string" 			maxOccurs="1" minOccurs="0" />			
+			<xs:element name="SamplingRate"			type="xs:string" 			maxOccurs="1" minOccurs="0" />
+			
+			<xs:element name="ChannelConfiguration"	type="xs:string" 			maxOccurs="1" minOccurs="0" />	<!--  TODO -->
+			
+			<xs:element name="Playbackspeed"		type="xs:string" 			maxOccurs="1" minOccurs="0" />								
+			<xs:element name="AspectRatio"			type="xs:string" 			maxOccurs="1" minOccurs="0" />
+			<xs:element name="FrameSize"			type="xs:string" 			maxOccurs="1" minOccurs="0" />									
+			<xs:element name="RenderingDimensions"	type="xs:string" 			maxOccurs="1" minOccurs="0" />					
+			<xs:element name="Color"				type="xs:string" 			maxOccurs="1" minOccurs="0" />
+			
+			<xs:element name="Other"				type="xs:string" 			maxOccurs="unbounded" minOccurs="0" />
+																
+			<!-- <xs:element name="FormatMap"		type="CoSoundFormatMap" 	maxOccurs="1" minOccurs="0" />  --> 									
+		</xs:sequence>		
+	</xs:complexType>
+	
+
+</xs:schema>

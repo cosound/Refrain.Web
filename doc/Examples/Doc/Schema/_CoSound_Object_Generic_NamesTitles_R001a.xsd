@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+	Unstable
+	
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+-->
+<xs:schema id="CoSound.Object.Generic.Document.R001a" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:include schemaLocation="_CoSound_Object_Generic_BasicTypes_R001a.xsd" 		/>
+	<xs:include schemaLocation="_CoSound_Object_Generic_GeoTypes_R001a.xsd" 		/>
+	
+	<xs:element name="Names" type="CoSoundNames" />	
+	<xs:complexType name="CoSoundNames">
+		<xs:sequence>									
+			<xs:element name="Main"    	type="CoSoundName" 			maxOccurs="1" 	minOccurs="1" />
+			<xs:element name="Sorts"	type="CoSoundNameSorts" 	maxOccurs="1" 	minOccurs="0" />	 <!-- Misspellings -->		
+			<xs:element name="Aliases"	type="CoSoundNameAliases" 	maxOccurs="1" 	minOccurs="0" /> 	 <!-- Real ALiaes, shoul dcome with a releation -->		
+			<xs:element name="Notes"	type="xs:string" 			maxOccurs="1" 	minOccurs="0" />						
+		</xs:sequence>	
+	</xs:complexType>
+	
+	<xs:complexType name="CoSoundNameSorts">
+		<xs:sequence>	
+			<xs:element name="Aliases"    	type="CoSoundName" 			maxOccurs="unbounded" 			minOccurs="1" />			
+		</xs:sequence>	
+	</xs:complexType>
+	<xs:complexType name="CoSoundNameAliases">
+		<xs:sequence>		
+			<xs:element name="Sorts"    	type="CoSoundName" 			maxOccurs="unbounded" 			minOccurs="1" />			
+		</xs:sequence>	
+	</xs:complexType>
+		
+	<xs:complexType name="CoSoundName">
+		<xs:sequence>									
+			<xs:element name="Name" 			type="xs:string" 			maxOccurs="1" minOccurs="1" />
+			<xs:element name="Priority" 		type="xs:integer" 			maxOccurs="1" minOccurs="0" />					
+			<xs:element name="LanguageCode" 	type="CoSoundLanguage" 		maxOccurs="unbounded" minOccurs="0" />			
+ 			<xs:element name="Note" 			type="xs:string"  			maxOccurs="1" minOccurs="0" /> 									 						 
+		</xs:sequence>
+	</xs:complexType>	
+	
+	
+		
+	<xs:element name="Titles" type="CoSoundTitles" />	
+	<xs:complexType name="CoSoundTitles">
+		<xs:sequence>									
+			<xs:element name="Main" 		type="CoSoundTitle" 		maxOccurs="1" 			minOccurs="1" />			
+			<xs:element name="Sorts"		type="CoSoundTitle" 		maxOccurs="unbounded" 	minOccurs="0" />	 <!-- Misspellings -->		
+			<xs:element name="Aliases"		type="CoSoundTitle" 		maxOccurs="unbounded" 	minOccurs="0" /> 	<!-- Real ALiaes, shoul dcome with a releation -->
+			<xs:element name="Notes"		type="xs:string" 			maxOccurs="unbounded" 	minOccurs="0" />	
+		</xs:sequence>	
+	</xs:complexType>		
+	<xs:complexType name="CoSoundTitle">
+		<xs:sequence>									
+			<xs:element name="Title" 		type="xs:string" 			maxOccurs="1" minOccurs="1" />					
+			<xs:element name="Priority" 	type="xs:integer" 			maxOccurs="1" minOccurs="0" />
+			<xs:element name="LanguageCode" 	type="CoSoundLanguage" 		maxOccurs="unbounded" minOccurs="0" />			
+			<xs:element name="Note" 		type="xs:string"  			maxOccurs="1" minOccurs="0" /> 				
+		</xs:sequence>
+	</xs:complexType>	
+	
+	<xs:complexType name="CoSoundTitleSorts">
+		<xs:sequence>	
+			<xs:element name="Aliases"    	type="CoSoundTitle" 			maxOccurs="unbounded" 			minOccurs="1" />			
+		</xs:sequence>	
+	</xs:complexType>
+	<xs:complexType name="CoSoundTitleAliases">
+		<xs:sequence>		
+			<xs:element name="Sorts"    	type="CoSoundTitle" 			maxOccurs="unbounded" 			minOccurs="1" />			
+		</xs:sequence>	
+	</xs:complexType>
+		
+</xs:schema>
+	

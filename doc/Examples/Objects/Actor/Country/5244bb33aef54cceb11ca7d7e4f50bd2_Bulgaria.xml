@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <ActorCountry xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CoSound_Object_Actor_Country_R001a.xsd">
+  <Names>
+    <Main>
+      <Name>Bulgaria</Name>
+      <LanguageCode>
+        <Code>ISO6391:en</Code>
+      </LanguageCode>
+      <LanguageCode>
+        <Code>ISO6393:eng</Code>
+      </LanguageCode>
+    </Main>
+    <Sorts>
+      <Name>Bălgarija</Name>
+      <LanguageCode>
+        <Code>Other:Unknown</Code>
+      </LanguageCode>
+    </Sorts>
+  </Names>
+  <ForeignReferences>
+    <ForeignReference>
+      <Description>Wikipedia</Description>
+      <Type>Data</Type>
+      <Id/> 
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://en.wikipedia.org/wiki/Bulgaria</URI>
+      <Other>Short Text: Bulgaria  (, ), officially the Republic of Bulgaria (, ), is a country located in south-eastern Europe. </Other>
+    </ForeignReference>
+  </ForeignReferences>
+</ActorCountry>

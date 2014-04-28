@@ -1,0 +1,294 @@
+﻿body {
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	-webkit-background-size: cover;
+	background: url(bg640.jpg);
+	background-attachment: fixed;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: #ffffff;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 22px;
+	margin: 0px;
+}
+
+
+.small {
+	font-size: 18px;
+}
+
+.normal {
+	font-size: 22px;
+}
+
+.large {
+	font-size: 26px;
+}
+
+.huge {
+	font-size: 32px;
+}
+
+
+/* Colors */
+
+.pink {
+	color: #CC0099;
+}
+
+.bgpink {
+	background-color: #CC0099;
+}
+
+.darkpink {
+	color: #990099;
+}
+
+.bgdarkpink {
+	background-color: #990099;
+}
+
+.darkblue {
+	color: #000033;
+}
+
+.bgdarkblue {
+	color: #000033;
+}
+
+.blue {
+	color: #0066FF;
+}
+
+.bgblue {
+	background-color: #0066FF;
+}
+
+.lightblue {
+	color: #0099FF;
+}
+
+.bglightblue {
+	background-color: #0099FF;
+}
+
+/* divs */
+
+div.menublock {
+	color: #ffffff;
+	font-size: 22px;
+	padding: 10px;
+	width: 900px;
+}
+
+div.mainblock {
+	color: #ffffff;
+	font-size: 22px;
+	padding: 10px;
+	padding-top: 30px;
+	width: 900px;
+}
+
+div.wbg {
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px;
+	width: 900px;
+}
+
+
+#headcontainer {
+	height: 139px;
+	position: relative;
+	width: 100%;
+}
+
+#headtext {
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+.transdarkblue {
+	-khtml-opacity: .75;
+	-moz-opacity: .75;
+	-ms-filter: "alpha(opacity=75)";
+	background-color: #000033;
+	filter: alpha(opacity=75);
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=75);
+	height: 100%;
+	left: 0;
+	opacity: .75;
+	top: 0;
+	width: 100%;
+}
+
+.transblue {
+	-khtml-opacity: .75;
+	-moz-opacity: .75;
+	-ms-filter: "alpha(opacity=75)";
+	background-color: #0066FF;
+	filter: alpha(opacity=75);
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=75);
+	opacity: .75;
+}
+
+/* Link styles */
+
+a:link {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #cc0099;
+	text-decoration: none;
+}
+
+a:active {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+a.text:link {
+	color: #FFFFFF;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a.text:hover {
+	background-color: #cc0099;
+	color: #ffffff;
+	font-weight: bold;
+	padding: 5px;
+	text-decoration: none;
+}
+
+a.text:active {
+	color: #FFFFFF;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a.text:visited {
+	color: #FFFFFF;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+
+.menubutton {
+	background-color: transparent;
+	color: #ffffff;
+	display: inline-block;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 22px;
+	font-weight: bold;
+	height: 24px;
+	line-height: 24px;
+	padding: 10px;
+	text-align: center;
+	text-decoration: none;
+	width: 200px;
+}
+
+.menubutton:hover {
+	background-color: #cc0099;
+	color: #ffffff;
+}
+
+.menubutton:active {
+	background-color: #cc0099;
+	color: #ffffff;
+	position: relative;
+	top: 1px;
+}
+
+
+.button {
+	background-color: #cc0099;
+	color: #ffffff;
+	display: inline-block;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 22px;
+	font-weight: bold;
+	height: 24px;
+	line-height: 24px;
+	padding: 10px;
+	text-align: center;
+	text-decoration: none;
+	width: 200px;
+}
+
+.button:hover {
+	background-color: #990099;
+	color: #ffffff;
+}
+
+.button:active {
+	background-color: #cc0099;
+	color: #ffffff;
+	position: relative;
+	top: 1px;
+}
+
+.buttonsqpink {
+	background-color: #cc0099;
+	color: #ffffff;
+	display: inline-block;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 32px;
+	font-weight: bold;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	text-decoration: none;
+	width: 40px;
+}
+
+.buttonsqpink:hover {
+	background-color: #990099;
+	color: #ffffff;
+}
+
+.buttonsqpink:active {
+	background-color: #cc0099;
+	color: #ffffff;
+	position: relative;
+	top: 1px;
+}
+
+
+.buttonsqblue {
+	background-color: #0099FF;
+	color: #ffffff;
+	display: inline-block;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 32px;
+	font-weight: bold;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	text-decoration: none;
+	width: 40px;
+}
+
+.buttonsqblue:hover {
+	background-color: #0066FF;
+	color: #ffffff;
+}
+
+.buttonsqblue:active {
+	background-color: #0099FF;
+	color: #ffffff;
+	position: relative;
+	top: 1px;
+}

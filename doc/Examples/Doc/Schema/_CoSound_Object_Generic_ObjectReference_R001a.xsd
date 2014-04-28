@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+	Often a subclass or attached as core metedata type
+	
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+-->
+<xs:schema id="CoSound.Object.Generic.HardcodedObjectReference.R001a" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="HardCodedObjectReference" type="CoSoundHardCodedObjectReference" />	
+	<xs:element name="HardCodedObjectReferences" type="CoSoundHardCodedObjectReferences" />
+	
+	<xs:complexType name="HardCodedObjectReferences">		
+		<xs:sequence>					
+			<xs:element name="HardCodedObjectReference" type="CoSoundHardCodedObjectReference" maxOccurs="unbounded" minOccurs="0" />				
+		</xs:sequence>
+	</xs:complexType>	
+		
+	<xs:complexType name="CoSoundHardCodedObjectReference">		
+		<xs:sequence>									
+			<!-- HARD-CODED OBJECTS REALTIONS: TWO PURPOSES, -->
+			<!-- 		1) Avoid execcive use of relations, but still unique object to refer too including metadata	-->			
+			<!-- 		2) Test and validation  								-->
+			<!-- 		DO NOT USE UNLESS VERY SURE  							-->
+			<xs:element name="Description"				type="xs:string" 	maxOccurs="1" minOccurs="0" />
+			<xs:element name="TargetGUID"				type="xs:string" 	maxOccurs="1" minOccurs="1" />					
+			<xs:element name="TargetObjectTypeName"		type="xs:string" 	maxOccurs="1" minOccurs="0" />
+			<xs:element name="TargetObjectTypeGUID"		type="xs:string" 	maxOccurs="1" minOccurs="0" />																
+			<xs:element name="TargetObjectSummary"		type="xs:string" 	maxOccurs="1" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>	
+				
+</xs:schema>
+	

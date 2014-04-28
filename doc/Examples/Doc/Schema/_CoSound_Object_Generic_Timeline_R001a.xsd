@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+	Attached to object: Any often as subclass
+
+	Status: Unstable
+	(If final, "Fixed" will be used as status)
+
+	Priority: Must have
+
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+-->
+<xs:schema id="CoSound.Generic.Timeline.R001a" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	
+	<!-- :::::::::::::::::::::::::::::::::::::::::  -->
+	<!-- TIMELINE -->
+	<!-- :::::::::::::::::::::::::::::::::::::::::  -->
+	<xs:element name="TimeLine" type="CoSoundTimeline"/>
+	<xs:element name="TimeLines" type="CoSoundTimelines"/>
+	
+	<xs:complexType name="CoSoundTimelines">
+		<xs:sequence>
+			<xs:element name="TimeLine" type="CoSoundTimeline"/>
+		</xs:sequence>
+	</xs:complexType>	
+	
+	<xs:complexType name="CoSoundTimeline">
+		<xs:sequence>
+			<!-- TODO: TIMELINE, POINT; INTERVAL; TIMELINEMAP -->																			
+			<xs:element name="Description" 				type="xs:string" 		 	 	 maxOccurs="1" minOccurs="0" /> 
+			<xs:element name="Type" 					type="CoSoundTimelineType" 		 maxOccurs="1" minOccurs="1" /> <!-- Point / Interval , typically an interval for a recording!-->			
+			<xs:element name="Domain" 					type="CoSoundTimelineDomain" 	 maxOccurs="1" minOccurs="1" /> <!-- Discrete, Continuous -->
+			<xs:element name="Reference" 				type="CoSoundTimelineReference"  maxOccurs="1" minOccurs="1" /> <!-- Relative / Absolute -->
+															
+			<!-- TODO: Need more specifics / excludes in choices  -->
+			<xs:choice>
+			<xs:element name="StartAtTime" 				type="xs:time" 				 	 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="StartAtTimeHour" 			type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="StartAtTimeMinute" 		type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="StartAtTimeSecond" 		type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->									
+			<xs:element name="StartAtTimeMilliSecond"   type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="StartAtDate" 				type="xs:date" 				 	 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="StartAtDateYear" 			type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="StartAtDateMonth" 		type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="StartAtDateDay" 			type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->			
+			<xs:element name="StartAtDateTime" 			type="xs:dateTime" 				 maxOccurs="1" minOccurs="0" /> <!--  -->			
+			<xs:element name="StartAtSample" 			type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->
+			</xs:choice>
+			
+			<xs:choice>
+			<xs:element name="EndAtTime" 				type="xs:time" 				 	 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="EndAtTimeHour" 			type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="EndAtTimeMinute" 			type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="EndAtTimeSecond" 			type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->									
+			<xs:element name="EndAtTimeMilliSecond"   	type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="EndAtDate" 				type="xs:date" 				 	 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="EndAtDateYear" 			type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="EndAtDateMonth" 			type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="EndAtDateDay" 			type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->			
+			<xs:element name="EndAtDateTime" 			type="xs:dateTime" 				 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="EndAtSample" 				type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->			
+			</xs:choice>
+			
+			
+			<xs:choice>
+			<xs:element name="AtTime" 				type="xs:time" 				 	 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="AtTimeHour" 			type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="AtTimeMinute" 		type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="AtTimeSecond" 		type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->									
+			<xs:element name="AtTimeMilliSecond"    type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="AtDate" 				type="xs:date" 				 	 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="AtDateYear" 			type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="AtDateMonth" 			type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="AtDateDay" 			type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->			
+			<xs:element name="AtDateTime" 			type="xs:dateTime" 				 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="AtSample" 			type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->			
+			</xs:choice>
+			
+			<xs:choice>			
+			<xs:element name="DurationInTimeHours" 			type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="DurationInTimeMinutse" 		type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="DurationInTimeSeconds" 		type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->									
+			<xs:element name="DurationInTimeMilliSeconds"   type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->			
+			<xs:element name="DurationInDateYears" 			type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="DurationInDateMonths" 		type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->
+			<xs:element name="DurationInDateDays" 			type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->						
+			<xs:element name="DurationInSamples" 			type="xs:integer" 				 maxOccurs="1" minOccurs="0" /> <!--  -->			
+			</xs:choice>
+			
+			<xs:element name="TimelineMap"			type="CoSoundTimelineMap" 		 maxOccurs="1" minOccurs="0" /> <!--  -->					
+		</xs:sequence>
+	</xs:complexType>
+	
+	
+	<xs:simpleType name="CoSoundTimelineType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Point" />
+			<xs:enumeration value="Interval" /> 
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CoSoundTimelineReference">
+		<xs:restriction base="xs:string">			
+			<xs:enumeration value="Absolut" />			
+			<xs:enumeration value="Relative" />			
+			<xs:enumeration value="Other" />
+		</xs:restriction>
+	</xs:simpleType>
+		<xs:simpleType name="CoSoundTimelineDomain">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Discrete" />
+			<xs:enumeration value="Continuous" />
+			<xs:enumeration value="Other" /> <!-- TODO OTHER VIA UNION -->
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:complexType name="CoSoundTimelineMap">
+		<xs:sequence>		
+			<xs:element name="TimelineMapType" 			type="CoSoundTimelineMapType" 		maxOccurs="1" minOccurs="1" /> <!-- UniformSamplingMap / Continious  -->			
+			<xs:element name="SampleRateInHz" 			type="xs:decimal" 					maxOccurs="1" minOccurs="0" /> <!-- only relevant for Uniformasampling map -->			
+			
+			<!-- TODO TODO TODO   <xs:element name="WindowStart" 				type="CoSoundFrameTime" 		maxOccurs="1" minOccurs="0" />
+			<xs:element name="WindowEnd" 				type="CoSoundFrameTime" 		maxOccurs="1" minOccurs="0" />-->
+			
+			<xs:element name="WindowHopInSamples"		type="xs:integer" 					maxOccurs="1" minOccurs="0" />						
+			<xs:element name="WindowLengthInSamples" 	type="xs:decimal" 					maxOccurs="1" minOccurs="0" />
+			<xs:choice>			
+				<xs:element name="WindowLengthInTimeSeconds" 		type="xs:decimal" 				maxOccurs="1" minOccurs="0" />
+				<xs:element name="WindowLengthInTimeMinutes" 		type="xs:decimal" 				maxOccurs="1" minOccurs="0" />
+				<xs:element name="WindowLengthInTimeHours" 			type="xs:decimal" 				maxOccurs="1" minOccurs="0" />
+				<xs:element name="WindowLengthInTimeMilliseconds" 	type="xs:decimal" 				maxOccurs="1" minOccurs="0" />				
+			</xs:choice>								
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CoSoundTimelineMapType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="UniformSamplingMap" />
+			<xs:enumeration value="UniformSamplingWindowingMap" />
+			<xs:enumeration value="UniformWindowingMap" />
+			<xs:enumeration value="ShiftMap" />
+			<xs:enumeration value="OriginMap" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+</xs:schema>
+	

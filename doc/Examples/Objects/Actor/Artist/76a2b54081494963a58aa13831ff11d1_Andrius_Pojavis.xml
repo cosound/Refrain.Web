@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <ActorArtist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CoSound_Object_Actor_Country_R001a.xsd">
+  <Names>
+    <Main>
+      <Name>Andrius Pojavis</Name>
+      <LanguageCode>
+        <Code>ISO6391:en</Code>
+      </LanguageCode>
+      <LanguageCode>
+        <Code>ISO6393:eng</Code>
+      </LanguageCode>
+      <Source>DTU Dataset</Source>
+    </Main>
+    <Sorts>
+      <Name>Andrius Pojavis</Name>
+      <LanguageCode>
+        <Code>Other:Unknown</Code>
+      </LanguageCode>
+      <Source>Wiki</Source>
+    </Sorts>
+  </Names>
+  <Location>
+    <Country>
+      <Names>
+        <Main>
+          <Name>Lithuania</Name>
+        </Main>
+      </Names>
+      <HardCodedObjectReference>
+        <TargetGUID>03559760567b42d7877a1b8b72c54f97</TargetGUID>
+        <TargetTest>Lithuania</TargetTest>
+      </HardCodedObjectReference>
+    </Country>
+  </Location>
+  <ForeignReferences>
+    <ForeignReference>
+      <Description>Wikipedia</Description>
+      <Type>Data</Type>
+      <Id/> 
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://en.wikipedia.org/wiki/Andrius_Pojavis</URI>
+      <Other>Short Text: Andrius Pojavis, (born 25 November 1983 in Jurbarkas, Lithuanian SSR, USSR) is a Lithuanian singer-songwriter. </Other>
+    </ForeignReference>
+  </ForeignReferences>
+</ActorArtist>

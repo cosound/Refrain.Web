@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <ActorArtist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CoSound_Object_Actor_Country_R001a.xsd">
+  <Names>
+    <Main>
+      <Name>Alyona Lanskaya</Name>
+      <LanguageCode>
+        <Code>ISO6391:en</Code>
+      </LanguageCode>
+      <LanguageCode>
+        <Code>ISO6393:eng</Code>
+      </LanguageCode>
+      <Source>DTU Dataset</Source>
+    </Main>
+    <Sorts>
+      <Name>Alyona Lanskaya</Name>
+      <LanguageCode>
+        <Code>Other:Unknown</Code>
+      </LanguageCode>
+      <Source>Wiki</Source>
+    </Sorts>
+  </Names>
+  <Location>
+    <Country>
+      <Names>
+        <Main>
+          <Name>Belarus</Name>
+        </Main>
+      </Names>
+      <HardCodedObjectReference>
+        <TargetGUID>586fb262a939487c8e3475c246441031</TargetGUID>
+        <TargetTest>Belarus</TargetTest>
+      </HardCodedObjectReference>
+    </Country>
+  </Location>
+  <ForeignReferences>
+    <ForeignReference>
+      <Description>Wikipedia</Description>
+      <Type>Data</Type>
+      <Id/> 
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://en.wikipedia.org/wiki/Alyona_Lanskaya</URI>
+      <Other>Short Text: Alyona Lanskaya (, Romanized: Alena Lanskaya; , Romanized: Alyona Lanskaya; born 7 September 1985) is a Belarusian singer. </Other>
+    </ForeignReference>
+  </ForeignReferences>
+</ActorArtist>

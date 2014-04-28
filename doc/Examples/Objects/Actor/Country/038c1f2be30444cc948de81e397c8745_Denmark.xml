@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <ActorCountry xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CoSound_Object_Actor_Country_R001a.xsd">
+  <Names>
+    <Main>
+      <Name>Denmark</Name>
+      <LanguageCode>
+        <Code>ISO6391:en</Code>
+      </LanguageCode>
+      <LanguageCode>
+        <Code>ISO6393:eng</Code>
+      </LanguageCode>
+    </Main>
+    <Sorts>
+      <Name>Danmark</Name>
+      <LanguageCode>
+        <Code>Other:Unknown</Code>
+      </LanguageCode>
+    </Sorts>
+  </Names>
+  <ForeignReferences>
+    <ForeignReference>
+      <Description>Wikipedia</Description>
+      <Type>Data</Type>
+      <Id/> 
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://en.wikipedia.org/wiki/Denmark</URI>
+      <Other>Short Text: Denmark (; , ), officially the Kingdom of Denmark (, ), is a sovereign state in Northern Europe, located southwest of Sweden and south of Norway, and bordered to the south by Germany. </Other>
+    </ForeignReference>
+  </ForeignReferences>
+</ActorCountry>

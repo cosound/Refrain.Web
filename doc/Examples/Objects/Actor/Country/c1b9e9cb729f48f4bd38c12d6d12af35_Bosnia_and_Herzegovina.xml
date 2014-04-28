@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <ActorCountry xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CoSound_Object_Actor_Country_R001a.xsd">
+  <Names>
+    <Main>
+      <Name>Bosnia and Herzegovina</Name>
+      <LanguageCode>
+        <Code>ISO6391:en</Code>
+      </LanguageCode>
+      <LanguageCode>
+        <Code>ISO6393:eng</Code>
+      </LanguageCode>
+    </Main>
+    <Sorts>
+      <Name>Bosna i Hercegovina</Name>
+      <LanguageCode>
+        <Code>Other:Unknown</Code>
+      </LanguageCode>
+    </Sorts>
+  </Names>
+  <ForeignReferences>
+    <ForeignReference>
+      <Description>Wikipedia</Description>
+      <Type>Data</Type>
+      <Id/> 
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://en.wikipedia.org/wiki/Bosnia_and_Herzegovina</URI>
+      <Other>Short Text: Bosnia and Herzegovina (; Bosnian: Bosna i Hercegovina, Cyrillic: Босна и Херцеговина), sometimes called Bosnia-Herzegovina, abbreviated BiH or simply Bosnia, is a country in Southeastern Europe. </Other>
+    </ForeignReference>
+  </ForeignReferences>
+</ActorCountry>

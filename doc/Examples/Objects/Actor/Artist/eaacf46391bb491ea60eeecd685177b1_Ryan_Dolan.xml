@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <ActorArtist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CoSound_Object_Actor_Country_R001a.xsd">
+  <Names>
+    <Main>
+      <Name>Ryan Dolan</Name>
+      <LanguageCode>
+        <Code>ISO6391:en</Code>
+      </LanguageCode>
+      <LanguageCode>
+        <Code>ISO6393:eng</Code>
+      </LanguageCode>
+      <Source>DTU Dataset</Source>
+    </Main>
+    <Sorts>
+      <Name>Ryan Dolan</Name>
+      <LanguageCode>
+        <Code>Other:Unknown</Code>
+      </LanguageCode>
+      <Source>Wiki</Source>
+    </Sorts>
+  </Names>
+  <Location>
+    <Country>
+      <Names>
+        <Main>
+          <Name>Ireland</Name>
+        </Main>
+      </Names>
+      <HardCodedObjectReference>
+        <TargetGUID>33dd83a0e80c49858280b0c3690f15ad</TargetGUID>
+        <TargetTest>Ireland</TargetTest>
+      </HardCodedObjectReference>
+    </Country>
+  </Location>
+  <ForeignReferences>
+    <ForeignReference>
+      <Description>Wikipedia</Description>
+      <Type>Data</Type>
+      <Id/> 
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://en.wikipedia.org/wiki/Ryan_Dolan</URI>
+      <Other>Short Text: Ryan Dolan (born 22 July 1985) is a pop singer from Strabane in County Tyrone, Northern Ireland.  He is known for representing Ireland in the 2013 Eurovision Song Contest with &quot;Only Love Survives&quot;.
+</Other>
+    </ForeignReference>
+  </ForeignReferences>
+</ActorArtist>

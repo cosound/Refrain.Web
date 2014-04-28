@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <ActorContentStateMood xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CoSound_Object_ActorContent_StateMood_R001a.xsd">
+  <Basics>
+    <Description>Twitter Mood by Country v0.1</Description>
+    <CreatedDateTime>2014-04-22T01:47:22</CreatedDateTime>
+    <Category>Mood:Twitter</Category>
+    <Series>
+      <SeriesId>1</SeriesId>
+      <SerialNumber>2</SerialNumber>
+    </Series>
+  </Basics>
+  <Analysis>
+    <Timeline>
+      <Type>Interval</Type>
+      <Domain>Countinious</Domain>
+      <Reference>Absolute</Reference>
+      <StartAtDateTime>TBD_START OF ANALYSIS PERIOD</StartAtDateTime>
+      <EndAtDateTime>TBD_END OF ANALYSIS PERIOD</EndAtDateTime>
+    </Timeline>
+    <ResultSummary>
+      <Results>
+        <Result>
+          <Type>Valence</Type>
+          <Value>-0.502814628190578</Value>
+          <Variance>0.867194198000875</Variance>
+          <Notes/> 
+        </Result>
+        <Result>
+          <Type>Arousal</Type>
+          <Value>-0.624505747220027</Value>
+          <Variance>0.790646128738086</Variance>
+          <Notes/> 
+        </Result>
+      </Results>
+    </ResultSummary>
+    <ResultDetails>
+      <Data>
+        <DataPoint>
+          <Series>
+            <Id>1</Id>
+            <SerialNumber>1</SerialNumber>
+          </Series>
+          <Results>
+            <Result>
+              <Type>Valence</Type>
+              <Value>0.5</Value>
+            </Result>
+            <Result>
+              <Type>Arousal</Type>
+              <Value>0.5</Value>
+            </Result>
+          </Results>
+          <ForeignReferences>
+            <ForeignReference>
+              <Type>Data:Twitter:Tweet</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TWEET TEXT</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+            <ForeignReference>
+              <Type>Data:Twitter:Author</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TBD AuthorName</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+          </ForeignReferences>
+        </DataPoint>
+        <DataPoint>
+          <Series>
+            <Id>1</Id>
+            <SerialNumber>2</SerialNumber>
+          </Series>
+          <Results>
+            <Result>
+              <Type>Valence</Type>
+              <Value>0.5</Value>
+            </Result>
+            <Result>
+              <Type>Arousal</Type>
+              <Value>0.5</Value>
+            </Result>
+          </Results>
+          <ForeignReferences>
+            <ForeignReference>
+              <Type>Data:Twitter:Tweet</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TWEET TEXT</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+            <ForeignReference>
+              <Type>Data:Twitter:Author</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TBD AuthorName</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+          </ForeignReferences>
+        </DataPoint>
+        <DataPoint>
+          <Series>
+            <Id>1</Id>
+            <SerialNumber>3</SerialNumber>
+          </Series>
+          <Results>
+            <Result>
+              <Type>Valence</Type>
+              <Value>0.5</Value>
+            </Result>
+            <Result>
+              <Type>Arousal</Type>
+              <Value>0.5</Value>
+            </Result>
+          </Results>
+          <ForeignReferences>
+            <ForeignReference>
+              <Type>Data:Twitter:Tweet</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TWEET TEXT</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+            <ForeignReference>
+              <Type>Data:Twitter:Author</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TBD AuthorName</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+          </ForeignReferences>
+        </DataPoint>
+        <DataPoint>
+          <Series>
+            <Id>1</Id>
+            <SerialNumber>4</SerialNumber>
+          </Series>
+          <Results>
+            <Result>
+              <Type>Valence</Type>
+              <Value>0.5</Value>
+            </Result>
+            <Result>
+              <Type>Arousal</Type>
+              <Value>0.5</Value>
+            </Result>
+          </Results>
+          <ForeignReferences>
+            <ForeignReference>
+              <Type>Data:Twitter:Tweet</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TWEET TEXT</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+            <ForeignReference>
+              <Type>Data:Twitter:Author</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TBD AuthorName</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+          </ForeignReferences>
+        </DataPoint>
+        <DataPoint>
+          <Series>
+            <Id>1</Id>
+            <SerialNumber>5</SerialNumber>
+          </Series>
+          <Results>
+            <Result>
+              <Type>Valence</Type>
+              <Value>0.5</Value>
+            </Result>
+            <Result>
+              <Type>Arousal</Type>
+              <Value>0.5</Value>
+            </Result>
+          </Results>
+          <ForeignReferences>
+            <ForeignReference>
+              <Type>Data:Twitter:Tweet</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TWEET TEXT</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+            <ForeignReference>
+              <Type>Data:Twitter:Author</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TBD AuthorName</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+          </ForeignReferences>
+        </DataPoint>
+        <DataPoint>
+          <Series>
+            <Id>1</Id>
+            <SerialNumber>6</SerialNumber>
+          </Series>
+          <Results>
+            <Result>
+              <Type>Valence</Type>
+              <Value>0.5</Value>
+            </Result>
+            <Result>
+              <Type>Arousal</Type>
+              <Value>0.5</Value>
+            </Result>
+          </Results>
+          <ForeignReferences>
+            <ForeignReference>
+              <Type>Data:Twitter:Tweet</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TWEET TEXT</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+            <ForeignReference>
+              <Type>Data:Twitter:Author</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TBD AuthorName</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+          </ForeignReferences>
+        </DataPoint>
+        <DataPoint>
+          <Series>
+            <Id>1</Id>
+            <SerialNumber>7</SerialNumber>
+          </Series>
+          <Results>
+            <Result>
+              <Type>Valence</Type>
+              <Value>0.5</Value>
+            </Result>
+            <Result>
+              <Type>Arousal</Type>
+              <Value>0.5</Value>
+            </Result>
+          </Results>
+          <ForeignReferences>
+            <ForeignReference>
+              <Type>Data:Twitter:Tweet</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TWEET TEXT</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+            <ForeignReference>
+              <Type>Data:Twitter:Author</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TBD AuthorName</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+          </ForeignReferences>
+        </DataPoint>
+        <DataPoint>
+          <Series>
+            <Id>1</Id>
+            <SerialNumber>8</SerialNumber>
+          </Series>
+          <Results>
+            <Result>
+              <Type>Valence</Type>
+              <Value>0.5</Value>
+            </Result>
+            <Result>
+              <Type>Arousal</Type>
+              <Value>0.5</Value>
+            </Result>
+          </Results>
+          <ForeignReferences>
+            <ForeignReference>
+              <Type>Data:Twitter:Tweet</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TWEET TEXT</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+            <ForeignReference>
+              <Type>Data:Twitter:Author</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TBD AuthorName</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+          </ForeignReferences>
+        </DataPoint>
+        <DataPoint>
+          <Series>
+            <Id>1</Id>
+            <SerialNumber>9</SerialNumber>
+          </Series>
+          <Results>
+            <Result>
+              <Type>Valence</Type>
+              <Value>0.5</Value>
+            </Result>
+            <Result>
+              <Type>Arousal</Type>
+              <Value>0.5</Value>
+            </Result>
+          </Results>
+          <ForeignReferences>
+            <ForeignReference>
+              <Type>Data:Twitter:Tweet</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TWEET TEXT</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+            <ForeignReference>
+              <Type>Data:Twitter:Author</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TBD AuthorName</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+          </ForeignReferences>
+        </DataPoint>
+        <DataPoint>
+          <Series>
+            <Id>1</Id>
+            <SerialNumber>10</SerialNumber>
+          </Series>
+          <Results>
+            <Result>
+              <Type>Valence</Type>
+              <Value>0.5</Value>
+            </Result>
+            <Result>
+              <Type>Arousal</Type>
+              <Value>0.5</Value>
+            </Result>
+          </Results>
+          <ForeignReferences>
+            <ForeignReference>
+              <Type>Data:Twitter:Tweet</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TWEET TEXT</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+            <ForeignReference>
+              <Type>Data:Twitter:Author</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TBD AuthorName</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+          </ForeignReferences>
+        </DataPoint>
+        <DataPoint>
+          <Series>
+            <Id>1</Id>
+            <SerialNumber>11</SerialNumber>
+          </Series>
+          <Results>
+            <Result>
+              <Type>Valence</Type>
+              <Value>0.5</Value>
+            </Result>
+            <Result>
+              <Type>Arousal</Type>
+              <Value>0.5</Value>
+            </Result>
+          </Results>
+          <ForeignReferences>
+            <ForeignReference>
+              <Type>Data:Twitter:Tweet</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TWEET TEXT</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+            <ForeignReference>
+              <Type>Data:Twitter:Author</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TBD AuthorName</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+          </ForeignReferences>
+        </DataPoint>
+        <DataPoint>
+          <Series>
+            <Id>1</Id>
+            <SerialNumber>12</SerialNumber>
+          </Series>
+          <Results>
+            <Result>
+              <Type>Valence</Type>
+              <Value>0.5</Value>
+            </Result>
+            <Result>
+              <Type>Arousal</Type>
+              <Value>0.5</Value>
+            </Result>
+          </Results>
+          <ForeignReferences>
+            <ForeignReference>
+              <Type>Data:Twitter:Tweet</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TWEET TEXT</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+            <ForeignReference>
+              <Type>Data:Twitter:Author</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TBD AuthorName</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+          </ForeignReferences>
+        </DataPoint>
+        <DataPoint>
+          <Series>
+            <Id>1</Id>
+            <SerialNumber>13</SerialNumber>
+          </Series>
+          <Results>
+            <Result>
+              <Type>Valence</Type>
+              <Value>0.5</Value>
+            </Result>
+            <Result>
+              <Type>Arousal</Type>
+              <Value>0.5</Value>
+            </Result>
+          </Results>
+          <ForeignReferences>
+            <ForeignReference>
+              <Type>Data:Twitter:Tweet</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TWEET TEXT</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+            <ForeignReference>
+              <Type>Data:Twitter:Author</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TBD AuthorName</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+          </ForeignReferences>
+        </DataPoint>
+        <DataPoint>
+          <Series>
+            <Id>1</Id>
+            <SerialNumber>14</SerialNumber>
+          </Series>
+          <Results>
+            <Result>
+              <Type>Valence</Type>
+              <Value>0.5</Value>
+            </Result>
+            <Result>
+              <Type>Arousal</Type>
+              <Value>0.5</Value>
+            </Result>
+          </Results>
+          <ForeignReferences>
+            <ForeignReference>
+              <Type>Data:Twitter:Tweet</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TWEET TEXT</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+            <ForeignReference>
+              <Type>Data:Twitter:Author</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TBD AuthorName</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+          </ForeignReferences>
+        </DataPoint>
+        <DataPoint>
+          <Series>
+            <Id>1</Id>
+            <SerialNumber>15</SerialNumber>
+          </Series>
+          <Results>
+            <Result>
+              <Type>Valence</Type>
+              <Value>0.5</Value>
+            </Result>
+            <Result>
+              <Type>Arousal</Type>
+              <Value>0.5</Value>
+            </Result>
+          </Results>
+          <ForeignReferences>
+            <ForeignReference>
+              <Type>Data:Twitter:Tweet</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TWEET TEXT</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+            <ForeignReference>
+              <Type>Data:Twitter:Author</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TBD AuthorName</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+          </ForeignReferences>
+        </DataPoint>
+        <DataPoint>
+          <Series>
+            <Id>1</Id>
+            <SerialNumber>16</SerialNumber>
+          </Series>
+          <Results>
+            <Result>
+              <Type>Valence</Type>
+              <Value>0.5</Value>
+            </Result>
+            <Result>
+              <Type>Arousal</Type>
+              <Value>0.5</Value>
+            </Result>
+          </Results>
+          <ForeignReferences>
+            <ForeignReference>
+              <Type>Data:Twitter:Tweet</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TWEET TEXT</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+            <ForeignReference>
+              <Type>Data:Twitter:Author</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TBD AuthorName</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+          </ForeignReferences>
+        </DataPoint>
+        <DataPoint>
+          <Series>
+            <Id>1</Id>
+            <SerialNumber>17</SerialNumber>
+          </Series>
+          <Results>
+            <Result>
+              <Type>Valence</Type>
+              <Value>0.5</Value>
+            </Result>
+            <Result>
+              <Type>Arousal</Type>
+              <Value>0.5</Value>
+            </Result>
+          </Results>
+          <ForeignReferences>
+            <ForeignReference>
+              <Type>Data:Twitter:Tweet</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TWEET TEXT</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+            <ForeignReference>
+              <Type>Data:Twitter:Author</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TBD AuthorName</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+          </ForeignReferences>
+        </DataPoint>
+        <DataPoint>
+          <Series>
+            <Id>1</Id>
+            <SerialNumber>18</SerialNumber>
+          </Series>
+          <Results>
+            <Result>
+              <Type>Valence</Type>
+              <Value>0.5</Value>
+            </Result>
+            <Result>
+              <Type>Arousal</Type>
+              <Value>0.5</Value>
+            </Result>
+          </Results>
+          <ForeignReferences>
+            <ForeignReference>
+              <Type>Data:Twitter:Tweet</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TWEET TEXT</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+            <ForeignReference>
+              <Type>Data:Twitter:Author</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TBD AuthorName</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+          </ForeignReferences>
+        </DataPoint>
+        <DataPoint>
+          <Series>
+            <Id>1</Id>
+            <SerialNumber>19</SerialNumber>
+          </Series>
+          <Results>
+            <Result>
+              <Type>Valence</Type>
+              <Value>0.5</Value>
+            </Result>
+            <Result>
+              <Type>Arousal</Type>
+              <Value>0.5</Value>
+            </Result>
+          </Results>
+          <ForeignReferences>
+            <ForeignReference>
+              <Type>Data:Twitter:Tweet</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TWEET TEXT</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+            <ForeignReference>
+              <Type>Data:Twitter:Author</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TBD AuthorName</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+          </ForeignReferences>
+        </DataPoint>
+        <DataPoint>
+          <Series>
+            <Id>1</Id>
+            <SerialNumber>20</SerialNumber>
+          </Series>
+          <Results>
+            <Result>
+              <Type>Valence</Type>
+              <Value>0.5</Value>
+            </Result>
+            <Result>
+              <Type>Arousal</Type>
+              <Value>0.5</Value>
+            </Result>
+          </Results>
+          <ForeignReferences>
+            <ForeignReference>
+              <Type>Data:Twitter:Tweet</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TWEET TEXT</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+            <ForeignReference>
+              <Type>Data:Twitter:Author</Type>
+              <URI>TWITTER LINK</URI>
+              <Id>TWITTER TWEET ID</Id>
+              <Text>TBD AuthorName</Text>
+              <LanguageCode>ISOXXXX:TBD</LanguageCode>
+              <DateTime>2014-04-22T01:47:22</DateTime>
+            </ForeignReference>
+          </ForeignReferences>
+        </DataPoint>
+      </Data>
+    </ResultDetails>
+  </Analysis>
+  <Source>
+    <Description>External Service by DTU</Description>
+    <Type>External:DTU</Type>
+    <RevisionNumber>0.1</RevisionNumber>
+    <RevisionDate>2014-04-22T01:47:22</RevisionDate>
+    <Repository>https://todo.com:123</Repository>
+    <Contact>TBD@dtu.dk</Contact>
+  </Source>
+</ActorContentStateMood>

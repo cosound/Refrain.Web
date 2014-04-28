@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Refrain</title>
+		<link type="text/css" rel="stylesheet" href="Main.css"/>
+		<script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+		<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyDYMEgXXaemmCDhs3D_z6s_KPb5nMcB5MA&sensor=false"></script>
+		<script type="text/javascript">
+			$(document).ready(function()
+			{
+				map = new google.maps.Map(document.getElementById('map-canvas'), {
+					zoom: 4,
+					center: { lat: 0, lng: 0 }
+				});
+
+				// Load GeoJSON.
+				map.data.loadGeoJson('region_un_Europe_subunits.json');
+
+				// Color each letter gray. Change the color when the isColorful property
+				// is set to true.
+				map.data.setStyle(function (feature) {
+					var color = 'gray';
+					if (feature.getProperty('isColorful')) {
+						color = feature.getProperty('color');
+					}
+					return {
+						fillColor: color,
+						strokeColor: color,
+						strokeWeight: 2
+					};
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div>
+			<div id="map-canvas" style="width: 800px; height: 600px;">
+
+			</div>
+		</div>
+		<!---<div id="headcontainer">
+				<div class="transdarkblue"></div>
+				<div id="headtext">
+					<div class="wbg">
+						<div class="menublock" style="text-align: left;">
+							<table style="margin: 0px; padding: 0px; width: 900px;">
+								<tbody>
+									<tr>
+										<td><img width="280" src="refrain_white_280.png" alt="refrain"></td>
+										<td style="text-align: right;">
+											<span class="small">PRESENTED BY</span>&nbsp;
+											<a href="http://www.cosound.dk" target="_blank"><img src="cosound_logo.png" style="vertical-align: middle; width: 150px;" alt="refrain"></a>
+											&nbsp;
+											<a href="http://www.danishsound.org" target="_blank"><img src="danishsound_long.png" style="vertical-align: middle; width: 150px;" alt="refrain"></a>
+										</td>
+									</tr>
+									<tr><td colspan="2"><div style="height: 12px;"></div></td></tr>
+									<tr>
+										<td style="text-align: left;" colspan="2">
+											<a class="menubutton" href="#">SONG MATCH</a>&nbsp;
+											<a class="menubutton" href="#">MOOD OF EUROPE</a>&nbsp;
+											<a class="menubutton" href="#">DISCOVERIES</a>&nbsp;
+											<a class="menubutton" href="#">ABOUT</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="wbg">
+				<div class="mainblock">
+					Explore the realm of Eurovision Song Contest.<br>
+					<p>
+						<br>
+					</p>
+					<p>
+						<a class="button" href="#">SONG MATCH</a>
+						<br>
+					</p>
+					<p>
+						<a class="buttonsqpink" href="#">?</a>
+					</p>
+					<p>
+						<a class="buttonsqpink" href="#">►</a> And this a some text.
+					</p>
+					<p>
+						<a class="buttonsqpink" href="#">+</a>
+					</p>
+					<p>
+						<a class="buttonsqblue" href="#">✓</a> And this a some text.
+					</p>
+					<p>
+						<img src="cosound_logo_86.png" alt="refrain"> about page logo
+					</p>
+					<p>
+						<img src="danishsound_long_86.png" alt="refrain"> about page logo
+					</p>
+					<p>
+						<img src="geckon.png" alt="refrain"> about page logo
+					</p>
+					<p>
+						<img src="DTU.png" alt="refrain"> about page logo
+					</p>
+					<p>
+						<br>
+					</p>
+					<p>
+						<a href="http://www.cosound.dk" target="_blank" class="text">CoSound</a> link to cosound
+					</p>
+					<p>
+					</p><div class="bglightblue" style="display: inline-block; height: 24px; line-height: 24px; padding: 10px;">This is white text on lightblue background</div>
+					<p>
+						<a href="#">
+							<img onmouseout=" this.src = 'share_50.png' " onmouseover=" this.src = 'share_hover_50.png' " src="share_50.png">
+						</a>
+					</p>
+					<p>
+						<img src="linkblue_40.png">
+					</p>
+					<p>
+						<a href="#">
+							<img onmouseout=" this.src = 'blue_arrow_900_40.png' " onmouseover=" this.src = 'pink_arrow_900_40.png' " src="blue_arrow_900_40.png">
+						</a>
+						&copy;
+					</p>
+				</div>
+			</div>-->
+	</body>
+</html>

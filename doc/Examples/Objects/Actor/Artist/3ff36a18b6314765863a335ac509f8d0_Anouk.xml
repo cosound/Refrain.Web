@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <ActorArtist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CoSound_Object_Actor_Country_R001a.xsd">
+  <Names>
+    <Main>
+      <Name>Anouk</Name>
+      <LanguageCode>
+        <Code>ISO6391:en</Code>
+      </LanguageCode>
+      <LanguageCode>
+        <Code>ISO6393:eng</Code>
+      </LanguageCode>
+      <Source>DTU Dataset</Source>
+    </Main>
+    <Sorts>
+      <Name>Anouk</Name>
+      <LanguageCode>
+        <Code>Other:Unknown</Code>
+      </LanguageCode>
+      <Source>Wiki</Source>
+    </Sorts>
+  </Names>
+  <Location>
+    <Country>
+      <Names>
+        <Main>
+          <Name>Netherlands</Name>
+        </Main>
+      </Names>
+      <HardCodedObjectReference>
+        <TargetGUID>29262afbf7264531b408654cb689293a</TargetGUID>
+        <TargetTest>Netherlands</TargetTest>
+      </HardCodedObjectReference>
+    </Country>
+  </Location>
+  <ForeignReferences>
+    <ForeignReference>
+      <Description>Wikipedia</Description>
+      <Type>Data</Type>
+      <Id/> 
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://en.wikipedia.org/wiki/Anouk_Aim%C3%A9e</URI>
+      <Other>Short Text: Anouk Aimée (; born 27 April 1932) is a French film actress, who has appeared in 70 films since 1947, having begun her film career at age 14. In her early years she studied acting and dance besides her regular education. </Other>
+    </ForeignReference>
+  </ForeignReferences>
+</ActorArtist>

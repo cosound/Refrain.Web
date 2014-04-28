@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <ActorCountry xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CoSound_Object_Actor_Country_R001a.xsd">
+  <Names>
+    <Main>
+      <Name>Cyprus</Name>
+      <LanguageCode>
+        <Code>ISO6391:en</Code>
+      </LanguageCode>
+      <LanguageCode>
+        <Code>ISO6393:eng</Code>
+      </LanguageCode>
+    </Main>
+    <Sorts>
+      <Name>Kýpros</Name>
+      <LanguageCode>
+        <Code>Other:Unknown</Code>
+      </LanguageCode>
+    </Sorts>
+    <Sorts>
+      <Name>Kıbrıs</Name>
+      <LanguageCode>
+        <Code>Other:Unknown</Code>
+      </LanguageCode>
+    </Sorts>
+  </Names>
+  <ForeignReferences>
+    <ForeignReference>
+      <Description>Wikipedia</Description>
+      <Type>Data</Type>
+      <Id/> 
+      <IdPrefix>http://</IdPrefix>
+      <URI>http://en.wikipedia.org/wiki/Cyprus</URI>
+      <Other>Short Text: Cyprus  ( ;  ), officially the Republic of Cyprus (; ), is an island country in the Eastern Mediterranean Sea. </Other>
+    </ForeignReference>
+  </ForeignReferences>
+</ActorCountry>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+	Attached to object
+	
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+-->
+<xs:schema id="CoSound.Object.Generic.Document.R001a" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="Document" type="CoSoundDocument" />
+	<xs:complexType name="CoSoundDocument">
+		<xs:sequence>									
+			<xs:element name="Page" type="CoSoundPage" maxOccurs="unbounded" minOccurs="1" />					
+		</xs:sequence>
+	</xs:complexType>	
+	
+	<xs:complexType name="CoSoundPage">
+		<xs:sequence>									
+			<xs:element name="PageNo" 	type="xs:integer" 	maxOccurs="1" minOccurs="1" />
+			<xs:element name="Line" 	type="CoSoundLine" 	maxOccurs="unbounded" minOccurs="1" />								
+		</xs:sequence>
+	</xs:complexType>
+	
+	
+	<xs:complexType name="CoSoundLine">
+		<xs:sequence>									
+			<xs:element name="LineNo" 	type="xs:integer" 	maxOccurs="1" minOccurs="1" />							
+			<xs:element name="Text" 	type="xs:string" 	maxOccurs="1" minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>	
+</xs:schema>
+	

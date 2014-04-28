@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+	Attached to object: Context, Event
+
+	Note: Designed purely with elements
+
+	Note: (Quickly) Desinged for the Eurovision Song contest Style tournament
+
+	Status: Unstable
+	Support to generalize : Medium
+	Compleness : Low
+	
+	Priority: Must-have
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+-->
+
+<xs:schema id="CoSound.Base.Context.Event.CompetitionTypeESC.R001a" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:include schemaLocation="_CoSound_Object_Generic_ObjectReference_R001a.xsd" 	/>
+	<xs:include schemaLocation="_CoSound_Object_Generic_BasicTypes_R001a.xsd" />
+	<xs:include schemaLocation="_CoSound_Object_Generic_ForeignReference_R001a.xsd" />
+	<xs:include schemaLocation="_CoSound_Object_Generic_Location_R001a.xsd" /> 
+	<xs:include schemaLocation="_CoSound_Object_Generic_Document_R001a.xsd" /> 
+	<xs:include schemaLocation="_CoSound_Object_Generic_Timeline_R001a.xsd" /> 
+	<!-- <xs:include schemaLocation="_CoSound_Object_Generic_Transcription_R001a.xsd" /> -->
+
+
+	<xs:element name="ContextEventCompetitionTypeESC" type="CoSoundContextEventCompetitionTypeESC" />	
+	<xs:complexType name="CoSoundContextEventCompetitionTypeESC">
+		<xs:sequence>
+			<xs:element name="Title" 			type="xs:string" 				maxOccurs="1" minOccurs="1" />
+			<xs:element name="Description" 		type="xs:string" 				maxOccurs="1" minOccurs="0" />			
+			<xs:element name="Timeline" 		type="CoSoundTimeline" 			maxOccurs="1" minOccurs="0" />
+			<xs:element name="Location" 		type="CoSoundLocation" 			maxOccurs="1" minOccurs="0" />
+									
+			<xs:element name="OfficialURL" 		type="xs:anyURI" 				maxOccurs="1" minOccurs="1" />									
+									
+			<xs:element name="Rules" 			type="CoSoundRules" 			maxOccurs="1" minOccurs="0" />
+			
+			<xs:element name="AllCompetitors" 	type="CoSoundCompetitors" 		maxOccurs="1" minOccurs="1" />
+												
+			<xs:element name="Tournament" 		type="CoSoundTournament" 		maxOccurs="unbounded" minOccurs="0" />
+															
+			<xs:element name="Other" 			type="xs:string" 				maxOccurs="unbounded" minOccurs="1" />
+			
+			<!-- OPTIONAL: Foreign References e.g. to wikipedia, can also be set directly on the object-->						
+			<xs:element name="ForeignReferences"	type="CoSoundForeignReferences" maxOccurs="1" minOccurs="0" />
+						
+			<!-- OPTIONAL: Internal Object References, for test/debug mainly  -->		
+			<xs:element name="HardCodedObjectReferenes"		type="CoSoundObjectReference"	maxOccurs="1" minOccurs="0" />				
+		</xs:sequence>
+	</xs:complexType>
+		
+	<xs:complexType name="CoSoundTournament">
+			<xs:sequence>
+				<xs:element name="Description"							type="xs:string" 				maxOccurs="1" minOccurs="1" />
+				
+				<xs:element name="TournamentLevel"						type="CoSoundTournamentLevel" 	maxOccurs="1" minOccurs="0" />
+																			
+				<xs:element name="Timeline" 							type="CoSoundTimeline" 			maxOccurs="1" minOccurs="1" />												
+				<xs:element name="Results" 								type="CoSoundTournamentResult" 	maxOccurs="1" minOccurs="1" />								
+				<xs:element name="ResultsByJudgementMethod" 	type="CoSoundTournamentResult" 	maxOccurs="1" minOccurs="0" />
+																																																													
+			</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="CoSoundTournamentLevel">
+			<xs:sequence>
+				<xs:element name="Level" 					type="CoSoundTournamentLevelType" 			maxOccurs="1" minOccurs="0" />							
+				<xs:element name="Parent"					type="CoSoundTournamentLevelType" 			maxOccurs="1" minOccurs="0" />
+				<xs:element name="Children"					type="CoSoundTournamentLevelType" 			maxOccurs="unbounded" minOccurs="0" />
+				<xs:element name="Siblings"					type="CoSoundTournamentLevelType" 			maxOccurs="unbounded" minOccurs="0" />																																																																								
+			</xs:sequence>
+	</xs:complexType>
+	
+	
+	<!-- Make an automatic regexp for this -->
+	<xs:simpleType name="CoSoundTournamentLevelType">
+    	<xs:union memberTypes="CoSoundTournamentLevelEnum CoSoundBasicType_EnumOtherStringPatternType"/>
+	</xs:simpleType>									 
+	<xs:simpleType name="CoSoundTournamentLevelEnum">	
+		<xs:restriction base="xs:string">	
+			<xs:enumeration value="1:1 Final" 			/>						
+			<xs:enumeration value="1:2 Semifinals"				/>											
+			<xs:enumeration value="2:2 Semifinals"				/>			
+			<xs:enumeration value="1:4 Quaterfinals"				/>
+			<xs:enumeration value="2:4 Quaterfinals"				/>
+			<xs:enumeration value="3:4 Quaterfinals"				/>
+			<xs:enumeration value="4:4 Quaterfinals"				/>			
+			<xs:enumeration value="1:8 Eighthfinals"				/>
+			<xs:enumeration value="2:8 Eighthfinals"				/>
+			<xs:enumeration value="3:8 Eighthfinals"				/>
+			<xs:enumeration value="4:8 Eighthfinals"				/>
+			<xs:enumeration value="5:8 Eighthfinals"				/>
+			<xs:enumeration value="6:8 Eighthfinals"				/>
+			<xs:enumeration value="7:8 Eighthfinals"				/>
+			<xs:enumeration value="8:8 Eighthfinals"				/>					
+			<xs:enumeration value="1:16 Sixtiethfinals"				/>
+			<xs:enumeration value="2:16 Sixtiethfinals"				/>
+			<xs:enumeration value="3:16 Sixtiethfinals"				/>
+			<xs:enumeration value="4:16 Sixtiethfinals"				/>
+			<xs:enumeration value="5:16 Sixtiethfinals"				/>
+			<xs:enumeration value="6:16 Sixtiethfinals"				/>
+			<xs:enumeration value="7:16 Sixtiethfinals"				/>
+			<xs:enumeration value="8:16 Sixtiethfinals"				/>	
+			<xs:enumeration value="9:16 Sixtiethfinals"				/>
+			<xs:enumeration value="10:16 Sixtiethfinals"			/>
+			<xs:enumeration value="11:16 Sixtiethfinals"			/>
+			<xs:enumeration value="12:16 Sixtiethfinals"			/>
+			<xs:enumeration value="13:16 Sixtiethfinals"			/>
+			<xs:enumeration value="14:16 Sixtiethfinals"			/>
+			<xs:enumeration value="15:16 Sixtiethfinals"			/>
+			<xs:enumeration value="16:16 Sixtiethfinals"			/>																							
+			<xs:enumeration value="1:X Qualification"			/>			
+			<xs:enumeration value="2:X Qualification"			/>
+			<xs:enumeration value="3:X Qualification"			/>
+			<xs:enumeration value="4:X Qualification"			/>
+			<xs:enumeration value="5:X Qualification"			/>
+			<xs:enumeration value="6:X Qualification"			/>
+			<xs:enumeration value="7:X Qualification"			/>
+			<xs:enumeration value="8:X Qualification"			/>
+			<xs:enumeration value="9:X Qualification"			/>
+			<xs:enumeration value="10:X Qualification"			/>			
+			<xs:enumeration value="Y:X Qualification"			/>
+			<!-- <xs:enumeration value="Other" /> AS EN EXTENSION/UNION -->				
+		</xs:restriction>			
+	</xs:simpleType>
+	
+	
+	<xs:complexType name="CoSoundTournamentResult">
+			<xs:sequence>
+				<xs:element name="Title"						type="xs:string" 				maxOccurs="1" minOccurs="1" />
+				<xs:element name="Description"					type="xs:string" 				maxOccurs="1" minOccurs="1" />
+				<xs:element name="Results" 						type="CoSoundResult" 			maxOccurs="1" minOccurs="1" />								
+				<xs:element name="Judgements" 					type="CoSoundJudgements" 		maxOccurs="1" minOccurs="0" />
+			</xs:sequence>
+	</xs:complexType>
+			
+	
+	<xs:complexType name="CoSoundRules">
+			<xs:sequence>
+				<xs:element name="Rules" 			type="xs:string" 				maxOccurs="1" minOccurs="1" />
+				</xs:sequence>
+	</xs:complexType>
+		
+	<xs:complexType name="CoSoundCompetitors">	
+		<xs:sequence>
+			<xs:element name="Competitor" 		type="CoSoundCompetitor"	maxOccurs="unbounded" minOccurs="1" />				
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CoSoundCompetitor">	
+		<xs:sequence>
+				<xs:element name="ActorName"			type="xs:string"	maxOccurs="1" minOccurs="1" />													
+				<xs:element name="ActorGUID" 			type="xs:string"	maxOccurs="1" minOccurs="0" />
+			
+				<xs:element name="ApperanceTitle"		type="xs:string"	maxOccurs="1" minOccurs="1" />				
+				<xs:element name="ApperanceGUID" 		type="xs:string"	maxOccurs="1" minOccurs="0" />
+			
+				<xs:element name="ApperanceOrder" 		type="xs:integer"		maxOccurs="1" minOccurs="0" />
+				<xs:element name="ApperanceDateTime"	type="CoSoundTimeline" 	maxOccurs="1" minOccurs="0" />
+						
+				<xs:element name="Notes" 				type="xs:string"	maxOccurs="1" minOccurs="0" />												
+			</xs:sequence>
+	</xs:complexType>
+		
+	<xs:complexType name="CoSoundJudges">	
+		<xs:sequence>
+			<xs:element name="Judge" 		type="CoSoundJudge"	maxOccurs="unbounded" minOccurs="1" />				
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CoSoundJudge">	
+		<xs:sequence>				
+				<xs:element name="ActorName"			type="xs:string"				maxOccurs="1" minOccurs="1" />													
+				<xs:element name="ActorGUID" 			type="xs:string"				maxOccurs="1" minOccurs="0" />
+			
+				<xs:element name="OrderOfJudgement" 	type="xs:integer"				maxOccurs="1" minOccurs="0" />
+				<xs:element name="JudgementMethods" 	type="CoSoundJudgementMethods"	maxOccurs="1" minOccurs="0" />								
+			</xs:sequence>
+	</xs:complexType>	
+	<xs:complexType name="CoSoundJudgementMethods">	
+		<xs:sequence>
+			<xs:element name="JudgementMethod" 	type="CoSoundJudgementMethod"	maxOccurs="unbounded" minOccurs="1" />				
+		</xs:sequence>
+	</xs:complexType>		
+	<xs:simpleType name="CoSoundJudgementMethod">
+    	<xs:union memberTypes="CoSoundJudgementMethodEnum CoSoundBasicType_EnumOtherStringPatternType"/>
+	</xs:simpleType>									 
+	<xs:simpleType name="CoSoundJudgementMethodEnum">	
+		<xs:restriction base="xs:string">	
+			<xs:enumeration value="Individual" />			
+			<xs:enumeration value="Tele" />
+			<xs:enumeration value="Jury" />						
+			<xs:enumeration value="Random" />
+			<xs:enumeration value="Unknown" />	
+			<!-- <xs:enumeration value="Other" /> AS EN EXTENSION/UNION -->				
+		</xs:restriction>			
+	</xs:simpleType>
+		
+		
+	<xs:complexType name="CoSoundResult">	
+		<xs:sequence>
+			<xs:element name="Result" 				type="CoSoundResultDetail"	maxOccurs="unbounded" minOccurs="1" />			
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CoSoundResultDetail">	
+		<xs:sequence>			
+			<xs:element name="CompetitorActorName"	type="xs:string"				maxOccurs="1" minOccurs="1" />													
+			<xs:element name="CompetitorActorGUID" 	type="xs:string"				maxOccurs="1" minOccurs="0" />			
+			
+			<xs:element name="Place"				type="xs:integer"				maxOccurs="1" minOccurs="1" />			
+						
+			<xs:element name="TotalScore" 			type="xs:string"				maxOccurs="1" minOccurs="0" />
+			<xs:element name="ScoreType" 			type="CoSoundScoreType"			maxOccurs="1" minOccurs="0" />													
+		</xs:sequence>
+	</xs:complexType>		
+	<xs:simpleType name="CoSoundScoreType">
+    	<xs:union memberTypes="CoSoundScoreTypeEnum CoSoundBasicType_EnumOtherStringPatternType"/>
+	</xs:simpleType>									 
+	<xs:simpleType name="CoSoundScoreTypeEnum">	
+		<xs:restriction base="xs:string">	
+			<xs:enumeration value="AbsoluteScore" />		
+			<xs:enumeration value="AbsoluteRankingScore" />								
+			<xs:enumeration value="RelativePairwiseChoice" />
+			<xs:enumeration value="Unknown" />							
+		</xs:restriction>			
+	</xs:simpleType>
+								
+	<xs:complexType name="CoSoundJudgements">								
+				<xs:sequence>	
+					<xs:element name="Judgement"	type="CoSoundJudgementsByJudge"	maxOccurs="unbounded" minOccurs="1" />					
+				</xs:sequence>
+	</xs:complexType>
+		
+	<xs:complexType name="CoSoundJudgementsByJudge">	
+		<xs:sequence>
+			<xs:element name="JudgeActorName"		type="xs:string"	maxOccurs="1" minOccurs="1" />
+			<xs:element name="JudgeActorGUID"		type="xs:string"	maxOccurs="1" minOccurs="0" />		
+			<xs:element name="OrderOfJudgement" 	type="xs:integer"				maxOccurs="1" minOccurs="0" />
+			<xs:element name="JudgementMethods" 	type="CoSoundJudgementMethods"	maxOccurs="1" minOccurs="0" />			
+											
+			<xs:element name="IndividualJudgements"	type="CoSoundSingleJudgement"	maxOccurs="unbounded" minOccurs="1" />								
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="CoSoundSingleJudgement">
+		<xs:sequence>
+		 		<xs:choice>
+					<xs:element name="SingleAbsoluteJudgement" 	type="CoSoundSingleAbsoluteJudgement"	/>
+					<xs:element name="SinglePairwiseJudgement" 	type="CoSoundSinglePairwiseJudgement"	 />
+				</xs:choice>
+		</xs:sequence>
+	</xs:complexType>	
+	<xs:complexType name="CoSoundSingleAbsoluteJudgement">	
+		<xs:sequence>
+			<xs:element name="CompetitorName"	type="xs:string"			maxOccurs="1" minOccurs="1" />
+			<xs:element name="CompetitorGUID"	type="xs:string"			maxOccurs="1" minOccurs="0" />			
+			<xs:element name="Score"			type="xs:string"			maxOccurs="1" minOccurs="1" />
+			<xs:element name="ScoreType" 		type="CoSoundScoreType"		maxOccurs="1" minOccurs="0" />										
+		</xs:sequence>
+	</xs:complexType>	
+	
+	<xs:complexType name="CoSoundSinglePairwiseJudgement">	
+		<xs:sequence>
+			<xs:element name="CompetitorName1"	type="xs:string"			maxOccurs="1" minOccurs="1" />
+			<xs:element name="CompetitorGUID1"	type="xs:string"			maxOccurs="1" minOccurs="0" />			
+			
+			<xs:element name="CompetitorName2"	type="xs:string"			maxOccurs="1" minOccurs="1" />
+			<xs:element name="CompetitorGUID2"	type="xs:string"			maxOccurs="1" minOccurs="0" />
+			
+			<xs:element name="Score"			type="xs:integer"			maxOccurs="1" minOccurs="1" />
+			<xs:element name="ScoreType" 		type="CoSoundScoreType"		maxOccurs="1" minOccurs="0" />										
+		</xs:sequence>
+	</xs:complexType>
+			
+		
+</xs:schema>
