@@ -11,9 +11,9 @@
 		<script type="text/javascript" src="Refrain.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function()
-				{
-					ko.applyBindings(new MainViewModel());
-				});
+			{
+				ko.applyBindings(new MainViewModel());
+			});
 		</script>
 	</head>
 	<body>
@@ -60,7 +60,7 @@
 		</div>
 		<div class="wbg">
 			<div class="mainblock" data-bind="with: CurrentPageViewModel">
-				<!-- ko if: $parent.CurrentPage() == "Home" -->
+				<!-- ko if: $parent.CurrentPage() == "" -->
 				Explore the realm of Eurovision Song Contest.<br>
 				<p>
 					<br>

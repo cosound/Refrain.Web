@@ -1,4 +1,11 @@
-﻿var MainViewModel = (function () {
+﻿var HomeViewModel = (function () {
+    function HomeViewModel() {
+    }
+    HomeViewModel.prototype.Initialize = function () {
+    };
+    return HomeViewModel;
+})();
+var MainViewModel = (function () {
     function MainViewModel() {
         var _this = this;
         this.CurrentPage = ko.observable();
@@ -9,18 +16,21 @@
         this.HashChange();
     }
     MainViewModel.prototype.HashChange = function () {
-        var hash = window.location.hash.length == 0 ? "Home" : window.location.hash.substr(1);
+        var hash = window.location.hash.length == 0 ? "" : window.location.hash.substr(1);
 
         var page = hash;
 
         this.CurrentPage(null);
 
         switch (page) {
+            case "":
+                this.CurrentPageViewModel(new HomeViewModel());
+                break;
             case "Mood":
                 this.CurrentPageViewModel(new MoodViewModel());
                 break;
             default:
-                this.CurrentPageViewModel(null);
+                this.CurrentPageViewModel(new HomeViewModel());
         }
 
         this.CurrentPage(page);
@@ -34,9 +44,6 @@ var MoodViewModel = (function () {
     function MoodViewModel() {
     }
     MoodViewModel.prototype.Initialize = function () {
-        console.log(document.getElementById('map-canvas'));
-        console.log(new google.maps.LatLng(51.5, 13.7));
-
         this._map = new google.maps.Map(document.getElementById('map-canvas'), {
             zoom: 4,
             center: new google.maps.LatLng(51.5, 13.7),
@@ -44,10 +51,11 @@ var MoodViewModel = (function () {
         });
 
         this._map.data.loadGeoJson('Countries.json');
-
         this._map.data.setStyle(this.SetCountryStyle);
 
-        twttr.widgets.load();
+        twttr.ready(function () {
+            return twttr.widgets.load();
+        });
     };
 
     MoodViewModel.prototype.SetCountryStyle = function (feature) {

@@ -28,13 +28,14 @@
     <Content Include="Images\linkblue_40.png" />
     <Content Include="Images\refrain_white_280.png" />
     <Content Include="Images\share_50.png" />
-    <Content Include="index.html" />
+    <Content Include="default.html" />
     <Content Include="Main.css" />
     <Content Include="Refrain.js" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Countries.json" />
+    <None Include="To Folder.pubxml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -43,6 +44,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="App\HomeViewModel.ts" />
     <TypeScriptCompile Include="App\MainViewModel.ts" />
     <TypeScriptCompile Include="App\MoodViewModel.ts" />
     <TypeScriptCompile Include="TypescriptDefinitions\google.maps.d.ts" />
