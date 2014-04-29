@@ -44,14 +44,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="App\AboutViewModel.ts" />
+    <TypeScriptCompile Include="App\DiscoveryViewModel.ts" />
     <TypeScriptCompile Include="App\HomeViewModel.ts" />
     <TypeScriptCompile Include="App\MainViewModel.ts" />
+    <TypeScriptCompile Include="App\MatchViewModel.ts" />
     <TypeScriptCompile Include="App\MoodViewModel.ts" />
     <TypeScriptCompile Include="TypescriptDefinitions\google.maps.d.ts" />
     <TypeScriptCompile Include="TypescriptDefinitions\jquery.d.ts" />
     <TypeScriptCompile Include="TypescriptDefinitions\knockout.d.ts" />
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

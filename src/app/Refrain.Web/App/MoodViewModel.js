@@ -2,9 +2,6 @@
     function MoodViewModel() {
     }
     MoodViewModel.prototype.Initialize = function () {
-        console.log(document.getElementById('map-canvas'));
-        console.log(new google.maps.LatLng(51.5, 13.7));
-
         this._map = new google.maps.Map(document.getElementById('map-canvas'), {
             zoom: 4,
             center: new google.maps.LatLng(51.5, 13.7),
@@ -12,10 +9,11 @@
         });
 
         this._map.data.loadGeoJson('Countries.json');
-
         this._map.data.setStyle(this.SetCountryStyle);
 
-        twttr.widgets.load();
+        twttr.ready(function () {
+            return twttr.widgets.load();
+        });
     };
 
     MoodViewModel.prototype.SetCountryStyle = function (feature) {

@@ -1,4 +1,18 @@
-﻿var HomeViewModel = (function () {
+﻿var AboutViewModel = (function () {
+    function AboutViewModel() {
+    }
+    AboutViewModel.prototype.Initialize = function () {
+    };
+    return AboutViewModel;
+})();
+var DiscoveryViewModel = (function () {
+    function DiscoveryViewModel() {
+    }
+    DiscoveryViewModel.prototype.Initialize = function () {
+    };
+    return DiscoveryViewModel;
+})();
+var HomeViewModel = (function () {
     function HomeViewModel() {
     }
     HomeViewModel.prototype.Initialize = function () {
@@ -26,8 +40,17 @@ var MainViewModel = (function () {
             case "":
                 this.CurrentPageViewModel(new HomeViewModel());
                 break;
+            case "Match":
+                this.CurrentPageViewModel(new MatchViewModel());
+                break;
             case "Mood":
                 this.CurrentPageViewModel(new MoodViewModel());
+                break;
+            case "Discovery":
+                this.CurrentPageViewModel(new DiscoveryViewModel());
+                break;
+            case "About":
+                this.CurrentPageViewModel(new AboutViewModel());
                 break;
             default:
                 this.CurrentPageViewModel(new HomeViewModel());
@@ -39,6 +62,13 @@ var MainViewModel = (function () {
             this.CurrentPageViewModel().Initialize();
     };
     return MainViewModel;
+})();
+var MatchViewModel = (function () {
+    function MatchViewModel() {
+    }
+    MatchViewModel.prototype.Initialize = function () {
+    };
+    return MatchViewModel;
 })();
 var MoodViewModel = (function () {
     function MoodViewModel() {
