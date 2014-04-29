@@ -26,9 +26,11 @@
     <Content Include="Images\DTU.png" />
     <Content Include="Images\geckon.png" />
     <Content Include="Images\linkblue_40.png" />
+    <Content Include="Images\pink_arrow_900_40.png" />
     <Content Include="Images\refrain_white_280.png" />
     <Content Include="Images\share_50.png" />
     <Content Include="default.html" />
+    <Content Include="Images\share_hover_50.png" />
     <Content Include="Main.css" />
     <Content Include="Refrain.js" />
     <Content Include="web.config" />
@@ -48,6 +50,7 @@
     <TypeScriptCompile Include="App\DiscoveryViewModel.ts" />
     <TypeScriptCompile Include="App\HomeViewModel.ts" />
     <TypeScriptCompile Include="App\MainViewModel.ts" />
+    <TypeScriptCompile Include="App\Match.ts" />
     <TypeScriptCompile Include="App\MatchViewModel.ts" />
     <TypeScriptCompile Include="App\MoodViewModel.ts" />
     <TypeScriptCompile Include="TypescriptDefinitions\google.maps.d.ts" />

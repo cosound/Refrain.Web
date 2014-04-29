@@ -117,7 +117,23 @@
 				</p>
 				<!-- /ko -->
 				<!-- ko if: $parent.CurrentPage() == "Match" -->
-				<h1>Match</h1>
+				<h1>Select Songs</h1>
+				<div>
+					<p>Search for a eurovision song by title or artist</p>
+					<input id="SongSearch" type="text" data-bind="value: Query, valueUpdate: 'afterkeydown'" />
+					<div data-bind="foreach: Matches">
+						<div class="SongMatch" data-bind="click: Select, css: {Selected: IsSelected}">
+							<a href="#">
+								<p data-bind="text: Title"></p>
+							</a>
+						</div>
+					</div>
+				</div>
+				<h1>Explore and share match</h1>
+				<div>
+					
+
+				</div>
 				<!-- /ko -->
 				<!-- ko if: $parent.CurrentPage() == "Mood" -->
 				<h1>Mood</h1>

@@ -63,10 +63,58 @@ var MainViewModel = (function () {
     };
     return MainViewModel;
 })();
+var Match = (function () {
+    function Match(title, selectCallback) {
+        this.IsSelected = ko.observable(false);
+        this.Title = title;
+        this._selectCallback = selectCallback;
+    }
+    Match.prototype.Select = function () {
+        this._selectCallback(this);
+        this.IsSelected(true);
+
+        return false;
+    };
+    return Match;
+})();
 var MatchViewModel = (function () {
     function MatchViewModel() {
+        var _this = this;
+        this.Query = ko.observable("");
+        this.Matches = ko.observableArray();
+        this.SelectedMatch = ko.observable();
+        this.Query.subscribe(function (v) {
+            return _this.QueryChanged(v);
+        });
     }
     MatchViewModel.prototype.Initialize = function () {
+    };
+
+    MatchViewModel.prototype.QueryChanged = function (newValue) {
+        var _this = this;
+        clearTimeout(this._queryDelayHandle);
+
+        this._queryDelayHandle = setTimeout(function () {
+            return _this.Search(newValue);
+        }, 1000);
+    };
+
+    MatchViewModel.prototype.Search = function (value) {
+        var _this = this;
+        this.Matches.removeAll();
+
+        for (var i = 0; i < 5; i++) {
+            this.Matches.push(new Match(value + i, function (m) {
+                return _this.Select(m);
+            }));
+        }
+    };
+
+    MatchViewModel.prototype.Select = function (match) {
+        if (this.SelectedMatch() != null)
+            this.SelectedMatch().IsSelected(false);
+
+        this.SelectedMatch(match);
     };
     return MatchViewModel;
 })();
