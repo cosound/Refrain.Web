@@ -8,7 +8,8 @@
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
 		<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyDYMEgXXaemmCDhs3D_z6s_KPb5nMcB5MA&sensor=false"></script>
 		<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
-		<script type="text/javascript" src="Refrain.js"></script>
+		<script type="text/javascript" src="Scripts/Refrain.js"></script>
+		<script type="text/javascript" src="Scripts/PortalClient.min.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function()
 			{
@@ -126,6 +127,16 @@
 							<a href="#">
 								<p data-bind="text: Title"></p>
 							</a>
+						</div>
+					</div>
+					<div data-bind="if: SelectedMatch">
+						<p>Is most similar to</p>
+						<div>
+
+						</div>
+						<p>And least similar to</p>
+						<div>
+
 						</div>
 					</div>
 				</div>

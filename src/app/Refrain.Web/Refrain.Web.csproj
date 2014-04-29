@@ -32,7 +32,8 @@
     <Content Include="default.html" />
     <Content Include="Images\share_hover_50.png" />
     <Content Include="Main.css" />
-    <Content Include="Refrain.js" />
+    <Content Include="Scripts\PortalClient.min.js" />
+    <Content Include="Scripts\Refrain.js" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -53,9 +54,12 @@
     <TypeScriptCompile Include="App\Match.ts" />
     <TypeScriptCompile Include="App\MatchViewModel.ts" />
     <TypeScriptCompile Include="App\MoodViewModel.ts" />
+    <TypeScriptCompile Include="App\RefrainPortal.ts" />
+    <TypeScriptCompile Include="App\Song.ts" />
     <TypeScriptCompile Include="TypescriptDefinitions\google.maps.d.ts" />
     <TypeScriptCompile Include="TypescriptDefinitions\jquery.d.ts" />
     <TypeScriptCompile Include="TypescriptDefinitions\knockout.d.ts" />
+    <TypeScriptCompile Include="TypescriptDefinitions\PortalClient.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -87,9 +91,9 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <TypeScriptTarget>ES3</TypeScriptTarget>
     <TypeScriptRemoveComments>True</TypeScriptRemoveComments>
-    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptSourceMap>False</TypeScriptSourceMap>
     <TypeScriptModuleKind>none</TypeScriptModuleKind>
-    <TypeScriptOutFile>Refrain.js</TypeScriptOutFile>
+    <TypeScriptOutFile>Scripts/Refrain.js</TypeScriptOutFile>
     <TypeScriptNoImplicitAny>True</TypeScriptNoImplicitAny>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">

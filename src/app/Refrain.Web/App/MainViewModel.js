@@ -3,6 +3,8 @@
         var _this = this;
         this.CurrentPage = ko.observable();
         this.CurrentPageViewModel = ko.observable();
+        this._client = CHAOS.Portal.Client.Initialize("http://api.refrain.dk/");
+
         $(window).bind("hashchange", function (e) {
             return _this.HashChange();
         });
@@ -19,8 +21,17 @@
             case "":
                 this.CurrentPageViewModel(new HomeViewModel());
                 break;
+            case "Match":
+                this.CurrentPageViewModel(new MatchViewModel());
+                break;
             case "Mood":
                 this.CurrentPageViewModel(new MoodViewModel());
+                break;
+            case "Discovery":
+                this.CurrentPageViewModel(new DiscoveryViewModel());
+                break;
+            case "About":
+                this.CurrentPageViewModel(new AboutViewModel());
                 break;
             default:
                 this.CurrentPageViewModel(new HomeViewModel());

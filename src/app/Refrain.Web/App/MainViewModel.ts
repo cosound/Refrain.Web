@@ -3,8 +3,12 @@
 	public CurrentPage: KnockoutObservable<string> = ko.observable<string>();
 	public CurrentPageViewModel: KnockoutObservable<IPageViewModel> = ko.observable<IPageViewModel>();
 
+	private _client:CHAOS.Portal.Client.IPortalClient;
+
 	constructor()
 	{
+		this._client = CHAOS.Portal.Client.Initialize("http://api.refrain.dk/");
+
 		$(window).bind("hashchange", (e: Event) => this.HashChange());
 		this.HashChange();
 	}

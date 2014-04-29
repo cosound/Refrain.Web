@@ -24,6 +24,8 @@ var MainViewModel = (function () {
         var _this = this;
         this.CurrentPage = ko.observable();
         this.CurrentPageViewModel = ko.observable();
+        this._client = CHAOS.Portal.Client.Initialize("http://api.refrain.dk/");
+
         $(window).bind("hashchange", function (e) {
             return _this.HashChange();
         });
@@ -96,15 +98,27 @@ var MatchViewModel = (function () {
 
         this._queryDelayHandle = setTimeout(function () {
             return _this.Search(newValue);
-        }, 1000);
+        }, 500);
     };
 
     MatchViewModel.prototype.Search = function (value) {
+        if (value == "")
+            this.Matches.removeAll();
+        else
+            RefrainPortal.Search.Get(value).WithCallback(this.SearchGetCompleted, this);
+    };
+
+    MatchViewModel.prototype.SearchGetCompleted = function (response) {
         var _this = this;
         this.Matches.removeAll();
 
-        for (var i = 0; i < 5; i++) {
-            this.Matches.push(new Match(value + i, function (m) {
+        if (response.Error != null) {
+            console.log("Failed to get search results: " + response.Error.Message);
+            return;
+        }
+
+        for (var i = 0; i < response.Body.Results.length; i++) {
+            this.Matches.push(new Match(response.Body.Results[i].Text, function (m) {
                 return _this.Select(m);
             }));
         }
@@ -146,4 +160,24 @@ var MoodViewModel = (function () {
     };
     return MoodViewModel;
 })();
-//# sourceMappingURL=Refrain.js.map
+var RefrainPortal;
+(function (RefrainPortal) {
+    var Search = (function () {
+        function Search() {
+        }
+        Search.Get = function (query, serviceCaller) {
+            if (typeof serviceCaller === "undefined") { serviceCaller = null; }
+            if (serviceCaller == null)
+                serviceCaller = CHAOS.Portal.Client.ServiceCallerService.GetDefaultCaller();
+
+            return serviceCaller.CallService("Search/Get", 0 /* Get */, { query: query }, true);
+        };
+        return Search;
+    })();
+    RefrainPortal.Search = Search;
+})(RefrainPortal || (RefrainPortal = {}));
+var Song = (function () {
+    function Song() {
+    }
+    return Song;
+})();
