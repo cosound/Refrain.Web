@@ -22,7 +22,7 @@
 	{
 		clearTimeout(this._queryDelayHandle);
 
-		this._queryDelayHandle = setTimeout(() => this.Search(newValue), 500);
+		this._queryDelayHandle = setTimeout(() => this.Search(newValue), 200);
 	}
 
 	private Search(value:string):void
@@ -56,6 +56,8 @@
 
 		match.IsSelected(true);
 
+		window.location.hash = "Match/" + match.Id + "/";
+
 		this.SelectedMatch(match);
 	}
 
@@ -68,7 +70,12 @@
 
 		this.SelectedSimilarity(similarity);
 
-		$('html, body').animate({ scrollTop: $("#ExploreHeadline").offset().top}, 1000);
+		window.location.hash = "Match/" + this.SelectedSong().Id + "/" + this.SelectedSimilarity().Id;
+
+		$('html, body').animate({ scrollTop: $("#ExploreHeadline").offset().top }, 1000);
+
+		$("#ShareMatchOnTwitter").data("url", window.location.toString());
+		twttr.widgets.load();
 	}
 
 	private SongGetCompleted(response:CHAOS.Portal.Client.IPortalResponse<RefrainPortal.ISong>):void

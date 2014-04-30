@@ -16,8 +16,12 @@
 	private HashChange()
 	{
 		var hash = window.location.hash.length == 0 ? "" : window.location.hash.substr(1);
-
 		var page = hash;
+
+		if (page.indexOf("/") != -1)
+			page = hash.substring(0, hash.indexOf("/"));
+
+		if (page == this.CurrentPage()) return;
 
 		this.CurrentPage(null);
 		

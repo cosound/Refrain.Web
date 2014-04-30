@@ -2,6 +2,6 @@
 {
 	public Initialize(): void
 	{
-
+		twttr.ready(() => twttr.widgets.load());
 	}
 } 

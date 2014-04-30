@@ -9,6 +9,9 @@ var DiscoveryViewModel = (function () {
     function DiscoveryViewModel() {
     }
     DiscoveryViewModel.prototype.Initialize = function () {
+        twttr.ready(function () {
+            return twttr.widgets.load();
+        });
     };
     return DiscoveryViewModel;
 })();
@@ -33,8 +36,13 @@ var MainViewModel = (function () {
     }
     MainViewModel.prototype.HashChange = function () {
         var hash = window.location.hash.length == 0 ? "" : window.location.hash.substr(1);
-
         var page = hash;
+
+        if (page.indexOf("/") != -1)
+            page = hash.substring(0, hash.indexOf("/"));
+
+        if (page == this.CurrentPage())
+            return;
 
         this.CurrentPage(null);
 
@@ -104,7 +112,7 @@ var MatchViewModel = (function () {
 
         this._queryDelayHandle = setTimeout(function () {
             return _this.Search(newValue);
-        }, 500);
+        }, 200);
     };
 
     MatchViewModel.prototype.Search = function (value) {
@@ -134,6 +142,8 @@ var MatchViewModel = (function () {
 
         match.IsSelected(true);
 
+        window.location.hash = "Match/" + match.Id + "/";
+
         this.SelectedMatch(match);
     };
 
@@ -145,7 +155,12 @@ var MatchViewModel = (function () {
 
         this.SelectedSimilarity(similarity);
 
+        window.location.hash = "Match/" + this.SelectedSong().Id + "/" + this.SelectedSimilarity().Id;
+
         $('html, body').animate({ scrollTop: $("#ExploreHeadline").offset().top }, 1000);
+
+        $("#ShareMatchOnTwitter").data("url", window.location.toString());
+        twttr.widgets.load();
     };
 
     MatchViewModel.prototype.SongGetCompleted = function (response) {

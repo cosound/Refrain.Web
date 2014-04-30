@@ -156,6 +156,7 @@
 				<div>
 					<p class="SongTitle" data-bind="text: SelectedSong().Id"></p>
 					<p class="SongTitle" data-bind="text: SelectedSimilarity().Id"></p>
+					<a id="ShareMatchOnTwitter" href="https://twitter.com/share" class="twitter-hashtag-button" data-lang="en" data-related="refraindk" data-count="none" data-hashtags="refraindk,match">Tweet #refraindk</a>
 					<div>
 						<p>Importance of music aspects in match</p>
 						<p data-bind=""></p>
@@ -169,14 +170,23 @@
 				<!-- /ko -->
 				<!-- ko if: $parent.CurrentPage() == "Mood" -->
 				<h1>Mood</h1>
-				<div id="map-canvas" style="width: 850px; height: 700px;"></div>
-				<a class="twitter-timeline" href="https://twitter.com/Eurovision" data-widget-id="460609701009313793">Tweets by @Eurovision</a>
+				<div>
+					<div id="map-canvas" style="width: 850px; height: 700px;"></div>
+					<a class="twitter-timeline" href="https://twitter.com/Eurovision" data-widget-id="460609701009313793">Tweets by @Eurovision</a>
+				</div>
+				
 				<!-- /ko -->
 				<!-- ko if: $parent.CurrentPage() == "Discovery" -->
 				<h1>Discovery</h1>
+				<div>
+					<a class="twitter-timeline" href="https://twitter.com/Eurovision" data-widget-id="460609701009313793">Tweets by @Eurovision</a>
+				</div>
 				<!-- /ko -->
 				<!-- ko if: $parent.CurrentPage() == "About" -->
 				<h1>About</h1>
+				<div>
+					
+				</div>
 				<!-- /ko -->
 			</div>
 		</div>
