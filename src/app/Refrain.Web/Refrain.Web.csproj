@@ -50,12 +50,14 @@
     <TypeScriptCompile Include="App\AboutViewModel.ts" />
     <TypeScriptCompile Include="App\DiscoveryViewModel.ts" />
     <TypeScriptCompile Include="App\HomeViewModel.ts" />
+    <TypeScriptCompile Include="App\IMatchSelector.ts" />
     <TypeScriptCompile Include="App\MainViewModel.ts" />
     <TypeScriptCompile Include="App\Match.ts" />
     <TypeScriptCompile Include="App\MatchViewModel.ts" />
     <TypeScriptCompile Include="App\MoodViewModel.ts" />
     <TypeScriptCompile Include="App\RefrainPortal.ts" />
     <TypeScriptCompile Include="App\Song.ts" />
+    <TypeScriptCompile Include="App\SongSimilarity.ts" />
     <TypeScriptCompile Include="TypescriptDefinitions\google.maps.d.ts" />
     <TypeScriptCompile Include="TypescriptDefinitions\jquery.d.ts" />
     <TypeScriptCompile Include="TypescriptDefinitions\knockout.d.ts" />

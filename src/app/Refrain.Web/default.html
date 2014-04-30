@@ -118,10 +118,10 @@
 				</p>
 				<!-- /ko -->
 				<!-- ko if: $parent.CurrentPage() == "Match" -->
-				<h1>Select Songs</h1>
+				<h1>Select Song</h1>
 				<div>
 					<p>Search for a eurovision song by title or artist</p>
-					<input id="SongSearch" type="text" data-bind="value: Query, valueUpdate: 'afterkeydown'" />
+					<input id="SongQuery" type="text" data-bind="value: Query, valueUpdate: 'afterkeydown'" />
 					<div data-bind="foreach: Matches">
 						<div class="SongMatch" data-bind="click: Select, css: {Selected: IsSelected}">
 							<a href="#">
@@ -129,21 +129,42 @@
 							</a>
 						</div>
 					</div>
-					<div data-bind="if: SelectedMatch">
-						<p>Is most similar to</p>
-						<div>
-
+				</div>
+				<!-- ko if: SelectedSong -->
+				<h1 id="SelectMatchHeadline">Select Match</h1>
+				<div>
+					<p>Is most similar to</p>
+					<div data-bind="foreach: SelectedSong().MostSimilar">
+						<div class="SongMatch" data-bind="click: Select, css: {Selected: IsSelected}">
+							<a href="#">
+								<p data-bind="text: Id"></p>
+							</a>
 						</div>
-						<p>And least similar to</p>
-						<div>
-
+					</div>
+					<p>And least similar to</p>
+					<div data-bind="foreach: SelectedSong().LeastSimilar">
+						<div class="SongMatch" data-bind="click: Select, css: {Selected: IsSelected}">
+							<a href="#">
+								<p data-bind="text: Id"></p>
+							</a>
 						</div>
 					</div>
 				</div>
-				<h1>Explore and share match</h1>
+				<!-- /ko -->
+				<!-- ko if: SelectedSimilarity -->
+				<h1 id="ExploreHeadline">Explore and share match</h1>
 				<div>
-					
-
+					<p class="SongTitle" data-bind="text: SelectedSong().Id"></p>
+					<p class="SongTitle" data-bind="text: SelectedSimilarity().Id"></p>
+					<div>
+						<p>Importance of music aspects in match</p>
+						<p data-bind=""></p>
+					</div>
+				</div>
+				<!-- /ko -->
+				<h1 id="ExploreHeadline">Shared descoveries</h1>
+				<div>
+					<a class="twitter-timeline" href="https://twitter.com/Eurovision" data-widget-id="460609701009313793">Tweets by @Eurovision</a>
 				</div>
 				<!-- /ko -->
 				<!-- ko if: $parent.CurrentPage() == "Mood" -->

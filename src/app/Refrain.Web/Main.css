@@ -29,6 +29,11 @@
 	font-size: 32px;
 }
 
+p {
+	margin: 0;
+	padding: 0;
+}
+
 /* Colors */
 
 .pink {
@@ -190,13 +195,9 @@ div.menublock table{
 	background-color: #0066FF;
 }
 
-.mainblock > div > p
-{
-	margin: 0;
-	padding: 0px;
-}
+/* Match */
 
-.mainblock > div > input[type="text"]
+#SongQuery
 {
 	width: 400px;
 
@@ -208,12 +209,10 @@ div.menublock table{
 	background-color: #0099FF;
 }
 
-.mainblock > div > input[type="text"]:focus
+#SongQuery:focus
 {
 	border-color: #cc0099;
 }
-
-/* Match */
 
 .SongMatch
 {
@@ -236,6 +235,14 @@ div.menublock table{
 {
 	margin: 0;
 	padding: 0;
+}
+
+.SongTitle 
+{
+	margin: 5px;
+	padding: 5px;
+
+	background-color: #0099FF;
 }
 
 /* Link styles */

@@ -1,21 +1,23 @@
 ﻿class Match
 {
+	public Id:string;
 	public Title: string;
 	
 	public IsSelected: KnockoutObservable<boolean> = ko.observable(false);
 
-	private _selectCallback: (match: Match) => void;
+	private _selector:IMatchSelector;
 
-	constructor(title:string, selectCallback:(match:Match)=>void)
+	constructor(match:RefrainPortal.ISearchMatch, selector:IMatchSelector)
 	{
-		this.Title = title;
-		this._selectCallback = selectCallback;
+		this.Id = match.Id;
+		this.Title = match.Text;
+		this._selector = selector;
 	}
 
 	public Select():boolean
 	{
-		this._selectCallback(this);
-		this.IsSelected(true);
+		if (!this.IsSelected())
+			this._selector.SelectMatch(this);
 
 		return false;
 	}

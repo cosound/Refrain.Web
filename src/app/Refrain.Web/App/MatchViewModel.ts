@@ -1,8 +1,10 @@
-﻿class MatchViewModel implements IPageViewModel
+﻿class MatchViewModel implements IPageViewModel, IMatchSelector
 {
 	public Query:KnockoutObservable<string> = ko.observable<string>("");
 	public Matches: KnockoutObservableArray<Match> = ko.observableArray<Match>();
-	public SelectedMatch:KnockoutObservable<Match> = ko.observable<Match>();
+	public SelectedMatch: KnockoutObservable<Match> = ko.observable<Match>();
+	public SelectedSong: KnockoutObservable<Song> = ko.observable<Song>();
+	public SelectedSimilarity: KnockoutObservable<SongSimilarity> = ko.observable<SongSimilarity>();
 
 	private _queryDelayHandle: number;
 
@@ -13,7 +15,7 @@
 
 	public Initialize(): void
 	{
-
+		twttr.ready(() => twttr.widgets.load());
 	}
 
 	private QueryChanged(newValue:string):void
@@ -42,18 +44,49 @@
 		}
 
 		for (var i = 0; i < response.Body.Results.length; i++)
-		{
-			this.Matches.push(new Match(<string>response.Body.Results[i].Text, m => this.Select(m)));
-		}
+			this.Matches.push(new Match(response.Body.Results[i], this));
 	}
 
-	private Select(match:Match):void
+	public SelectMatch(match:Match):void
 	{
 		if (this.SelectedMatch() != null)
 			this.SelectedMatch().IsSelected(false);
 
+		RefrainPortal.Song.Get(match.Id, 110001).WithCallback(this.SongGetCompleted, this);
+
+		match.IsSelected(true);
+
 		this.SelectedMatch(match);
 	}
 
-	
+	public SelectSimilarity(similarity:SongSimilarity):void
+	{
+		if (this.SelectedSimilarity() != null)
+			this.SelectedSimilarity().IsSelected(false);
+
+		similarity.IsSelected(true);
+
+		this.SelectedSimilarity(similarity);
+
+		$('html, body').animate({ scrollTop: $("#ExploreHeadline").offset().top}, 1000);
+	}
+
+	private SongGetCompleted(response:CHAOS.Portal.Client.IPortalResponse<RefrainPortal.ISong>):void
+	{
+		if (response.Error != null)
+		{
+			console.log("Failed to get Song: " + response.Error.Message);
+			return;
+		}
+
+		if (response.Body.Count != 1)
+		{
+			console.log("Failed to get Song, number songs returned: " + response.Body.Count);
+			return;
+		}
+
+		this.SelectedSong(new Song(response.Body.Results[0], this));
+
+		$('html, body').animate({ scrollTop: $("#SelectMatchHeadline").offset().top }, 1000);
+	}
 } 

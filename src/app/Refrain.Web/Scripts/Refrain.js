@@ -66,14 +66,15 @@ var MainViewModel = (function () {
     return MainViewModel;
 })();
 var Match = (function () {
-    function Match(title, selectCallback) {
+    function Match(match, selector) {
         this.IsSelected = ko.observable(false);
-        this.Title = title;
-        this._selectCallback = selectCallback;
+        this.Id = match.Id;
+        this.Title = match.Text;
+        this._selector = selector;
     }
     Match.prototype.Select = function () {
-        this._selectCallback(this);
-        this.IsSelected(true);
+        if (!this.IsSelected())
+            this._selector.SelectMatch(this);
 
         return false;
     };
@@ -85,11 +86,16 @@ var MatchViewModel = (function () {
         this.Query = ko.observable("");
         this.Matches = ko.observableArray();
         this.SelectedMatch = ko.observable();
+        this.SelectedSong = ko.observable();
+        this.SelectedSimilarity = ko.observable();
         this.Query.subscribe(function (v) {
             return _this.QueryChanged(v);
         });
     }
     MatchViewModel.prototype.Initialize = function () {
+        twttr.ready(function () {
+            return twttr.widgets.load();
+        });
     };
 
     MatchViewModel.prototype.QueryChanged = function (newValue) {
@@ -109,7 +115,6 @@ var MatchViewModel = (function () {
     };
 
     MatchViewModel.prototype.SearchGetCompleted = function (response) {
-        var _this = this;
         this.Matches.removeAll();
 
         if (response.Error != null) {
@@ -117,18 +122,46 @@ var MatchViewModel = (function () {
             return;
         }
 
-        for (var i = 0; i < response.Body.Results.length; i++) {
-            this.Matches.push(new Match(response.Body.Results[i].Text, function (m) {
-                return _this.Select(m);
-            }));
-        }
+        for (var i = 0; i < response.Body.Results.length; i++)
+            this.Matches.push(new Match(response.Body.Results[i], this));
     };
 
-    MatchViewModel.prototype.Select = function (match) {
+    MatchViewModel.prototype.SelectMatch = function (match) {
         if (this.SelectedMatch() != null)
             this.SelectedMatch().IsSelected(false);
 
+        RefrainPortal.Song.Get(match.Id, 110001).WithCallback(this.SongGetCompleted, this);
+
+        match.IsSelected(true);
+
         this.SelectedMatch(match);
+    };
+
+    MatchViewModel.prototype.SelectSimilarity = function (similarity) {
+        if (this.SelectedSimilarity() != null)
+            this.SelectedSimilarity().IsSelected(false);
+
+        similarity.IsSelected(true);
+
+        this.SelectedSimilarity(similarity);
+
+        $('html, body').animate({ scrollTop: $("#ExploreHeadline").offset().top }, 1000);
+    };
+
+    MatchViewModel.prototype.SongGetCompleted = function (response) {
+        if (response.Error != null) {
+            console.log("Failed to get Song: " + response.Error.Message);
+            return;
+        }
+
+        if (response.Body.Count != 1) {
+            console.log("Failed to get Song, number songs returned: " + response.Body.Count);
+            return;
+        }
+
+        this.SelectedSong(new Song(response.Body.Results[0], this));
+
+        $('html, body').animate({ scrollTop: $("#SelectMatchHeadline").offset().top }, 1000);
     };
     return MatchViewModel;
 })();
@@ -175,9 +208,47 @@ var RefrainPortal;
         return Search;
     })();
     RefrainPortal.Search = Search;
+
+    var Song = (function () {
+        function Song() {
+        }
+        Song.Get = function (id, type, serviceCaller) {
+            if (typeof serviceCaller === "undefined") { serviceCaller = null; }
+            if (serviceCaller == null)
+                serviceCaller = CHAOS.Portal.Client.ServiceCallerService.GetDefaultCaller();
+
+            return serviceCaller.CallService("Song/Get", 0 /* Get */, { id: id, type: type }, true);
+        };
+        return Song;
+    })();
+    RefrainPortal.Song = Song;
 })(RefrainPortal || (RefrainPortal = {}));
 var Song = (function () {
-    function Song() {
+    function Song(song, selector) {
+        this.MostSimilar = [];
+        this.LeastSimilar = [];
+        this.Id = song.Id;
+
+        for (var i = 0; i < 3 && i < song.Similarity.Songs.length; i++)
+            this.MostSimilar.push(new SongSimilarity(song.Similarity.Songs[i], selector));
+
+        for (var i = song.Similarity.Songs.length - 1; i >= 0 && i >= song.Similarity.Songs.length - 3; i--)
+            this.LeastSimilar.push(new SongSimilarity(song.Similarity.Songs[i], selector));
     }
     return Song;
+})();
+var SongSimilarity = (function () {
+    function SongSimilarity(similarity, selector) {
+        this.IsSelected = ko.observable(false);
+        this.Id = similarity.SongId;
+
+        this._selector = selector;
+    }
+    SongSimilarity.prototype.Select = function () {
+        if (!this.IsSelected())
+            this._selector.SelectSimilarity(this);
+
+        return false;
+    };
+    return SongSimilarity;
 })();
