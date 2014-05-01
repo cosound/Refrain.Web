@@ -7,6 +7,7 @@
 		<script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
 		<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyDYMEgXXaemmCDhs3D_z6s_KPb5nMcB5MA&sensor=false"></script>
+		<script type="text/javascript" src="//connect.facebook.net/en_US/all.js"></script>
 		<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
 		<script type="text/javascript" src="Scripts/Refrain.js"></script>
 		<script type="text/javascript" src="Scripts/PortalClient.min.js"></script>
@@ -15,9 +16,18 @@
 			{
 				ko.applyBindings(new MainViewModel());
 			});
+
+			window.fbAsyncInit = function () {
+				FB.init({
+					appId: '1502662549961564',
+					status: true,
+					xfbml: true
+				});
+			};
 		</script>
 	</head>
 	<body>
+		<div id="fb-root"></div>
 		<div id="headcontainer">
 			<div class="transdarkblue"></div>
 			<div id="headtext">
@@ -157,6 +167,7 @@
 					<p class="SongTitle" data-bind="text: SelectedSong().Id"></p>
 					<p class="SongTitle" data-bind="text: SelectedSimilarity().Id"></p>
 					<a id="ShareMatchOnTwitter" href="https://twitter.com/share" class="twitter-hashtag-button" data-lang="en" data-related="refraindk" data-count="none" data-hashtags="refraindk,match">Tweet #refraindk</a>
+					<div id="ShareMatchOnFacebook" class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-type="button"></div>
 					<div>
 						<p>Importance of music aspects in match</p>
 						<div id="SimilarityGrapghLegend">

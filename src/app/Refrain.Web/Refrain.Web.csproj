@@ -58,6 +58,7 @@
     <TypeScriptCompile Include="App\RefrainPortal.ts" />
     <TypeScriptCompile Include="App\Song.ts" />
     <TypeScriptCompile Include="App\SongSimilarity.ts" />
+    <TypeScriptCompile Include="TypescriptDefinitions\facebook.d.ts" />
     <TypeScriptCompile Include="TypescriptDefinitions\google.maps.d.ts" />
     <TypeScriptCompile Include="TypescriptDefinitions\jquery.d.ts" />
     <TypeScriptCompile Include="TypescriptDefinitions\knockout.d.ts" />

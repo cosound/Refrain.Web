@@ -22,7 +22,8 @@
 
 		this._campareSongId = campareSongId;
 
-		this.GetSong(songId);
+		if(songId != null)
+			this.GetSong(songId);
 	}
 
 	public PortalReady(): void
@@ -102,7 +103,9 @@
 		$('html, body').animate({ scrollTop: $("#ExploreHeadline").offset().top }, 1000);
 
 		$("#ShareMatchOnTwitter").data("url", window.location.toString());
-		twttr.widgets.load();
+		$("#ShareMatchOnFacebook").data("href", window.location.toString());
+		twttr.widgets.load($("#ShareMatchOnTwitter")[0]);
+		FB.XFBML.parse($("#ShareMatchOnFacebook")[0]);
 	}
 
 	private SongGetCompleted(response:CHAOS.Portal.Client.IPortalResponse<RefrainPortal.ISong>):void

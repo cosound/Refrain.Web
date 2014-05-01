@@ -124,7 +124,8 @@ var MatchViewModel = (function () {
 
         this._campareSongId = campareSongId;
 
-        this.GetSong(songId);
+        if (songId != null)
+            this.GetSong(songId);
     };
 
     MatchViewModel.prototype.PortalReady = function () {
@@ -204,7 +205,9 @@ var MatchViewModel = (function () {
         $('html, body').animate({ scrollTop: $("#ExploreHeadline").offset().top }, 1000);
 
         $("#ShareMatchOnTwitter").data("url", window.location.toString());
-        twttr.widgets.load();
+        $("#ShareMatchOnFacebook").data("href", window.location.toString());
+        twttr.widgets.load($("#ShareMatchOnTwitter")[0]);
+        FB.XFBML.parse($("#ShareMatchOnFacebook")[0]);
     };
 
     MatchViewModel.prototype.SongGetCompleted = function (response) {
