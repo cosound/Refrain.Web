@@ -1,6 +1,13 @@
 ﻿class SongSimilarity
 {
 	public Id: string;
+	public Tempo:number;
+	public Rythm:number;
+	public Mood:number;
+	public Melody:number;
+	public Energy:number;
+	public Timbre: number;
+	public Distance:number;
 
 	public IsSelected: KnockoutObservable<boolean> = ko.observable(false);
 
@@ -9,6 +16,16 @@
 	constructor(similarity:RefrainPortal.ISongSimilarity, selector:IMatchSelector)
 	{
 		this.Id = similarity.SongId;
+		this.Distance = similarity.Distance;
+
+		var similarities = similarity.RelativeImportance.split(" ");
+
+		this.Tempo = parseFloat(similarities[0]);
+		this.Rythm = parseFloat(similarities[1]);
+		this.Mood = parseFloat(similarities[2]);
+		this.Melody = parseFloat(similarities[3]);
+		this.Energy = parseFloat(similarities[4]);
+		this.Timbre = parseFloat(similarities[5]);
 
 		this._selector = selector;
 	}

@@ -245,6 +245,27 @@ div.menublock table{
 	background-color: #0099FF;
 }
 
+#SimilarityGrapghLegend 
+{
+	display: inline-block;
+}
+
+#SimilarityGraph 
+{
+	display: inline-block;
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+	width: 300px;
+}
+
+.SimilarityBar 
+{
+	padding: 0;
+	margin: 5px 0;
+	background-color: #cc0099;
+	display: block;
+}
+
 /* Link styles */
 
 a:link {

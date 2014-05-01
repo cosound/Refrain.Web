@@ -159,7 +159,22 @@
 					<a id="ShareMatchOnTwitter" href="https://twitter.com/share" class="twitter-hashtag-button" data-lang="en" data-related="refraindk" data-count="none" data-hashtags="refraindk,match">Tweet #refraindk</a>
 					<div>
 						<p>Importance of music aspects in match</p>
-						<p data-bind=""></p>
+						<div id="SimilarityGrapghLegend">
+							<p>Tempo</p>
+							<p>Rythm</p>
+							<p>Mood</p>
+							<p>Melody</p>
+							<p>Energy</p>
+							<p>Timbre</p>
+						</div>
+						<div id="SimilarityGraph" data-bind="with: SelectedSimilarity">
+							<p class="SimilarityBar" data-bind="style: {width: Tempo * 100 + '%'}">&nbsp;</p>
+							<p class="SimilarityBar" data-bind="style: {width: Rythm * 100 + '%'}">&nbsp;</p>
+							<p class="SimilarityBar" data-bind="style: {width: Mood * 100 + '%'}">&nbsp;</p>
+							<p class="SimilarityBar" data-bind="style: {width: Melody * 100 + '%'}">&nbsp;</p>
+							<p class="SimilarityBar" data-bind="style: {width: Energy * 100 + '%'}">&nbsp;</p>
+							<p class="SimilarityBar" data-bind="style: {width: Timbre * 100 + '%'}">&nbsp;</p>
+						</div>
 					</div>
 				</div>
 				<!-- /ko -->

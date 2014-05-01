@@ -1,12 +1,13 @@
 ﻿var Match = (function () {
-    function Match(title, selectCallback) {
+    function Match(match, selector) {
         this.IsSelected = ko.observable(false);
-        this.Title = title;
-        this._selectCallback = selectCallback;
+        this.Id = match.Id;
+        this.Title = match.Text;
+        this._selector = selector;
     }
     Match.prototype.Select = function () {
-        this._selectCallback(this);
-        this.IsSelected(true);
+        if (!this.IsSelected())
+            this._selector.SelectMatch(this);
 
         return false;
     };
