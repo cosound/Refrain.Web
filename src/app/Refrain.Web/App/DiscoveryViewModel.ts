@@ -4,4 +4,9 @@
 	{
 		twttr.ready(() => twttr.widgets.load());
 	}
+
+	public PortalReady(): void
+	{
+
+	}
 } 

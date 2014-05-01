@@ -4,4 +4,9 @@
 	{
 
 	}
+
+	public PortalReady():void
+	{
+		
+	}
 } 

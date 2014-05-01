@@ -3,6 +3,9 @@
     }
     AboutViewModel.prototype.Initialize = function () {
     };
+
+    AboutViewModel.prototype.PortalReady = function () {
+    };
     return AboutViewModel;
 })();
 var DiscoveryViewModel = (function () {
@@ -13,12 +16,18 @@ var DiscoveryViewModel = (function () {
             return twttr.widgets.load();
         });
     };
+
+    DiscoveryViewModel.prototype.PortalReady = function () {
+    };
     return DiscoveryViewModel;
 })();
 var HomeViewModel = (function () {
     function HomeViewModel() {
     }
     HomeViewModel.prototype.Initialize = function () {
+    };
+
+    HomeViewModel.prototype.PortalReady = function () {
     };
     return HomeViewModel;
 })();
@@ -35,11 +44,10 @@ var MainViewModel = (function () {
         this.HashChange();
     }
     MainViewModel.prototype.HashChange = function () {
-        var hash = window.location.hash.length == 0 ? "" : window.location.hash.substr(1);
-        var page = hash;
+        var _this = this;
+        var hash = window.location.hash.length == 0 ? [""] : window.location.hash.substr(1).split("/");
 
-        if (page.indexOf("/") != -1)
-            page = hash.substring(0, hash.indexOf("/"));
+        var page = hash.shift();
 
         if (page == this.CurrentPage())
             return;
@@ -68,8 +76,16 @@ var MainViewModel = (function () {
 
         this.CurrentPage(page);
 
-        if (this.CurrentPageViewModel() != null)
-            this.CurrentPageViewModel().Initialize();
+        if (this.CurrentPageViewModel() != null) {
+            this.CurrentPageViewModel().Initialize.apply(this.CurrentPageViewModel(), hash);
+
+            if (this._client.HasSession())
+                this.CurrentPageViewModel().PortalReady();
+            else
+                this._client.SessionAcquired().Add(function (h) {
+                    return _this.CurrentPageViewModel().PortalReady();
+                });
+        }
     };
     return MainViewModel;
 })();
@@ -96,14 +112,32 @@ var MatchViewModel = (function () {
         this.SelectedMatch = ko.observable();
         this.SelectedSong = ko.observable();
         this.SelectedSimilarity = ko.observable();
+        this._portalIsReady = false;
         this.Query.subscribe(function (v) {
             return _this.QueryChanged(v);
         });
     }
-    MatchViewModel.prototype.Initialize = function () {
+    MatchViewModel.prototype.Initialize = function (songId, campareSongId) {
         twttr.ready(function () {
             return twttr.widgets.load();
         });
+
+        this._campareSongId = campareSongId;
+
+        this.GetSong(songId);
+    };
+
+    MatchViewModel.prototype.PortalReady = function () {
+        this._portalIsReady = true;
+        if (this._portalReadyCallback != null)
+            this._portalReadyCallback();
+    };
+
+    MatchViewModel.prototype.CallWhenPortalReady = function (callback) {
+        if (this._portalIsReady)
+            callback();
+        else
+            this._portalReadyCallback = callback;
     };
 
     MatchViewModel.prototype.QueryChanged = function (newValue) {
@@ -116,10 +150,13 @@ var MatchViewModel = (function () {
     };
 
     MatchViewModel.prototype.Search = function (value) {
+        var _this = this;
         if (value == "")
             this.Matches.removeAll();
         else
-            RefrainPortal.Search.Get(value).WithCallback(this.SearchGetCompleted, this);
+            this.CallWhenPortalReady(function () {
+                return RefrainPortal.Search.Get(value).WithCallback(_this.SearchGetCompleted, _this);
+            });
     };
 
     MatchViewModel.prototype.SearchGetCompleted = function (response) {
@@ -138,13 +175,20 @@ var MatchViewModel = (function () {
         if (this.SelectedMatch() != null)
             this.SelectedMatch().IsSelected(false);
 
-        RefrainPortal.Song.Get(match.Id, 110001).WithCallback(this.SongGetCompleted, this);
+        this.GetSong(match.Id);
 
         match.IsSelected(true);
 
         window.location.hash = "Match/" + match.Id + "/";
 
         this.SelectedMatch(match);
+    };
+
+    MatchViewModel.prototype.GetSong = function (id) {
+        var _this = this;
+        this.CallWhenPortalReady(function () {
+            return RefrainPortal.Song.Get(id, 110001).WithCallback(_this.SongGetCompleted, _this);
+        });
     };
 
     MatchViewModel.prototype.SelectSimilarity = function (similarity) {
@@ -174,7 +218,26 @@ var MatchViewModel = (function () {
             return;
         }
 
-        this.SelectedSong(new Song(response.Body.Results[0], this));
+        var song = new Song(response.Body.Results[0], this);
+        this.SelectedSong(song);
+
+        if (this._campareSongId != null) {
+            for (var i = 0; i < song.MostSimilar.length; i++) {
+                if (song.MostSimilar[i].Id == this._campareSongId) {
+                    this.SelectSimilarity(song.MostSimilar[i]);
+                    this._campareSongId = null;
+                    return;
+                }
+            }
+
+            for (i = 0; i < song.LeastSimilar.length; i++) {
+                if (song.LeastSimilar[i].Id == this._campareSongId) {
+                    this.SelectSimilarity(song.LeastSimilar[i]);
+                    this._campareSongId = null;
+                    return;
+                }
+            }
+        }
 
         $('html, body').animate({ scrollTop: $("#SelectMatchHeadline").offset().top }, 1000);
     };
@@ -196,6 +259,9 @@ var MoodViewModel = (function () {
         twttr.ready(function () {
             return twttr.widgets.load();
         });
+    };
+
+    MoodViewModel.prototype.PortalReady = function () {
     };
 
     MoodViewModel.prototype.SetCountryStyle = function (feature) {

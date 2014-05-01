@@ -23,6 +23,11 @@ class MoodViewModel implements IPageViewModel
 		twttr.ready(() => twttr.widgets.load());
 	}
 
+	public PortalReady(): void
+	{
+
+	}
+
 	public SetCountryStyle(feature:any):any
 	{
 		var color = '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);

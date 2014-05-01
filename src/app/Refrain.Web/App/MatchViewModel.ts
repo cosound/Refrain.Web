@@ -7,15 +7,37 @@
 	public SelectedSimilarity: KnockoutObservable<SongSimilarity> = ko.observable<SongSimilarity>();
 
 	private _queryDelayHandle: number;
+	private _campareSongId: string;
+	private _portalReadyCallback: () => void;
+	private _portalIsReady:boolean = false;
 
 	constructor()
 	{
 		this.Query.subscribe(v => this.QueryChanged(v));
 	}
 
-	public Initialize(): void
+	public Initialize(songId:string, campareSongId:string): void
 	{
 		twttr.ready(() => twttr.widgets.load());
+
+		this._campareSongId = campareSongId;
+
+		this.GetSong(songId);
+	}
+
+	public PortalReady(): void
+	{
+		this._portalIsReady = true;
+		if (this._portalReadyCallback != null)
+			this._portalReadyCallback();
+	}
+
+	private CallWhenPortalReady(callback:() => void):void
+	{
+		if (this._portalIsReady)
+			callback();
+		else
+			this._portalReadyCallback = callback;
 	}
 
 	private QueryChanged(newValue:string):void
@@ -30,7 +52,7 @@
 		if (value == "")
 			this.Matches.removeAll();
 		else
-			RefrainPortal.Search.Get(value).WithCallback(this.SearchGetCompleted, this);
+			this.CallWhenPortalReady(() => RefrainPortal.Search.Get(value).WithCallback(this.SearchGetCompleted, this));
 	}
 
 	private SearchGetCompleted(response:CHAOS.Portal.Client.IPortalResponse<any>):void
@@ -52,13 +74,18 @@
 		if (this.SelectedMatch() != null)
 			this.SelectedMatch().IsSelected(false);
 
-		RefrainPortal.Song.Get(match.Id, 110001).WithCallback(this.SongGetCompleted, this);
+		this.GetSong(match.Id);
 
 		match.IsSelected(true);
 
 		window.location.hash = "Match/" + match.Id + "/";
 
 		this.SelectedMatch(match);
+	}
+
+	private GetSong(id:string)
+	{
+		this.CallWhenPortalReady(() => RefrainPortal.Song.Get(id, 110001).WithCallback(this.SongGetCompleted, this));
 	}
 
 	public SelectSimilarity(similarity:SongSimilarity):void
@@ -92,7 +119,31 @@
 			return;
 		}
 
-		this.SelectedSong(new Song(response.Body.Results[0], this));
+		var song = new Song(response.Body.Results[0], this);
+		this.SelectedSong(song);
+
+		if (this._campareSongId != null)
+		{
+			for (var i = 0; i < song.MostSimilar.length; i++)
+			{
+				if (song.MostSimilar[i].Id == this._campareSongId)
+				{
+					this.SelectSimilarity(song.MostSimilar[i]);
+					this._campareSongId = null;
+					return;
+				}
+			}
+
+			for (i = 0; i < song.LeastSimilar.length; i++)
+			{
+				if (song.LeastSimilar[i].Id == this._campareSongId)
+				{
+					this.SelectSimilarity(song.LeastSimilar[i]);
+					this._campareSongId = null;
+					return;
+				}
+			}
+		}
 
 		$('html, body').animate({ scrollTop: $("#SelectMatchHeadline").offset().top }, 1000);
 	}
