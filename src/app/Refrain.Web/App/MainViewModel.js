@@ -11,11 +11,10 @@
         this.HashChange();
     }
     MainViewModel.prototype.HashChange = function () {
-        var hash = window.location.hash.length == 0 ? "" : window.location.hash.substr(1);
-        var page = hash;
+        var _this = this;
+        var hash = window.location.hash.length == 0 ? [""] : window.location.hash.substr(1).split("/");
 
-        if (page.indexOf("/") != -1)
-            page = hash.substring(0, hash.indexOf("/"));
+        var page = hash.shift();
 
         if (page == this.CurrentPage())
             return;
@@ -44,8 +43,16 @@
 
         this.CurrentPage(page);
 
-        if (this.CurrentPageViewModel() != null)
-            this.CurrentPageViewModel().Initialize();
+        if (this.CurrentPageViewModel() != null) {
+            this.CurrentPageViewModel().Initialize.apply(this.CurrentPageViewModel(), hash);
+
+            if (this._client.HasSession())
+                this.CurrentPageViewModel().PortalReady();
+            else
+                this._client.SessionAcquired().Add(function (h) {
+                    return _this.CurrentPageViewModel().PortalReady();
+                });
+        }
     };
     return MainViewModel;
 })();

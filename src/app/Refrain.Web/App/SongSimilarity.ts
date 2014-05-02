@@ -1,6 +1,7 @@
 ﻿class SongSimilarity
 {
 	public Id: string;
+	public Title:string;
 	public Tempo:number;
 	public Rythm:number;
 	public Mood:number;
@@ -16,6 +17,7 @@
 	constructor(similarity:RefrainPortal.ISongSimilarity, selector:IMatchSelector)
 	{
 		this.Id = similarity.SongId;
+		this.Title = similarity.SongTitle;
 		this.Distance = similarity.Distance;
 
 		var similarities = similarity.RelativeImportance.split(" ");

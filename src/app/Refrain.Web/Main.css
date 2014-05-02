@@ -173,8 +173,7 @@ div.menublock table{
 	width: 900px;
 }
 
-.mainblock > h1 
-{
+.mainblock > h1 {
 	width: 900px;
 	margin: 0;
 	margin-top: 20px;
@@ -182,6 +181,9 @@ div.menublock table{
 	
 	text-align: center;
 	font-size: 26px;
+	
+	-ms-opacity: 0.75;
+	opacity: 0.75;
 
 	background-color: #141A51;
 }
@@ -245,6 +247,25 @@ div.menublock table{
 	background-color: #0099FF;
 }
 
+.CompareIcon {
+	display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+#SimilarityContainer {
+	display: inline-block;
+	vertical-align: top;
+}
+
+#ShareContainer 
+{
+	margin-left: 20px;
+
+	display: inline-block;
+	vertical-align: top;
+}
+
 #SimilarityGrapghLegend 
 {
 	display: inline-block;
@@ -261,8 +282,11 @@ div.menublock table{
 .SimilarityBar 
 {
 	padding: 0;
-	margin: 5px 0;
+	margin: 10px 0;
 	background-color: #cc0099;
+
+	height: 15px;
+
 	display: block;
 }
 

@@ -147,7 +147,7 @@
 					<div data-bind="foreach: SelectedSong().MostSimilar">
 						<div class="SongMatch" data-bind="click: Select, css: {Selected: IsSelected}">
 							<a href="#">
-								<p data-bind="text: Id"></p>
+								<p data-bind="text: Title"></p>
 							</a>
 						</div>
 					</div>
@@ -155,7 +155,7 @@
 					<div data-bind="foreach: SelectedSong().LeastSimilar">
 						<div class="SongMatch" data-bind="click: Select, css: {Selected: IsSelected}">
 							<a href="#">
-								<p data-bind="text: Id"></p>
+								<p data-bind="text: Title"></p>
 							</a>
 						</div>
 					</div>
@@ -164,11 +164,10 @@
 				<!-- ko if: SelectedSimilarity -->
 				<h1 id="ExploreHeadline">Explore and share match</h1>
 				<div>
-					<p class="SongTitle" data-bind="text: SelectedSong().Id"></p>
-					<p class="SongTitle" data-bind="text: SelectedSimilarity().Id"></p>
-					<a id="ShareMatchOnTwitter" href="https://twitter.com/share" class="twitter-hashtag-button" data-lang="en" data-related="refraindk" data-count="none" data-hashtags="refraindk,match">Tweet #refraindk</a>
-					<div id="ShareMatchOnFacebook" class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-type="button"></div>
-					<div>
+					<p class="SongTitle" data-bind="text: SelectedSong().Title"></p>
+					<img class="CompareIcon" src="Images/linkblue_40.png" />
+					<p class="SongTitle" data-bind="text: SelectedSimilarity().Title"></p>
+					<div id="SimilarityContainer">
 						<p>Importance of music aspects in match</p>
 						<div id="SimilarityGrapghLegend">
 							<p>Tempo</p>
@@ -186,6 +185,11 @@
 							<p class="SimilarityBar" data-bind="style: {width: Energy * 100 + '%'}">&nbsp;</p>
 							<p class="SimilarityBar" data-bind="style: {width: Timbre * 100 + '%'}">&nbsp;</p>
 						</div>
+					</div>
+					<div id="ShareContainer">
+						<p>Share your discovery</p>
+						<a id="ShareMatchOnTwitter" href="https://twitter.com/share" class="twitter-hashtag-button" data-lang="en" data-related="refraindk" data-count="none" data-hashtags="refraindk,match">Tweet #refraindk</a>
+						<div id="ShareMatchOnFacebook" class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-type="button"></div>
 					</div>
 				</div>
 				<!-- /ko -->

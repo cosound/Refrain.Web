@@ -3,5 +3,8 @@
     }
     AboutViewModel.prototype.Initialize = function () {
     };
+
+    AboutViewModel.prototype.PortalReady = function () {
+    };
     return AboutViewModel;
 })();

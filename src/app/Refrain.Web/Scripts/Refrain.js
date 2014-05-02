@@ -206,7 +206,7 @@ var MatchViewModel = (function () {
 
         $("#ShareMatchOnTwitter").data("url", window.location.toString());
         $("#ShareMatchOnFacebook").data("href", window.location.toString());
-        twttr.widgets.load($("#ShareMatchOnTwitter")[0]);
+        twttr.ready(twttr.widgets.load());
         FB.XFBML.parse($("#ShareMatchOnFacebook")[0]);
     };
 
@@ -312,11 +312,12 @@ var Song = (function () {
         this.MostSimilar = [];
         this.LeastSimilar = [];
         this.Id = song.Id;
+        this.Title = song.Title;
 
         for (var i = 0; i < 3 && i < song.Similarity.Songs.length; i++)
             this.MostSimilar.push(new SongSimilarity(song.Similarity.Songs[i], selector));
 
-        for (var i = song.Similarity.Songs.length - 1; i >= 0 && i >= song.Similarity.Songs.length - 3; i--)
+        for (i = song.Similarity.Songs.length - 1; i >= 0 && i >= song.Similarity.Songs.length - 3; i--)
             this.LeastSimilar.push(new SongSimilarity(song.Similarity.Songs[i], selector));
     }
     return Song;
@@ -325,6 +326,7 @@ var SongSimilarity = (function () {
     function SongSimilarity(similarity, selector) {
         this.IsSelected = ko.observable(false);
         this.Id = similarity.SongId;
+        this.Title = similarity.SongTitle;
         this.Distance = similarity.Distance;
 
         var similarities = similarity.RelativeImportance.split(" ");

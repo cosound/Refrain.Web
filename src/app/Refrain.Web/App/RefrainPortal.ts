@@ -31,6 +31,7 @@
 	export interface ISong
 	{
 		Id: string;
+		Title:string;
 		Similarity: ISimilarity;
 	}
 
@@ -43,6 +44,7 @@
 	export interface ISongSimilarity
 	{
 		SongId: string;
+		SongTitle:string;
 		Rank: number;
 		Distance: number;
 		RelativeImportance: string;

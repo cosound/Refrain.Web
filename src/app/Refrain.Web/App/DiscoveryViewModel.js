@@ -6,5 +6,8 @@
             return twttr.widgets.load();
         });
     };
+
+    DiscoveryViewModel.prototype.PortalReady = function () {
+    };
     return DiscoveryViewModel;
 })();

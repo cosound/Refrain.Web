@@ -3,5 +3,8 @@
     }
     HomeViewModel.prototype.Initialize = function () {
     };
+
+    HomeViewModel.prototype.PortalReady = function () {
+    };
     return HomeViewModel;
 })();
