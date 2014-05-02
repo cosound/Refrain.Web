@@ -3,6 +3,7 @@
         this.IsSelected = ko.observable(false);
         this.Id = similarity.SongId;
         this.Title = similarity.SongTitle;
+        this.Artist = similarity.ArtistName ? similarity.ArtistName : "Heps";
         this.Distance = similarity.Distance;
 
         var similarities = similarity.RelativeImportance.split(" ");

@@ -9,6 +9,7 @@
 		<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyDYMEgXXaemmCDhs3D_z6s_KPb5nMcB5MA&sensor=false"></script>
 		<script type="text/javascript" src="//connect.facebook.net/en_US/all.js"></script>
 		<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+		<script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
 		<script type="text/javascript" src="Scripts/Refrain.js"></script>
 		<script type="text/javascript" src="Scripts/PortalClient.min.js"></script>
 		<script type="text/javascript">
@@ -175,6 +176,10 @@
 					<p class="SongTitle"><span class="Title" data-bind="text: SelectedSong().Title"></span>, <span class="Artist" data-bind="text: SelectedSong().Artist"></span></p>
 					<img class="CompareIcon" src="Images/linkblue_40.png" />
 					<p class="SongTitle"><span class="Title" data-bind="text: SelectedSimilarity().Title"></span>, <span class="Artist" data-bind="text: SelectedSimilarity().Artist"></span></p>
+					<div>
+						<div id="SongPlayer"></div>
+						<div id="CompareSongPlayer"></div>	
+					</div>
 					<div id="SimilarityContainer">
 						<p>Importance of music aspects in match</p>
 						<div id="SimilarityGrapghLegend">

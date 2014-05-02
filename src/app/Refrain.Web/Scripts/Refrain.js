@@ -208,6 +208,20 @@ var MatchViewModel = (function () {
 
         $('html, body').animate({ scrollTop: $("#ExploreHeadline").offset().top }, 1000);
 
+        if (this._songPlayer == null)
+            this._songPlayer = new YT.Player('SongPlayer', { height: 300, width: 400, videoId: this.SelectedSong().YoutubeId });
+        else if (this._songPlayer.getVideoUrl().match(/[?&]v=([^&]+)/)[1] != this.SelectedSong().YoutubeId) {
+            this._songPlayer.loadVideoById(this.SelectedSong().YoutubeId);
+            this._songPlayer.pauseVideo();
+        }
+
+        if (this._compareSongPlayer == null)
+            this._compareSongPlayer = new YT.Player('CompareSongPlayer', { height: 300, width: 400, videoId: this.SelectedSimilarity().YoutubeId });
+        else {
+            this._compareSongPlayer.loadVideoById(this.SelectedSimilarity().YoutubeId);
+            this._compareSongPlayer.pauseVideo();
+        }
+
         $("#ShareMatchOnTwitter").data("url", window.location.toString());
         $("#ShareMatchOnFacebook").data("href", window.location.toString());
         twttr.ready(twttr.widgets.load());
@@ -318,8 +332,11 @@ var Song = (function () {
         this.Id = song.Id;
         this.Title = song.Title;
         this.Artist = song.ArtistName ? song.ArtistName : "Heps";
-        this.YoutubeUri = song.YoutubeUri;
-        this.SpotifyId = song.SpotifyId;
+
+        if (song.YoutubeUri)
+            this.YoutubeId = song.YoutubeUri.substr(song.YoutubeUri.indexOf("=") + 1);
+        if (song.YoutubeUri)
+            this.SpotifyId = song.SpotifyId;
 
         for (var i = 0; i < 3 && i < song.Similarity.Songs.length; i++)
             this.MostSimilar.push(new SongSimilarity(song.Similarity.Songs[i], selector));
@@ -335,10 +352,17 @@ var SongSimilarity = (function () {
         this.Id = similarity.SongId;
         this.Title = similarity.SongTitle;
         this.Artist = similarity.ArtistName ? similarity.ArtistName : "Heps";
+
+        console.log(similarity.YoutubeUri);
+
+        if (similarity.YoutubeUri)
+            this.YoutubeId = similarity.YoutubeUri.substr(similarity.YoutubeUri.indexOf("=") + 1);
+        if (this.SpotifyId)
+            this.SpotifyId = similarity.SpotifyId;
+
         this.Distance = similarity.Distance;
 
         var similarities = similarity.RelativeImportance.split(" ");
-
         this.Tempo = parseFloat(similarities[0]);
         this.Rythm = parseFloat(similarities[1]);
         this.Mood = parseFloat(similarities[2]);

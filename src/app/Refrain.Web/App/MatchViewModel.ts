@@ -9,7 +9,10 @@
 	private _queryDelayHandle: number;
 	private _campareSongId: string;
 	private _portalReadyCallback: () => void;
-	private _portalIsReady:boolean = false;
+	private _portalIsReady: boolean = false;
+
+	private _songPlayer:YT.Player;
+	private _compareSongPlayer:YT.Player;
 
 	constructor()
 	{
@@ -101,6 +104,22 @@
 		window.location.hash = "Match/" + this.SelectedSong().Id + "/" + this.SelectedSimilarity().Id;
 
 		$('html, body').animate({ scrollTop: $("#ExploreHeadline").offset().top }, 1000);
+
+		if (this._songPlayer == null)
+			this._songPlayer = new YT.Player('SongPlayer', { height: 300, width: 400, videoId: this.SelectedSong().YoutubeId });
+		else if (this._songPlayer.getVideoUrl().match(/[?&]v=([^&]+)/)[1] != this.SelectedSong().YoutubeId)
+		{
+			this._songPlayer.loadVideoById(this.SelectedSong().YoutubeId);
+			this._songPlayer.pauseVideo();
+		}
+
+		if (this._compareSongPlayer == null)
+			this._compareSongPlayer = new YT.Player('CompareSongPlayer', { height: 300, width: 400, videoId: this.SelectedSimilarity().YoutubeId });
+		else
+		{
+			this._compareSongPlayer.loadVideoById(this.SelectedSimilarity().YoutubeId);
+			this._compareSongPlayer.pauseVideo();
+		}
 
 		$("#ShareMatchOnTwitter").data("url", window.location.toString());
 		$("#ShareMatchOnFacebook").data("href", window.location.toString());

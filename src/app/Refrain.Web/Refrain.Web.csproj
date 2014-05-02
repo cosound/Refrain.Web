@@ -63,6 +63,7 @@
     <TypeScriptCompile Include="TypescriptDefinitions\jquery.d.ts" />
     <TypeScriptCompile Include="TypescriptDefinitions\knockout.d.ts" />
     <TypeScriptCompile Include="TypescriptDefinitions\PortalClient.d.ts" />
+    <TypeScriptCompile Include="TypescriptDefinitions\youtube.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

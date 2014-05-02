@@ -82,7 +82,7 @@
     MatchViewModel.prototype.GetSong = function (id) {
         var _this = this;
         this.CallWhenPortalReady(function () {
-            return RefrainPortal.Song.Get(id, 110001).WithCallback(_this.SongGetCompleted, _this);
+            return RefrainPortal.Song.Get(id, 111111).WithCallback(_this.SongGetCompleted, _this);
         });
     };
 

@@ -16,6 +16,8 @@
 
         var page = hash.shift();
 
+        ga('send', 'pageview', { 'page': "/" + window.location.hash });
+
         if (page == this.CurrentPage())
             return;
 
