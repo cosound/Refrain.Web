@@ -108,18 +108,12 @@
 		if (this._songPlayer == null)
 			this._songPlayer = new YT.Player('SongPlayer', { height: 300, width: 400, videoId: this.SelectedSong().YoutubeId });
 		else if (this._songPlayer.getVideoUrl().match(/[?&]v=([^&]+)/)[1] != this.SelectedSong().YoutubeId)
-		{
-			this._songPlayer.loadVideoById(this.SelectedSong().YoutubeId);
-			this._songPlayer.pauseVideo();
-		}
+			this._songPlayer.cueVideoById(this.SelectedSong().YoutubeId);
 
 		if (this._compareSongPlayer == null)
 			this._compareSongPlayer = new YT.Player('CompareSongPlayer', { height: 300, width: 400, videoId: this.SelectedSimilarity().YoutubeId });
 		else
-		{
-			this._compareSongPlayer.loadVideoById(this.SelectedSimilarity().YoutubeId);
-			this._compareSongPlayer.pauseVideo();
-		}
+			this._compareSongPlayer.cueVideoById(this.SelectedSimilarity().YoutubeId);
 
 		$("#ShareMatchOnTwitter").data("url", window.location.toString());
 		$("#ShareMatchOnFacebook").data("href", window.location.toString());

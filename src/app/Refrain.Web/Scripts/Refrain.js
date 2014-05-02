@@ -210,17 +210,13 @@ var MatchViewModel = (function () {
 
         if (this._songPlayer == null)
             this._songPlayer = new YT.Player('SongPlayer', { height: 300, width: 400, videoId: this.SelectedSong().YoutubeId });
-        else if (this._songPlayer.getVideoUrl().match(/[?&]v=([^&]+)/)[1] != this.SelectedSong().YoutubeId) {
-            this._songPlayer.loadVideoById(this.SelectedSong().YoutubeId);
-            this._songPlayer.pauseVideo();
-        }
+        else if (this._songPlayer.getVideoUrl().match(/[?&]v=([^&]+)/)[1] != this.SelectedSong().YoutubeId)
+            this._songPlayer.cueVideoById(this.SelectedSong().YoutubeId);
 
         if (this._compareSongPlayer == null)
             this._compareSongPlayer = new YT.Player('CompareSongPlayer', { height: 300, width: 400, videoId: this.SelectedSimilarity().YoutubeId });
-        else {
-            this._compareSongPlayer.loadVideoById(this.SelectedSimilarity().YoutubeId);
-            this._compareSongPlayer.pauseVideo();
-        }
+        else
+            this._compareSongPlayer.cueVideoById(this.SelectedSimilarity().YoutubeId);
 
         $("#ShareMatchOnTwitter").data("url", window.location.toString());
         $("#ShareMatchOnFacebook").data("href", window.location.toString());
@@ -334,15 +330,25 @@ var Song = (function () {
         this.Artist = song.ArtistName ? song.ArtistName : "Heps";
 
         if (song.YoutubeUri)
-            this.YoutubeId = song.YoutubeUri.substr(song.YoutubeUri.indexOf("=") + 1);
+            this.YoutubeId = song.YoutubeUri.match(/[?&]v=([^&]+)/)[1];
         if (song.YoutubeUri)
             this.SpotifyId = song.SpotifyId;
 
-        for (var i = 0; i < 3 && i < song.Similarity.Songs.length; i++)
-            this.MostSimilar.push(new SongSimilarity(song.Similarity.Songs[i], selector));
+        var i = 0;
+        while (this.MostSimilar.length < 5 && i != song.Similarity.Songs.length) {
+            if (song.Similarity.Songs[i].SongId != this.Id)
+                this.MostSimilar.push(new SongSimilarity(song.Similarity.Songs[i], selector));
 
-        for (i = song.Similarity.Songs.length - 1; i >= 0 && i >= song.Similarity.Songs.length - 3; i--)
-            this.LeastSimilar.push(new SongSimilarity(song.Similarity.Songs[i], selector));
+            i++;
+        }
+
+        i = song.Similarity.Songs.length - 1;
+        while (this.LeastSimilar.length < 5 && i >= 0) {
+            if (song.Similarity.Songs[i].SongId != this.Id)
+                this.LeastSimilar.push(new SongSimilarity(song.Similarity.Songs[i], selector));
+
+            i--;
+        }
     }
     return Song;
 })();
@@ -353,10 +359,8 @@ var SongSimilarity = (function () {
         this.Title = similarity.SongTitle;
         this.Artist = similarity.ArtistName ? similarity.ArtistName : "Heps";
 
-        console.log(similarity.YoutubeUri);
-
         if (similarity.YoutubeUri)
-            this.YoutubeId = similarity.YoutubeUri.substr(similarity.YoutubeUri.indexOf("=") + 1);
+            this.YoutubeId = similarity.YoutubeUri.match(/[?&]v=([^&]+)/)[1];
         if (this.SpotifyId)
             this.SpotifyId = similarity.SpotifyId;
 

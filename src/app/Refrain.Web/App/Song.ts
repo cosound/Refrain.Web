@@ -15,14 +15,26 @@
 		this.Artist = song.ArtistName ? song.ArtistName : "Heps";
 
 		if (song.YoutubeUri)
-			this.YoutubeId = song.YoutubeUri.substr(song.YoutubeUri.indexOf("=") + 1);
+			this.YoutubeId = song.YoutubeUri.match(/[?&]v=([^&]+)/)[1];
 		if (song.YoutubeUri)
 			this.SpotifyId = song.SpotifyId;
 
-		for (var i = 0; i < 3 && i < song.Similarity.Songs.length; i++)
-			this.MostSimilar.push(new SongSimilarity(song.Similarity.Songs[i], selector));
+		var i = 0;
+		while (this.MostSimilar.length < 5 && i != song.Similarity.Songs.length)
+		{
+			if (song.Similarity.Songs[i].SongId != this.Id)
+				this.MostSimilar.push(new SongSimilarity(song.Similarity.Songs[i], selector));
 
-		for (i = song.Similarity.Songs.length - 1; i >= 0 && i >= song.Similarity.Songs.length - 3; i--)
-			this.LeastSimilar.push(new SongSimilarity(song.Similarity.Songs[i], selector));
+			i++;
+		}
+
+		i = song.Similarity.Songs.length - 1
+		while (this.LeastSimilar.length < 5 && i >= 0)
+		{
+			if (song.Similarity.Songs[i].SongId != this.Id)
+				this.LeastSimilar.push(new SongSimilarity(song.Similarity.Songs[i], selector));
+
+			i--;
+		}
 	}
 } 

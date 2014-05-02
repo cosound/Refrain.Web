@@ -26,10 +26,8 @@
 		this.Title = similarity.SongTitle;
 		this.Artist = similarity.ArtistName ? similarity.ArtistName : "Heps";
 
-		console.log(similarity.YoutubeUri);
-
 		if (similarity.YoutubeUri)
-			this.YoutubeId = similarity.YoutubeUri.substr(similarity.YoutubeUri.indexOf("=") + 1);
+			this.YoutubeId = similarity.YoutubeUri.match(/[?&]v=([^&]+)/)[1];
 		if (this.SpotifyId)
 			this.SpotifyId = similarity.SpotifyId;
 
