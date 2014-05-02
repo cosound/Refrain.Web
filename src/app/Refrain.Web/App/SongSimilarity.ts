@@ -24,7 +24,7 @@
 	{
 		this.Id = similarity.SongId;
 		this.Title = similarity.SongTitle;
-		this.Artist = similarity.ArtistName ? similarity.ArtistName : "Heps";
+		this.Artist = similarity.ArtistName ? similarity.ArtistName : "Peter";
 
 		if (similarity.YoutubeUri)
 			this.YoutubeId = similarity.YoutubeUri.match(/[?&]v=([^&]+)/)[1];

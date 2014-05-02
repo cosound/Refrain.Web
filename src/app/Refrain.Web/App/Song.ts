@@ -12,29 +12,25 @@
 	{
 		this.Id = song.Id;
 		this.Title = song.Title;
-		this.Artist = song.ArtistName ? song.ArtistName : "Heps";
+		this.Artist = song.ArtistName ? song.ArtistName : "Peter";
 
 		if (song.YoutubeUri)
 			this.YoutubeId = song.YoutubeUri.match(/[?&]v=([^&]+)/)[1];
 		if (song.YoutubeUri)
 			this.SpotifyId = song.SpotifyId;
 
-		var i = 0;
-		while (this.MostSimilar.length < 5 && i != song.Similarity.Songs.length)
+		for (var i = 0; this.MostSimilar.length < 5 && i != song.Similarity.Songs.length; i++)
 		{
-			if (song.Similarity.Songs[i].SongId != this.Id)
-				this.MostSimilar.push(new SongSimilarity(song.Similarity.Songs[i], selector));
+			if (song.Similarity.Songs[i].SongId == this.Id) continue;
 
-			i++;
+			this.MostSimilar.push(new SongSimilarity(song.Similarity.Songs[i], selector));
 		}
 
-		i = song.Similarity.Songs.length - 1
-		while (this.LeastSimilar.length < 5 && i >= 0)
+		for (i = song.Similarity.Songs.length - 1; this.LeastSimilar.length < 5 && i >= 0; i--)
 		{
-			if (song.Similarity.Songs[i].SongId != this.Id)
-				this.LeastSimilar.push(new SongSimilarity(song.Similarity.Songs[i], selector));
+			if (song.Similarity.Songs[i].SongId == this.Id) continue;
 
-			i--;
+			this.LeastSimilar.push(new SongSimilarity(song.Similarity.Songs[i], selector));
 		}
 	}
 } 
