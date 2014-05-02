@@ -2,6 +2,7 @@
     function SongSimilarity(similarity, selector) {
         this.IsSelected = ko.observable(false);
         this.Id = similarity.SongId;
+        this.Title = similarity.SongTitle;
         this.Distance = similarity.Distance;
 
         var similarities = similarity.RelativeImportance.split(" ");

@@ -86,7 +86,7 @@
 
 	private GetSong(id:string)
 	{
-		this.CallWhenPortalReady(() => RefrainPortal.Song.Get(id, 110001).WithCallback(this.SongGetCompleted, this));
+		this.CallWhenPortalReady(() => RefrainPortal.Song.Get(id, 111111).WithCallback(this.SongGetCompleted, this));
 	}
 
 	public SelectSimilarity(similarity:SongSimilarity):void

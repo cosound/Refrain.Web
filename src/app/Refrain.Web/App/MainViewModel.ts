@@ -19,6 +19,8 @@
 
 		var page = hash.shift();
 
+		ga('send', 'pageview', { 'page': "/" + window.location.hash });
+
 		if (page == this.CurrentPage()) return;
 
 		this.CurrentPage(null);
@@ -63,3 +65,5 @@ interface IPageViewModel
 	Initialize(...parameers: string[]): void;
 	PortalReady():void;
 }
+
+declare var ga:(...parameter:any[])=>void;

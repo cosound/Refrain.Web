@@ -100,7 +100,7 @@
 
         $("#ShareMatchOnTwitter").data("url", window.location.toString());
         $("#ShareMatchOnFacebook").data("href", window.location.toString());
-        twttr.widgets.load($("#ShareMatchOnTwitter")[0]);
+        twttr.ready(twttr.widgets.load());
         FB.XFBML.parse($("#ShareMatchOnFacebook")[0]);
     };
 

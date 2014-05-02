@@ -26,12 +26,17 @@
 	{
 		Id:string;
 		Text:string;
+		ArtistName: string;
+		CountryName: string;
 	}
 
 	export interface ISong
 	{
 		Id: string;
-		Title:string;
+		Title: string;
+		ArtistName: string;
+		YoutubeUri:string;
+		SpotifyId:string;
 		Similarity: ISimilarity;
 	}
 
@@ -44,7 +49,10 @@
 	export interface ISongSimilarity
 	{
 		SongId: string;
-		SongTitle:string;
+		SongTitle: string;
+		ArtistName: string;
+		YoutubeUri: string;
+		SpotifyId: string;
 		Rank: number;
 		Distance: number;
 		RelativeImportance: string;

@@ -1,7 +1,8 @@
 ﻿class SongSimilarity
 {
 	public Id: string;
-	public Title:string;
+	public Title: string;
+	public Artist: string;
 	public Tempo:number;
 	public Rythm:number;
 	public Mood:number;
@@ -18,6 +19,7 @@
 	{
 		this.Id = similarity.SongId;
 		this.Title = similarity.SongTitle;
+		this.Artist = similarity.ArtistName ? similarity.ArtistName : "Heps";
 		this.Distance = similarity.Distance;
 
 		var similarities = similarity.RelativeImportance.split(" ");

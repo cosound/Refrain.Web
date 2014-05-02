@@ -49,6 +49,8 @@ var MainViewModel = (function () {
 
         var page = hash.shift();
 
+        ga('send', 'pageview', { 'page': "/" + window.location.hash });
+
         if (page == this.CurrentPage())
             return;
 
@@ -94,6 +96,8 @@ var Match = (function () {
         this.IsSelected = ko.observable(false);
         this.Id = match.Id;
         this.Title = match.Text;
+        this.Artist = match.ArtistName;
+        this.Country = match.CountryName;
         this._selector = selector;
     }
     Match.prototype.Select = function () {
@@ -188,7 +192,7 @@ var MatchViewModel = (function () {
     MatchViewModel.prototype.GetSong = function (id) {
         var _this = this;
         this.CallWhenPortalReady(function () {
-            return RefrainPortal.Song.Get(id, 110001).WithCallback(_this.SongGetCompleted, _this);
+            return RefrainPortal.Song.Get(id, 111111).WithCallback(_this.SongGetCompleted, _this);
         });
     };
 
@@ -313,6 +317,9 @@ var Song = (function () {
         this.LeastSimilar = [];
         this.Id = song.Id;
         this.Title = song.Title;
+        this.Artist = song.ArtistName ? song.ArtistName : "Heps";
+        this.YoutubeUri = song.YoutubeUri;
+        this.SpotifyId = song.SpotifyId;
 
         for (var i = 0; i < 3 && i < song.Similarity.Songs.length; i++)
             this.MostSimilar.push(new SongSimilarity(song.Similarity.Songs[i], selector));
@@ -327,6 +334,7 @@ var SongSimilarity = (function () {
         this.IsSelected = ko.observable(false);
         this.Id = similarity.SongId;
         this.Title = similarity.SongTitle;
+        this.Artist = similarity.ArtistName ? similarity.ArtistName : "Heps";
         this.Distance = similarity.Distance;
 
         var similarities = similarity.RelativeImportance.split(" ");

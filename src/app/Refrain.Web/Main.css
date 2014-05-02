@@ -239,12 +239,22 @@ div.menublock table{
 	padding: 0;
 }
 
+.SongMatch .Title 
+{
+	font-style: italic;
+}
+
 .SongTitle 
 {
 	margin: 5px;
 	padding: 5px;
 
 	background-color: #0099FF;
+}
+
+.SongTitle .Title 
+{
+	font-style: italic;
 }
 
 .CompareIcon {
