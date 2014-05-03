@@ -139,32 +139,32 @@
 				<!-- ko if: $parent.CurrentPage() == "Match" -->
 				<h1>Select Song</h1>
 				<div>
-					<p>Search for a eurovision song by title or artist</p>
+					<h2>Search for a eurovision song by title, artist, country and/or year</h2>
 					<input id="SongQuery" type="text" data-bind="value: Query, valueUpdate: 'afterkeydown'" />
 					<div data-bind="foreach: Matches">
 						<div class="SongMatch" data-bind="click: Select, css: {Selected: IsSelected}">
 							<a href="#">
-								<p><span class="Title" data-bind="text: Title"></span>, <span class="Artist" data-bind="text: Artist"></span>, <span class="Country" data-bind="text: Country"></span></p>
+								<p><span class="Title" data-bind="text: Title"></span>, <span class="Artist" data-bind="text: Artist"></span>, <span class="Country" data-bind="text: CountryName"></span></p>
 							</a>
 						</div>
 					</div>
 				</div>
 				<!-- ko if: SelectedSong -->
 				<h1 id="SelectMatchHeadline">Select Match</h1>
-				<div>
-					<p>Is most similar to</p>
-					<div data-bind="foreach: SelectedSong().MostSimilar">
+				<div data-bind="with: SelectedSong">
+					<h2><span data-bind="text: Title"></span> is most similar to</h2>
+					<div data-bind="foreach: MostSimilar">
 						<div class="SongMatch" data-bind="click: Select, css: {Selected: IsSelected}">
 							<a href="#">
-								<p><span class="Title" data-bind="text: Title"></span>, <span class="Artist" data-bind="text: Artist"></span></p>
+								<p><span class="Title" data-bind="text: Title"></span>, <span class="Artist" data-bind="text: Artist"></span>, <span class="Country" data-bind="text: CountryName"></span></p>
 							</a>
 						</div>
 					</div>
-					<p>And least similar to</p>
-					<div data-bind="foreach: SelectedSong().LeastSimilar">
+					<h2><span data-bind="text: Title"></span> is least similar to</h2>
+					<div data-bind="foreach: LeastSimilar">
 						<div class="SongMatch" data-bind="click: Select, css: {Selected: IsSelected}">
 							<a href="#">
-								<p><span class="Title" data-bind="text: Title"></span>, <span class="Artist" data-bind="text: Artist"></span></p>
+								<p><span class="Title" data-bind="text: Title"></span>, <span class="Artist" data-bind="text: Artist"></span>, <span class="Country" data-bind="text: CountryName"></span></p>
 							</a>
 						</div>
 					</div>
@@ -173,9 +173,9 @@
 				<!-- ko if: SelectedSimilarity -->
 				<h1 id="ExploreHeadline">Explore and share match</h1>
 				<div>
-					<p class="SongTitle"><span class="Title" data-bind="text: SelectedSong().Title"></span>, <span class="Artist" data-bind="text: SelectedSong().Artist"></span></p>
+					<p class="SongTitle"><span class="Title" data-bind="text: SelectedSong().Title"></span>, <span class="Artist" data-bind="text: SelectedSong().Artist"></span>, <span class="Country" data-bind="text: SelectedSong().CountryName"></span></p>
 					<img class="CompareIcon" src="Images/linkblue_40.png" />
-					<p class="SongTitle"><span class="Title" data-bind="text: SelectedSimilarity().Title"></span>, <span class="Artist" data-bind="text: SelectedSimilarity().Artist"></span></p>
+					<p class="SongTitle"><span class="Title" data-bind="text: SelectedSimilarity().Title"></span>, <span class="Artist" data-bind="text: SelectedSimilarity().Artist"></span>, <span class="Country" data-bind="text: SelectedSimilarity().CountryName"></span></p>
 					<div>
 						<!-- ko if: SelectedSong().YoutubeId -->
 						<div id="SongPlayer"></div>

@@ -3,7 +3,7 @@
 	public Id:string;
 	public Title: string;
 	public Artist: string;
-	public Country:string;
+	public CountryName:string;
 	
 	public IsSelected: KnockoutObservable<boolean> = ko.observable(false);
 
@@ -14,7 +14,7 @@
 		this.Id = match.Id;
 		this.Title = match.Text;
 		this.Artist = match.ArtistName;
-		this.Country = match.CountryName;
+		this.CountryName = match.CountryName;
 		this._selector = selector;
 	}
 

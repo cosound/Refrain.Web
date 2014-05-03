@@ -97,7 +97,7 @@ var Match = (function () {
         this.Id = match.Id;
         this.Title = match.Text;
         this.Artist = match.ArtistName;
-        this.Country = match.CountryName;
+        this.CountryName = match.CountryName;
         this._selector = selector;
     }
     Match.prototype.Select = function () {
@@ -345,7 +345,8 @@ var Song = (function () {
         this.LeastSimilar = [];
         this.Id = song.Id;
         this.Title = song.Title;
-        this.Artist = song.ArtistName ? song.ArtistName : "Peter";
+        this.Artist = song.ArtistName;
+        this.CountryName = song.CountryName;
 
         if (song.YoutubeUri)
             this.YoutubeId = song.YoutubeUri.match(/[?&]v=([^&]+)/)[1];
@@ -373,7 +374,8 @@ var SongSimilarity = (function () {
         this.IsSelected = ko.observable(false);
         this.Id = similarity.SongId;
         this.Title = similarity.SongTitle;
-        this.Artist = similarity.ArtistName ? similarity.ArtistName : "Peter";
+        this.Artist = similarity.ArtistName;
+        this.CountryName = similarity.CountryName;
 
         if (similarity.YoutubeUri)
             this.YoutubeId = similarity.YoutubeUri.match(/[?&]v=([^&]+)/)[1];

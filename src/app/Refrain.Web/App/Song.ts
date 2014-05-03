@@ -3,6 +3,7 @@
 	public Id:string;
 	public Title: string;
 	public Artist: string;
+	public CountryName: string;
 	public YoutubeId:string;
 	public SpotifyId:string;
 	public MostSimilar:SongSimilarity[] = [];
@@ -12,7 +13,8 @@
 	{
 		this.Id = song.Id;
 		this.Title = song.Title;
-		this.Artist = song.ArtistName ? song.ArtistName : "Peter";
+		this.Artist = song.ArtistName;
+		this.CountryName = song.CountryName;
 
 		if (song.YoutubeUri)
 			this.YoutubeId = song.YoutubeUri.match(/[?&]v=([^&]+)/)[1];

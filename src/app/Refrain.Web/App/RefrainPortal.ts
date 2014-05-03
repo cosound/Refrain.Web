@@ -35,6 +35,7 @@
 		Id: string;
 		Title: string;
 		ArtistName: string;
+		CountryName: string;
 		YoutubeUri:string;
 		SpotifyId:string;
 		Similarity: ISimilarity;
@@ -51,6 +52,7 @@
 		SongId: string;
 		SongTitle: string;
 		ArtistName: string;
+		CountryName: string;
 		YoutubeUri: string;
 		SpotifyId: string;
 		Rank: number;

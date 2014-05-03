@@ -174,7 +174,7 @@ div.menublock table{
 }
 
 .mainblock > h1 {
-	width: 900px;
+	width: 880px;
 	margin: 0;
 	margin-top: 20px;
 	padding: 10px;
@@ -190,11 +190,19 @@ div.menublock table{
 
 .mainblock > div
 {
-	width: 900px;
+	width: 880px;
 	margin: 0;
 	padding: 10px;
 
 	background-color: #0066FF;
+}
+
+.mainblock > div > h2
+{
+	margin: 10px 0;
+	padding: 0;
+
+	font-size: 22px;
 }
 
 /* Match */
