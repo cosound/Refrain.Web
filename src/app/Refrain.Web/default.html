@@ -211,8 +211,8 @@
 					</div>
 					<div id="ShareContainer">
 						<p>Share your discovery</p>
-						<a id="ShareMatchOnTwitter" href="https://twitter.com/share" class="twitter-hashtag-button" data-lang="en" data-related="refraindk" data-count="none" data-hashtags="refraindk,match">Tweet #refraindk</a>
-						<div id="ShareMatchOnFacebook" class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-type="button"></div>
+						<a id="ShareMatchOnTwitter" href="https://twitter.com/share" class="twitter-hashtag-button" data-lang="en" data-related="refraindk" data-count="none" data-hashtags="refraindk,match" data-bind="attr: {'data-url': ShareUrl, 'data-text': ShareMessage}">Tweet #refraindk</a>
+						<div id="ShareMatchOnFacebook" class="fb-share-button" data-type="button" data-bind="attr: {'data-href': ShareUrl}">Share on Facebook</div>
 					</div>
 				</div>
 				<!-- /ko -->

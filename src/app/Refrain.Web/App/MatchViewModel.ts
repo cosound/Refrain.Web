@@ -6,6 +6,9 @@
 	public SelectedSong: KnockoutObservable<Song> = ko.observable<Song>();
 	public SelectedSimilarity: KnockoutObservable<SongSimilarity> = ko.observable<SongSimilarity>();
 
+	public ShareUrl: KnockoutObservable<string> = ko.observable<string>();
+	public ShareMessage: KnockoutObservable<string> = ko.observable<string>();
+
 	private _queryDelayHandle: number;
 	private _campareSongId: string;
 	private _portalReadyCallback: () => void;
@@ -130,11 +133,15 @@
 		else
 			this._compareSongPlayer = null;
 
-		$("#ShareMatchOnTwitter").data("url", window.location.toString());
-		$("#ShareMatchOnFacebook").data("href", window.location.toString());
+		if (window.location.hostname != "localhost")
+			this.ShareUrl(window.location.toString());
+		else
+			this.ShareUrl("http://refrain.dk" + window.location.pathname + window.location.hash);
+
+		this.ShareMessage("I found something at");
 
 		twttr.widgets.load();
-		FB.XFBML.parse($("#ShareMatchOnFacebook")[0]);
+		FB.XFBML.parse();
 	}
 
 	private SongGetCompleted(response:CHAOS.Portal.Client.IPortalResponse<RefrainPortal.ISong>):void

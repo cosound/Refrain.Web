@@ -116,6 +116,8 @@ var MatchViewModel = (function () {
         this.SelectedMatch = ko.observable();
         this.SelectedSong = ko.observable();
         this.SelectedSimilarity = ko.observable();
+        this.ShareUrl = ko.observable();
+        this.ShareMessage = ko.observable();
         this._portalIsReady = false;
         this.Query.subscribe(function (v) {
             return _this.QueryChanged(v);
@@ -229,11 +231,15 @@ var MatchViewModel = (function () {
         } else
             this._compareSongPlayer = null;
 
-        $("#ShareMatchOnTwitter").data("url", window.location.toString());
-        $("#ShareMatchOnFacebook").data("href", window.location.toString());
+        if (window.location.hostname != "localhost")
+            this.ShareUrl(window.location.toString());
+        else
+            this.ShareUrl("http://refrain.dk" + window.location.pathname + window.location.hash);
+
+        this.ShareMessage("I found something at");
 
         twttr.widgets.load();
-        FB.XFBML.parse($("#ShareMatchOnFacebook")[0]);
+        FB.XFBML.parse();
     };
 
     MatchViewModel.prototype.SongGetCompleted = function (response) {
