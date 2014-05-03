@@ -177,8 +177,18 @@
 					<img class="CompareIcon" src="Images/linkblue_40.png" />
 					<p class="SongTitle"><span class="Title" data-bind="text: SelectedSimilarity().Title"></span>, <span class="Artist" data-bind="text: SelectedSimilarity().Artist"></span></p>
 					<div>
+						<!-- ko if: SelectedSong().YoutubeId -->
 						<div id="SongPlayer"></div>
+						<!-- /ko -->
+						<!-- ko if: !SelectedSong().YoutubeId && SelectedSong().SpotifyId -->
+						<iframe data-bind="attr: {src: 'https://embed.spotify.com/?uri=spotify:track:' +  SelectedSong().SpotifyId}" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+						<!-- /ko-->
+						<!-- ko if: SelectedSimilarity().YoutubeId -->
 						<div id="CompareSongPlayer"></div>	
+						<!-- /ko -->
+						<!-- ko if: !SelectedSimilarity().YoutubeId && SelectedSimilarity().SpotifyId -->
+						<iframe data-bind="attr: {src: 'https://embed.spotify.com/?uri=spotify:track:' +  SelectedSimilarity().SpotifyId}" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+						<!-- /ko-->
 					</div>
 					<div id="SimilarityContainer">
 						<p>Importance of music aspects in match</p>

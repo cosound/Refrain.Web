@@ -1,4 +1,4 @@
-﻿class Song
+﻿class Song implements ISongViewModel
 {
 	public Id:string;
 	public Title: string;

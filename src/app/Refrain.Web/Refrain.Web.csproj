@@ -51,6 +51,7 @@
     <TypeScriptCompile Include="App\DiscoveryViewModel.ts" />
     <TypeScriptCompile Include="App\HomeViewModel.ts" />
     <TypeScriptCompile Include="App\IMatchSelector.ts" />
+    <TypeScriptCompile Include="App\ISongViewModel.ts" />
     <TypeScriptCompile Include="App\MainViewModel.ts" />
     <TypeScriptCompile Include="App\Match.ts" />
     <TypeScriptCompile Include="App\MatchViewModel.ts" />

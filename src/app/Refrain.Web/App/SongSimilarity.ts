@@ -1,4 +1,4 @@
-﻿class SongSimilarity
+﻿class SongSimilarity implements ISongViewModel
 {
 	public Id: string;
 	public Title: string;
@@ -28,7 +28,7 @@
 
 		if (similarity.YoutubeUri)
 			this.YoutubeId = similarity.YoutubeUri.match(/[?&]v=([^&]+)/)[1];
-		if (this.SpotifyId)
+		if (similarity.SpotifyId)
 			this.SpotifyId = similarity.SpotifyId;
 
 		this.Distance = similarity.Distance;
