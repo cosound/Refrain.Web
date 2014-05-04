@@ -18,7 +18,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Flags.css" />
-    <Content Include="Images\bg640.jpg" />
+    <Content Include="Images\bgrefrain3.jpg" />
     <Content Include="Images\Blank.gif" />
     <Content Include="Images\blue_arrow_900_40.png" />
     <Content Include="Images\cosound_logo.png" />

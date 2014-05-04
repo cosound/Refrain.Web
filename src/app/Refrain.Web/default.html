@@ -85,28 +85,31 @@
 			<div class="mainblock" data-bind="with: CurrentPageViewModel">
 				<!-- ko if: $parent.CurrentPage() == "" -->
 				<p>Explore the realm of Eurovision Song Contest.</p>
-				<p>SONG MATCH matches selected Eurovision Song Contest songs with the realm of Eurovision Song Contest songs or the collection of western pop music.</p>
-				<p>Listen to and share your interesting discoveries!</p>
-				<p>MOOD OF EUROPE shows the current mood of Europe based on Twitter tweets related to the European Song Contest.</p>
-				<p>See, share, and contribute!</p>
-				<p>Copyright &copy; 2014 CoSound. See Copyright and Disclaimer .</p>
+				<br/>
+				<p><a href="#Match">SONG MATCH</a> matches selected Eurovision Song Contest songs with the realm of Eurovision Song Contest songs or the collection of western pop music.</p>
+				<p><a href="#Match">Listen to and share your interesting discoveries!</a></p>
+				<br/>
+				<br/>
+				<p><a href="Mood">MOOD OF EUROPE</a> shows the current mood of Europe based on Twitter tweets related to the European Song Contest.</p>
+				<p><a href="Mood">See, share, and contribute!</a></p>
+				<br />
+				<br />
+				<p>Copyright &copy; 2014 CoSound. <a href="#About">See Copyright and Disclaimer</a>.</p>
 				<!-- /ko -->
 				<!-- ko if: $parent.CurrentPage() == "Match" -->
 				<script id="SongMatchTempalte" type="text/html">
 					<div class="SongMatch" data-bind="click: Select, css: {Selected: IsSelected}">
 						<img src="Images/Blank.gif" class="flag" data-bind="if: CountryName, attr: { alt: CountryName }, css: 'flag-' + CountryCode" /> 
 						<a href="#">
-							<span class="Title" data-bind="text: Title"></span>, <span class="Artist" data-bind="text: Artist"></span>
+							<span class="Title" data-bind="text: Title"></span>, <span data-bind="text: Artist"></span><span data-bind="visible: Year, text: ', ' + Year"></span>
 						</a>
 					</div>
 				</script>
 				<script id="SongFullInfoTemplate" type="text/html">
 					<p class="SongTitle" data-bind="text: Title"></p>
 					<p class="SongTitle" data-bind="text: Artist"></p>
-					<!-- ko if: CountryName -->
-					<p class="SongTitle">
-						<img src="Images/Blank.gif" class="flag" data-bind="attr: {alt: CountryName}, css: 'flag-' + CountryCode" />
-						<span data-bind="text: CountryName"></span>
+					<p class="SongTitle" data-bind="visible: CountryName || Year">
+						<span data-bind="visible: CountryName"><img src="Images/Blank.gif" class="flag" data-bind="attr: {alt: CountryName}, css: 'flag-' + CountryCode" /><span data-bind="text: CountryName"></span></span><span data-bind="visible: CountryName && Year">, </span><span data-bind="visible: Year, text: Year"></span>
 					</p>
 					<!-- /ko -->
 					<!-- ko if: YoutubeId -->
@@ -165,9 +168,11 @@
 					</div>
 				</div>
 				<!-- /ko -->
-				<h1 id="ExploreHeadline">Shared descoveries</h1>
+				<h1 id="ExploreHeadline">Shared discoveries</h1>
 				<div>
-					<a class="twitter-timeline" href="https://twitter.com/search?q=%23refraindk+%23match" data-widget-id="462943736947679232">Tweets about "#refraindk #match"</a>
+					<div class="TwitterTimeline">
+						<a class="twitter-timeline" href="https://twitter.com/search?q=%23refraindk+%23match" data-widget-id="462943736947679232">Tweets about "#refraindk #match"</a>	
+					</div>
 				</div>
 				<!-- /ko -->
 				<!-- ko if: $parent.CurrentPage() == "Mood" -->

@@ -218,6 +218,12 @@ div.menublock table{
 	margin: 10px 0;
 }
 
+.TwitterTimeline {
+	width: 520px;
+	margin-left: auto;
+    margin-right: auto
+}
+
 /* Match */
 
 #SongQuery

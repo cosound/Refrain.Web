@@ -3,8 +3,9 @@
 	public Id:string;
 	public Title: string;
 	public Artist: string;
-	public CountryName: string;
-	public CountryCode: string;
+	public CountryName: string = null;
+	public CountryCode: string = null;
+	public Year:number = null;
 	
 	public IsSelected: KnockoutObservable<boolean> = ko.observable(false);
 
@@ -17,6 +18,7 @@
 		this.Artist = match.ArtistName;
 		this.CountryName = match.CountryName;
 		this.CountryCode = CountryInfo[match.CountryName];
+		this.Year = match.ContestYear;
 
 		this._selector = selector;
 	}

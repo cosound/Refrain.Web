@@ -94,12 +94,16 @@ var MainViewModel = (function () {
 })();
 var Match = (function () {
     function Match(match, selector) {
+        this.CountryName = null;
+        this.CountryCode = null;
+        this.Year = null;
         this.IsSelected = ko.observable(false);
         this.Id = match.Id;
         this.Title = match.Text;
         this.Artist = match.ArtistName;
         this.CountryName = match.CountryName;
         this.CountryCode = CountryInfo[match.CountryName];
+        this.Year = match.ContestYear;
 
         this._selector = selector;
     }
@@ -349,6 +353,7 @@ var RefrainPortal;
 })(RefrainPortal || (RefrainPortal = {}));
 var Song = (function () {
     function Song(song, selector) {
+        this.Year = null;
         this.YoutubeId = null;
         this.SpotifyId = null;
         this.MostSimilar = [];
@@ -358,6 +363,7 @@ var Song = (function () {
         this.Artist = song.ArtistName;
         this.CountryName = song.CountryName;
         this.CountryCode = CountryInfo[song.CountryName];
+        this.Year = song.Year;
 
         if (song.YoutubeUri)
             this.YoutubeId = song.YoutubeUri.match(/[?&]v=([^&]+)/)[1];
@@ -382,6 +388,7 @@ var Song = (function () {
 })();
 var SongSimilarity = (function () {
     function SongSimilarity(similarity, selector) {
+        this.Year = null;
         this.YoutubeId = null;
         this.SpotifyId = null;
         this.IsSelected = ko.observable(false);
@@ -390,6 +397,7 @@ var SongSimilarity = (function () {
         this.Artist = similarity.ArtistName;
         this.CountryName = similarity.CountryName;
         this.CountryCode = CountryInfo[similarity.CountryName];
+        this.Year = similarity.Year;
 
         if (similarity.YoutubeUri)
             this.YoutubeId = similarity.YoutubeUri.match(/[?&]v=([^&]+)/)[1];

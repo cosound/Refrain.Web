@@ -28,6 +28,7 @@
 		Text:string;
 		ArtistName: string;
 		CountryName: string;
+		ContestYear: number;
 	}
 
 	export interface ISong
@@ -36,6 +37,7 @@
 		Title: string;
 		ArtistName: string;
 		CountryName: string;
+		Year: number;
 		YoutubeUri:string;
 		SpotifyId:string;
 		Similarity: ISimilarity;
@@ -53,6 +55,7 @@
 		SongTitle: string;
 		ArtistName: string;
 		CountryName: string;
+		Year: number;
 		YoutubeUri: string;
 		SpotifyId: string;
 		Rank: number;
