@@ -1,5 +1,6 @@
 ﻿var Song = (function () {
     function Song(song, selector) {
+        this.Year = null;
         this.YoutubeId = null;
         this.SpotifyId = null;
         this.MostSimilar = [];
@@ -9,6 +10,7 @@
         this.Artist = song.ArtistName;
         this.CountryName = song.CountryName;
         this.CountryCode = CountryInfo[song.CountryName];
+        this.Year = song.Year;
 
         if (song.YoutubeUri)
             this.YoutubeId = song.YoutubeUri.match(/[?&]v=([^&]+)/)[1];

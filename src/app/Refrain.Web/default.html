@@ -86,13 +86,21 @@
 				<!-- ko if: $parent.CurrentPage() == "" -->
 				<p>Explore the realm of Eurovision Song Contest.</p>
 				<br/>
+				<a class="FrontImage" href="#Match">
+					<img src="Images/MatchThumb.png" />
+				</a>
 				<p><a href="#Match">SONG MATCH</a> matches selected Eurovision Song Contest songs with the realm of Eurovision Song Contest songs or the collection of western pop music.</p>
-				<p><a href="#Match">Listen to and share your interesting discoveries!</a></p>
-				<br/>
-				<br/>
-				<p><a href="Mood">MOOD OF EUROPE</a> shows the current mood of Europe based on Twitter tweets related to the European Song Contest.</p>
-				<p><a href="Mood">See, share, and contribute!</a></p>
 				<br />
+				<p><a href="#Match">Listen to and share your interesting discoveries!</a></p>
+				<br class="NoFloat" />
+				<br/>
+				<a class="FrontImage" href="#Mood">
+					<img src="Images/MoodThumb.png" />
+				</a>
+				<p><a href="Mood">MOOD OF EUROPE</a> shows the current mood of Europe based on Twitter tweets related to the European Song Contest.</p>
+				<br/>
+				<p><a href="Mood">See, share, and contribute!</a></p>
+				<br class="NoFloat" />
 				<br />
 				<p>Copyright &copy; 2014 CoSound. <a href="#About">See Copyright and Disclaimer</a>.</p>
 				<!-- /ko -->
@@ -111,7 +119,6 @@
 					<p class="SongTitle" data-bind="visible: CountryName || Year">
 						<span data-bind="visible: CountryName"><img src="Images/Blank.gif" class="flag" data-bind="attr: {alt: CountryName}, css: 'flag-' + CountryCode" /><span data-bind="text: CountryName"></span></span><span data-bind="visible: CountryName && Year">, </span><span data-bind="visible: Year, text: Year"></span>
 					</p>
-					<!-- /ko -->
 					<!-- ko if: YoutubeId -->
 					<div class="YouTubePlayer"></div>
 					<!-- /ko -->

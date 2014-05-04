@@ -224,6 +224,13 @@ div.menublock table{
     margin-right: auto
 }
 
+/* Front */
+
+.FrontImage {
+	margin-right: 20px;
+	float: left;
+}
+
 /* Match */
 
 #SongQuery
