@@ -114,6 +114,7 @@
 
 		$('html, body').animate({ scrollTop: $("#ExploreHeadline").offset().top }, 1000);
 
+		this._songPlayer = null;
 		if (this.SelectedSong().YoutubeId)
 		{
 			if (this._songPlayer == null)
@@ -124,6 +125,7 @@
 		else
 			this._songPlayer = null;
 
+		this._compareSongPlayer = null;
 		if (this.SelectedSimilarity().YoutubeId)
 		{
 			if (this._compareSongPlayer == null)

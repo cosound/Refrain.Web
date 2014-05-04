@@ -219,6 +219,7 @@ var MatchViewModel = (function () {
 
         $('html, body').animate({ scrollTop: $("#ExploreHeadline").offset().top }, 1000);
 
+        this._songPlayer = null;
         if (this.SelectedSong().YoutubeId) {
             if (this._songPlayer == null)
                 this._songPlayer = new YT.Player($("#SelectedFullInfo .YouTubePlayer")[0], { height: 300, width: 400, videoId: this.SelectedSong().YoutubeId });
@@ -227,6 +228,7 @@ var MatchViewModel = (function () {
         } else
             this._songPlayer = null;
 
+        this._compareSongPlayer = null;
         if (this.SelectedSimilarity().YoutubeId) {
             if (this._compareSongPlayer == null)
                 this._compareSongPlayer = new YT.Player($("#CompareFullInfo .YouTubePlayer")[0], { height: 300, width: 400, videoId: this.SelectedSimilarity().YoutubeId });
