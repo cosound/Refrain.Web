@@ -16,7 +16,7 @@
 		this.Title = match.Text;
 		this.Artist = match.ArtistName;
 		this.CountryName = match.CountryName;
-		this.CountryCode = CountryInfo[match.CountryName];;
+		this.CountryCode = CountryInfo[match.CountryName];
 
 		this._selector = selector;
 	}

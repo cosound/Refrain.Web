@@ -17,13 +17,16 @@
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="Flags.css" />
     <Content Include="Images\bg640.jpg" />
+    <Content Include="Images\Blank.gif" />
     <Content Include="Images\blue_arrow_900_40.png" />
     <Content Include="Images\cosound_logo.png" />
     <Content Include="Images\cosound_logo_86.png" />
     <Content Include="Images\danishsound_long.png" />
     <Content Include="Images\danishsound_long_86.png" />
     <Content Include="Images\DTU.png" />
+    <Content Include="Images\Flags.png" />
     <Content Include="Images\geckon.png" />
     <Content Include="Images\linkblue_40.png" />
     <Content Include="Images\pink_arrow_900_40.png" />
@@ -38,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Countries.json" />
+    <Content Include="CountryNames.json" />
     <None Include="To Folder.pubxml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
@@ -48,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="App\AboutViewModel.ts" />
+    <TypeScriptCompile Include="App\CountryInfo.ts" />
     <TypeScriptCompile Include="App\DiscoveryViewModel.ts" />
     <TypeScriptCompile Include="App\HomeViewModel.ts" />
     <TypeScriptCompile Include="App\IMatchSelector.ts" />

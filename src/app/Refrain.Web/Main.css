@@ -268,8 +268,16 @@ div.menublock table{
 	font-style: italic;
 }
 
-.CompareIcon {
-	display: block;
+.SongFullInfo 
+{
+	display: inline-block;
+	vertical-align: top;
+}
+
+.CompareIcon 
+{
+	display: inline-block;
+	vertical-align: middle;
     margin-left: auto;
     margin-right: auto
 }

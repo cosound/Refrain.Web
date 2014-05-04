@@ -100,7 +100,6 @@ var Match = (function () {
         this.Artist = match.ArtistName;
         this.CountryName = match.CountryName;
         this.CountryCode = CountryInfo[match.CountryName];
-        ;
 
         this._selector = selector;
     }
@@ -220,22 +219,6 @@ var MatchViewModel = (function () {
 
         $('html, body').animate({ scrollTop: $("#ExploreHeadline").offset().top }, 1000);
 
-        if (this.SelectedSong().YoutubeId) {
-            if (this._songPlayer == null)
-                this._songPlayer = new YT.Player('SongPlayer', { height: 300, width: 400, videoId: this.SelectedSong().YoutubeId });
-            else if (this._songPlayer.getVideoUrl().match(/[?&]v=([^&]+)/)[1] != this.SelectedSong().YoutubeId)
-                this._songPlayer.cueVideoById(this.SelectedSong().YoutubeId);
-        } else
-            this._songPlayer = null;
-
-        if (this.SelectedSimilarity().YoutubeId) {
-            if (this._compareSongPlayer == null)
-                this._compareSongPlayer = new YT.Player('CompareSongPlayer', { height: 300, width: 400, videoId: this.SelectedSimilarity().YoutubeId });
-            else
-                this._compareSongPlayer.cueVideoById(this.SelectedSimilarity().YoutubeId);
-        } else
-            this._compareSongPlayer = null;
-
         if (window.location.hostname != "localhost")
             this.ShareUrl(window.location.toString());
         else
@@ -352,6 +335,7 @@ var Song = (function () {
         this.Title = song.Title;
         this.Artist = song.ArtistName;
         this.CountryName = song.CountryName;
+        this.CountryCode = CountryInfo[song.CountryName];
 
         if (song.YoutubeUri)
             this.YoutubeId = song.YoutubeUri.match(/[?&]v=([^&]+)/)[1];
@@ -381,6 +365,7 @@ var SongSimilarity = (function () {
         this.Title = similarity.SongTitle;
         this.Artist = similarity.ArtistName;
         this.CountryName = similarity.CountryName;
+        this.CountryCode = CountryInfo[similarity.CountryName];
 
         if (similarity.YoutubeUri)
             this.YoutubeId = similarity.YoutubeUri.match(/[?&]v=([^&]+)/)[1];

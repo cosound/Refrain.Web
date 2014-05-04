@@ -18,7 +18,7 @@
 				i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
 					(i[r].q = i[r].q || []).push(arguments)
 				}, i[r].l = 1 * new Date(); a = s.createElement(o),
-				m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+					m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
 			})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 			ga('create', 'UA-50617620-1', 'auto');
 
@@ -138,58 +138,54 @@
 				</p>
 				<!-- /ko -->
 				<!-- ko if: $parent.CurrentPage() == "Match" -->
+				<script id="SongMatchTempalte" type="text/html">
+					<div class="SongMatch" data-bind="click: Select, css: {Selected: IsSelected}">
+						<a href="#">
+							<p>
+								<span class="Title" data-bind="text: Title"></span>, <span class="Artist" data-bind="text: Artist"></span>
+								<img src="Images/Blank.gif" class="flag" data-bind="if: CountryName, attr: {alt: CountryName}, css: 'flag-' + CountryCode" />
+							</p>
+						</a>
+					</div>
+				</script>
+				<script id="SongFullInfoTemplate" type="text/html">
+					<p class="SongTitle"><span class="Title" data-bind="text: Title"></span></p>
+					<p class="SongTitle"><span class="Title" data-bind="text: Artist"></span></p>
+					<!-- ko if: CountryName -->
+					<p class="SongTitle">
+						<span class="Title" data-bind="text: CountryName"></span>
+						<img src="Images/Blank.gif" class="flag" data-bind="attr: {alt: CountryName}, css: 'flag-' + CountryCode" />
+					</p>
+					<!-- /ko -->
+					<!-- ko if: YoutubeId -->
+					<div class="YouTubePlayer"></div>
+					<!-- /ko -->
+					<!-- ko if: !YoutubeId && SpotifyId -->
+					<iframe data-bind="attr: {src: 'https://embed.spotify.com/?uri=spotify:track:' +  SpotifyId}" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+					<!-- /ko-->
+				</script>
 				<h1>Select Song</h1>
 				<div>
 					<h2>Search for a eurovision song by title, artist, country and/or year</h2>
 					<input id="SongQuery" type="text" data-bind="value: Query, valueUpdate: 'afterkeydown'" />
-					<div data-bind="foreach: Matches">
-						<div class="SongMatch" data-bind="click: Select, css: {Selected: IsSelected}">
-							<a href="#">
-								<p><span class="Title" data-bind="text: Title"></span>, <span class="Artist" data-bind="text: Artist"></span> <img src="Images/Blank.gif" class="flag" data-bind="attr: {alt: CountryName}, css: 'flag-' + CountryCode" /></p>
-							</a>
-						</div>
-					</div>
+					<div data-bind="template: {name: 'SongMatchTempalte', foreach: Matches}"></div>
 				</div>
 				<!-- ko if: SelectedSong -->
 				<h1 id="SelectMatchHeadline">Select Match</h1>
 				<div data-bind="with: SelectedSong">
 					<h2><span data-bind="text: Title"></span> is most similar to</h2>
-					<div data-bind="foreach: MostSimilar">
-						<div class="SongMatch" data-bind="click: Select, css: {Selected: IsSelected}">
-							<a href="#">
-								<p><span class="Title" data-bind="text: Title"></span>, <span class="Artist" data-bind="text: Artist"></span>, <span class="Country" data-bind="text: CountryName"></span></p>
-							</a>
-						</div>
-					</div>
+					<div data-bind="template: {name: 'SongMatchTempalte', foreach: MostSimilar}"></div>
 					<h2><span data-bind="text: Title"></span> is least similar to</h2>
-					<div data-bind="foreach: LeastSimilar">
-						<div class="SongMatch" data-bind="click: Select, css: {Selected: IsSelected}">
-							<a href="#">
-								<p><span class="Title" data-bind="text: Title"></span>, <span class="Artist" data-bind="text: Artist"></span>, <span class="Country" data-bind="text: CountryName"></span></p>
-							</a>
-						</div>
-					</div>
+					<div data-bind="template: {name: 'SongMatchTempalte', foreach: LeastSimilar}"></div>
 				</div>
 				<!-- /ko -->
 				<!-- ko if: SelectedSimilarity -->
 				<h1 id="ExploreHeadline">Explore and share match</h1>
 				<div>
-					<p class="SongTitle"><span class="Title" data-bind="text: SelectedSong().Title"></span>, <span class="Artist" data-bind="text: SelectedSong().Artist"></span>, <span class="Country" data-bind="text: SelectedSong().CountryName"></span></p>
-					<img class="CompareIcon" src="Images/linkblue_40.png" />
-					<p class="SongTitle"><span class="Title" data-bind="text: SelectedSimilarity().Title"></span>, <span class="Artist" data-bind="text: SelectedSimilarity().Artist"></span>, <span class="Country" data-bind="text: SelectedSimilarity().CountryName"></span></p>
 					<div>
-						<!-- ko if: SelectedSong().YoutubeId -->
-						<div id="SongPlayer"></div>
-						<!-- /ko -->
-						<!-- ko if: !SelectedSong().YoutubeId && SelectedSong().SpotifyId -->
-						<iframe data-bind="attr: {src: 'https://embed.spotify.com/?uri=spotify:track:' +  SelectedSong().SpotifyId}" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
-						<!-- /ko-->
-						<!-- ko if: SelectedSimilarity().YoutubeId -->
-						<div id="CompareSongPlayer"></div>	
-						<!-- /ko -->
-						<!-- ko if: !SelectedSimilarity().YoutubeId && SelectedSimilarity().SpotifyId -->
-						<iframe data-bind="attr: {src: 'https://embed.spotify.com/?uri=spotify:track:' +  SelectedSimilarity().SpotifyId}" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
-						<!-- /ko-->
+						<div id="SelectedFullInfo" class="SongFullInfo" data-bind="template: {if: SelectedSong, name: 'SongFullInfoTemplate', data: SelectedSong}"></div>
+						<img class="CompareIcon" src="Images/linkblue_40.png" />
+						<div id="CompareFullInfo" class="SongFullInfo" data-bind="template: {if: SelectedSimilarity, name: 'SongFullInfoTemplate', data: SelectedSimilarity}"></div>
 					</div>
 					<div id="SimilarityContainer">
 						<p>Importance of music aspects in match</p>

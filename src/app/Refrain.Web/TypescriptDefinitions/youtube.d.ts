@@ -75,6 +75,7 @@ declare module YT {
     export class Player {
         // Constructor
         constructor(id: string, playerOptions: PlayerOptions);
+        constructor(id: HTMLElement, playerOptions: PlayerOptions);
 
         // Queueing functions
         loadVideoById(videoId: string, startSeconds?: number, suggestedQuality?: string): void;
