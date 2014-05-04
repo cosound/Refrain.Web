@@ -4,6 +4,7 @@
 	<head>
 		<title>Refrain</title>
 		<link type="text/css" rel="stylesheet" href="Main.css"/>
+		<link type="text/css" rel="stylesheet" href="Flags.css"/>
 		<script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
 		<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyDYMEgXXaemmCDhs3D_z6s_KPb5nMcB5MA&sensor=false"></script>
@@ -144,7 +145,7 @@
 					<div data-bind="foreach: Matches">
 						<div class="SongMatch" data-bind="click: Select, css: {Selected: IsSelected}">
 							<a href="#">
-								<p><span class="Title" data-bind="text: Title"></span>, <span class="Artist" data-bind="text: Artist"></span>, <span class="Country" data-bind="text: CountryName"></span></p>
+								<p><span class="Title" data-bind="text: Title"></span>, <span class="Artist" data-bind="text: Artist"></span> <img src="Images/Blank.gif" class="flag" data-bind="attr: {alt: CountryName}, css: 'flag-' + CountryCode" /></p>
 							</a>
 						</div>
 					</div>

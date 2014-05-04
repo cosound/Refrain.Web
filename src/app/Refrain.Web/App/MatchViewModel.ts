@@ -13,6 +13,7 @@
 	private _campareSongId: string;
 	private _portalReadyCallback: () => void;
 	private _portalIsReady: boolean = false;
+	private _countryInfos: KnockoutObservable<ICountryInfo[]> = ko.observable<ICountryInfo[]>();
 
 	private _songPlayer:YT.Player;
 	private _compareSongPlayer:YT.Player;
@@ -186,4 +187,11 @@
 
 		$('html, body').animate({ scrollTop: $("#SelectMatchHeadline").offset().top }, 1000);
 	}
-} 
+}
+
+interface ICountryInfo
+{
+	name: string;
+	"alpha-2": string;
+	"country-code": string
+}
