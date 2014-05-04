@@ -1,14 +1,18 @@
 ﻿var Song = (function () {
     function Song(song, selector) {
+        this.YoutubeId = null;
+        this.SpotifyId = null;
         this.MostSimilar = [];
         this.LeastSimilar = [];
         this.Id = song.Id;
         this.Title = song.Title;
-        this.Artist = song.ArtistName ? song.ArtistName : "Peter";
+        this.Artist = song.ArtistName;
+        this.CountryName = song.CountryName;
+        this.CountryCode = CountryInfo[song.CountryName];
 
         if (song.YoutubeUri)
             this.YoutubeId = song.YoutubeUri.match(/[?&]v=([^&]+)/)[1];
-        if (song.YoutubeUri)
+        if (song.SpotifyId)
             this.SpotifyId = song.SpotifyId;
 
         for (var i = 0; this.MostSimilar.length < 5 && i != song.Similarity.Songs.length; i++) {

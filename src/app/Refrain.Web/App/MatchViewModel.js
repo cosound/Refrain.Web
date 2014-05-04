@@ -9,6 +9,7 @@
         this.ShareUrl = ko.observable();
         this.ShareMessage = ko.observable();
         this._portalIsReady = false;
+        this._countryInfos = ko.observable();
         this.Query.subscribe(function (v) {
             return _this.QueryChanged(v);
         });
@@ -107,7 +108,7 @@
 
         if (this.SelectedSong().YoutubeId) {
             if (this._songPlayer == null)
-                this._songPlayer = new YT.Player('SongPlayer', { height: 300, width: 400, videoId: this.SelectedSong().YoutubeId });
+                this._songPlayer = new YT.Player($("#SelectedFullInfo .YouTubePlayer")[0], { height: 300, width: 400, videoId: this.SelectedSong().YoutubeId });
             else if (this._songPlayer.getVideoUrl().match(/[?&]v=([^&]+)/)[1] != this.SelectedSong().YoutubeId)
                 this._songPlayer.cueVideoById(this.SelectedSong().YoutubeId);
         } else
@@ -115,7 +116,7 @@
 
         if (this.SelectedSimilarity().YoutubeId) {
             if (this._compareSongPlayer == null)
-                this._compareSongPlayer = new YT.Player('CompareSongPlayer', { height: 300, width: 400, videoId: this.SelectedSimilarity().YoutubeId });
+                this._compareSongPlayer = new YT.Player($("#CompareFullInfo .YouTubePlayer")[0], { height: 300, width: 400, videoId: this.SelectedSimilarity().YoutubeId });
             else
                 this._compareSongPlayer.cueVideoById(this.SelectedSimilarity().YoutubeId);
         } else

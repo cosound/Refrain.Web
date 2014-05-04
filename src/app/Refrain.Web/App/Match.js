@@ -4,7 +4,9 @@
         this.Id = match.Id;
         this.Title = match.Text;
         this.Artist = match.ArtistName;
-        this.Country = match.CountryName;
+        this.CountryName = match.CountryName;
+        this.CountryCode = CountryInfo[match.CountryName];
+
         this._selector = selector;
     }
     Match.prototype.Select = function () {

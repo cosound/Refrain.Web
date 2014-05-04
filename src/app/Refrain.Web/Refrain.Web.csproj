@@ -41,7 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Countries.json" />
-    <Content Include="CountryNames.json" />
     <None Include="To Folder.pubxml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
