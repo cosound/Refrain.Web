@@ -114,7 +114,7 @@
 
 		$('html, body').animate({ scrollTop: $("#ExploreHeadline").offset().top }, 1000);
 
-		/*if (this.SelectedSong().YoutubeId)
+		if (this.SelectedSong().YoutubeId)
 		{
 			if (this._songPlayer == null)
 				this._songPlayer = new YT.Player($("#SelectedFullInfo .YouTubePlayer")[0], { height: 300, width: 400, videoId: this.SelectedSong().YoutubeId });
@@ -132,7 +132,7 @@
 				this._compareSongPlayer.cueVideoById(this.SelectedSimilarity().YoutubeId);
 		}
 		else
-			this._compareSongPlayer = null;*/
+			this._compareSongPlayer = null;
 
 		if (window.location.hostname != "localhost")
 			this.ShareUrl(window.location.toString());

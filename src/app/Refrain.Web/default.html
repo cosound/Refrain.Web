@@ -140,21 +140,19 @@
 				<!-- ko if: $parent.CurrentPage() == "Match" -->
 				<script id="SongMatchTempalte" type="text/html">
 					<div class="SongMatch" data-bind="click: Select, css: {Selected: IsSelected}">
+						<img src="Images/Blank.gif" class="flag" data-bind="if: CountryName, attr: { alt: CountryName }, css: 'flag-' + CountryCode" /> 
 						<a href="#">
-							<p>
-								<span class="Title" data-bind="text: Title"></span>, <span class="Artist" data-bind="text: Artist"></span>
-								<img src="Images/Blank.gif" class="flag" data-bind="if: CountryName, attr: {alt: CountryName}, css: 'flag-' + CountryCode" />
-							</p>
+							<span class="Title" data-bind="text: Title"></span>, <span class="Artist" data-bind="text: Artist"></span>
 						</a>
 					</div>
 				</script>
 				<script id="SongFullInfoTemplate" type="text/html">
-					<p class="SongTitle"><span class="Title" data-bind="text: Title"></span></p>
-					<p class="SongTitle"><span class="Title" data-bind="text: Artist"></span></p>
+					<p class="SongTitle" data-bind="text: Title"></p>
+					<p class="SongTitle" data-bind="text: Artist"></p>
 					<!-- ko if: CountryName -->
 					<p class="SongTitle">
-						<span class="Title" data-bind="text: CountryName"></span>
 						<img src="Images/Blank.gif" class="flag" data-bind="attr: {alt: CountryName}, css: 'flag-' + CountryCode" />
+						<span data-bind="text: CountryName"></span>
 					</p>
 					<!-- /ko -->
 					<!-- ko if: YoutubeId -->
@@ -183,9 +181,9 @@
 				<h1 id="ExploreHeadline">Explore and share match</h1>
 				<div>
 					<div>
-						<div id="SelectedFullInfo" class="SongFullInfo" data-bind="template: {if: SelectedSong, name: 'SongFullInfoTemplate', data: SelectedSong}"></div>
+						<div id="SelectedFullInfo" class="SongFullInfo" data-bind="template: {name: 'SongFullInfoTemplate', data: SelectedSong}"></div>
 						<img class="CompareIcon" src="Images/linkblue_40.png" />
-						<div id="CompareFullInfo" class="SongFullInfo" data-bind="template: {if: SelectedSimilarity, name: 'SongFullInfoTemplate', data: SelectedSimilarity}"></div>
+						<div id="CompareFullInfo" class="SongFullInfo" data-bind="template: {name: 'SongFullInfoTemplate', data: SelectedSimilarity}"></div>
 					</div>
 					<div id="SimilarityContainer">
 						<p>Importance of music aspects in match</p>

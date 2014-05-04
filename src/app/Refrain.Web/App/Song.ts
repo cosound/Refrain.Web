@@ -5,8 +5,8 @@
 	public Artist: string;
 	public CountryName: string;
 	public CountryCode: string;
-	public YoutubeId:string;
-	public SpotifyId:string;
+	public YoutubeId:string = null;
+	public SpotifyId:string = null;
 	public MostSimilar:SongSimilarity[] = [];
 	public LeastSimilar:SongSimilarity[] = [];
 
@@ -20,7 +20,7 @@
 
 		if (song.YoutubeUri)
 			this.YoutubeId = song.YoutubeUri.match(/[?&]v=([^&]+)/)[1];
-		if (song.YoutubeUri)
+		if (song.SpotifyId)
 			this.SpotifyId = song.SpotifyId;
 
 		for (var i = 0; this.MostSimilar.length < 5 && i != song.Similarity.Songs.length; i++)

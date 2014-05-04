@@ -219,6 +219,22 @@ var MatchViewModel = (function () {
 
         $('html, body').animate({ scrollTop: $("#ExploreHeadline").offset().top }, 1000);
 
+        if (this.SelectedSong().YoutubeId) {
+            if (this._songPlayer == null)
+                this._songPlayer = new YT.Player($("#SelectedFullInfo .YouTubePlayer")[0], { height: 300, width: 400, videoId: this.SelectedSong().YoutubeId });
+            else if (this._songPlayer.getVideoUrl().match(/[?&]v=([^&]+)/)[1] != this.SelectedSong().YoutubeId)
+                this._songPlayer.cueVideoById(this.SelectedSong().YoutubeId);
+        } else
+            this._songPlayer = null;
+
+        if (this.SelectedSimilarity().YoutubeId) {
+            if (this._compareSongPlayer == null)
+                this._compareSongPlayer = new YT.Player($("#CompareFullInfo .YouTubePlayer")[0], { height: 300, width: 400, videoId: this.SelectedSimilarity().YoutubeId });
+            else
+                this._compareSongPlayer.cueVideoById(this.SelectedSimilarity().YoutubeId);
+        } else
+            this._compareSongPlayer = null;
+
         if (window.location.hostname != "localhost")
             this.ShareUrl(window.location.toString());
         else
@@ -329,6 +345,8 @@ var RefrainPortal;
 })(RefrainPortal || (RefrainPortal = {}));
 var Song = (function () {
     function Song(song, selector) {
+        this.YoutubeId = null;
+        this.SpotifyId = null;
         this.MostSimilar = [];
         this.LeastSimilar = [];
         this.Id = song.Id;
@@ -339,7 +357,7 @@ var Song = (function () {
 
         if (song.YoutubeUri)
             this.YoutubeId = song.YoutubeUri.match(/[?&]v=([^&]+)/)[1];
-        if (song.YoutubeUri)
+        if (song.SpotifyId)
             this.SpotifyId = song.SpotifyId;
 
         for (var i = 0; this.MostSimilar.length < 5 && i != song.Similarity.Songs.length; i++) {
@@ -360,6 +378,8 @@ var Song = (function () {
 })();
 var SongSimilarity = (function () {
     function SongSimilarity(similarity, selector) {
+        this.YoutubeId = null;
+        this.SpotifyId = null;
         this.IsSelected = ko.observable(false);
         this.Id = similarity.SongId;
         this.Title = similarity.SongTitle;

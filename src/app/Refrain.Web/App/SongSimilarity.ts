@@ -6,8 +6,8 @@
 	public CountryName: string;
 	public CountryCode: string;
 
-	public YoutubeId: string;
-	public SpotifyId: string;
+	public YoutubeId: string = null;
+	public SpotifyId: string = null;
 
 	public Distance: number;
 
