@@ -47,7 +47,9 @@
 							<tbody>
 								<tr>
 									<td>
-										<img width="280" src="Images/refrain_white_280.png" alt="refrain" />
+										<a href="#">
+											<img width="280" src="Images/refrain_white_280.png" alt="refrain" />
+										</a>
 									</td>
 									<td style="text-align: right;">
 										<span class="small">PRESENTED BY</span>&nbsp;
@@ -67,10 +69,10 @@
 								</tr>
 								<tr>
 									<td style="text-align: left;" colspan="2">
-										<a class="menubutton" href="#Match">SONG MATCH</a>&nbsp;
-										<a class="menubutton" href="#Mood">MOOD OF EUROPE</a>&nbsp;
-										<a class="menubutton" href="#Discovery">DISCOVERIES</a>&nbsp;
-										<a class="menubutton" href="#About">ABOUT</a>
+										<a class="menubutton" href="#Match" data-bind="css: {Selected: CurrentPage() == 'Match'}">SONG MATCH</a>&nbsp;
+										<a class="menubutton" href="#Mood" data-bind="css: {Selected: CurrentPage() == 'Mood'}">MOOD OF EUROPE</a>&nbsp;
+										<a class="menubutton" href="#Discovery" data-bind="css: {Selected: CurrentPage() == 'Discovery'}">DISCOVERIES</a>&nbsp;
+										<a class="menubutton" href="#About" data-bind="css: {Selected: CurrentPage() == 'About'}">ABOUT</a>
 									</td>
 								</tr>
 							</tbody>
@@ -82,60 +84,12 @@
 		<div class="wbg">
 			<div class="mainblock" data-bind="with: CurrentPageViewModel">
 				<!-- ko if: $parent.CurrentPage() == "" -->
-				Explore the realm of Eurovision Song Contest.<br>
-				<p>
-					<br>
-				</p>
-				<p>
-					<a class="button" href="#">SONG MATCH</a>
-					<br>
-				</p>
-				<p>
-					<a class="buttonsqpink" href="#">?</a>
-				</p>
-				<p>
-					<a class="buttonsqpink" href="#">►</a> And this a some text.
-				</p>
-				<p>
-					<a class="buttonsqpink" href="#">+</a>
-				</p>
-				<p>
-					<a class="buttonsqblue" href="#">✓</a> And this a some text.
-				</p>
-				<p>
-					<img src="Images/cosound_logo_86.png" alt="refrain"> about page logo
-				</p>
-				<p>
-					<img src="Images/danishsound_long_86.png" alt="refrain"> about page logo
-				</p>
-				<p>
-					<img src="Images/geckon.png" alt="refrain"> about page logo
-				</p>
-				<p>
-					<img src="Images/DTU.png" alt="refrain"> about page logo
-				</p>
-				<p>
-					<br>
-				</p>
-				<p>
-					<a href="http://www.cosound.dk" target="_blank" class="text">CoSound</a> link to cosound
-				</p>
-				<p>
-				</p><div class="bglightblue" style="display: inline-block; height: 24px; line-height: 24px; padding: 10px;">This is white text on lightblue background</div>
-				<p>
-					<a href="#">
-						<img onmouseout=" this.src = 'Images/share_50.png'" onmouseover="	this.src = 'Images/share_hover_50.png' " src="Images/share_50.png">
-					</a>
-				</p>
-				<p>
-					<img src="Images/linkblue_40.png">
-				</p>
-				<p>
-					<a href="#">
-						<img onmouseout=" this.src = 'Images/blue_arrow_900_40.png'" onmouseover="	this.src = 'Images/pink_arrow_900_40.png' " src="Images/blue_arrow_900_40.png">
-					</a>
-					&copy;
-				</p>
+				<p>Explore the realm of Eurovision Song Contest.</p>
+				<p>SONG MATCH matches selected Eurovision Song Contest songs with the realm of Eurovision Song Contest songs or the collection of western pop music.</p>
+				<p>Listen to and share your interesting discoveries!</p>
+				<p>MOOD OF EUROPE shows the current mood of Europe based on Twitter tweets related to the European Song Contest.</p>
+				<p>See, share, and contribute!</p>
+				<p>Copyright &copy; 2014 CoSound. See Copyright and Disclaimer .</p>
 				<!-- /ko -->
 				<!-- ko if: $parent.CurrentPage() == "Match" -->
 				<script id="SongMatchTempalte" type="text/html">
@@ -213,7 +167,7 @@
 				<!-- /ko -->
 				<h1 id="ExploreHeadline">Shared descoveries</h1>
 				<div>
-					<a class="twitter-timeline" href="https://twitter.com/Eurovision" data-widget-id="460609701009313793">Tweets by @Eurovision</a>
+					<a class="twitter-timeline" href="https://twitter.com/search?q=%23refraindk+%23match" data-widget-id="462943736947679232">Tweets about "#refraindk #match"</a>
 				</div>
 				<!-- /ko -->
 				<!-- ko if: $parent.CurrentPage() == "Mood" -->
@@ -231,9 +185,68 @@
 				</div>
 				<!-- /ko -->
 				<!-- ko if: $parent.CurrentPage() == "About" -->
-				<h1>About</h1>
-				<div>
-					
+				<div class="SeperatedSection">
+					<img src="Images/cosound_logo_86.png" alt="refrain">
+					<p>
+						<a href="http://www.cosound.dk" target="_blank" class="text Strong">CoSound</a> is a strategic research project funded by <span class="Strong">Danish Strategic Research Council</span>, which investigates technological methods and tools for linking audio streams and user interaction data in order to improve interactivity and user experience.
+					</p>
+					<p>
+						The vision is to develop a flexible modular audio data processing platform for new products and services in the commercial sector; the public service sector; and in educational and cultural research. The project prototypes and evaluate solutions in all these areas.
+					</p>
+					<p>
+						An integral part of the project is a modular CoSound platform for development and test of algorithms and interactive experiments which has been employed in Refrain.
+					</p>
+					<span class="ImageLeft">
+						<img src="Images/geckon.png" alt="Geckon">
+						<br />
+						<img src="Images/DTU.png" alt="DTU">
+					</span>
+					<p>
+						The CoSound partners <span class="Strong">DTU Compute</span> and <span class="Strong">Geckon ApS</span> has collaborated to create Refrain.<br/>
+						The team consisted of Peter Overgaard, Jesper Fyhr Knudsen, and Jacob Poul Richardt, Geckon ApS. Bjørn Sand Jensen, Jens Madsen, Rasmus Troelsgaard, Patrick Gadd, Martin Hastrup, Sune Lehmann Jørgensen, and Jan Larsen, DTU Compute.
+					</p>
+					<p class="NoFloat">
+						For further information contact CoSound coordinator Jan Larsen, <a href="mailto:janla@dtu.dk">janla@dtu.dk</a>.
+					</p>
+				</div>
+				<div class="SeperatedSection">
+					<img src="Images/danishsound_long_86.png" alt="refrain">
+					<p>
+						<span class="Strong">Danish Sound Innovation Network</span> functions as hub for businesses, research and knowledge institutions, and professional organizations in order to facilitate and contribute to creating value for the Danish national ecosystem for SOUND.
+					</p>
+					<p>
+						Danish Sound is funded by the <span class="Strong">Danish Agency for Science, Technology and Innovation</span> and has more than 550 individual members from 320+ organizations.
+					</p>
+					<p>
+						One of the focus themes is Digital Media where Denmark has a position of strength and critical mass of activity in both research and businesses.
+					</p>
+					<p>
+						Danish Sound is an innovation partner of CoSound and assist with dissemination of results.
+					</p>
+					<p>
+						For further information, contact the secretariat at <a href="mailto:sekretariat@danishsound.org">sekretariat@danishsound.org</a>.
+					</p>
+				</div>
+				<div class="SeperatedSection">
+					<h2>COPYRIGHT & DISLAIMER</h2>
+					<p>
+						By using the service, users accept to the following copyright and disclaimers.
+					</p>
+					<p>
+						Copyright &copy; 2014 <a href="http://www.cosound.dk" target="_blank" class="text Strong">CoSound</a>. Contact Jan Larsen, DTU Compute, <a href="mailto:janla@dtu.dk">janla@dtu.dk</a>.
+					</p>
+					<p>
+						Permission is hereby granted to use the Refrain service free of charge for non-commercial purposes. Any other commercial or non-commercial use of the service, the concept, data is subject to written permission by the copyright holders.
+					</p>
+					<p>
+						The Refrain service is provided “as is”, without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the service or the use or other dealings in the service.
+					</p>
+					<p>
+						A copy of shared discoveries is kept to support the listing of discoveries in this service. These data might be used in anonymous form for non-commercial research purposes only.
+					</p>
+					<p>
+						The service will use a cookie to remember your choices. If you wish to avoid cookies altogether, you will have to disable cookies in your browser. However, disabling cookies can result in certain functions of the website being unavailable to you. Cookies will not be used to collect personally identifiable information.
+					</p>
 				</div>
 				<!-- /ko -->
 			</div>

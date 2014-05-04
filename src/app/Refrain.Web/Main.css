@@ -2,7 +2,7 @@
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	-webkit-background-size: cover;
-	background: url(Images/bg640.jpg);
+	background: url(Images/bgrefrain3.jpg);
 	background-attachment: fixed;
 	background-position: center center;
 	background-repeat: no-repeat;
@@ -144,6 +144,11 @@ div.menublock table{
 	text-decoration: none;
 }
 
+.menubutton.Selected {
+	background-color: #cc0099;
+	color: #ffffff;
+}
+
 .menubutton:hover {
 	background-color: #cc0099;
 	color: #ffffff;
@@ -203,6 +208,14 @@ div.menublock table{
 	padding: 0;
 
 	font-size: 22px;
+}
+
+.SeperatedSection {
+	margin-bottom: 40px !important;
+}
+
+.SeperatedSection p {
+	margin: 10px 0;
 }
 
 /* Match */
@@ -272,6 +285,7 @@ div.menublock table{
 {
 	display: inline-block;
 	vertical-align: top;
+	width: 410px;
 }
 
 .CompareIcon 
@@ -317,6 +331,20 @@ div.menublock table{
 	height: 15px;
 
 	display: block;
+}
+
+/* About */
+
+.ImageLeft {
+	float: left;
+}
+
+.NoFloat {
+	clear: both;
+}
+
+.Strong {
+	font-weight: bold;
 }
 
 /* Link styles */

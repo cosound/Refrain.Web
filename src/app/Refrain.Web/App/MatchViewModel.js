@@ -23,6 +23,8 @@
 
         if (songId != null)
             this.GetSong(songId);
+
+        $("#SongQuery").focus();
     };
 
     MatchViewModel.prototype.PortalReady = function () {

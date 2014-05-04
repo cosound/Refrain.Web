@@ -31,6 +31,8 @@
 
 		if(songId != null)
 			this.GetSong(songId);
+
+		$("#SongQuery").focus();
 	}
 
 	public PortalReady(): void
