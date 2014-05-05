@@ -125,6 +125,7 @@ var MatchViewModel = (function () {
         this.SelectedSimilarity = ko.observable();
         this.ShareUrl = ko.observable();
         this.ShareMessage = ko.observable();
+        this.SimilarityHelpVisible = ko.observable(false);
         this._portalIsReady = false;
         this._countryInfos = ko.observable();
         this._updatingQueryString = false;
@@ -180,6 +181,10 @@ var MatchViewModel = (function () {
         this._updatingQueryString = false;
     };
 
+    MatchViewModel.prototype.ToggleSimilarityHelp = function () {
+        this.SimilarityHelpVisible(!this.SimilarityHelpVisible());
+    };
+
     MatchViewModel.prototype.Search = function (value) {
         var _this = this;
         if (value == "")
@@ -223,7 +228,7 @@ var MatchViewModel = (function () {
     MatchViewModel.prototype.GetSong = function (id) {
         var _this = this;
         this.CallWhenPortalReady(function () {
-            return RefrainPortal.Song.Get(id, 111111).WithCallback(_this.SongGetCompleted, _this);
+            return RefrainPortal.Song.Get(id, 111111, 3).WithCallback(_this.SongGetCompleted, _this);
         });
     };
 
@@ -233,6 +238,7 @@ var MatchViewModel = (function () {
 
         similarity.IsSelected(true);
 
+        this.SelectedSimilarity(null);
         this.SelectedSimilarity(similarity);
 
         window.location.hash = "Match/" + this.SelectedSong().Id + "/" + this.SelectedSimilarity().Id;
@@ -262,7 +268,7 @@ var MatchViewModel = (function () {
         else
             this.ShareUrl("http://refrain.dk" + window.location.pathname + window.location.hash);
 
-        this.ShareMessage("I found something at");
+        this.ShareMessage("I discovered " + this.SelectedSong().Title + " is " + (similarity.Distance < 0.2 ? "similar" : "dissimilar") + " to " + similarity.Title + " at ");
 
         twttr.widgets.load();
         FB.XFBML.parse();

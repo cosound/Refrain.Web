@@ -20,7 +20,6 @@
     <Content Include="Flags.css" />
     <Content Include="Images\bgrefrain3.jpg" />
     <Content Include="Images\Blank.gif" />
-    <Content Include="Images\blue_arrow_900_40.png" />
     <Content Include="Images\cosound_logo.png" />
     <Content Include="Images\cosound_logo_86.png" />
     <Content Include="Images\danishsound_long.png" />
@@ -31,11 +30,8 @@
     <Content Include="Images\linkblue_40.png" />
     <Content Include="Images\MatchThumb.png" />
     <Content Include="Images\MoodThumb.png" />
-    <Content Include="Images\pink_arrow_900_40.png" />
     <Content Include="Images\refrain_white_280.png" />
-    <Content Include="Images\share_50.png" />
     <Content Include="default.html" />
-    <Content Include="Images\share_hover_50.png" />
     <Content Include="Main.css" />
     <Content Include="Scripts\PortalClient.min.js" />
     <Content Include="Scripts\Refrain.js" />

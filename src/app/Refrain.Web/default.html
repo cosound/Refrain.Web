@@ -161,7 +161,15 @@
 						<div id="ShareMatchOnFacebook" class="fb-share-button" data-type="button" data-bind="attr: {'data-href': ShareUrl}">Share on Facebook</div>
 					</div>
 					<div id="SimilarityContainer">
-						<p>Importance of music aspects in match</p>
+						<p>Importance of music aspects in match <a class="buttonsqpink" href="#" data-bind="click: ToggleSimilarityHelp">?</a></p>
+						<p class="HelpText" data-bind="visible: SimilarityHelpVisible">
+							Relative importance of different music aspects in match. 0% is no importance, 100% is maximum importance. The importance of different aspects sums to 100%. <br/>
+							Tempo is the perceived number of beats per minute. Rhythm defines the rhythmic structure. <br/>
+							Mood defines the overall positive or negative expressed mood of the song.<br />
+							Melody defines characteristic melodic elements of the song.<br />
+							Energy defines the energy level of the song.<br />
+							Timbre defines the characteristic color of the music. Timbre is what makes notes of two instruments with same pitch and loudness sounding different.
+						</p>
 						<div id="SimilarityGraphLegend">
 							<p>Tempo</p>
 							<p>Rythm</p>

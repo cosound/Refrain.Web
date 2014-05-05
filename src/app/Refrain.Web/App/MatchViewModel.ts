@@ -9,6 +9,8 @@
 	public ShareUrl: KnockoutObservable<string> = ko.observable<string>();
 	public ShareMessage: KnockoutObservable<string> = ko.observable<string>();
 
+	public SimilarityHelpVisible:KnockoutObservable<boolean> = ko.observable<boolean>(false);
+
 	private _queryDelayHandle: number;
 	private _campareSongId: string;
 	private _portalReadyCallback: () => void;
@@ -71,6 +73,11 @@
 		this._updatingQueryString = false;
 	}
 
+	public ToggleSimilarityHelp():void
+	{
+		this.SimilarityHelpVisible(!this.SimilarityHelpVisible());
+	}
+
 	private Search(value:string):void
 	{
 		if (value == "")
@@ -114,7 +121,7 @@
 
 	private GetSong(id:string)
 	{
-		this.CallWhenPortalReady(() => RefrainPortal.Song.Get(id, 111111).WithCallback(this.SongGetCompleted, this));
+		this.CallWhenPortalReady(() => RefrainPortal.Song.Get(id, 111111, 3).WithCallback(this.SongGetCompleted, this));
 	}
 
 	public SelectSimilarity(similarity:SongSimilarity):void
@@ -124,6 +131,7 @@
 
 		similarity.IsSelected(true);
 
+		this.SelectedSimilarity(null);
 		this.SelectedSimilarity(similarity);
 
 		window.location.hash = "Match/" + this.SelectedSong().Id + "/" + this.SelectedSimilarity().Id;
@@ -157,7 +165,7 @@
 		else
 			this.ShareUrl("http://refrain.dk" + window.location.pathname + window.location.hash);
 
-		this.ShareMessage("I found something at");
+		this.ShareMessage("I discovered " + this.SelectedSong().Title + " is " + (similarity.Distance < 0.2 ? "similar" : "dissimilar") + " to " + similarity.Title + " at " );
 
 		twttr.widgets.load();
 		FB.XFBML.parse();

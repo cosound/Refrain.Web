@@ -224,6 +224,13 @@ div.menublock table{
     margin-right: auto
 }
 
+.HelpText {
+	margin-top: 3px;
+	font-size: 18px;
+	padding: 5px;
+	background-color: #0099FF;
+}
+
 /* Front */
 
 .FrontImage {
@@ -235,7 +242,7 @@ div.menublock table{
 
 #SongQuery
 {
-	width: 700px;
+	width: 880px;
 
 	color: white;
 	font-size: 25px;
@@ -314,8 +321,7 @@ div.menublock table{
 
 .CompareIcon 
 {
-	vertical-align: middle;
-	margin: auto;
+	margin-top: 270px;
 }
 
 #ShareContainer 
@@ -348,6 +354,7 @@ div.menublock table{
 {
 	display: inline-block;
 	margin-top: 10px;
+	margin-right: 15px;
 }
 
 #SimilarityGraph 
@@ -372,7 +379,7 @@ div.menublock table{
 }
 
 #MinMaxGraph {
-	margin-left: 108px;
+	margin-left: 103px;
 	width: 500px;
 }
 
@@ -478,13 +485,13 @@ a.text:visited {
 	color: #ffffff;
 	display: inline-block;
 	font-family: verdana, arial, helvetica, sans-serif;
-	font-size: 32px;
+	font-size: 26px;
 	font-weight: bold;
-	height: 40px;
-	line-height: 40px;
+	height: 30px;
+	line-height: 30px;
 	text-align: center;
 	text-decoration: none;
-	width: 40px;
+	width: 30px;
 }
 
 .buttonsqpink:hover {
