@@ -12,7 +12,17 @@
 
 	public CompareHelpVisible: KnockoutObservable<boolean> = ko.observable<boolean>(false);
 	public SimilarityHelpVisible: KnockoutObservable<boolean> = ko.observable<boolean>(false);
+	public AspectHelpVisible: KnockoutObservable<boolean> = ko.observable<boolean>(false);
 	public CompareType: KnockoutObservable<number> = ko.observable<number>(3);
+
+	public AspectTempo:KnockoutObservable<boolean> = ko.observable(true);
+	public AspectRythm:KnockoutObservable<boolean> = ko.observable(true);
+	public AspectMood:KnockoutObservable<boolean> = ko.observable(true);
+	public AspectMelody:KnockoutObservable<boolean> = ko.observable(true);
+	public AspectEnergy:KnockoutObservable<boolean> = ko.observable(true);
+	public AspectTimbre:KnockoutObservable<boolean> = ko.observable(true);
+
+	private Aspects:KnockoutComputed<string>;
 
 	private _queryDelayHandle: number;
 	private _campareSongId: string;
@@ -26,27 +36,42 @@
 
 	constructor()
 	{
-		this.Query.subscribe(v => this.QueryChanged(v));
-		this.CompareType.subscribe(v => this.CompareTypeChanged(v));
+		this.Aspects = ko.computed(() => (this.AspectTempo() ? "1" : "0") + (this.AspectRythm() ? "1" : "0") + (this.AspectMood() ? "1" : "0") + (this.AspectMelody() ? "1" : "0") + (this.AspectEnergy() ? "1" : "0") + (this.AspectTimbre() ? "1" : "0"));	
 	}
 
-	public Initialize(songId:string, compareType:string, campareSongId:string): void
+	public Initialize(songId:string, compareType:string, aspects:string, campareSongId:string): void
 	{
 		twttr.ready(() => twttr.widgets.load());
 
 		this._campareSongId = campareSongId;
 
+		this._updatingInput = true;
+
 		if (compareType)
-		{
-			this._updatingInput = true;
 			this.CompareType(parseInt(compareType));
-			this._updatingInput = false;
+
+		if (aspects)
+		{
+			var values = aspects.split("");
+
+			this.AspectTempo(values[0] == "1");
+			this.AspectRythm(values[1] == "1");
+			this.AspectMood(values[2] == "1");
+			this.AspectMelody(values[3] == "1");
+			this.AspectEnergy(values[4] == "1");
+			this.AspectTimbre(values[5] == "1");
 		}
+
+		this._updatingInput = false;
 
 		if(songId)
 			this.GetSong(songId);
 
 		$("#SongQuery").focus();
+
+		this.Query.subscribe(v => this.QueryChanged(v));
+		this.CompareType.subscribe(v => this.CompareTypeChanged(v));
+		this.Aspects.subscribe(v => this.AspectsChanged(v));
 	}
 
 	public PortalReady(): void
@@ -78,6 +103,13 @@
 		if (this._updatingInput) return;
 
 		this.GetSong(this.SelectedSong().Id);
+	} 
+
+	private AspectsChanged(newValue: string): void
+	{
+		if (this._updatingInput) return;
+
+		this.GetSong(this.SelectedSong().Id);
 	}
 
 	public SearchAndUpdateQuery(value:string):void
@@ -99,6 +131,11 @@
 	public ToggleCompareHelp(): void
 	{
 		this.CompareHelpVisible(!this.CompareHelpVisible());
+	}
+
+	public ToggleAspectHelp(): void
+	{
+		this.AspectHelpVisible(!this.AspectHelpVisible());
 	}
 
 	private Search(value:string):void
@@ -156,7 +193,7 @@
 
 	private GetSong(id:string)
 	{
-		this.CallWhenPortalReady(() => RefrainPortal.Song.Get(id, 111111, this.CompareType()).WithCallback(this.SongGetCompleted, this));
+		this.CallWhenPortalReady(() => RefrainPortal.Song.Get(id, this.Aspects(), this.CompareType()).WithCallback(this.SongGetCompleted, this));
 	}
 
 	public SelectSimilarity(similarity:SongSimilarity):void
@@ -169,7 +206,7 @@
 		this.SelectedSimilarity(null);
 		this.SelectedSimilarity(similarity);
 
-		window.location.hash = "Match/" + this.SelectedSong().Id + "/" + this.CompareType() + "/" + this.SelectedSimilarity().Id;
+		window.location.hash = "Match/" + this.SelectedSong().Id + "/" + this.CompareType() + "/" + this.Aspects() + "/" + this.SelectedSimilarity().Id;
 
 		$('html, body').animate({ scrollTop: $("#ExploreHeadline").offset().top }, 1000);
 

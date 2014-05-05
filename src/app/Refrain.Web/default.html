@@ -144,7 +144,9 @@
 				<h1 id="SelectMatchHeadline">Select Comparison</h1>
 				<div>
 					<div id="CompareOptions">
-						Compare with <a class="buttonsqpink" href="#" data-bind="click: ToggleCompareHelp">?</a>
+						<p class="Label">
+							Compare with <a class="buttonsqpink" href="#" data-bind="click: ToggleCompareHelp">?</a>
+						</p>
 						<p class="HelpText" data-bind="visible: CompareHelpVisible">
 							Match selected songs with the realm of all Eurovision Song Contest songs and/or the most popular the Western pop songs by ticking the boxes.
 						</p>
@@ -152,6 +154,26 @@
 							<label><input type="radio" name="CompareGroup" data-bind="checked: CompareType, checkedValue: 1" /> Eurovision songs</label>
 							<label><input type="radio" name="CompareGroup" data-bind="checked: CompareType, checkedValue: 2" /> Pop songs</label>
 							<label><input type="radio" name="CompareGroup" data-bind="checked: CompareType, checkedValue: 3" /> Both</label>
+						</p>
+						<p class="Label">
+							Compare on <a class="buttonsqpink" href="#" data-bind="click: ToggleAspectHelp">?</a>
+						</p>
+						<p class="HelpText" data-bind="visible: AspectHelpVisible">
+							Match selected songs based on these aspect of them.<br/>
+							Tempo is the perceived number of beats per minute.<br/>
+							Rhythm defines the rhythmic structure. <br />
+							Mood defines the overall positive or negative expressed mood of the song.<br />
+							Melody defines characteristic melodic elements of the song.<br />
+							Energy defines the energy level of the song.<br />
+							Timbre defines the characteristic color of the music. Timbre is what makes notes of two instruments with same pitch and loudness sounding different.
+						</p>
+						<p>
+							<label><input type="checkbox" data-bind="checked: AspectTempo"/> Tempo</label>
+							<label><input type="checkbox" data-bind="checked: AspectRythm"/> Rythm</label>
+							<label><input type="checkbox" data-bind="checked: AspectMood"/> Mood</label>
+							<label><input type="checkbox" data-bind="checked: AspectMelody"/> Melody</label>
+							<label><input type="checkbox" data-bind="checked: AspectEnergy"/> Energy</label>
+							<label><input type="checkbox" data-bind="checked: AspectTimbre"/> Timbre</label>
 						</p>
 					</div>
 					<!-- ko with: SelectedSong -->
@@ -181,7 +203,8 @@
 						<p>Importance of music aspects in match <a class="buttonsqpink" href="#" data-bind="click: ToggleSimilarityHelp">?</a></p>
 						<p class="HelpText" data-bind="visible: SimilarityHelpVisible">
 							Relative importance of different music aspects in match. 0% is no importance, 100% is maximum importance. The importance of different aspects sums to 100%. <br/>
-							Tempo is the perceived number of beats per minute. Rhythm defines the rhythmic structure. <br/>
+							Tempo is the perceived number of beats per minute. <br/>
+							Rhythm defines the rhythmic structure. <br/>
 							Mood defines the overall positive or negative expressed mood of the song.<br />
 							Melody defines characteristic melodic elements of the song.<br />
 							Energy defines the energy level of the song.<br />

@@ -13,7 +13,7 @@
 
 	export class Song
 	{
-		public static Get(id: string, type: number, dataSet:number, serviceCaller: CHAOS.Portal.Client.IServiceCaller = null): CHAOS.Portal.Client.ICallState<ISong>
+		public static Get(id: string, type: string, dataSet:number, serviceCaller: CHAOS.Portal.Client.IServiceCaller = null): CHAOS.Portal.Client.ICallState<ISong>
 		{
 			if (serviceCaller == null)
 				serviceCaller = CHAOS.Portal.Client.ServiceCallerService.GetDefaultCaller();

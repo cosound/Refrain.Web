@@ -17,6 +17,7 @@
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="ComingSoon.html" />
     <Content Include="Flags.css" />
     <Content Include="Images\bgrefrain3.jpg" />
     <Content Include="Images\bgrefrain3.png" />

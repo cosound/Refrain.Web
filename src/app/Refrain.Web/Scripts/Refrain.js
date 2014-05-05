@@ -128,34 +128,61 @@ var MatchViewModel = (function () {
         this.ShareMessage = ko.observable();
         this.CompareHelpVisible = ko.observable(false);
         this.SimilarityHelpVisible = ko.observable(false);
+        this.AspectHelpVisible = ko.observable(false);
         this.CompareType = ko.observable(3);
+        this.AspectTempo = ko.observable(true);
+        this.AspectRythm = ko.observable(true);
+        this.AspectMood = ko.observable(true);
+        this.AspectMelody = ko.observable(true);
+        this.AspectEnergy = ko.observable(true);
+        this.AspectTimbre = ko.observable(true);
         this._portalIsReady = false;
         this._countryInfos = ko.observable();
         this._updatingInput = false;
-        this.Query.subscribe(function (v) {
-            return _this.QueryChanged(v);
-        });
-        this.CompareType.subscribe(function (v) {
-            return _this.CompareTypeChanged(v);
+        this.Aspects = ko.computed(function () {
+            return (_this.AspectTempo() ? "1" : "0") + (_this.AspectRythm() ? "1" : "0") + (_this.AspectMood() ? "1" : "0") + (_this.AspectMelody() ? "1" : "0") + (_this.AspectEnergy() ? "1" : "0") + (_this.AspectTimbre() ? "1" : "0");
         });
     }
-    MatchViewModel.prototype.Initialize = function (songId, compareType, campareSongId) {
+    MatchViewModel.prototype.Initialize = function (songId, compareType, aspects, campareSongId) {
+        var _this = this;
         twttr.ready(function () {
             return twttr.widgets.load();
         });
 
         this._campareSongId = campareSongId;
 
-        if (compareType) {
-            this._updatingInput = true;
+        this._updatingInput = true;
+
+        if (compareType)
             this.CompareType(parseInt(compareType));
-            this._updatingInput = false;
+
+        if (aspects) {
+            var values = aspects.split("");
+
+            this.AspectTempo(values[0] == "1");
+            this.AspectRythm(values[1] == "1");
+            this.AspectMood(values[2] == "1");
+            this.AspectMelody(values[3] == "1");
+            this.AspectEnergy(values[4] == "1");
+            this.AspectTimbre(values[5] == "1");
         }
+
+        this._updatingInput = false;
 
         if (songId)
             this.GetSong(songId);
 
         $("#SongQuery").focus();
+
+        this.Query.subscribe(function (v) {
+            return _this.QueryChanged(v);
+        });
+        this.CompareType.subscribe(function (v) {
+            return _this.CompareTypeChanged(v);
+        });
+        this.Aspects.subscribe(function (v) {
+            return _this.AspectsChanged(v);
+        });
     };
 
     MatchViewModel.prototype.PortalReady = function () {
@@ -190,6 +217,13 @@ var MatchViewModel = (function () {
         this.GetSong(this.SelectedSong().Id);
     };
 
+    MatchViewModel.prototype.AspectsChanged = function (newValue) {
+        if (this._updatingInput)
+            return;
+
+        this.GetSong(this.SelectedSong().Id);
+    };
+
     MatchViewModel.prototype.SearchAndUpdateQuery = function (value) {
         this._updatingInput = true;
 
@@ -206,6 +240,10 @@ var MatchViewModel = (function () {
 
     MatchViewModel.prototype.ToggleCompareHelp = function () {
         this.CompareHelpVisible(!this.CompareHelpVisible());
+    };
+
+    MatchViewModel.prototype.ToggleAspectHelp = function () {
+        this.AspectHelpVisible(!this.AspectHelpVisible());
     };
 
     MatchViewModel.prototype.Search = function (value) {
@@ -261,7 +299,7 @@ var MatchViewModel = (function () {
     MatchViewModel.prototype.GetSong = function (id) {
         var _this = this;
         this.CallWhenPortalReady(function () {
-            return RefrainPortal.Song.Get(id, 111111, _this.CompareType()).WithCallback(_this.SongGetCompleted, _this);
+            return RefrainPortal.Song.Get(id, _this.Aspects(), _this.CompareType()).WithCallback(_this.SongGetCompleted, _this);
         });
     };
 
@@ -274,7 +312,7 @@ var MatchViewModel = (function () {
         this.SelectedSimilarity(null);
         this.SelectedSimilarity(similarity);
 
-        window.location.hash = "Match/" + this.SelectedSong().Id + "/" + this.CompareType() + "/" + this.SelectedSimilarity().Id;
+        window.location.hash = "Match/" + this.SelectedSong().Id + "/" + this.CompareType() + "/" + this.Aspects() + "/" + this.SelectedSimilarity().Id;
 
         $('html, body').animate({ scrollTop: $("#ExploreHeadline").offset().top }, 1000);
 
