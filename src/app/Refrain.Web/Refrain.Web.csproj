@@ -29,6 +29,8 @@
     <Content Include="Images\Flags.png" />
     <Content Include="Images\geckon.png" />
     <Content Include="Images\linkblue_40.png" />
+    <Content Include="Images\MatchThumb.png" />
+    <Content Include="Images\MoodThumb.png" />
     <Content Include="Images\pink_arrow_900_40.png" />
     <Content Include="Images\refrain_white_280.png" />
     <Content Include="Images\share_50.png" />

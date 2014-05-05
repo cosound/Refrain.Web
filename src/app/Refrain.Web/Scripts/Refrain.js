@@ -127,6 +127,7 @@ var MatchViewModel = (function () {
         this.ShareMessage = ko.observable();
         this._portalIsReady = false;
         this._countryInfos = ko.observable();
+        this._updatingQueryString = false;
         this.Query.subscribe(function (v) {
             return _this.QueryChanged(v);
         });
@@ -159,11 +160,24 @@ var MatchViewModel = (function () {
 
     MatchViewModel.prototype.QueryChanged = function (newValue) {
         var _this = this;
+        if (this._updatingQueryString)
+            return;
+
         clearTimeout(this._queryDelayHandle);
 
         this._queryDelayHandle = setTimeout(function () {
             return _this.Search(newValue);
         }, 200);
+    };
+
+    MatchViewModel.prototype.SearchAndUpdateQuery = function (value) {
+        this._updatingQueryString = true;
+
+        this.Query(value);
+
+        this.Search(value);
+
+        this._updatingQueryString = false;
     };
 
     MatchViewModel.prototype.Search = function (value) {
@@ -340,12 +354,12 @@ var RefrainPortal;
     var Song = (function () {
         function Song() {
         }
-        Song.Get = function (id, type, serviceCaller) {
+        Song.Get = function (id, type, dataSet, serviceCaller) {
             if (typeof serviceCaller === "undefined") { serviceCaller = null; }
             if (serviceCaller == null)
                 serviceCaller = CHAOS.Portal.Client.ServiceCallerService.GetDefaultCaller();
 
-            return serviceCaller.CallService("Song/Get", 0 /* Get */, { id: id, type: type }, true);
+            return serviceCaller.CallService("Song/Get", 0 /* Get */, { id: id, type: type, dataSet: dataSet }, true);
         };
         return Song;
     })();

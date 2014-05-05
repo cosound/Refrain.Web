@@ -235,7 +235,7 @@ div.menublock table{
 
 #SongQuery
 {
-	width: 400px;
+	width: 700px;
 
 	color: white;
 	font-size: 25px;
@@ -248,6 +248,11 @@ div.menublock table{
 #SongQuery:focus
 {
 	border-color: #cc0099;
+}
+
+.QueryHelp a
+{
+	font-style: italic;
 }
 
 .SongMatch
@@ -281,9 +286,22 @@ div.menublock table{
 	font-style: italic;
 }
 
+.SongFullInfo 
+{
+	display: inline-block;
+	vertical-align: top;
+	width: 400px;
+	padding: 5px;
+}
+
+#CompareFullInfo {
+	float: right;
+}
+
 .SongTitle 
 {
-	margin: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 	padding: 5px;
 
 	background-color: #0099FF;
@@ -294,45 +312,52 @@ div.menublock table{
 	font-style: italic;
 }
 
-.SongFullInfo 
-{
-	display: inline-block;
-	vertical-align: top;
-	width: 410px;
-}
-
 .CompareIcon 
 {
-	display: inline-block;
 	vertical-align: middle;
-    margin-left: auto;
-    margin-right: auto
-}
-
-#SimilarityContainer {
-	display: inline-block;
-	vertical-align: top;
+	margin: auto;
 }
 
 #ShareContainer 
 {
-	margin-left: 20px;
+	margin: 10px;
+	padding: 10px;
 
-	display: inline-block;
-	vertical-align: top;
+	clear: both;
+
+	background-color: #0099FF;
 }
 
-#SimilarityGrapghLegend 
+#ShareMatchOnTwitter {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#ShareMatchOnFacebook {
+	display: inline-block;
+	vertical-align: middle;
+
+	margin-top: -8px;
+}
+
+#SimilarityContainer {
+	margin: 10px 20px;
+}
+
+#SimilarityGraphLegend 
 {
 	display: inline-block;
+	margin-top: 10px;
 }
 
 #SimilarityGraph 
 {
+	margin-top: 7px;
 	display: inline-block;
 	border-left: 1px solid white;
 	border-right: 1px solid white;
-	width: 300px;
+	vertical-align: top;
+	width: 500px;
 }
 
 .SimilarityBar 
@@ -341,9 +366,22 @@ div.menublock table{
 	margin: 10px 0;
 	background-color: #cc0099;
 
-	height: 15px;
+	height: 18px;
 
 	display: block;
+}
+
+#MinMaxGraph {
+	margin-left: 108px;
+	width: 500px;
+}
+
+#MinGraph {
+	text-align: left;
+}
+
+#MaxGraph {
+	float: right;
 }
 
 /* About */

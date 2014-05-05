@@ -117,7 +117,7 @@
 					<p class="SongTitle" data-bind="text: Title"></p>
 					<p class="SongTitle" data-bind="text: Artist"></p>
 					<p class="SongTitle" data-bind="visible: CountryName || Year">
-						<span data-bind="visible: CountryName"><img src="Images/Blank.gif" class="flag" data-bind="attr: {alt: CountryName}, css: 'flag-' + CountryCode" /><span data-bind="text: CountryName"></span></span><span data-bind="visible: CountryName && Year">, </span><span data-bind="visible: Year, text: Year"></span>
+						<span data-bind="visible: CountryName"><img src="Images/Blank.gif" class="flag" data-bind="attr: {alt: CountryName}, css: 'flag-' + CountryCode" /> <span data-bind="text: CountryName"></span></span><span data-bind="visible: CountryName && Year">, </span><span data-bind="visible: Year, text: Year"></span>
 					</p>
 					<!-- ko if: YoutubeId -->
 					<div class="YouTubePlayer"></div>
@@ -128,8 +128,14 @@
 				</script>
 				<h1>Select Song</h1>
 				<div>
-					<h2>Search for a eurovision song by title, artist, country and/or year</h2>
+					<h2>Search for a Eurovision song</h2>
 					<input id="SongQuery" type="text" data-bind="value: Query, valueUpdate: 'afterkeydown'" />
+					<div class="QueryHelp" data-bind="visible: Matches().length == 0">
+						<p>You can search on song title, artist, country or year of contest.</p>
+						<p><a href="#" data-bind="click: function() { SearchAndUpdateQuery('1967')}">"1967"</a> Songs from 1967</p>
+						<p><a href="#" data-bind="click: function() { SearchAndUpdateQuery('1985 love')}">"1985 love"</a> Songs with love in the title from 1985</p>
+						<p><a href="#" data-bind="click: function() { SearchAndUpdateQuery('2006 Finland')}">"2006 Finland"</a> Finlands 2006 entrance</p>
+					</div>
 					<div data-bind="template: {name: 'SongMatchTempalte', foreach: Matches}"></div>
 				</div>
 				<!-- ko if: SelectedSong -->
@@ -149,9 +155,14 @@
 						<img class="CompareIcon" src="Images/linkblue_40.png" />
 						<div id="CompareFullInfo" class="SongFullInfo" data-bind="template: {name: 'SongFullInfoTemplate', data: SelectedSimilarity}"></div>
 					</div>
+					<div id="ShareContainer">
+						Share your discovery with your friends: 
+						<a id="ShareMatchOnTwitter" href="https://twitter.com/share" class="twitter-hashtag-button" data-lang="en" data-related="refraindk" data-count="none" data-hashtags="refraindk,match" data-bind="attr: {'data-url': ShareUrl, 'data-text': ShareMessage}">Tweet #refraindk</a>
+						<div id="ShareMatchOnFacebook" class="fb-share-button" data-type="button" data-bind="attr: {'data-href': ShareUrl}">Share on Facebook</div>
+					</div>
 					<div id="SimilarityContainer">
 						<p>Importance of music aspects in match</p>
-						<div id="SimilarityGrapghLegend">
+						<div id="SimilarityGraphLegend">
 							<p>Tempo</p>
 							<p>Rythm</p>
 							<p>Mood</p>
@@ -160,18 +171,17 @@
 							<p>Timbre</p>
 						</div>
 						<div id="SimilarityGraph" data-bind="with: SelectedSimilarity">
-							<p class="SimilarityBar" data-bind="style: {width: Tempo * 100 + '%'}">&nbsp;</p>
-							<p class="SimilarityBar" data-bind="style: {width: Rythm * 100 + '%'}">&nbsp;</p>
-							<p class="SimilarityBar" data-bind="style: {width: Mood * 100 + '%'}">&nbsp;</p>
-							<p class="SimilarityBar" data-bind="style: {width: Melody * 100 + '%'}">&nbsp;</p>
-							<p class="SimilarityBar" data-bind="style: {width: Energy * 100 + '%'}">&nbsp;</p>
-							<p class="SimilarityBar" data-bind="style: {width: Timbre * 100 + '%'}">&nbsp;</p>
+							<p class="SimilarityBar" data-bind="style: {width: 10 + Tempo * 100 + '%'}">&nbsp;</p>
+							<p class="SimilarityBar" data-bind="style: {width: 10 + Rythm * 100 + '%'}">&nbsp;</p>
+							<p class="SimilarityBar" data-bind="style: {width: 10 + Mood * 100 + '%'}">&nbsp;</p>
+							<p class="SimilarityBar" data-bind="style: {width: 10 + Melody * 100 + '%'}">&nbsp;</p>
+							<p class="SimilarityBar" data-bind="style: {width: 10 + Energy * 100 + '%'}">&nbsp;</p>
+							<p class="SimilarityBar" data-bind="style: {width: 10 + Timbre * 100 + '%'}">&nbsp;</p>
 						</div>
-					</div>
-					<div id="ShareContainer">
-						<p>Share your discovery</p>
-						<a id="ShareMatchOnTwitter" href="https://twitter.com/share" class="twitter-hashtag-button" data-lang="en" data-related="refraindk" data-count="none" data-hashtags="refraindk,match" data-bind="attr: {'data-url': ShareUrl, 'data-text': ShareMessage}">Tweet #refraindk</a>
-						<div id="ShareMatchOnFacebook" class="fb-share-button" data-type="button" data-bind="attr: {'data-href': ShareUrl}">Share on Facebook</div>
+						<div id="MinMaxGraph">
+							<span id="MinGraph">0%</span>
+							<span id="MaxGraph">100%</span>
+						</div>
 					</div>
 				</div>
 				<!-- /ko -->

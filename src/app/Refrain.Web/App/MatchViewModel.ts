@@ -16,7 +16,8 @@
 	private _countryInfos: KnockoutObservable<ICountryInfo[]> = ko.observable<ICountryInfo[]>();
 
 	private _songPlayer:YT.Player;
-	private _compareSongPlayer:YT.Player;
+	private _compareSongPlayer: YT.Player;
+	private _updatingQueryString:boolean = false;
 
 	constructor()
 	{
@@ -52,9 +53,22 @@
 
 	private QueryChanged(newValue:string):void
 	{
+		if (this._updatingQueryString) return;
+
 		clearTimeout(this._queryDelayHandle);
 
 		this._queryDelayHandle = setTimeout(() => this.Search(newValue), 200);
+	}
+
+	public SearchAndUpdateQuery(value:string):void
+	{
+		this._updatingQueryString = true;
+
+		this.Query(value);
+
+		this.Search(value);
+
+		this._updatingQueryString = false;
 	}
 
 	private Search(value:string):void

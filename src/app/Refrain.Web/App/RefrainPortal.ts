@@ -13,12 +13,12 @@
 
 	export class Song
 	{
-		public static Get(id: string, type: number, serviceCaller: CHAOS.Portal.Client.IServiceCaller = null): CHAOS.Portal.Client.ICallState<ISong>
+		public static Get(id: string, type: number, dataSet:number, serviceCaller: CHAOS.Portal.Client.IServiceCaller = null): CHAOS.Portal.Client.ICallState<ISong>
 		{
 			if (serviceCaller == null)
 				serviceCaller = CHAOS.Portal.Client.ServiceCallerService.GetDefaultCaller();
 
-			return serviceCaller.CallService("Song/Get", CHAOS.Portal.Client.HttpMethod.Get, { id: id, type: type }, true);
+			return serviceCaller.CallService("Song/Get", CHAOS.Portal.Client.HttpMethod.Get, { id: id, type: type, dataSet: dataSet }, true);
 		}
 	}
 
