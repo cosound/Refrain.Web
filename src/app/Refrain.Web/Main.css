@@ -10,11 +10,24 @@
 	color: #ffffff;
 	font-family: verdana, arial, helvetica, sans-serif;
 	font-size: 22px;
-	-webkit-font-size-adjust: none;
-	-ms-font-size-adjust: none;
-	-o-font-size-adjust: none;
-	font-size-adjust: none;
 	margin: 0px;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 1024px)
+ {
+     html 
+	 {
+		-webkit-font-size-adjust: none;
+		-ms-font-size-adjust: none;
+		-o-font-size-adjust: none;
+		font-size-adjust: none;
+		-ms-text-size-adjust: none;
+		-webkit-text-size-adjust: none;
+     }
+
+	 #ShareMatchOnFacebook {
+		margin-top: 0px !important;
+	}
 }
 
 .small {
