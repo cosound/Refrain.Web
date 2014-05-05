@@ -3,12 +3,13 @@
     var Search = (function () {
         function Search() {
         }
-        Search.Get = function (query, serviceCaller) {
+        Search.Get = function (query, pageSize, serviceCaller) {
+            if (typeof pageSize === "undefined") { pageSize = null; }
             if (typeof serviceCaller === "undefined") { serviceCaller = null; }
             if (serviceCaller == null)
                 serviceCaller = CHAOS.Portal.Client.ServiceCallerService.GetDefaultCaller();
 
-            return serviceCaller.CallService("Search/Get", 0 /* Get */, { query: query }, true);
+            return serviceCaller.CallService("Search/Get", 0 /* Get */, { query: query, pageSize: pageSize }, true);
         };
         return Search;
     })();

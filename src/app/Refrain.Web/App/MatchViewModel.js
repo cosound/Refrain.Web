@@ -3,6 +3,7 @@
         var _this = this;
         this.Query = ko.observable("");
         this.Matches = ko.observableArray();
+        this.ExtraMatches = ko.observableArray();
         this.SelectedMatch = ko.observable();
         this.SelectedSong = ko.observable();
         this.SelectedSimilarity = ko.observable();
@@ -28,13 +29,13 @@
 
         this._campareSongId = campareSongId;
 
-        if (compareType != null) {
+        if (compareType) {
             this._updatingInput = true;
             this.CompareType(parseInt(compareType));
             this._updatingInput = false;
         }
 
-        if (songId != null)
+        if (songId)
             this.GetSong(songId);
 
         $("#SongQuery").focus();
@@ -96,20 +97,25 @@
             this.Matches.removeAll();
         else
             this.CallWhenPortalReady(function () {
-                return RefrainPortal.Search.Get(value).WithCallback(_this.SearchGetCompleted, _this);
+                return RefrainPortal.Search.Get(value, 30).WithCallback(_this.SearchGetCompleted, _this);
             });
     };
 
     MatchViewModel.prototype.SearchGetCompleted = function (response) {
         this.Matches.removeAll();
+        this.ExtraMatches.removeAll();
 
         if (response.Error != null) {
             console.log("Failed to get search results: " + response.Error.Message);
             return;
         }
 
-        for (var i = 0; i < response.Body.Results.length; i++)
-            this.Matches.push(new Match(response.Body.Results[i], this));
+        for (var i = 0; i < response.Body.Results.length; i++) {
+            if (i < 5)
+                this.Matches.push(new Match(response.Body.Results[i], this));
+            else
+                this.ExtraMatches.push(new Match(response.Body.Results[i], this));
+        }
     };
 
     MatchViewModel.prototype.SelectMatch = function (match) {
@@ -128,6 +134,11 @@
         window.location.hash = "Match/" + match.Id + "/";
 
         this.SelectedMatch(match);
+    };
+
+    MatchViewModel.prototype.ShowExtraMatches = function () {
+        for (var i = 0; this.ExtraMatches().length > 0 && i < 5; i++)
+            this.Matches.push(this.ExtraMatches.shift());
     };
 
     MatchViewModel.prototype.GetSong = function (id) {
@@ -194,17 +205,11 @@
         this.SelectedSong(song);
 
         if (this._campareSongId != null) {
-            for (var i = 0; i < song.MostSimilar.length; i++) {
-                if (song.MostSimilar[i].Id == this._campareSongId) {
-                    this.SelectSimilarity(song.MostSimilar[i]);
-                    this._campareSongId = null;
-                    return;
-                }
-            }
+            var allSimilarities = song.MostSimilar().concat(song.ExtraMostSimilar()).concat(song.LeastSimilar()).concat(song.ExtraLeastSimilar());
 
-            for (i = 0; i < song.LeastSimilar.length; i++) {
-                if (song.LeastSimilar[i].Id == this._campareSongId) {
-                    this.SelectSimilarity(song.LeastSimilar[i]);
+            for (var i = 0; i < allSimilarities.length; i++) {
+                if (allSimilarities[i].Id == this._campareSongId) {
+                    this.SelectSimilarity(allSimilarities[i]);
                     this._campareSongId = null;
                     return;
                 }

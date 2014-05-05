@@ -441,6 +441,29 @@ div.menublock table{
 	height: 700px;
 }
 
+#MoodScaleContainer {
+	height: 50px;
+}
+
+#MoodScaleNegative 
+{
+	float: left;
+	width:33.33333%;
+	text-align:left;
+}
+
+#MoodScaleNeutral {
+	float: left;
+	width:33.33333%;
+	text-align:center;
+}
+
+#MoodScalePositive {
+	float: left;
+	width:33.33333%;
+	text-align:right;
+}
+
 /* About */
 
 .ImageLeft {
