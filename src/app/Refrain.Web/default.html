@@ -5,6 +5,7 @@
 		<title>Refrain</title>
 		<link type="text/css" rel="stylesheet" href="Main.css"/>
 		<link type="text/css" rel="stylesheet" href="Flags.css"/>
+		<meta name="twitter:widgets:theme" content="dark" />
 		<script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
 		<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyDYMEgXXaemmCDhs3D_z6s_KPb5nMcB5MA&sensor=false"></script>
@@ -217,10 +218,10 @@
 				</div>
 				<!-- /ko -->
 				<!-- ko if: $parent.CurrentPage() == "Mood" -->
-				<h1>Mood</h1>
+				<h1>Mood Map</h1>
 				<div>
-					<p>See the current Eurovison twitter mood across Europe.</p>
-					<div id="map-canvas"></div>
+					<h2>See the current Eurovison twitter mood across Europe.</h2>
+					<div id="map-canvas"></div>					
 					<p id="MoodScaleContainer">
 						<img id="MoodScale" src="Images/MoodScale.png" />
 						<span id="MoodScaleNegative">Negative</span>
@@ -228,11 +229,20 @@
 						<span id="MoodScalePositive">Positive</span>
 					</p>
 				</div>
+				<h1>Tweets</h1>
+				<div>
+					<h2>Some of the tweets behind the mood map</h2>
+					<div class="TwitterTimeline" data-bind="foreach: SelectedTweets">
+						<div data-bind="html: $data"></div>
+					</div>
+				</div>
 				<!-- /ko -->
 				<!-- ko if: $parent.CurrentPage() == "Discovery" -->
-				<h1>Discovery</h1>
+				<h1>Discoveries</h1>
 				<div>
-					<a class="twitter-timeline" href="https://twitter.com/Eurovision" data-widget-id="460609701009313793">Tweets by @Eurovision</a>
+					<div class="TwitterTimeline">
+						<a class="twitter-timeline" href="https://twitter.com/search?q=%23refraindk" data-widget-id="463350958949294080">Tweets about "#refraindk"</a>
+					</div>
 				</div>
 				<!-- /ko -->
 				<!-- ko if: $parent.CurrentPage() == "About" -->
