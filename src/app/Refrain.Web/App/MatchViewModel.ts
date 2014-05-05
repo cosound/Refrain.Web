@@ -35,14 +35,14 @@
 
 		this._campareSongId = campareSongId;
 
-		if (compareType != null)
+		if (compareType)
 		{
 			this._updatingInput = true;
 			this.CompareType(parseInt(compareType));
 			this._updatingInput = false;
 		}
 
-		if(songId != null)
+		if(songId)
 			this.GetSong(songId);
 
 		$("#SongQuery").focus();

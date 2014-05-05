@@ -271,6 +271,10 @@ div.menublock table{
 	padding: 5px 0;
 }
 
+#CompareOptions p.HelpText {
+	padding: 5px;
+}
+
 .SongMatch
 {
 	color: white;
@@ -282,6 +286,11 @@ div.menublock table{
 .SongMatch:hover 
 {
 	background-color: #cc0099;
+}
+
+.SongMatch a:hover 
+{
+	color: white;
 }
 
 .SongMatch.Selected
@@ -352,7 +361,21 @@ div.menublock table{
 	display: inline-block;
 	vertical-align: middle;
 
-	margin-top: -8px;
+	margin-top: -16px;
+}
+
+#ShareMatchOnFacebook iframe {
+	-ms-transform: scale(1.4); 
+	-webkit-transform: scale(1.4); 
+	-o-transform: scale(1.4); 
+	-moz-transform: scale(1.4);
+	transform: scale(1.4);
+	-ms-transform-origin: top left;
+	-webkit-transform-origin: top left;
+	-moz-transform-origin: top left;
+	-webkit-transform-origin: top left;
+	-o-transform-origin: top left;
+	transform-origin: top left;
 }
 
 #SimilarityContainer {
