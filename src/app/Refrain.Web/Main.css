@@ -389,6 +389,10 @@ div.menublock table{
 	margin-right: 15px;
 }
 
+#SimilarityGraphLegend p {
+	height: 28px;
+}
+
 #SimilarityGraph 
 {
 	margin-top: 7px;
