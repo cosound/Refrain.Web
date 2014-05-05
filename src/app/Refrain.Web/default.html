@@ -137,6 +137,7 @@
 						<p><a href="#" data-bind="click: function() { SearchAndUpdateQuery('Finland')}">"Finland"</a> Finlands entrances</p>
 					</div>
 					<div data-bind="template: {name: 'SongMatchTempalte', foreach: Matches}"></div>
+					<a class="MoreButton" href="#" data-bind="click: ShowExtraMatches, visible: ExtraMatches().length != 0"><span class="buttonsqpink">&#9660;</span> More</a>
 				</div>
 				<!-- ko if: SelectedSong -->
 				<h1 id="SelectMatchHeadline">Select Comparison</h1>

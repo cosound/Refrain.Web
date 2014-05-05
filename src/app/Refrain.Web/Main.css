@@ -10,6 +10,10 @@
 	color: #ffffff;
 	font-family: verdana, arial, helvetica, sans-serif;
 	font-size: 22px;
+	-webkit-font-size-adjust: none;
+	-ms-font-size-adjust: none;
+	-o-font-size-adjust: none;
+	font-size-adjust: none;
 	margin: 0px;
 }
 
@@ -228,6 +232,10 @@ div.menublock table{
 	font-size: 18px;
 	padding: 5px;
 	background-color: #0099FF;
+}
+
+.MoreButton {
+	margin: 3px;
 }
 
 /* Front */

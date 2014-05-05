@@ -2,6 +2,7 @@
 {
 	public Query:KnockoutObservable<string> = ko.observable<string>("");
 	public Matches: KnockoutObservableArray<Match> = ko.observableArray<Match>();
+	public ExtraMatches: KnockoutObservableArray<Match> = ko.observableArray<Match>();
 	public SelectedMatch: KnockoutObservable<Match> = ko.observable<Match>();
 	public SelectedSong: KnockoutObservable<Song> = ko.observable<Song>();
 	public SelectedSimilarity: KnockoutObservable<SongSimilarity> = ko.observable<SongSimilarity>();
@@ -105,13 +106,14 @@
 		if (value == "")
 			this.Matches.removeAll();
 		else
-			this.CallWhenPortalReady(() => RefrainPortal.Search.Get(value).WithCallback(this.SearchGetCompleted, this));
+			this.CallWhenPortalReady(() => RefrainPortal.Search.Get(value, 30).WithCallback(this.SearchGetCompleted, this));
 	}
 
 	private SearchGetCompleted(response:CHAOS.Portal.Client.IPortalResponse<any>):void
 	{
 		this.Matches.removeAll();
-		
+		this.ExtraMatches.removeAll();
+
 		if (response.Error != null)
 		{
 			console.log("Failed to get search results: " + response.Error.Message);
@@ -119,7 +121,12 @@
 		}
 
 		for (var i = 0; i < response.Body.Results.length; i++)
-			this.Matches.push(new Match(response.Body.Results[i], this));
+		{
+			if (i < 5)
+				this.Matches.push(new Match(response.Body.Results[i], this));
+			else
+				this.ExtraMatches.push(new Match(response.Body.Results[i], this));
+		}
 	}
 
 	public SelectMatch(match:Match):void
@@ -139,6 +146,12 @@
 		window.location.hash = "Match/" + match.Id + "/";
 
 		this.SelectedMatch(match);
+	}
+
+	public ShowExtraMatches():void
+	{
+		for (var i = 0; this.ExtraMatches().length > 0 && i < 5; i++)
+			this.Matches.push(this.ExtraMatches.shift());
 	}
 
 	private GetSong(id:string)
