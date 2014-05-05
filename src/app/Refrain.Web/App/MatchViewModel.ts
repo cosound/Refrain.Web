@@ -9,7 +9,9 @@
 	public ShareUrl: KnockoutObservable<string> = ko.observable<string>();
 	public ShareMessage: KnockoutObservable<string> = ko.observable<string>();
 
-	public SimilarityHelpVisible:KnockoutObservable<boolean> = ko.observable<boolean>(false);
+	public CompareHelpVisible: KnockoutObservable<boolean> = ko.observable<boolean>(false);
+	public SimilarityHelpVisible: KnockoutObservable<boolean> = ko.observable<boolean>(false);
+	public CompareType: KnockoutObservable<number> = ko.observable<number>(3);
 
 	private _queryDelayHandle: number;
 	private _campareSongId: string;
@@ -19,18 +21,26 @@
 
 	private _songPlayer:YT.Player;
 	private _compareSongPlayer: YT.Player;
-	private _updatingQueryString:boolean = false;
+	private _updatingInput:boolean = false;
 
 	constructor()
 	{
 		this.Query.subscribe(v => this.QueryChanged(v));
+		this.CompareType.subscribe(v => this.CompareTypeChanged(v));
 	}
 
-	public Initialize(songId:string, campareSongId:string): void
+	public Initialize(songId:string, compareType:string, campareSongId:string): void
 	{
 		twttr.ready(() => twttr.widgets.load());
 
 		this._campareSongId = campareSongId;
+
+		if (compareType != null)
+		{
+			this._updatingInput = true;
+			this.CompareType(parseInt(compareType));
+			this._updatingInput = false;
+		}
 
 		if(songId != null)
 			this.GetSong(songId);
@@ -55,27 +65,39 @@
 
 	private QueryChanged(newValue:string):void
 	{
-		if (this._updatingQueryString) return;
+		if (this._updatingInput) return;
 
 		clearTimeout(this._queryDelayHandle);
 
 		this._queryDelayHandle = setTimeout(() => this.Search(newValue), 200);
 	}
 
+	private CompareTypeChanged(newValue: number): void
+	{
+		if (this._updatingInput) return;
+
+		this.GetSong(this.SelectedSong().Id);
+	}
+
 	public SearchAndUpdateQuery(value:string):void
 	{
-		this._updatingQueryString = true;
+		this._updatingInput = true;
 
 		this.Query(value);
 
 		this.Search(value);
 
-		this._updatingQueryString = false;
+		this._updatingInput = false;
 	}
 
 	public ToggleSimilarityHelp():void
 	{
 		this.SimilarityHelpVisible(!this.SimilarityHelpVisible());
+	}
+
+	public ToggleCompareHelp(): void
+	{
+		this.CompareHelpVisible(!this.CompareHelpVisible());
 	}
 
 	private Search(value:string):void
@@ -121,7 +143,7 @@
 
 	private GetSong(id:string)
 	{
-		this.CallWhenPortalReady(() => RefrainPortal.Song.Get(id, 111111, 3).WithCallback(this.SongGetCompleted, this));
+		this.CallWhenPortalReady(() => RefrainPortal.Song.Get(id, 111111, this.CompareType()).WithCallback(this.SongGetCompleted, this));
 	}
 
 	public SelectSimilarity(similarity:SongSimilarity):void
@@ -134,7 +156,7 @@
 		this.SelectedSimilarity(null);
 		this.SelectedSimilarity(similarity);
 
-		window.location.hash = "Match/" + this.SelectedSong().Id + "/" + this.SelectedSimilarity().Id;
+		window.location.hash = "Match/" + this.SelectedSong().Id + "/" + this.CompareType() + "/" + this.SelectedSimilarity().Id;
 
 		$('html, body').animate({ scrollTop: $("#ExploreHeadline").offset().top }, 1000);
 

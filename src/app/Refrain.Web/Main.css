@@ -242,7 +242,7 @@ div.menublock table{
 
 #SongQuery
 {
-	width: 880px;
+	width: 872px;
 
 	color: white;
 	font-size: 25px;
@@ -260,6 +260,15 @@ div.menublock table{
 .QueryHelp a
 {
 	font-style: italic;
+}
+
+#CompareOptions {
+	margin-top: 3px;
+	margin-bottom: 15px;
+}
+
+#CompareOptions p {
+	padding: 5px 0;
 }
 
 .SongMatch

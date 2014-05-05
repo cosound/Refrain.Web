@@ -126,7 +126,7 @@
 					<iframe data-bind="attr: {src: 'https://embed.spotify.com/?uri=spotify:track:' +  SpotifyId}" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
 					<!-- /ko-->
 				</script>
-				<h1>Select Song</h1>
+				<h1>Find Song</h1>
 				<div>
 					<h2>Search for a Eurovision song</h2>
 					<input id="SongQuery" type="text" data-bind="value: Query, valueUpdate: 'afterkeydown'" />
@@ -139,12 +139,25 @@
 					<div data-bind="template: {name: 'SongMatchTempalte', foreach: Matches}"></div>
 				</div>
 				<!-- ko if: SelectedSong -->
-				<h1 id="SelectMatchHeadline">Select Match</h1>
-				<div data-bind="with: SelectedSong">
+				<h1 id="SelectMatchHeadline">Select Comparison</h1>
+				<div>
+					<div id="CompareOptions">
+						Compare with <a class="buttonsqpink" href="#" data-bind="click: ToggleCompareHelp">?</a>
+						<p class="HelpText" data-bind="visible: CompareHelpVisible">
+							Match selected songs with the realm of all Eurovision Song Contest songs and/or the most popular the Western pop songs by ticking the boxes.
+						</p>
+						<p>
+							<label><input type="radio" name="CompareGroup" data-bind="checked: CompareType, checkedValue: 1" /> Eurovision songs</label>
+							<label><input type="radio" name="CompareGroup" data-bind="checked: CompareType, checkedValue: 2" /> Pop songs</label>
+							<label><input type="radio" name="CompareGroup" data-bind="checked: CompareType, checkedValue: 3" /> Both</label>
+						</p>
+					</div>
+					<!-- ko with: SelectedSong -->
 					<h2><span data-bind="text: Title"></span> is most similar to</h2>
 					<div data-bind="template: {name: 'SongMatchTempalte', foreach: MostSimilar}"></div>
 					<h2><span data-bind="text: Title"></span> is least similar to</h2>
 					<div data-bind="template: {name: 'SongMatchTempalte', foreach: LeastSimilar}"></div>
+					<!-- /ko -->
 				</div>
 				<!-- /ko -->
 				<!-- ko if: SelectedSimilarity -->
@@ -204,9 +217,7 @@
 				<h1>Mood</h1>
 				<div>
 					<div id="map-canvas" style="width: 850px; height: 700px;"></div>
-					<a class="twitter-timeline" href="https://twitter.com/Eurovision" data-widget-id="460609701009313793">Tweets by @Eurovision</a>
 				</div>
-				
 				<!-- /ko -->
 				<!-- ko if: $parent.CurrentPage() == "Discovery" -->
 				<h1>Discovery</h1>
