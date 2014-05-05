@@ -2,11 +2,11 @@
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	-webkit-background-size: cover;
-	background: url(Images/bgrefrain3.jpg);
-	background-attachment: fixed;
-	background-position: center center;
+	background: url(Images/bgrefrain3.png);
+	background-color: #01005D;
+	background-attachment: scroll;
+	background-position: top center;
 	background-repeat: no-repeat;
-	background-size: cover;
 	color: #ffffff;
 	font-family: verdana, arial, helvetica, sans-serif;
 	font-size: 22px;
