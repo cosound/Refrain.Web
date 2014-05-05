@@ -22,6 +22,28 @@
 		}
 	}
 
+	export class TwitterMood
+	{
+		public static Get(country: string[]= null, serviceCaller: CHAOS.Portal.Client.IServiceCaller = null): CHAOS.Portal.Client.ICallState<any>
+		{
+			if (serviceCaller == null)
+				serviceCaller = CHAOS.Portal.Client.ServiceCallerService.GetDefaultCaller();
+
+			return serviceCaller.CallService("TwitterMood/Get", CHAOS.Portal.Client.HttpMethod.Get, { country: country }, true);
+		}
+	}
+
+	export class Tweet
+	{
+		public static Get(groupLimit:number = null, country:string[] = null, serviceCaller: CHAOS.Portal.Client.IServiceCaller = null): CHAOS.Portal.Client.ICallState<any>
+		{
+			if (serviceCaller == null)
+				serviceCaller = CHAOS.Portal.Client.ServiceCallerService.GetDefaultCaller();
+
+			return serviceCaller.CallService("Tweet/Get", CHAOS.Portal.Client.HttpMethod.Get, { groupLimit: groupLimit, country: country }, true);
+		}
+	}
+
 	export interface ISearchMatch
 	{
 		Id:string;

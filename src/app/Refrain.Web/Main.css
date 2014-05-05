@@ -400,6 +400,13 @@ div.menublock table{
 	float: right;
 }
 
+/* Mood */
+
+#map-canvas {
+	width: 880px;
+	height: 700px;
+}
+
 /* About */
 
 .ImageLeft {
