@@ -225,21 +225,13 @@
 
 		if (this._campareSongId != null)
 		{
-			for (var i = 0; i < song.MostSimilar.length; i++)
-			{
-				if (song.MostSimilar[i].Id == this._campareSongId)
-				{
-					this.SelectSimilarity(song.MostSimilar[i]);
-					this._campareSongId = null;
-					return;
-				}
-			}
+			var allSimilarities = song.MostSimilar().concat(song.ExtraMostSimilar()).concat(song.LeastSimilar()).concat(song.ExtraLeastSimilar());
 
-			for (i = 0; i < song.LeastSimilar.length; i++)
+			for (var i = 0; i < allSimilarities.length; i++)
 			{
-				if (song.LeastSimilar[i].Id == this._campareSongId)
+				if (allSimilarities[i].Id == this._campareSongId)
 				{
-					this.SelectSimilarity(song.LeastSimilar[i]);
+					this.SelectSimilarity(allSimilarities[i]);
 					this._campareSongId = null;
 					return;
 				}

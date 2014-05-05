@@ -8,8 +8,11 @@
 	public Year: number = null;
 	public YoutubeId:string = null;
 	public SpotifyId:string = null;
-	public MostSimilar:SongSimilarity[] = [];
-	public LeastSimilar:SongSimilarity[] = [];
+	public MostSimilar: KnockoutObservableArray<SongSimilarity> = ko.observableArray <SongSimilarity>();
+	public LeastSimilar: KnockoutObservableArray<SongSimilarity> = ko.observableArray<SongSimilarity>();
+
+	public ExtraMostSimilar: KnockoutObservableArray<SongSimilarity> = ko.observableArray<SongSimilarity>();
+	public ExtraLeastSimilar: KnockoutObservableArray<SongSimilarity> = ko.observableArray <SongSimilarity>();
 
 	constructor(song:RefrainPortal.ISong, selector:IMatchSelector)
 	{
@@ -25,18 +28,38 @@
 		if (song.SpotifyId)
 			this.SpotifyId = song.SpotifyId;
 
-		for (var i = 0; this.MostSimilar.length < 5 && i != song.Similarity.Songs.length; i++)
+		for (var i = 0; i < song.Similarity.Songs.length; i++)
 		{
-			if (song.Similarity.Songs[i].SongId == this.Id) continue;
+			var similarity = new SongSimilarity(song.Similarity.Songs[i], selector);
 
-			this.MostSimilar.push(new SongSimilarity(song.Similarity.Songs[i], selector));
+			if (similarity.Id == this.Id) continue;
+
+			if (i < song.Similarity.Songs.length / 2)
+			{
+				if (this.MostSimilar().length < 5)
+					this.MostSimilar.push(similarity);
+				else
+					this.ExtraMostSimilar.push(similarity);
+			}
+			else
+			{
+				if (this.LeastSimilar().length < 5)
+					this.LeastSimilar.push(similarity);
+				else
+					this.ExtraLeastSimilar.push(similarity);
+			}
 		}
+	}
 
-		for (i = song.Similarity.Songs.length - 1; this.LeastSimilar.length < 5 && i >= 0; i--)
-		{
-			if (song.Similarity.Songs[i].SongId == this.Id) continue;
+	public ShowExtraMostSimilar(): void
+	{
+		for (var i = 0; this.ExtraMostSimilar().length > 0 && i < 5; i++)
+			this.MostSimilar.push(this.ExtraMostSimilar.shift());
+	}
 
-			this.LeastSimilar.push(new SongSimilarity(song.Similarity.Songs[i], selector));
-		}
+	public ShowExtraLeastSimilar(): void
+	{
+		for (var i = 0; this.ExtraLeastSimilar().length > 0 && i < 5; i++)
+			this.LeastSimilar.push(this.ExtraLeastSimilar.shift());
 	}
 } 

@@ -156,8 +156,10 @@
 					<!-- ko with: SelectedSong -->
 					<h2><span data-bind="text: Title"></span> is most similar to</h2>
 					<div data-bind="template: {name: 'SongMatchTempalte', foreach: MostSimilar}"></div>
+					<a class="MoreButton" href="#" data-bind="click: ShowExtraMostSimilar, visible: ExtraMostSimilar().length != 0"><span class="buttonsqpink">&#9660;</span> More</a>
 					<h2><span data-bind="text: Title"></span> is least similar to</h2>
 					<div data-bind="template: {name: 'SongMatchTempalte', foreach: LeastSimilar}"></div>
+					<a class="MoreButton" href="#" data-bind="click: ShowExtraLeastSimilar, visible: ExtraLeastSimilar().length != 0"><span class="buttonsqpink">&#9660;</span> More</a>
 					<!-- /ko -->
 				</div>
 				<!-- /ko -->

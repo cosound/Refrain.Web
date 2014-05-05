@@ -322,17 +322,11 @@ var MatchViewModel = (function () {
         this.SelectedSong(song);
 
         if (this._campareSongId != null) {
-            for (var i = 0; i < song.MostSimilar.length; i++) {
-                if (song.MostSimilar[i].Id == this._campareSongId) {
-                    this.SelectSimilarity(song.MostSimilar[i]);
-                    this._campareSongId = null;
-                    return;
-                }
-            }
+            var allSimilarities = song.MostSimilar().concat(song.ExtraMostSimilar()).concat(song.LeastSimilar()).concat(song.ExtraLeastSimilar());
 
-            for (i = 0; i < song.LeastSimilar.length; i++) {
-                if (song.LeastSimilar[i].Id == this._campareSongId) {
-                    this.SelectSimilarity(song.LeastSimilar[i]);
+            for (var i = 0; i < allSimilarities.length; i++) {
+                if (allSimilarities[i].Id == this._campareSongId) {
+                    this.SelectSimilarity(allSimilarities[i]);
                     this._campareSongId = null;
                     return;
                 }
@@ -480,8 +474,10 @@ var Song = (function () {
         this.Year = null;
         this.YoutubeId = null;
         this.SpotifyId = null;
-        this.MostSimilar = [];
-        this.LeastSimilar = [];
+        this.MostSimilar = ko.observableArray();
+        this.LeastSimilar = ko.observableArray();
+        this.ExtraMostSimilar = ko.observableArray();
+        this.ExtraLeastSimilar = ko.observableArray();
         this.Id = song.Id;
         this.Title = song.Title;
         this.Artist = song.ArtistName;
@@ -494,20 +490,34 @@ var Song = (function () {
         if (song.SpotifyId)
             this.SpotifyId = song.SpotifyId;
 
-        for (var i = 0; this.MostSimilar.length < 5 && i != song.Similarity.Songs.length; i++) {
-            if (song.Similarity.Songs[i].SongId == this.Id)
+        for (var i = 0; i < song.Similarity.Songs.length; i++) {
+            var similarity = new SongSimilarity(song.Similarity.Songs[i], selector);
+
+            if (similarity.Id == this.Id)
                 continue;
 
-            this.MostSimilar.push(new SongSimilarity(song.Similarity.Songs[i], selector));
-        }
-
-        for (i = song.Similarity.Songs.length - 1; this.LeastSimilar.length < 5 && i >= 0; i--) {
-            if (song.Similarity.Songs[i].SongId == this.Id)
-                continue;
-
-            this.LeastSimilar.push(new SongSimilarity(song.Similarity.Songs[i], selector));
+            if (i < song.Similarity.Songs.length / 2) {
+                if (this.MostSimilar().length < 5)
+                    this.MostSimilar.push(similarity);
+                else
+                    this.ExtraMostSimilar.push(similarity);
+            } else {
+                if (this.LeastSimilar().length < 5)
+                    this.LeastSimilar.push(similarity);
+                else
+                    this.ExtraLeastSimilar.push(similarity);
+            }
         }
     }
+    Song.prototype.ShowExtraMostSimilar = function () {
+        for (var i = 0; this.ExtraMostSimilar().length > 0 && i < 5; i++)
+            this.MostSimilar.push(this.ExtraMostSimilar.shift());
+    };
+
+    Song.prototype.ShowExtraLeastSimilar = function () {
+        for (var i = 0; this.ExtraLeastSimilar().length > 0 && i < 5; i++)
+            this.LeastSimilar.push(this.ExtraLeastSimilar.shift());
+    };
     return Song;
 })();
 var SongSimilarity = (function () {
