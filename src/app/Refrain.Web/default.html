@@ -103,7 +103,7 @@
 				<p><a href="Mood">See, share, and contribute!</a></p>
 				<br class="NoFloat" />
 				<br />
-				<p>Copyright &copy; 2014 CoSound. <a href="#About">See Copyright and Disclaimer</a>.</p>
+				<p>Copyright &copy; 2014 CoSound. <a href="#About">See Copyright, Disclaimer and Cookies Policy</a>.</p>
 				<!-- /ko -->
 				<!-- ko if: $parent.CurrentPage() == "Match" -->
 				<script id="SongMatchTempalte" type="text/html">
@@ -151,9 +151,9 @@
 							Match selected songs with the realm of all Eurovision Song Contest songs and/or the most popular the Western pop songs by ticking the boxes.
 						</p>
 						<p>
-							<label><input type="radio" name="CompareGroup" data-bind="checked: CompareType, checkedValue: 1" /> Eurovision songs</label>
-							<label><input type="radio" name="CompareGroup" data-bind="checked: CompareType, checkedValue: 2" /> Pop songs</label>
-							<label><input type="radio" name="CompareGroup" data-bind="checked: CompareType, checkedValue: 3" /> Both</label>
+							<input id="EuroRadio" type="radio" name="CompareGroup" data-bind="checked: CompareType, checkedValue: 1" /> <label for="EuroRadio"><span></span>Eurovision songs</label>
+							<input id="PopRadio" type="radio" name="CompareGroup" data-bind="checked: CompareType, checkedValue: 2" /> <label for="PopRadio"><span></span>Pop songs</label>
+							<input id="BothRadio" type="radio" name="CompareGroup" data-bind="checked: CompareType, checkedValue: 3" /> <label for="BothRadio"><span></span>Both</label>
 						</p>
 						<p class="Label">
 							Compare on <a class="buttonsqpink" href="#" data-bind="click: ToggleAspectHelp">?</a>
@@ -168,19 +168,19 @@
 							Timbre defines the characteristic color of the music. Timbre is what makes notes of two instruments with same pitch and loudness sounding different.
 						</p>
 						<p>
-							<label><input type="checkbox" data-bind="checked: AspectTempo"/> Tempo</label>
-							<label><input type="checkbox" data-bind="checked: AspectRythm"/> Rhythm</label>
-							<label><input type="checkbox" data-bind="checked: AspectMood"/> Mood</label>
-							<label><input type="checkbox" data-bind="checked: AspectMelody"/> Melody</label>
-							<label><input type="checkbox" data-bind="checked: AspectEnergy"/> Energy</label>
-							<label><input type="checkbox" data-bind="checked: AspectTimbre"/> Timbre</label>
+							<input id="AspectTempoCheckbox" type="checkbox" data-bind="checked: AspectTempo" /> <label for="AspectTempoCheckbox"><span></span>Tempo</label>
+							<input id="AspectRythmCheckbox" type="checkbox" data-bind="checked: AspectRythm" /> <label for="AspectRythmCheckbox"><span></span>Rhythm</label>
+							<input id="AspectMoodCheckbox" type="checkbox" data-bind="checked: AspectMood" /> <label for="AspectMoodCheckbox"><span></span>Mood</label>
+							<input id="AspectMelodyCheckbox" type="checkbox" data-bind="checked: AspectMelody" /> <label for="AspectMelodyCheckbox"><span></span>Melody</label>
+							<input id="AspectEnergyCheckbox" type="checkbox" data-bind="checked: AspectEnergy" /> <label for="AspectEnergyCheckbox"><span></span>Energy</label>
+							<input id="AspectTimbreCheckbox" type="checkbox" data-bind="checked: AspectTimbre" /> <label for="AspectTimbreCheckbox"><span></span>Timbre</label>
 						</p>
 					</div>
 					<!-- ko with: SelectedSong -->
-					<h2><span data-bind="text: Title"></span> is most similar to</h2>
+					<h2 class="SimililarityHeadline"><span data-bind="text: Title"></span> is similar to</h2>
 					<div data-bind="template: {name: 'SongMatchTempalte', foreach: MostSimilar}"></div>
 					<a class="MoreButton" href="#" data-bind="click: ShowExtraMostSimilar, visible: ExtraMostSimilar().length != 0"><span class="buttonsqpink">&#9660;</span> More</a>
-					<h2><span data-bind="text: Title"></span> is least similar to</h2>
+					<h2 class="SimililarityHeadline"><span data-bind="text: Title"></span> is dissimilar to</h2>
 					<div data-bind="template: {name: 'SongMatchTempalte', foreach: LeastSimilar}"></div>
 					<a class="MoreButton" href="#" data-bind="click: ShowExtraLeastSimilar, visible: ExtraLeastSimilar().length != 0"><span class="buttonsqpink">&#9660;</span> More</a>
 					<!-- /ko -->
@@ -312,7 +312,7 @@
 					</p>
 				</div>
 				<div class="SeperatedSection">
-					<h2>COPYRIGHT & DISLAIMER</h2>
+					<h2>Copyright, Disclaimer and Cookies Policy</h2>
 					<p>
 						By using the service, users accept to the following copyright and disclaimers.
 					</p>
