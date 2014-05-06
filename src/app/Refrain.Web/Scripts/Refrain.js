@@ -457,12 +457,15 @@ var MoodViewModel = (function () {
     };
 
     MoodViewModel.prototype.SetCountryStyle = function (feature) {
-        var mood = 1;
+        var mood = 0;
 
         if (this._moodData[feature.j.name] != null)
             mood = this._moodData[feature.j.name];
+        else
+            console.log("No mood data for " + feature.j.name + " found");
 
         var color = '#' + this.HexFromRGBRatio(1 - (mood + 1) / 2, (mood + 1) / 2, 0);
+
         return {
             fillColor: color,
             strokeColor: color,

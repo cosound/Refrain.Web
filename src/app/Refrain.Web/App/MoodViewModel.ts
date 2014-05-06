@@ -97,12 +97,15 @@ class MoodViewModel implements IPageViewModel
 	{
 		//var color = '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
 
-		var mood = 1;
+		var mood = 0;
 
 		if (this._moodData[feature.j.name] != null)
 			mood = this._moodData[feature.j.name];
+		else
+			console.log("No mood data for " + feature.j.name + " found");
 
 		var color = '#' + this.HexFromRGBRatio(1 - (mood + 1) / 2, (mood + 1) / 2, 0);
+
 		return {
 			fillColor: color,
 			strokeColor: color,

@@ -1,16 +1,17 @@
 ﻿body {
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	-webkit-background-size: cover;
-	background: url(Images/bgrefrain3.png);
-	background-color: #01005D;
-	background-attachment: scroll;
-	background-position: top center;
-	background-repeat: no-repeat;
 	color: #ffffff;
 	font-family: verdana, arial, helvetica, sans-serif;
 	font-size: 22px;
 	margin: 0px;
+
+	background:url(Images/bgrefrain4.jpg);
+	background-repeat: no-repeat;
+	background-position: center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	-ms-background-size: cover;
+	background-size: cover;
 }
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 1024px)
