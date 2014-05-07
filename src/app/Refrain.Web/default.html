@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<title>Refrain</title>
-		<link type="text/css" rel="stylesheet" href="Main.css?v=2"/>
+		<link type="text/css" rel="stylesheet" href="Main.css?v=3"/>
 		<link type="text/css" rel="stylesheet" href="Flags.css"/>
 		<meta name="twitter:widgets:theme" content="dark" />
 		<script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
@@ -134,7 +134,7 @@
 					<div class="QueryHelp" data-bind="visible: Matches().length == 0">
 						<p>You can search on song title, artist, country or year of contest.</p>
 						<p><a href="#" data-bind="click: function() { SearchAndUpdateQuery('1967')}">"1967"</a> Songs from 1967</p>
-						<p><a href="#" data-bind="click: function() { SearchAndUpdateQuery('1985 love')}">"1985 love"</a> Songs with love in the title from 1985</p>
+						<p><a href="#" data-bind="click: function() { SearchAndUpdateQuery('2012 love')}">"2012 love"</a> Songs with love in the title from 2012</p>
 						<p><a href="#" data-bind="click: function() { SearchAndUpdateQuery('Finland')}">"Finland"</a> Finlands entrances</p>
 					</div>
 					<div data-bind="template: {name: 'SongMatchTempalte', foreach: Matches}"></div>
@@ -184,10 +184,10 @@
 					<h2 class="SimililarityHeadline">"<span class="QuotedTitle" data-bind="text: Title"></span>" is most similar to*</h2>
 					<div data-bind="template: {name: 'SongMatchTempalte', foreach: MostSimilar}"></div>
 					<a class="MoreButton" href="#" data-bind="click: ShowExtraMostSimilar, visible: ExtraMostSimilar().length != 0"><span class="buttonsqpink">&#9660;</span> More</a>
-					<h2 class="SimililarityHeadline">"<span class="QuotedTitle" data-bind="text: Title"></span>" is least dissimilar to*</h2>
+					<h2 class="SimililarityHeadline">"<span class="QuotedTitle" data-bind="text: Title"></span>" is least similar to*</h2>
 					<div data-bind="template: {name: 'SongMatchTempalte', foreach: LeastSimilar}"></div>
 					<a class="MoreButton" href="#" data-bind="click: ShowExtraLeastSimilar, visible: ExtraLeastSimilar().length != 0"><span class="buttonsqpink">&#9660;</span> More</a>
-					<p class="FootNote">* Among the songs in the choosen collection.</p>
+					<p class="FootNote">* Among the songs in the chosen collection.</p>
 					<!-- /ko -->
 				</div>
 				<!-- /ko -->
