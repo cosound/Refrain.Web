@@ -372,6 +372,15 @@ input[type="checkbox"]:checked + label span, input[type="radio"]:checked + label
 	font-style: italic;
 }
 
+.QuotedTitle {
+	font-style: italic;
+}
+
+.FootNote {
+	margin-top: 20px;
+	font-size: 14px;
+}
+
 .SongFullInfo 
 {
 	display: inline-block;
