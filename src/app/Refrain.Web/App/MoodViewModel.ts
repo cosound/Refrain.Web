@@ -3,9 +3,13 @@
 class MoodViewModel implements IPageViewModel
 {
 	public SelectedTweets: KnockoutObservableArray<string> = ko.observableArray<string>();
+	public CanShowMoreTweets:KnockoutObservable<boolean> = ko.observable(false);
 
 	private _map: google.maps.Map;
 	private _moodData: { [countryCode: string]: number } = {};
+	private _tweets:string[];
+
+	private _updateHandler:number = null;
 
 	constructor()
 	{
@@ -23,7 +27,19 @@ class MoodViewModel implements IPageViewModel
 		(<any>this._map).data.loadGeoJson('Countries.json');
 	}
 
+	public Dispose(): void
+	{
+		if (this._updateHandler != null) clearInterval(this._updateHandler);
+	}
+
 	public PortalReady(): void
+	{
+		this.Update();
+
+		this._updateHandler = setInterval(() => this.Update(), 5 * 60 * 1000);
+	}
+
+	private Update():void
 	{
 		RefrainPortal.TwitterMood.Get().WithCallback(this.TwitterMoodGetCompleted, this);
 		RefrainPortal.Tweet.Get().WithCallback(this.TweetGetCompleted, this);
@@ -53,39 +69,38 @@ class MoodViewModel implements IPageViewModel
 			return;
 		}
 
+		this._tweets = [];
+		this.SelectedTweets.removeAll();
+
 		var groups = <any[]>(<any>response.Body).Groups;
-		var randomGroupIndex = 0;
-		var randomTweetIndex = 0;
-		var group: any = null;
-		var tweet:any = null;
+		var group: any;
 
-		while (groups.length != 0 && this.SelectedTweets().length < 10)
+		for (var i = 0; i < groups.length; i++)
 		{
-			randomGroupIndex = Math.floor(Math.random() * (groups.length - 1));
+			group = groups[i];
 
-			group = groups[randomGroupIndex];
+			if (group.Results == null || group.Results.lenght == 0) continue;
 
-			if (group.Results == null || group.Results.length == 0)
-			{
-				group.splice(randomGroupIndex, 1);
-				continue;
-			}
-
-			randomTweetIndex = Math.floor(Math.random() * (group.Results.length - 1));
-
-			tweet = group.Results[randomTweetIndex];
-
-			if (tweet.EmbedCode)
-			{
-				var code = decodeURIComponent(tweet.EmbedCode.replace(/\+/g, '%20'));
-				code = code.substring(code.indexOf("<blockquote"), code.indexOf("</blockquote>") + 12);
-				this.SelectedTweets.push(code);
-			}				
-
-			group.Results.splice(randomTweetIndex, 1);
+			for (var o = 0; o < group.Results.length; o++)
+				this._tweets.push(group.Results[o].EmbedCode);
 		}
 
-		twttr.widgets.load();
+		this.ShowMoreTweets();
+	}
+
+	public ShowMoreTweets():void
+	{
+		for (var i = 0; i < 5 && this._tweets.length > 0; i++)
+			this.SelectedTweets.push(this.GetTweetEmbed(this._tweets.shift()));
+
+		this.CanShowMoreTweets(this._tweets.length != 0);
+		twttr.widgets.load(document.getElementById("MoodTweets"));
+	}
+
+	private GetTweetEmbed(rawCode:string):string
+	{
+		var code = decodeURIComponent(rawCode.replace(/\+/g, '%20'));
+		return code.substring(code.indexOf("<blockquote"), code.indexOf("</blockquote>") + 12);
 	}
 
 	private Capitalize(country:string):string
@@ -95,14 +110,10 @@ class MoodViewModel implements IPageViewModel
 
 	private SetCountryStyle(feature:any):any
 	{
-		//var color = '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
-
 		var mood = 0;
 
 		if (this._moodData[feature.j.name] != null)
 			mood = this._moodData[feature.j.name];
-		else
-			console.log("No mood data for " + feature.j.name + " found");
 
 		var color = '#' + this.HexFromRGBRatio(1 - (mood + 1) / 2, (mood + 1) / 2, 0);
 

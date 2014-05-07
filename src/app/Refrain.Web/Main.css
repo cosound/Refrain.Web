@@ -518,6 +518,15 @@ input[type="checkbox"]:checked + label span, input[type="radio"]:checked + label
 	text-align:right;
 }
 
+#MoodTweetsHeadline {
+	text-align:center;
+}
+
+#ShowMoreTweetsButton {
+	text-align:center;
+	display: block;
+}
+
 /* About */
 
 .ImageLeft {

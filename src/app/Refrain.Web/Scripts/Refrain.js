@@ -6,6 +6,9 @@
 
     AboutViewModel.prototype.PortalReady = function () {
     };
+
+    AboutViewModel.prototype.Dispose = function () {
+    };
     return AboutViewModel;
 })();
 var CountryInfo = { "Afghanistan": "af", "Åland Islands": "ax", "Albania": "al", "Algeria": "dz", "American Samoa": "as", "Andorra": "ad", "Angola": "ao", "Anguilla": "ai", "Antarctica": "aq", "Antigua and Barbuda": "ag", "Argentina": "ar", "Armenia": "am", "Aruba": "aw", "Australia": "au", "Austria": "at", "Azerbaijan": "az", "Bahamas": "bs", "Bahrain": "bh", "Bangladesh": "bd", "Barbados": "bb", "Belarus": "by", "Belgium": "be", "Belize": "bz", "Benin": "bj", "Bermuda": "bm", "Bhutan": "bt", "Bolivia, Plurinational State of": "bo", "Bonaire, Sint Eustatius and Saba": "bq", "Bosnia and Herzegovina": "ba", "Botswana": "bw", "Bouvet Island": "bv", "Brazil": "br", "British Indian Ocean Territory": "io", "Brunei Darussalam": "bn", "Bulgaria": "bg", "Burkina Faso": "bf", "Burundi": "bi", "Cambodia": "kh", "Cameroon": "cm", "Canada": "ca", "Cape Verde": "cv", "Cayman Islands": "ky", "Central African Republic": "cf", "Chad": "td", "Chile": "cl", "China": "cn", "Christmas Island": "cx", "Cocos (Keeling) Islands": "cc", "Colombia": "co", "Comoros": "km", "Congo": "cg", "Congo, the Democratic Republic of the": "cd", "Cook Islands": "ck", "Costa Rica": "cr", "Côte d'Ivoire": "ci", "Croatia": "hr", "Cuba": "cu", "Curaçao": "cw", "Cyprus": "cy", "Czech Republic": "cz", "Denmark": "dk", "Djibouti": "dj", "Dominica": "dm", "Dominican Republic": "do", "Ecuador": "ec", "Egypt": "eg", "El Salvador": "sv", "Equatorial Guinea": "gq", "Eritrea": "er", "Estonia": "ee", "Ethiopia": "et", "Falkland Islands (Malvinas)": "fk", "Faroe Islands": "fo", "Fiji": "fj", "Finland": "fi", "France": "fr", "French Guiana": "gf", "French Polynesia": "pf", "French Southern Territories": "tf", "Gabon": "ga", "Gambia": "gm", "Georgia": "ge", "Germany": "de", "Ghana": "gh", "Gibraltar": "gi", "Greece": "gr", "Greenland": "gl", "Grenada": "gd", "Guadeloupe": "gp", "Guam": "gu", "Guatemala": "gt", "Guernsey": "gg", "Guinea": "gn", "Guinea-Bissau": "gw", "Guyana": "gy", "Haiti": "ht", "Heard Island and McDonald Islands": "hm", "Holy See (Vatican City State)": "va", "Honduras": "hn", "Hong Kong": "hk", "Hungary": "hu", "Iceland": "is", "India": "in", "Indonesia": "id", "Iran, Islamic Republic of": "ir", "Iraq": "iq", "Ireland": "ie", "Isle of Man": "im", "Israel": "il", "Italy": "it", "Jamaica": "jm", "Japan": "jp", "Jersey": "je", "Jordan": "jo", "Kazakhstan": "kz", "Kenya": "ke", "Kiribati": "ki", "Korea, Democratic People's Republic of": "kp", "Korea, Republic of": "kr", "Kuwait": "kw", "Kyrgyzstan": "kg", "Lao People's Democratic Republic": "la", "Latvia": "lv", "Lebanon": "lb", "Lesotho": "ls", "Liberia": "lr", "Libya": "ly", "Liechtenstein": "li", "Lithuania": "lt", "Luxembourg": "lu", "Macao": "mo", "Macedonia, the former Yugoslav Republic of": "mk", "Madagascar": "mg", "Malawi": "mw", "Malaysia": "my", "Maldives": "mv", "Mali": "ml", "Malta": "mt", "Marshall Islands": "mh", "Martinique": "mq", "Mauritania": "mr", "Mauritius": "mu", "Mayotte": "yt", "Mexico": "mx", "Micronesia, Federated States of": "fm", "Moldova": "md", "Monaco": "mc", "Mongolia": "mn", "Montenegro": "me", "Montserrat": "ms", "Morocco": "ma", "Mozambique": "mz", "Myanmar": "mm", "Namibia": "na", "Nauru": "nr", "Nepal": "np", "Netherlands": "nl", "New Caledonia": "nc", "New Zealand": "nz", "Nicaragua": "ni", "Niger": "ne", "Nigeria": "ng", "Niue": "nu", "Norfolk Island": "nf", "Northern Mariana Islands": "mp", "Norway": "no", "Oman": "om", "Pakistan": "pk", "Palau": "pw", "Palestine, State of": "ps", "Panama": "pa", "Papua New Guinea": "pg", "Paraguay": "py", "Peru": "pe", "Philippines": "ph", "Pitcairn": "pn", "Poland": "pl", "Portugal": "pt", "Puerto Rico": "pr", "Qatar": "qa", "Réunion": "re", "Romania": "ro", "Russia": "ru", "Rwanda": "rw", "Saint Barthélemy": "bl", "Saint Helena, Ascension and Tristan da Cunha": "sh", "Saint Kitts and Nevis": "kn", "Saint Lucia": "lc", "Saint Martin (French part)": "mf", "Saint Pierre and Miquelon": "pm", "Saint Vincent and the Grenadines": "vc", "Samoa": "ws", "San Marino": "sm", "Sao Tome and Principe": "st", "Saudi Arabia": "sa", "Senegal": "sn", "Serbia": "rs", "Seychelles": "sc", "Sierra Leone": "sl", "Singapore": "sg", "Sint Maarten (Dutch part)": "sx", "Slovakia": "sk", "Slovenia": "si", "Solomon Islands": "sb", "Somalia": "so", "South Africa": "za", "South Georgia and the South Sandwich Islands": "gs", "South Sudan": "ss", "Spain": "es", "Sri Lanka": "lk", "Sudan": "sd", "Suriname": "sr", "Svalbard and Jan Mayen": "sj", "Swaziland": "sz", "Sweden": "se", "Switzerland": "ch", "Syrian Arab Republic": "sy", "Taiwan, Province of China": "tw", "Tajikistan": "tj", "Tanzania, United Republic of": "tz", "Thailand": "th", "Timor-Leste": "tl", "Togo": "tg", "Tokelau": "tk", "Tonga": "to", "Trinidad and Tobago": "tt", "Tunisia": "tn", "Turkey": "tr", "Turkmenistan": "tm", "Turks and Caicos Islands": "tc", "Tuvalu": "tv", "Uganda": "ug", "Ukraine": "ua", "United Arab Emirates": "ae", "United Kingdom": "gb", "United States": "us", "United States Minor Outlying Islands": "um", "Uruguay": "uy", "Uzbekistan": "uz", "Vanuatu": "vu", "Venezuela, Bolivarian Republic of": "ve", "Viet Nam": "vn", "Virgin Islands, British": "vg", "Virgin Islands, U.S.": "vi", "Wallis and Futuna": "wf", "Western Sahara": "eh", "Yemen": "ye", "Zambia": "zm", "Zimbabwe": "zw" };
@@ -20,6 +23,9 @@ var DiscoveryViewModel = (function () {
 
     DiscoveryViewModel.prototype.PortalReady = function () {
     };
+
+    DiscoveryViewModel.prototype.Dispose = function () {
+    };
     return DiscoveryViewModel;
 })();
 var HomeViewModel = (function () {
@@ -29,6 +35,9 @@ var HomeViewModel = (function () {
     };
 
     HomeViewModel.prototype.PortalReady = function () {
+    };
+
+    HomeViewModel.prototype.Dispose = function () {
     };
     return HomeViewModel;
 })();
@@ -54,6 +63,9 @@ var MainViewModel = (function () {
 
         if (page == this.CurrentPage())
             return;
+
+        if (this.CurrentPageViewModel() != null)
+            this.CurrentPageViewModel().Dispose();
 
         this.CurrentPage(null);
 
@@ -183,6 +195,9 @@ var MatchViewModel = (function () {
         this.Aspects.subscribe(function (v) {
             return _this.AspectsChanged(v);
         });
+    };
+
+    MatchViewModel.prototype.Dispose = function () {
     };
 
     MatchViewModel.prototype.PortalReady = function () {
@@ -378,7 +393,9 @@ var MatchViewModel = (function () {
 var MoodViewModel = (function () {
     function MoodViewModel() {
         this.SelectedTweets = ko.observableArray();
+        this.CanShowMoreTweets = ko.observable(false);
         this._moodData = {};
+        this._updateHandler = null;
     }
     MoodViewModel.prototype.Initialize = function () {
         this._map = new google.maps.Map(document.getElementById('map-canvas'), {
@@ -390,7 +407,21 @@ var MoodViewModel = (function () {
         this._map.data.loadGeoJson('Countries.json');
     };
 
+    MoodViewModel.prototype.Dispose = function () {
+        if (this._updateHandler != null)
+            clearInterval(this._updateHandler);
+    };
+
     MoodViewModel.prototype.PortalReady = function () {
+        var _this = this;
+        this.Update();
+
+        this._updateHandler = setInterval(function () {
+            return _this.Update();
+        }, 5 * 60 * 1000);
+    };
+
+    MoodViewModel.prototype.Update = function () {
         RefrainPortal.TwitterMood.Get().WithCallback(this.TwitterMoodGetCompleted, this);
         RefrainPortal.Tweet.Get().WithCallback(this.TweetGetCompleted, this);
     };
@@ -418,36 +449,36 @@ var MoodViewModel = (function () {
             return;
         }
 
+        this._tweets = [];
+        this.SelectedTweets.removeAll();
+
         var groups = response.Body.Groups;
-        var randomGroupIndex = 0;
-        var randomTweetIndex = 0;
-        var group = null;
-        var tweet = null;
+        var group;
 
-        while (groups.length != 0 && this.SelectedTweets().length < 10) {
-            randomGroupIndex = Math.floor(Math.random() * (groups.length - 1));
+        for (var i = 0; i < groups.length; i++) {
+            group = groups[i];
 
-            group = groups[randomGroupIndex];
-
-            if (group.Results == null || group.Results.length == 0) {
-                group.splice(randomGroupIndex, 1);
+            if (group.Results == null || group.Results.lenght == 0)
                 continue;
-            }
 
-            randomTweetIndex = Math.floor(Math.random() * (group.Results.length - 1));
-
-            tweet = group.Results[randomTweetIndex];
-
-            if (tweet.EmbedCode) {
-                var code = decodeURIComponent(tweet.EmbedCode.replace(/\+/g, '%20'));
-                code = code.substring(code.indexOf("<blockquote"), code.indexOf("</blockquote>") + 12);
-                this.SelectedTweets.push(code);
-            }
-
-            group.Results.splice(randomTweetIndex, 1);
+            for (var o = 0; o < group.Results.length; o++)
+                this._tweets.push(group.Results[o].EmbedCode);
         }
 
-        twttr.widgets.load();
+        this.ShowMoreTweets();
+    };
+
+    MoodViewModel.prototype.ShowMoreTweets = function () {
+        for (var i = 0; i < 5 && this._tweets.length > 0; i++)
+            this.SelectedTweets.push(this.GetTweetEmbed(this._tweets.shift()));
+
+        this.CanShowMoreTweets(this._tweets.length != 0);
+        twttr.widgets.load(document.getElementById("MoodTweets"));
+    };
+
+    MoodViewModel.prototype.GetTweetEmbed = function (rawCode) {
+        var code = decodeURIComponent(rawCode.replace(/\+/g, '%20'));
+        return code.substring(code.indexOf("<blockquote"), code.indexOf("</blockquote>") + 12);
     };
 
     MoodViewModel.prototype.Capitalize = function (country) {
@@ -461,8 +492,6 @@ var MoodViewModel = (function () {
 
         if (this._moodData[feature.j.name] != null)
             mood = this._moodData[feature.j.name];
-        else
-            console.log("No mood data for " + feature.j.name + " found");
 
         var color = '#' + this.HexFromRGBRatio(1 - (mood + 1) / 2, (mood + 1) / 2, 0);
 

@@ -21,7 +21,9 @@
     <Content Include="Flags.css" />
     <Content Include="Images\bgrefrain3.jpg" />
     <Content Include="Images\bgrefrain3.png" />
+    <Content Include="Images\bgrefrain4.jpg" />
     <Content Include="Images\Blank.gif" />
+    <Content Include="Images\CheckBox.png" />
     <Content Include="Images\cosound_logo.png" />
     <Content Include="Images\cosound_logo_86.png" />
     <Content Include="Images\danishsound_long.png" />
@@ -33,6 +35,7 @@
     <Content Include="Images\MatchThumb.png" />
     <Content Include="Images\MoodScale.png" />
     <Content Include="Images\MoodThumb.png" />
+    <Content Include="Images\Radio.png" />
     <Content Include="Images\refrain_white_280.png" />
     <Content Include="default.html" />
     <Content Include="Main.css" />

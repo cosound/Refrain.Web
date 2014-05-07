@@ -23,6 +23,8 @@
 
 		if (page == this.CurrentPage()) return;
 
+		if (this.CurrentPageViewModel() != null) this.CurrentPageViewModel().Dispose();
+
 		this.CurrentPage(null);
 		
 		switch(page)
@@ -63,7 +65,8 @@
 interface IPageViewModel
 {
 	Initialize(...parameers: string[]): void;
-	PortalReady():void;
+	PortalReady(): void;
+	Dispose():void;
 }
 
 declare var ga:(...parameter:any[])=>void;

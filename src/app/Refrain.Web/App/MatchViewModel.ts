@@ -74,6 +74,11 @@
 		this.Aspects.subscribe(v => this.AspectsChanged(v));
 	}
 
+	public Dispose(): void
+	{
+
+	}
+
 	public PortalReady(): void
 	{
 		this._portalIsReady = true;

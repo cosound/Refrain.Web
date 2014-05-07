@@ -148,7 +148,8 @@
 							Compare with <a class="buttonsqpink" href="#" data-bind="click: ToggleCompareHelp">?</a>
 						</p>
 						<p class="HelpText" data-bind="visible: CompareHelpVisible">
-							Match selected songs with the realm of all Eurovision Song Contest songs and/or the most popular the Western pop songs by ticking the boxes.
+							Match selected songs with the realm of all Eurovision Song Contest songs and/or more than 10,000 most popular the Western pop songs by ticking the boxes.<br/>
+							The match is good as possible within the realm of songs for comparison, but there might not necessarily be a very close match.
 						</p>
 						<p>
 							<input id="EuroRadio" type="radio" name="CompareGroup" data-bind="checked: CompareType, checkedValue: 1" /> <label for="EuroRadio"><span></span>Eurovision songs</label>
@@ -158,15 +159,18 @@
 						<p class="Label">
 							Compare on <a class="buttonsqpink" href="#" data-bind="click: ToggleAspectHelp">?</a>
 						</p>
-						<p class="HelpText" data-bind="visible: AspectHelpVisible">
-							Match selected songs based on these aspect of them.<br/>
-							Tempo is the perceived number of beats per minute.<br/>
-							Rhythm defines the rhythmic structure. <br />
-							Mood defines the overall positive or negative expressed mood of the song.<br />
-							Melody defines characteristic melodic elements of the song.<br />
-							Energy defines the energy level of the song.<br />
-							Timbre defines the characteristic color of the music. Timbre is what makes notes of two instruments with same pitch and loudness sounding different.
-						</p>
+						<div class="HelpText" data-bind="visible: AspectHelpVisible">
+							Match selected songs based on these aspect of them.
+							<ul>
+								<li>Tempo is the perceived number of beats per minute.</li>
+								<li>Rhythm defines the rhythmic structure.</li>
+								<li>Mood defines the overall positive or negative expressed mood of the song.</li>
+								<li>Melody defines characteristic melodic elements of the song.</li>
+								<li>Energy defines the energy level of the song.</li>
+								<li>Timbre defines the characteristic color of the music. Timbre is what makes notes of two instruments with same pitch and loudness sounding different.</li>
+							</ul>
+							The comparison is based on automated analysis that involves some uncertainty; however,  the analysis is continuously improved based on your shares and feedback.
+						</div>
 						<p>
 							<input id="AspectTempoCheckbox" type="checkbox" data-bind="checked: AspectTempo" /> <label for="AspectTempoCheckbox"><span></span>Tempo</label>
 							<input id="AspectRythmCheckbox" type="checkbox" data-bind="checked: AspectRythm" /> <label for="AspectRythmCheckbox"><span></span>Rhythm</label>
@@ -201,15 +205,18 @@
 					</div>
 					<div id="SimilarityContainer">
 						<p>Importance of music aspects in match <a class="buttonsqpink" href="#" data-bind="click: ToggleSimilarityHelp">?</a></p>
-						<p class="HelpText" data-bind="visible: SimilarityHelpVisible">
-							Relative importance of different music aspects in match. 0% is no importance, 100% is maximum importance.<br/>
-							Tempo is the perceived number of beats per minute. <br/>
-							Rhythm defines the rhythmic structure. <br/>
-							Mood defines the overall positive or negative expressed mood of the song.<br />
-							Melody defines characteristic melodic elements of the song.<br />
-							Energy defines the energy level of the song.<br />
-							Timbre defines the characteristic color of the music. Timbre is what makes notes of two instruments with same pitch and loudness sounding different.
-						</p>
+						<div class="HelpText" data-bind="visible: SimilarityHelpVisible">
+							Relative importance of different music aspects in match. 0% is no importance, 100% is maximum importance.  If only one aspect selected no relative importance is shown.
+							<ul>
+								<li>Tempo is the perceived number of beats per minute.</li>
+								<li>Rhythm defines the rhythmic structure.</li>
+								<li>Mood defines the overall positive or negative expressed mood of the song.</li>
+								<li>Melody defines characteristic melodic elements of the song.</li>
+								<li>Energy defines the energy level of the song.</li>
+								<li>Timbre defines the characteristic color of the music. Timbre is what makes notes of two instruments with same pitch and loudness sounding different.</li>
+							</ul>
+							The comparison is based on automated analysis that involves some uncertainty; however,  the analysis is continuously improved based on your shares and feedback.
+						</div>
 						<div id="SimilarityGraphLegend">
 							<p>Tempo</p>
 							<p>Rhythm</p>
@@ -252,13 +259,16 @@
 						<span id="MoodScalePositive">Positive</span>
 					</p>
 				</div>
+				<!-- ko if: SelectedTweets().length != 0-->
 				<h1>Tweets</h1>
 				<div>
-					<h2>Some of the tweets behind the mood map</h2>
-					<div class="TwitterTimeline" data-bind="foreach: SelectedTweets">
+					<h2 id="MoodTweetsHeadline">Some of the tweets behind the mood map</h2>
+					<div id="MoodTweets" class="TwitterTimeline" data-bind="foreach: SelectedTweets">
 						<div data-bind="html: $data"></div>
 					</div>
+					<a id="ShowMoreTweetsButton" class="MoreButton" href="#" data-bind="click: ShowMoreTweets, visible: CanShowMoreTweets"><span class="buttonsqpink">&#9660;</span> Show more tweets</a>
 				</div>
+				<!-- /ko -->
 				<!-- /ko -->
 				<!-- ko if: $parent.CurrentPage() == "Discovery" -->
 				<h1>Discoveries</h1>
@@ -290,7 +300,7 @@
 						The team consisted of Peter Overgaard, Jesper Fyhr Knudsen, and Jacob Poul Richardt, Geckon ApS. Bjørn Sand Jensen, Jens Madsen, Rasmus Troelsgaard, Patrick Gadd, Martin Hastrup, Sune Lehmann Jørgensen, and Jan Larsen, DTU Compute.
 					</p>
 					<p class="NoFloat">
-						For further information contact CoSound coordinator Jan Larsen, <a href="mailto:janla@dtu.dk">janla@dtu.dk</a>.
+						For further information contact us on <a href="https://twitter.com/refraindk" target="_blank">Twitter</a> or <a href="https://www.facebook.com/refraindk" target="_blank">Facebook</a>.
 					</p>
 				</div>
 				<div class="SeperatedSection">
