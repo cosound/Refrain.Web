@@ -13,7 +13,7 @@
 	public CompareHelpVisible: KnockoutObservable<boolean> = ko.observable<boolean>(false);
 	public SimilarityHelpVisible: KnockoutObservable<boolean> = ko.observable<boolean>(false);
 	public AspectHelpVisible: KnockoutObservable<boolean> = ko.observable<boolean>(false);
-	public CompareType: KnockoutObservable<number> = ko.observable<number>(3);
+	public CompareType: KnockoutObservable<number> = ko.observable<number>(1);
 
 	public AspectTempo:KnockoutObservable<boolean> = ko.observable(true);
 	public AspectRythm:KnockoutObservable<boolean> = ko.observable(true);
