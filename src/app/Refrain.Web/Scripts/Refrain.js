@@ -47,12 +47,26 @@ var MainViewModel = (function () {
         this.CurrentPage = ko.observable();
         this.CurrentPageViewModel = ko.observable();
         this._client = CHAOS.Portal.Client.Initialize("http://api.refrain.dk/");
+        twttr.events.bind('tweet', function (ev) {
+            return _this.LogTweet(ev);
+        });
+        FB.Event.subscribe('edge.create', function (response) {
+            return _this.LogFacebook(response);
+        });
 
         $(window).bind("hashchange", function (e) {
             return _this.HashChange();
         });
         this.HashChange();
     }
+    MainViewModel.prototype.LogTweet = function (event) {
+        ga('send', 'event', 'Share', 'Twitter', window.location.hash);
+    };
+
+    MainViewModel.prototype.LogFacebook = function (event) {
+        ga('send', 'event', 'Share', 'Facebook', window.location.hash);
+    };
+
     MainViewModel.prototype.HashChange = function () {
         var _this = this;
         var hash = window.location.hash.length == 0 ? [""] : window.location.hash.substr(1).split("/");
