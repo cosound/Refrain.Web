@@ -24,12 +24,12 @@
 
 	export class TwitterMood
 	{
-		public static Get(country: string[]= null, serviceCaller: CHAOS.Portal.Client.IServiceCaller = null): CHAOS.Portal.Client.ICallState<any>
+		public static Get(country: string[]= null, before:Date = null, after:Date = null, groupPageSize:number = null, serviceCaller: CHAOS.Portal.Client.IServiceCaller = null): CHAOS.Portal.Client.ICallState<any>
 		{
 			if (serviceCaller == null)
 				serviceCaller = CHAOS.Portal.Client.ServiceCallerService.GetDefaultCaller();
 
-			return serviceCaller.CallService("TwitterMood/Get", CHAOS.Portal.Client.HttpMethod.Get, { country: country }, true);
+			return serviceCaller.CallService("TwitterMood/Get", CHAOS.Portal.Client.HttpMethod.Get, { country: country, before: before, after: after, groupPageSize: groupPageSize }, true);
 		}
 	}
 

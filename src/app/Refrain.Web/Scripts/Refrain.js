@@ -11,7 +11,7 @@
     };
     return AboutViewModel;
 })();
-var CountryInfo = { "Afghanistan": "af", "Åland Islands": "ax", "Albania": "al", "Algeria": "dz", "American Samoa": "as", "Andorra": "ad", "Angola": "ao", "Anguilla": "ai", "Antarctica": "aq", "Antigua and Barbuda": "ag", "Argentina": "ar", "Armenia": "am", "Aruba": "aw", "Australia": "au", "Austria": "at", "Azerbaijan": "az", "Bahamas": "bs", "Bahrain": "bh", "Bangladesh": "bd", "Barbados": "bb", "Belarus": "by", "Belgium": "be", "Belize": "bz", "Benin": "bj", "Bermuda": "bm", "Bhutan": "bt", "Bolivia, Plurinational State of": "bo", "Bonaire, Sint Eustatius and Saba": "bq", "Bosnia and Herzegovina": "ba", "Botswana": "bw", "Bouvet Island": "bv", "Brazil": "br", "British Indian Ocean Territory": "io", "Brunei Darussalam": "bn", "Bulgaria": "bg", "Burkina Faso": "bf", "Burundi": "bi", "Cambodia": "kh", "Cameroon": "cm", "Canada": "ca", "Cape Verde": "cv", "Cayman Islands": "ky", "Central African Republic": "cf", "Chad": "td", "Chile": "cl", "China": "cn", "Christmas Island": "cx", "Cocos (Keeling) Islands": "cc", "Colombia": "co", "Comoros": "km", "Congo": "cg", "Congo, the Democratic Republic of the": "cd", "Cook Islands": "ck", "Costa Rica": "cr", "Côte d'Ivoire": "ci", "Croatia": "hr", "Cuba": "cu", "Curaçao": "cw", "Cyprus": "cy", "Czech Republic": "cz", "Denmark": "dk", "Djibouti": "dj", "Dominica": "dm", "Dominican Republic": "do", "Ecuador": "ec", "Egypt": "eg", "El Salvador": "sv", "Equatorial Guinea": "gq", "Eritrea": "er", "Estonia": "ee", "Ethiopia": "et", "Falkland Islands (Malvinas)": "fk", "Faroe Islands": "fo", "Fiji": "fj", "Finland": "fi", "France": "fr", "French Guiana": "gf", "French Polynesia": "pf", "French Southern Territories": "tf", "Gabon": "ga", "Gambia": "gm", "Georgia": "ge", "Germany": "de", "Ghana": "gh", "Gibraltar": "gi", "Greece": "gr", "Greenland": "gl", "Grenada": "gd", "Guadeloupe": "gp", "Guam": "gu", "Guatemala": "gt", "Guernsey": "gg", "Guinea": "gn", "Guinea-Bissau": "gw", "Guyana": "gy", "Haiti": "ht", "Heard Island and McDonald Islands": "hm", "Holy See (Vatican City State)": "va", "Honduras": "hn", "Hong Kong": "hk", "Hungary": "hu", "Iceland": "is", "India": "in", "Indonesia": "id", "Iran, Islamic Republic of": "ir", "Iraq": "iq", "Ireland": "ie", "Isle of Man": "im", "Israel": "il", "Italy": "it", "Jamaica": "jm", "Japan": "jp", "Jersey": "je", "Jordan": "jo", "Kazakhstan": "kz", "Kenya": "ke", "Kiribati": "ki", "Korea, Democratic People's Republic of": "kp", "Korea, Republic of": "kr", "Kuwait": "kw", "Kyrgyzstan": "kg", "Lao People's Democratic Republic": "la", "Latvia": "lv", "Lebanon": "lb", "Lesotho": "ls", "Liberia": "lr", "Libya": "ly", "Liechtenstein": "li", "Lithuania": "lt", "Luxembourg": "lu", "Macao": "mo", "Macedonia, the former Yugoslav Republic of": "mk", "Madagascar": "mg", "Malawi": "mw", "Malaysia": "my", "Maldives": "mv", "Mali": "ml", "Malta": "mt", "Marshall Islands": "mh", "Martinique": "mq", "Mauritania": "mr", "Mauritius": "mu", "Mayotte": "yt", "Mexico": "mx", "Micronesia, Federated States of": "fm", "Moldova": "md", "Monaco": "mc", "Mongolia": "mn", "Montenegro": "me", "Montserrat": "ms", "Morocco": "ma", "Mozambique": "mz", "Myanmar": "mm", "Namibia": "na", "Nauru": "nr", "Nepal": "np", "Netherlands": "nl", "New Caledonia": "nc", "New Zealand": "nz", "Nicaragua": "ni", "Niger": "ne", "Nigeria": "ng", "Niue": "nu", "Norfolk Island": "nf", "Northern Mariana Islands": "mp", "Norway": "no", "Oman": "om", "Pakistan": "pk", "Palau": "pw", "Palestine, State of": "ps", "Panama": "pa", "Papua New Guinea": "pg", "Paraguay": "py", "Peru": "pe", "Philippines": "ph", "Pitcairn": "pn", "Poland": "pl", "Portugal": "pt", "Puerto Rico": "pr", "Qatar": "qa", "Réunion": "re", "Romania": "ro", "Russia": "ru", "Rwanda": "rw", "Saint Barthélemy": "bl", "Saint Helena, Ascension and Tristan da Cunha": "sh", "Saint Kitts and Nevis": "kn", "Saint Lucia": "lc", "Saint Martin (French part)": "mf", "Saint Pierre and Miquelon": "pm", "Saint Vincent and the Grenadines": "vc", "Samoa": "ws", "San Marino": "sm", "Sao Tome and Principe": "st", "Saudi Arabia": "sa", "Senegal": "sn", "Serbia": "rs", "Seychelles": "sc", "Sierra Leone": "sl", "Singapore": "sg", "Sint Maarten (Dutch part)": "sx", "Slovakia": "sk", "Slovenia": "si", "Solomon Islands": "sb", "Somalia": "so", "South Africa": "za", "South Georgia and the South Sandwich Islands": "gs", "South Sudan": "ss", "Spain": "es", "Sri Lanka": "lk", "Sudan": "sd", "Suriname": "sr", "Svalbard and Jan Mayen": "sj", "Swaziland": "sz", "Sweden": "se", "Switzerland": "ch", "Syrian Arab Republic": "sy", "Taiwan, Province of China": "tw", "Tajikistan": "tj", "Tanzania, United Republic of": "tz", "Thailand": "th", "Timor-Leste": "tl", "Togo": "tg", "Tokelau": "tk", "Tonga": "to", "Trinidad and Tobago": "tt", "Tunisia": "tn", "Turkey": "tr", "Turkmenistan": "tm", "Turks and Caicos Islands": "tc", "Tuvalu": "tv", "Uganda": "ug", "Ukraine": "ua", "United Arab Emirates": "ae", "United Kingdom": "gb", "United States": "us", "United States Minor Outlying Islands": "um", "Uruguay": "uy", "Uzbekistan": "uz", "Vanuatu": "vu", "Venezuela, Bolivarian Republic of": "ve", "Viet Nam": "vn", "Virgin Islands, British": "vg", "Virgin Islands, U.S.": "vi", "Wallis and Futuna": "wf", "Western Sahara": "eh", "Yemen": "ye", "Zambia": "zm", "Zimbabwe": "zw" };
+var CountryInfo = { "Afghanistan": "af", "Åland Islands": "ax", "Albania": "al", "Algeria": "dz", "American Samoa": "as", "Andorra": "ad", "Angola": "ao", "Anguilla": "ai", "Antarctica": "aq", "Antigua and Barbuda": "ag", "Argentina": "ar", "Armenia": "am", "Aruba": "aw", "Australia": "au", "Austria": "at", "Azerbaijan": "az", "Bahamas": "bs", "Bahrain": "bh", "Bangladesh": "bd", "Barbados": "bb", "Belarus": "by", "Belgium": "be", "Belize": "bz", "Benin": "bj", "Bermuda": "bm", "Bhutan": "bt", "Bolivia, Plurinational State of": "bo", "Bonaire, Sint Eustatius and Saba": "bq", "Bosnia and Herzegovina": "ba", "Botswana": "bw", "Bouvet Island": "bv", "Brazil": "br", "British Indian Ocean Territory": "io", "Brunei Darussalam": "bn", "Bulgaria": "bg", "Burkina Faso": "bf", "Burundi": "bi", "Cambodia": "kh", "Cameroon": "cm", "Canada": "ca", "Cape Verde": "cv", "Cayman Islands": "ky", "Central African Republic": "cf", "Chad": "td", "Chile": "cl", "China": "cn", "Christmas Island": "cx", "Cocos (Keeling) Islands": "cc", "Colombia": "co", "Comoros": "km", "Congo": "cg", "Congo, the Democratic Republic of the": "cd", "Cook Islands": "ck", "Costa Rica": "cr", "Côte d'Ivoire": "ci", "Croatia": "hr", "Cuba": "cu", "Curaçao": "cw", "Cyprus": "cy", "Czech Republic": "cz", "Denmark": "dk", "Djibouti": "dj", "Dominica": "dm", "Dominican Republic": "do", "Ecuador": "ec", "Egypt": "eg", "El Salvador": "sv", "Equatorial Guinea": "gq", "Eritrea": "er", "Estonia": "ee", "Ethiopia": "et", "Falkland Islands (Malvinas)": "fk", "Faroe Islands": "fo", "Fiji": "fj", "Finland": "fi", "France": "fr", "French Guiana": "gf", "French Polynesia": "pf", "French Southern Territories": "tf", "Gabon": "ga", "Gambia": "gm", "Georgia": "ge", "Germany": "de", "Ghana": "gh", "Gibraltar": "gi", "Greece": "gr", "Greenland": "gl", "Grenada": "gd", "Guadeloupe": "gp", "Guam": "gu", "Guatemala": "gt", "Guernsey": "gg", "Guinea": "gn", "Guinea-Bissau": "gw", "Guyana": "gy", "Haiti": "ht", "Heard Island and McDonald Islands": "hm", "Holy See (Vatican City State)": "va", "Honduras": "hn", "Hong Kong": "hk", "Hungary": "hu", "Iceland": "is", "India": "in", "Indonesia": "id", "Iran, Islamic Republic of": "ir", "Iraq": "iq", "Ireland": "ie", "Isle of Man": "im", "Israel": "il", "Italy": "it", "Jamaica": "jm", "Japan": "jp", "Jersey": "je", "Jordan": "jo", "Kazakhstan": "kz", "Kenya": "ke", "Kiribati": "ki", "Korea, Democratic People's Republic of": "kp", "Korea, Republic of": "kr", "Kuwait": "kw", "Kyrgyzstan": "kg", "Lao People's Democratic Republic": "la", "Latvia": "lv", "Lebanon": "lb", "Lesotho": "ls", "Liberia": "lr", "Libya": "ly", "Liechtenstein": "li", "Lithuania": "lt", "Luxembourg": "lu", "Macao": "mo", "Macedonia": "mk", "Madagascar": "mg", "Malawi": "mw", "Malaysia": "my", "Maldives": "mv", "Mali": "ml", "Malta": "mt", "Marshall Islands": "mh", "Martinique": "mq", "Mauritania": "mr", "Mauritius": "mu", "Mayotte": "yt", "Mexico": "mx", "Micronesia, Federated States of": "fm", "Moldova": "md", "Monaco": "mc", "Mongolia": "mn", "Montenegro": "me", "Montserrat": "ms", "Morocco": "ma", "Mozambique": "mz", "Myanmar": "mm", "Namibia": "na", "Nauru": "nr", "Nepal": "np", "Netherlands": "nl", "New Caledonia": "nc", "New Zealand": "nz", "Nicaragua": "ni", "Niger": "ne", "Nigeria": "ng", "Niue": "nu", "Norfolk Island": "nf", "Northern Mariana Islands": "mp", "Norway": "no", "Oman": "om", "Pakistan": "pk", "Palau": "pw", "Palestine, State of": "ps", "Panama": "pa", "Papua New Guinea": "pg", "Paraguay": "py", "Peru": "pe", "Philippines": "ph", "Pitcairn": "pn", "Poland": "pl", "Portugal": "pt", "Puerto Rico": "pr", "Qatar": "qa", "Réunion": "re", "Romania": "ro", "Russia": "ru", "Rwanda": "rw", "Saint Barthélemy": "bl", "Saint Helena, Ascension and Tristan da Cunha": "sh", "Saint Kitts and Nevis": "kn", "Saint Lucia": "lc", "Saint Martin (French part)": "mf", "Saint Pierre and Miquelon": "pm", "Saint Vincent and the Grenadines": "vc", "Samoa": "ws", "San Marino": "sm", "Sao Tome and Principe": "st", "Saudi Arabia": "sa", "Senegal": "sn", "Serbia": "rs", "Seychelles": "sc", "Sierra Leone": "sl", "Singapore": "sg", "Sint Maarten (Dutch part)": "sx", "Slovakia": "sk", "Slovenia": "si", "Solomon Islands": "sb", "Somalia": "so", "South Africa": "za", "South Georgia and the South Sandwich Islands": "gs", "South Sudan": "ss", "Spain": "es", "Sri Lanka": "lk", "Sudan": "sd", "Suriname": "sr", "Svalbard and Jan Mayen": "sj", "Swaziland": "sz", "Sweden": "se", "Switzerland": "ch", "Syrian Arab Republic": "sy", "Taiwan, Province of China": "tw", "Tajikistan": "tj", "Tanzania, United Republic of": "tz", "Thailand": "th", "Timor-Leste": "tl", "Togo": "tg", "Tokelau": "tk", "Tonga": "to", "Trinidad and Tobago": "tt", "Tunisia": "tn", "Turkey": "tr", "Turkmenistan": "tm", "Turks and Caicos Islands": "tc", "Tuvalu": "tv", "Uganda": "ug", "Ukraine": "ua", "United Arab Emirates": "ae", "United Kingdom": "gb", "United States": "us", "United States Minor Outlying Islands": "um", "Uruguay": "uy", "Uzbekistan": "uz", "Vanuatu": "vu", "Venezuela, Bolivarian Republic of": "ve", "Viet Nam": "vn", "Virgin Islands, British": "vg", "Virgin Islands, U.S.": "vi", "Wallis and Futuna": "wf", "Western Sahara": "eh", "Yemen": "ye", "Zambia": "zm", "Zimbabwe": "zw" };
 var DiscoveryViewModel = (function () {
     function DiscoveryViewModel() {
     }
@@ -394,6 +394,7 @@ var MoodViewModel = (function () {
     function MoodViewModel() {
         this.SelectedTweets = ko.observableArray();
         this.CanShowMoreTweets = ko.observable(false);
+        this.AvailableMoodCountries = ko.observableArray();
         this._moodData = {};
         this._updateHandler = null;
     }
@@ -419,11 +420,81 @@ var MoodViewModel = (function () {
         this._updateHandler = setInterval(function () {
             return _this.Update();
         }, 5 * 60 * 1000);
+
+        var start = new Date();
+        var end = new Date();
+        end.setDate(start.getDate() - 1);
+
+        RefrainPortal.TwitterMood.Get(null, start, end, 24 * 60 / 5).WithCallback(this.TwitterMoodGraphCompleted, this);
     };
 
     MoodViewModel.prototype.Update = function () {
         RefrainPortal.TwitterMood.Get().WithCallback(this.TwitterMoodGetCompleted, this);
         RefrainPortal.Tweet.Get().WithCallback(this.TweetGetCompleted, this);
+    };
+
+    MoodViewModel.prototype.TwitterMoodGraphCompleted = function (response) {
+        var _this = this;
+        if (response.Error != null) {
+            console.log("Failed to get Twitter mood: " + response.Error.Message);
+            return;
+        }
+
+        var groups = response.Body.Groups;
+        this._graphData = {};
+        this._graphData.labels = new Array();
+
+        for (var i = 0; i < groups.length; i++) {
+            this.AvailableMoodCountries.push(new MoodGraphCountry(groups[i], function () {
+                return _this.UpdateGraph();
+            }));
+
+            if (i == 0) {
+                for (var o = 0; o < groups[i].Results.length; o++)
+                    this._graphData.labels.push("");
+            }
+        }
+
+        this.AvailableMoodCountries.sort(function (a, b) {
+            return a.Name.localeCompare(b.Name);
+        });
+
+        for (i = 0; i < 3; i++) {
+            var country = this.AvailableMoodCountries()[Math.floor(Math.random() * this.AvailableMoodCountries().length)];
+
+            if (country.IsSelected())
+                i--;
+            else
+                country.IsSelected(true);
+        }
+
+        var context = $("#MoodTimelineGraph").get(0).getContext("2d");
+        this._chart = new Chart(context);
+
+        this.UpdateGraph();
+    };
+
+    MoodViewModel.prototype.UpdateGraph = function () {
+        this._graphData.datasets = new Array();
+
+        for (var i = 0; i < this.AvailableMoodCountries().length; i++) {
+            if (this.AvailableMoodCountries()[i].IsSelected())
+                this._graphData.datasets.push(this.AvailableMoodCountries()[i].DataSet);
+        }
+
+        this._chart.Line(this._graphData, {
+            scaleOverride: true,
+            scaleSteps: 8,
+            scaleStepWidth: 0.25,
+            scaleStartValue: -1,
+            scaleShowLabels: false,
+            scaleFontColor: "#fff",
+            scaleLineColor: "#fff",
+            scaleShowGridLines: false,
+            pointDot: false,
+            datasetFill: false,
+            animation: false
+        });
     };
 
     MoodViewModel.prototype.TwitterMoodGetCompleted = function (response) {
@@ -436,7 +507,7 @@ var MoodViewModel = (function () {
         var groups = response.Body.Groups;
 
         for (var i = 0; i < groups.length; i++)
-            this._moodData[this.Capitalize(groups[i].Value)] = groups[i].Results[0].Valence;
+            this._moodData[MoodViewModel.Capitalize(groups[i].Value)] = groups[i].Results[0].Valence;
 
         this._map.data.setStyle(function (f) {
             return _this.SetCountryStyle(f);
@@ -481,18 +552,17 @@ var MoodViewModel = (function () {
         return code.substring(code.indexOf("<blockquote"), code.indexOf("</blockquote>") + 12);
     };
 
-    MoodViewModel.prototype.Capitalize = function (country) {
+    MoodViewModel.Capitalize = function (country) {
         return country.replace(/(?:^|\s)\S/g, function (a) {
             return a.toUpperCase();
         });
     };
 
     MoodViewModel.prototype.SetCountryStyle = function (feature) {
-        var mood = 0;
+        if (this._moodData[feature.j.name] == null)
+            return { visible: false };
 
-        if (this._moodData[feature.j.name] != null)
-            mood = this._moodData[feature.j.name];
-
+        var mood = this._moodData[feature.j.name];
         var color = '#' + this.HexFromRGBRatio(1 - (mood + 1) / 2, (mood + 1) / 2, 0);
 
         return {
@@ -516,6 +586,29 @@ var MoodViewModel = (function () {
         return hex.join("").toUpperCase();
     };
     return MoodViewModel;
+})();
+
+var MoodGraphCountry = (function () {
+    function MoodGraphCountry(resultGroup, updateCallback) {
+        this.IsSelected = ko.observable(false);
+        this.Name = MoodViewModel.Capitalize(resultGroup.Value);
+        this.Color = '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
+        this._updateCallback = updateCallback;
+        this.CountryCode = CountryInfo[this.Name];
+
+        this.DataSet = {};
+
+        this.DataSet.strokeColor = this.Color;
+        this.DataSet.data = new Array();
+
+        for (var o = 0; o < resultGroup.Results.length; o++)
+            this.DataSet.data.push(resultGroup.Results[o].Valence);
+    }
+    MoodGraphCountry.prototype.ToggleSelect = function () {
+        this.IsSelected(!this.IsSelected());
+        this._updateCallback();
+    };
+    return MoodGraphCountry;
 })();
 var RefrainPortal;
 (function (RefrainPortal) {
@@ -551,13 +644,16 @@ var RefrainPortal;
     var TwitterMood = (function () {
         function TwitterMood() {
         }
-        TwitterMood.Get = function (country, serviceCaller) {
+        TwitterMood.Get = function (country, before, after, groupPageSize, serviceCaller) {
             if (typeof country === "undefined") { country = null; }
+            if (typeof before === "undefined") { before = null; }
+            if (typeof after === "undefined") { after = null; }
+            if (typeof groupPageSize === "undefined") { groupPageSize = null; }
             if (typeof serviceCaller === "undefined") { serviceCaller = null; }
             if (serviceCaller == null)
                 serviceCaller = CHAOS.Portal.Client.ServiceCallerService.GetDefaultCaller();
 
-            return serviceCaller.CallService("TwitterMood/Get", 0 /* Get */, { country: country }, true);
+            return serviceCaller.CallService("TwitterMood/Get", 0 /* Get */, { country: country, before: before, after: after, groupPageSize: groupPageSize }, true);
         };
         return TwitterMood;
     })();

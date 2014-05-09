@@ -12,6 +12,7 @@
 		<script type="text/javascript" src="//connect.facebook.net/en_US/all.js"></script>
 		<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
 		<script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js"></script>
 		<script type="text/javascript" src="Scripts/Refrain.js?v=3"></script>
 		<script type="text/javascript" src="Scripts/PortalClient.min.js"></script>
 		<script type="text/javascript">
@@ -149,7 +150,7 @@
 						</p>
 						<p class="HelpText" data-bind="visible: CompareHelpVisible">
 							Match selected songs with the realm of all Eurovision Song Contest songs and/or more than 10,000 most popular the Western pop songs by ticking the boxes.<br/>
-							The match is good as possible within the realm of songs for comparison, but there might not necessarily be a very close match.
+							The match is as good as possible within the realm of songs for comparison, but there might not necessarily be a very close match.
 						</p>
 						<p>
 							<input id="EuroRadio" type="radio" name="CompareGroup" data-bind="checked: CompareType, checkedValue: 1" /> <label for="EuroRadio"><span></span>Eurovision songs</label>
@@ -260,6 +261,26 @@
 						<span id="MoodScalePositive">Positive</span>
 					</p>
 				</div>
+				<!-- ko if: AvailableMoodCountries().length != 0-->
+				<h1>Mood timeline</h1>
+				<div>
+					<h2>24 hour timeline of the mood of Europe in selected countries based on Tweets linked to the Eurovision Song Contest.</h2>
+					<div id="MoodTimeline">
+						<div id="MoodTimelineScale">
+							<span id="MoodTimelineScalePositive">Posetive</span>
+							<span id="MoodTimelineScaleNeutral">Neutral</span>
+							<span id="MoodTimelineScaleNegative">Negative</span>
+						</div>
+						<canvas id="MoodTimelineGraph" width="800" height="400"></canvas>
+					</div>
+					<div data-bind="foreach: AvailableMoodCountries">
+						<a class="MoodCountry" href="#" data-bind="click: ToggleSelect, css: {Selected: IsSelected}, style: {backgroundColor: IsSelected() ? Color : 'inherit'}">
+							<img src="Images/Blank.gif" class="flag" data-bind="css: 'flag-' + CountryCode" />
+							<span data-bind="text: Name"></span>
+						</a>
+					</div>
+				</div>
+				<!-- /ko -->
 				<!-- ko if: SelectedTweets().length != 0-->
 				<h1>Tweets</h1>
 				<div>

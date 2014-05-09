@@ -532,6 +532,40 @@ input[type="checkbox"]:checked + label span, input[type="radio"]:checked + label
 	text-align:right;
 }
 
+#MoodTimeline {
+	background-color: #0099FF;
+	height: 400px
+}
+
+#MoodTimelineScale {
+	display: inline-block;
+	font-size: 16px;
+	height: 100%;
+	position: relative;
+	margin-left: 5px
+}
+
+#MoodTimelineScalePositive {
+	display: block;
+}
+
+#MoodTimelineScaleNeutral {
+	display: block;
+	position: absolute;
+	top: 177px;
+}
+
+#MoodTimelineScaleNegative {
+	display: block;
+	position: absolute;
+	top: 350px;
+}
+
+#MoodTimelineGraph {
+	display: inline-block;
+	float: right;
+}
+
 #MoodTweetsHeadline {
 	text-align:center;
 }
@@ -539,6 +573,24 @@ input[type="checkbox"]:checked + label span, input[type="radio"]:checked + label
 #ShowMoreTweetsButton {
 	text-align:center;
 	display: block;
+}
+
+.MoodCountry {
+	display: inline-block;
+	width: 200px;
+	padding-left: 5px;
+}
+
+.MoodCountry:hover {
+	color: #cc0099;
+}
+
+.MoodCountry.Selected {
+	
+}
+
+.MoodCountry.Selected:hover {
+	
 }
 
 /* About */
