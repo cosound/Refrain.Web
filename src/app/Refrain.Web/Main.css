@@ -581,8 +581,8 @@ input[type="checkbox"]:checked + label span, input[type="radio"]:checked + label
 
 .MoodCountry {
 	display: inline-block;
-	width: 200px;
-	padding-left: 5px;
+	width: 210px;
+	padding-left: 4px;
 }
 
 .MoodCountry:hover {

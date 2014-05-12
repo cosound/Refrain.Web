@@ -458,16 +458,14 @@ var MoodViewModel = (function () {
         this._graphData = {};
         this._graphData.labels = new Array();
 
-        for (var i = 0; i < groups.length; i++) {
+        if (groups.length != 0)
+            for (var o = 0; o < groups[0].Results.length; o++)
+                this._graphData.labels.push("");
+
+        for (var i = 0; i < groups.length; i++)
             this.AvailableMoodCountries.push(new MoodGraphCountry(groups[i], function () {
                 return _this.UpdateGraph();
             }));
-
-            if (i == 0) {
-                for (var o = 0; o < groups[i].Results.length; o++)
-                    this._graphData.labels.push("");
-            }
-        }
 
         this.AvailableMoodCountries.sort(function (a, b) {
             return a.Name.localeCompare(b.Name);
@@ -567,7 +565,7 @@ var MoodViewModel = (function () {
     };
 
     MoodViewModel.Capitalize = function (country) {
-        return country.replace(/(?:^|\s)\S/g, function (a) {
+        return country.replace("_", " ").replace(/(?:^|\s)\S/g, function (a) {
             return a.toUpperCase();
         });
     };

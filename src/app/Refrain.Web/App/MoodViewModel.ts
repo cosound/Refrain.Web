@@ -67,16 +67,12 @@ class MoodViewModel implements IPageViewModel
 		this._graphData = {};
 		this._graphData.labels = new Array<String>();
 
+		if (groups.length != 0)
+			for (var o = 0; o < groups[0].Results.length; o++)
+				this._graphData.labels.push("");
+
 		for (var i = 0; i < groups.length; i++)
-		{
 			this.AvailableMoodCountries.push(new MoodGraphCountry(groups[i], () => this.UpdateGraph()));
-			
-			if (i == 0)
-			{
-				for (var o = 0; o < groups[i].Results.length; o++)
-					this._graphData.labels.push("");
-			}
-		}
 
 		this.AvailableMoodCountries.sort((a, b) => a.Name.localeCompare(b.Name));
 
@@ -181,7 +177,7 @@ class MoodViewModel implements IPageViewModel
 
 	public static Capitalize(country:string):string
 	{
-		return country.replace(/(?:^|\s)\S/g, a => a.toUpperCase());
+		return country.replace("_", " ").replace(/(?:^|\s)\S/g, a => a.toUpperCase());
 	}
 
 	private SetCountryStyle(feature:any):any
