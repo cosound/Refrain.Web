@@ -22,10 +22,14 @@ class MoodViewModel implements IPageViewModel
 
 	public Initialize():void
 	{
+		var mapStyle = [{ "featureType": "road", "elementType": "geometry", "stylers": [{ "visibility": "off" }] }, { "featureType": "poi", "elementType": "geometry", "stylers": [{ "visibility": "off" }] }, { "featureType": "landscape", "elementType": "geometry", "stylers": [{ "color": "#fffffa" }] }, { "featureType": "water", "stylers": [{ "lightness": 50 }] }, { "featureType": "road", "elementType": "labels", "stylers": [{ "visibility": "off" }] }, { "featureType": "transit", "stylers": [{ "visibility": "off" }] }, { "featureType": "administrative", "elementType": "geometry", "stylers": [{ "lightness": 40 }] }];
+
 		this._map = new google.maps.Map(document.getElementById('map-canvas'), {
 			zoom: 4,
 			center: new google.maps.LatLng(51.5, 13.7),
-			disableDefaultUI: true
+			disableDefaultUI: true,
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			styles: mapStyle
 		});
 
 		(<any>this._map).data.loadGeoJson('Countries.json');
@@ -183,10 +187,13 @@ class MoodViewModel implements IPageViewModel
 	private SetCountryStyle(feature:any):any
 	{
 		if (this._moodData[feature.j.name] == null)
-			return {visible: false};
+			return { visible: false };
 
 		var mood = this._moodData[feature.j.name];
-		var color = '#' + this.HexFromRGBRatio(1 - (mood + 1) / 2, (mood + 1) / 2, 0);
+
+		var color = "#" + (mood < 0
+			? this.HexFromRGB(255 + 51 * mood, 255 + 255 * mood, 255 + 102 * mood)
+			: this.HexFromRGB(255 - 255 * mood, 255 - 102 * mood, 255 - 255 * mood));
 
 		return {
 			fillColor: color,
@@ -195,12 +202,12 @@ class MoodViewModel implements IPageViewModel
 		};
 	}
 
-	private HexFromRGBRatio(r: number, g: number, b: number)
+	private HexFromRGB(r: number, g: number, b: number)
 	{
 		var hex = [
-			Math.floor(r * 255).toString(16),
-			Math.floor(g * 255).toString(16),
-			Math.floor(b * 255).toString(16)
+			Math.floor(r).toString(16),
+			Math.floor(g).toString(16),
+			Math.floor(b).toString(16)
 		];
 		$.each(hex, (nr, val) => {
 			if (val.length === 1)
