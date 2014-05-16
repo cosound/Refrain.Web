@@ -11,7 +11,8 @@ class MoodViewModel implements IPageViewModel
 	private _moodData: { [countryCode: string]: number } = {};
 	private _tweets: string[];
 	private _chart: any;
-	private _graphData:any;
+	private _graphData: any;
+	private _graphColors: string[] = ["#f5f5c8", "#ff0000", "#f368c0", "#d20935", "#88f7c0", "#5b1c2d", "#b9f30d", "#ffdc8d", "#250792", "#ac2208"];
 
 	private _updateHandler:number = null;
 
@@ -76,7 +77,7 @@ class MoodViewModel implements IPageViewModel
 				this._graphData.labels.push("");
 
 		for (var i = 0; i < groups.length; i++)
-			this.AvailableMoodCountries.push(new MoodGraphCountry(groups[i], () => this.UpdateGraph()));
+			this.AvailableMoodCountries.push(new MoodGraphCountry(groups[i], (country) => this.CountrySelectToggled(country)));
 
 		this.AvailableMoodCountries.sort((a, b) => a.Name.localeCompare(b.Name));
 
@@ -87,13 +88,36 @@ class MoodViewModel implements IPageViewModel
 			if (country.IsSelected())
 				i--;
 			else
+			{
+				this.SetColorOnCountry(country);
 				country.IsSelected(true);
+			}
 		}
 
 		var context = (<HTMLCanvasElement>$("#MoodTimelineGraph").get(0)).getContext("2d");
 		this._chart = new Chart(context);
 
 		this.UpdateGraph();
+	}
+
+	private CountrySelectToggled(country:MoodGraphCountry):void
+	{
+		if (country.IsSelected())
+			this.SetColorOnCountry(country);
+		else
+			this._graphColors.unshift(country.Color());
+
+		this.UpdateGraph();
+	}
+
+	private SetColorOnCountry(country:MoodGraphCountry):void
+	{
+		if (this._graphColors.length == 0)
+			country.Color('#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6));
+		else
+			country.Color(this._graphColors.shift());
+
+		console.log(country.Color());
 	}
 
 	private UpdateGraph():void
@@ -222,33 +246,32 @@ class MoodGraphCountry
 {
 	public Name: string;
 	public CountryCode:string;
-	public Color: string;
+	public Color: KnockoutObservable<string> = ko.observable<string>();
 
 	public DataSet: any;
 
 	public IsSelected: KnockoutObservable<boolean> = ko.observable(false);
 
-	private _updateCallback:()=>void;
+	private _updateCallback: (country: MoodGraphCountry)=>void;
 
-	constructor(resultGroup:any, updateCallback:()=>void)
+	constructor(resultGroup: any, updateCallback: (country: MoodGraphCountry) => void)
 	{
 		this.Name = MoodViewModel.Capitalize(resultGroup.Value);
-		this.Color = '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
 		this._updateCallback = updateCallback;
 		this.CountryCode = CountryInfo[this.Name];
 
 		this.DataSet = {};
-
-		this.DataSet.strokeColor = this.Color;
 		this.DataSet.data = new Array<number>();
 
 		for (var o = 0; o < resultGroup.Results.length; o++)
 			this.DataSet.data.push(resultGroup.Results[o].Valence);
+
+		this.Color.subscribe((value:string) => this.DataSet.strokeColor = value);
 	}
 
 	public ToggleSelect():void
 	{
 		this.IsSelected(!this.IsSelected());
-		this._updateCallback();
+		this._updateCallback(this);
 	}
 }

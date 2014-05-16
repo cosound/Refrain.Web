@@ -410,6 +410,7 @@ var MoodViewModel = (function () {
         this.CanShowMoreTweets = ko.observable(false);
         this.AvailableMoodCountries = ko.observableArray();
         this._moodData = {};
+        this._graphColors = ["#f5f5c8", "#ff0000", "#f368c0", "#d20935", "#88f7c0", "#5b1c2d", "#b9f30d", "#ffdc8d", "#250792", "#ac2208"];
         this._updateHandler = null;
     }
     MoodViewModel.prototype.Initialize = function () {
@@ -467,8 +468,8 @@ var MoodViewModel = (function () {
                 this._graphData.labels.push("");
 
         for (var i = 0; i < groups.length; i++)
-            this.AvailableMoodCountries.push(new MoodGraphCountry(groups[i], function () {
-                return _this.UpdateGraph();
+            this.AvailableMoodCountries.push(new MoodGraphCountry(groups[i], function (country) {
+                return _this.CountrySelectToggled(country);
             }));
 
         this.AvailableMoodCountries.sort(function (a, b) {
@@ -480,14 +481,34 @@ var MoodViewModel = (function () {
 
             if (country.IsSelected())
                 i--;
-            else
+            else {
+                this.SetColorOnCountry(country);
                 country.IsSelected(true);
+            }
         }
 
         var context = $("#MoodTimelineGraph").get(0).getContext("2d");
         this._chart = new Chart(context);
 
         this.UpdateGraph();
+    };
+
+    MoodViewModel.prototype.CountrySelectToggled = function (country) {
+        if (country.IsSelected())
+            this.SetColorOnCountry(country);
+        else
+            this._graphColors.unshift(country.Color());
+
+        this.UpdateGraph();
+    };
+
+    MoodViewModel.prototype.SetColorOnCountry = function (country) {
+        if (this._graphColors.length == 0)
+            country.Color('#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6));
+        else
+            country.Color(this._graphColors.shift());
+
+        console.log(country.Color());
     };
 
     MoodViewModel.prototype.UpdateGraph = function () {
@@ -607,23 +628,26 @@ var MoodViewModel = (function () {
 
 var MoodGraphCountry = (function () {
     function MoodGraphCountry(resultGroup, updateCallback) {
+        var _this = this;
+        this.Color = ko.observable();
         this.IsSelected = ko.observable(false);
         this.Name = MoodViewModel.Capitalize(resultGroup.Value);
-        this.Color = '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
         this._updateCallback = updateCallback;
         this.CountryCode = CountryInfo[this.Name];
 
         this.DataSet = {};
-
-        this.DataSet.strokeColor = this.Color;
         this.DataSet.data = new Array();
 
         for (var o = 0; o < resultGroup.Results.length; o++)
             this.DataSet.data.push(resultGroup.Results[o].Valence);
+
+        this.Color.subscribe(function (value) {
+            return _this.DataSet.strokeColor = value;
+        });
     }
     MoodGraphCountry.prototype.ToggleSelect = function () {
         this.IsSelected(!this.IsSelected());
-        this._updateCallback();
+        this._updateCallback(this);
     };
     return MoodGraphCountry;
 })();
