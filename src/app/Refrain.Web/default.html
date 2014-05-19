@@ -3,9 +3,19 @@
 <html>
 	<head>
 		<title>Refrain</title>
-		<link type="text/css" rel="stylesheet" href="Main.css?v=12"/>
-		<link type="text/css" rel="stylesheet" href="Flags.css?=v2"/>
+		
 		<meta name="twitter:widgets:theme" content="dark" />
+		<meta property="og:type" content="interactive" />
+		<meta property="og:locale" content="en_UK" />
+		<meta property="og:title" content="Refrain" />
+		<meta property="og:site_name" content="Refrain" />
+		<meta property="og:description" content="Match selected Eurovision Song Contest songs with the realm of Eurovision Song Contest songs or the collection of western pop music. Or see the current mood of Europe based on Twitter tweets related to the European Song Contest." />
+		<meta property="og:image" content="http://www.refrain.dk/Images/MatchThumb.png" />
+		<meta property="fb:app_id" content="1502662549961564" />
+		
+		<link type="text/css" rel="stylesheet" href="Main.css?v=13"/>
+		<link type="text/css" rel="stylesheet" href="Flags.css?=v2"/>
+		
 		<script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
 		<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyDYMEgXXaemmCDhs3D_z6s_KPb5nMcB5MA&sensor=false"></script>
@@ -13,7 +23,7 @@
 		<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
 		<script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js"></script>
-		<script type="text/javascript" src="Scripts/Refrain.js?v=8"></script>
+		<script type="text/javascript" src="Scripts/Refrain.js?v=9"></script>
 		<script type="text/javascript" src="Scripts/PortalClient.min.js"></script>
 		<script type="text/javascript">
 			(function (i, s, o, g, r, a, m) {
@@ -202,7 +212,7 @@
 					<div id="ShareContainer">
 						Share your discovery with your friends: 
 						<a id="ShareMatchOnTwitter" href="https://twitter.com/share" class="twitter-hashtag-button" data-size="large" data-lang="en" data-related="refraindk" data-count="none" data-hashtags="refraindk,match" data-bind="attr: {'data-url': ShareUrl, 'data-text': ShareMessage}">Tweet #refraindk</a>
-						<div id="ShareMatchOnFacebook" class="fb-share-button" data-type="button" data-bind="attr: {'data-href': ShareUrl}">Share on Facebook</div>
+						<a id="ShareMatchOnFacebook" href="#" data-bind="click: ShareOnFacebook"><img src="Images/Blank.gif" alt="Share on Facebook" /></a>
 					</div>
 					<div id="SimilarityContainer">
 						<p>Importance of music aspects in match <a class="buttonsqpink" href="#" data-bind="click: ToggleSimilarityHelp">?</a></p>

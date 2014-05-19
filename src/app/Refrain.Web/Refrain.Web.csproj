@@ -30,6 +30,8 @@
     <Content Include="Images\danishsound_long_86.png" />
     <Content Include="Images\DTU.png" />
     <Content Include="Images\EurovisionLogo.png" />
+    <Content Include="Images\FacebookShareButton.png" />
+    <Content Include="Images\FacebookShareButtonHover.png" />
     <Content Include="Images\Flags.png" />
     <Content Include="Images\geckon.png" />
     <Content Include="Images\linkblue_40.png" />

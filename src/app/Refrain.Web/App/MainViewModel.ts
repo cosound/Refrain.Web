@@ -9,7 +9,6 @@
 	{
 		this._client = CHAOS.Portal.Client.Initialize("http://api.refrain.dk/");
 		twttr.events.bind('tweet', (ev: any) => this.LogTweet(ev));
-		FB.Event.subscribe('edge.create', (response:string) => this.LogFacebook(response));
 
 		$(window).bind("hashchange", (e: Event) => this.HashChange());
 		this.HashChange();
@@ -18,11 +17,6 @@
 	private LogTweet(event:any):void
 	{
 		ga('send', 'event', 'Share', 'Twitter', window.location.hash);
-	}
-
-	private LogFacebook(event: any): void
-	{
-		ga('send', 'event', 'Share', 'Facebook', window.location.hash);
 	}
 
 	private HashChange()

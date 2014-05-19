@@ -436,22 +436,18 @@ input[type="checkbox"]:checked + label span, input[type="radio"]:checked + label
 #ShareMatchOnFacebook {
 	display: inline-block;
 	vertical-align: middle;
-
-	margin-top: -16px;
+	width: 77px;
+	height: 28px;
 }
 
-#ShareMatchOnFacebook iframe {
-	-ms-transform: scale(1.4); 
-	-webkit-transform: scale(1.4); 
-	-o-transform: scale(1.4); 
-	-moz-transform: scale(1.4);
-	transform: scale(1.4);
-	-ms-transform-origin: top left;
-	-webkit-transform-origin: top left;
-	-moz-transform-origin: top left;
-	-webkit-transform-origin: top left;
-	-o-transform-origin: top left;
-	transform-origin: top left;
+#ShareMatchOnFacebook img {
+	width: 77px;
+	height: 28px;
+	background: url(Images/FacebookShareButton.png) no-repeat;
+}
+
+#ShareMatchOnFacebook img:hover {
+	background: url(Images/FacebookShareButtonHover.png) no-repeat;
 }
 
 #SimilarityContainer {

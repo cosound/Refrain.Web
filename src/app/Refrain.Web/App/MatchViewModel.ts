@@ -245,7 +245,17 @@
 		this.ShareMessage("I discovered " + this.SelectedSong().Title + " is " + (similarity.Distance < 0.2 ? "similar" : "dissimilar") + " to " + similarity.Title + " at " );
 
 		twttr.widgets.load();
-		FB.XFBML.parse();
+	}
+
+	public ShareOnFacebook():void
+	{
+		FB.ui({
+			method: 'share',
+			href: this.ShareUrl(),
+		}, (response) =>
+		{
+			ga('send', 'event', 'Share', 'Facebook', window.location.hash);
+		});
 	}
 
 	private SongGetCompleted(response:CHAOS.Portal.Client.IPortalResponse<RefrainPortal.ISong>):void

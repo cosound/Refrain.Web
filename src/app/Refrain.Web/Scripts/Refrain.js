@@ -50,9 +50,6 @@ var MainViewModel = (function () {
         twttr.events.bind('tweet', function (ev) {
             return _this.LogTweet(ev);
         });
-        FB.Event.subscribe('edge.create', function (response) {
-            return _this.LogFacebook(response);
-        });
 
         $(window).bind("hashchange", function (e) {
             return _this.HashChange();
@@ -61,10 +58,6 @@ var MainViewModel = (function () {
     }
     MainViewModel.prototype.LogTweet = function (event) {
         ga('send', 'event', 'Share', 'Twitter', window.location.hash);
-    };
-
-    MainViewModel.prototype.LogFacebook = function (event) {
-        ga('send', 'event', 'Share', 'Facebook', window.location.hash);
     };
 
     MainViewModel.prototype.HashChange = function () {
@@ -371,7 +364,15 @@ var MatchViewModel = (function () {
         this.ShareMessage("I discovered " + this.SelectedSong().Title + " is " + (similarity.Distance < 0.2 ? "similar" : "dissimilar") + " to " + similarity.Title + " at ");
 
         twttr.widgets.load();
-        FB.XFBML.parse();
+    };
+
+    MatchViewModel.prototype.ShareOnFacebook = function () {
+        FB.ui({
+            method: 'share',
+            href: this.ShareUrl()
+        }, function (response) {
+            ga('send', 'event', 'Share', 'Facebook', window.location.hash);
+        });
     };
 
     MatchViewModel.prototype.SongGetCompleted = function (response) {
