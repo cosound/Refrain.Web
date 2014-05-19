@@ -13,8 +13,8 @@
 		<meta property="og:image" content="http://www.refrain.dk/Images/MatchThumb.png" />
 		<meta property="fb:app_id" content="1502662549961564" />
 		
-		<link type="text/css" rel="stylesheet" href="Main.css?v=13"/>
-		<link type="text/css" rel="stylesheet" href="Flags.css?=v2"/>
+		<link type="text/css" rel="stylesheet" href="Main.css?v=14"/>
+		<link type="text/css" rel="stylesheet" href="Flags.css?v=3"/>
 		
 		<script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
@@ -23,7 +23,7 @@
 		<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
 		<script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js"></script>
-		<script type="text/javascript" src="Scripts/Refrain.js?v=9"></script>
+		<script type="text/javascript" src="Scripts/Refrain.js?v=10"></script>
 		<script type="text/javascript" src="Scripts/PortalClient.min.js"></script>
 		<script type="text/javascript">
 			(function (i, s, o, g, r, a, m) {
@@ -119,7 +119,8 @@
 				<!-- ko if: $parent.CurrentPage() == "Match" -->
 				<script id="SongMatchTempalte" type="text/html">
 					<div class="SongMatch" data-bind="click: Select, css: {Selected: IsSelected}">
-						<img src="Images/Blank.gif" class="flag" data-bind="if: CountryName, attr: { alt: CountryName }, css: (!CountryCode && !YoutubeId ? 'SpotifyFlag' : 'flag-' +  CountryCode )" /> 
+						<span class="SimilarityProcent" data-bind="visible: $data.Distance"><span data-bind="text: $data.Distance == 0 ? '100' : (100 - $data.Distance * 100).toFixed(2)"></span>%</span>
+						<img src="Images/Blank.gif" class="flag" data-bind="if: CountryName, attr: { alt: CountryName }, css: (!CountryCode && !$data.YoutubeId ? 'SpotifyFlag' : 'flag-' +  CountryCode )" /> 
 						<a href="#">
 							<span class="Title" data-bind="text: Title"></span>, <span data-bind="text: Artist"></span><span data-bind="visible: Year, text: ', ' + Year"></span>
 						</a>
