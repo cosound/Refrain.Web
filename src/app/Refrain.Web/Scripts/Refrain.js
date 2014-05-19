@@ -729,7 +729,7 @@ var Song = (function () {
         this.Title = song.Title;
         this.Artist = song.ArtistName;
         this.CountryName = song.CountryName;
-        this.CountryCode = CountryInfo[song.CountryName];
+        this.CountryCode = CountryInfo[song.CountryName] ? CountryInfo[song.CountryName] : null;
         this.Year = song.Year;
 
         if (song.YoutubeUri)
@@ -777,7 +777,7 @@ var SongSimilarity = (function () {
         this.Title = similarity.SongTitle;
         this.Artist = similarity.ArtistName;
         this.CountryName = similarity.CountryName;
-        this.CountryCode = CountryInfo[similarity.CountryName];
+        this.CountryCode = CountryInfo[similarity.CountryName] ? CountryInfo[similarity.CountryName] : null;
         this.Year = similarity.Year;
 
         if (similarity.YoutubeUri)

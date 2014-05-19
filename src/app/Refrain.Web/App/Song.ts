@@ -20,7 +20,7 @@
 		this.Title = song.Title;
 		this.Artist = song.ArtistName;
 		this.CountryName = song.CountryName;
-		this.CountryCode = CountryInfo[song.CountryName];
+		this.CountryCode = CountryInfo[song.CountryName] ? CountryInfo[song.CountryName] : null;
 		this.Year = song.Year;
 
 		if (song.YoutubeUri)

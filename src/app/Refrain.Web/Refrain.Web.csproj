@@ -29,6 +29,7 @@
     <Content Include="Images\danishsound_long.png" />
     <Content Include="Images\danishsound_long_86.png" />
     <Content Include="Images\DTU.png" />
+    <Content Include="Images\EurovisionLogo.png" />
     <Content Include="Images\Flags.png" />
     <Content Include="Images\geckon.png" />
     <Content Include="Images\linkblue_40.png" />
@@ -38,6 +39,7 @@
     <Content Include="Images\Radio.png" />
     <Content Include="Images\refrain_white_280.png" />
     <Content Include="default.html" />
+    <Content Include="Images\SpotifyLogo.png" />
     <Content Include="Main.css" />
     <Content Include="Scripts\PortalClient.min.js" />
     <Content Include="Scripts\Refrain.js" />

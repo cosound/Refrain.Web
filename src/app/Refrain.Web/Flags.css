@@ -1,7 +1,13 @@
 .flag {
 	width: 25px;
 	height: 15px;
-	background:url(Images/Flags.png) no-repeat
+	background: url(Images/Flags.png) no-repeat
+}
+
+.SpotifyFlag {
+	width: 25px;
+	height: 15px;
+	background: url(Images/SpotifyLogo.png) no-repeat
 }
 
 .flag.flag-ad {background-position: -25px 0}
