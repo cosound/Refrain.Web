@@ -395,9 +395,9 @@ input[type="checkbox"]:checked + label span, input[type="radio"]:checked + label
 	padding: 5px;
 }
 
-.SimilarityProcent {
+.SimilarityPercent {
 	text-align: right;
-	width: 90px;
+	width: 80px;
 	margin-right: 5px;
 	display: inline-block;
 }
