@@ -601,6 +601,7 @@ input[type="checkbox"]:checked + label span, input[type="radio"]:checked + label
 
 .ImageLeft {
 	float: left;
+	margin-right: 5px;
 }
 
 .NoFloat {

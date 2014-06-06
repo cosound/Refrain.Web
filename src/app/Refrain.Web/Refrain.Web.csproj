@@ -23,6 +23,7 @@
     <Content Include="Images\bgrefrain3.png" />
     <Content Include="Images\bgrefrain4.jpg" />
     <Content Include="Images\Blank.gif" />
+    <Content Include="Images\ChaosInsightLogo.png" />
     <Content Include="Images\CheckBox.png" />
     <Content Include="Images\cosound_logo.png" />
     <Content Include="Images\cosound_logo_86.png" />
@@ -33,7 +34,6 @@
     <Content Include="Images\FacebookShareButton.png" />
     <Content Include="Images\FacebookShareButtonHover.png" />
     <Content Include="Images\Flags.png" />
-    <Content Include="Images\geckon.png" />
     <Content Include="Images\linkblue_40.png" />
     <Content Include="Images\MatchThumb.png" />
     <Content Include="Images\MoodScale.png" />
