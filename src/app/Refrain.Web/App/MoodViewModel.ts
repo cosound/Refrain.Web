@@ -13,8 +13,9 @@ class MoodViewModel implements IPageViewModel
 	private _chart: any;
 	private _graphData: any;
 	private _graphColors: string[] = ["#f5f5c8", "#ff0000", "#f368c0", "#d20935", "#88f7c0", "#5b1c2d", "#b9f30d", "#ffdc8d", "#250792", "#ac2208"];
+	private _graphPointPerDay: number = 400;
 
-	private _updateHandler:number = null;
+	private _updateHandler: number = null;
 
 	constructor()
 	{
@@ -34,47 +35,27 @@ class MoodViewModel implements IPageViewModel
 		});
 
 		(<any>this._map).data.loadGeoJson('Countries.json');
+
+		this.InitializeGraph();
 	}
 
-	public Dispose(): void
+	private InitializeGraph(): void
 	{
-		if (this._updateHandler != null) clearInterval(this._updateHandler);
-	}
+		var context = (<HTMLCanvasElement>$("#MoodTimelineGraph").get(0)).getContext("2d");
+		this._chart = new Chart(context);
 
-	public PortalReady(): void
-	{
-		this.Update();
-
-		this._updateHandler = setInterval(() => this.Update(), 5 * 60 * 1000);
-
-		var start = new Date();
-		var end = new Date();
-		end.setDate(start.getDate() - 1);
-
-		RefrainPortal.TwitterMood.Get(null,start, end, 24 * 60 / 5).WithCallback(this.TwitterMoodGraphCompleted, this);
-	}
-
-	private Update():void
-	{
-		RefrainPortal.TwitterMood.Get().WithCallback(this.TwitterMoodGetCompleted, this);
-		RefrainPortal.Tweet.Get().WithCallback(this.TweetGetCompleted, this);
-	}
-
-	private TwitterMoodGraphCompleted(response: CHAOS.Portal.Client.IPortalResponse<any>): void
-	{
-		if (response.Error != null)
-		{
-			console.log("Failed to get Twitter mood: " + response.Error.Message);
-			return;
-		}
-
-		var groups = <any[]>(<any>response.Body).Groups;
 		this._graphData = {};
 		this._graphData.labels = new Array<String>();
 
-		if (groups.length != 0)
-			for (var o = 0; o < groups[0].Results.length; o++)
-				this._graphData.labels.push("");
+		for (var i = 0; i < this._graphPointPerDay; i++)
+		{
+			this._graphData.labels.push("");
+		}
+	}
+
+	private InitializeGraphCountries(groups: any[]): void
+	{
+		if (this.AvailableMoodCountries().length != 0) return;
 
 		for (var i = 0; i < groups.length; i++)
 			this.AvailableMoodCountries.push(new MoodGraphCountry(groups[i], (country) => this.CountrySelectToggled(country)));
@@ -94,10 +75,60 @@ class MoodViewModel implements IPageViewModel
 			}
 		}
 
-		var context = (<HTMLCanvasElement>$("#MoodTimelineGraph").get(0)).getContext("2d");
-		this._chart = new Chart(context);
-
 		this.UpdateGraph();
+	}
+
+	public Dispose(): void
+	{
+		if (this._updateHandler != null) clearInterval(this._updateHandler);
+	}
+
+	public PortalReady(): void
+	{
+		this.Update();
+
+		this._updateHandler = setInterval(() => this.Update(), 5 * 60 * 1000);
+	}
+
+	private GetGraphData(countries:MoodGraphCountry[]):void
+	{
+		if (countries.length == 0) return;
+
+		var before = new Date("2014-05-06");
+		var after = new Date("2014-05-06");
+		after.setDate(before.getDate() - 1);
+
+		RefrainPortal.TwitterMood.Get(countries.map((v, i) => v.CodeName), before, after, this._graphPointPerDay).WithCallback(r => this.TwitterMoodGraphCompleted(r, countries), this);
+	}
+
+	private Update():void
+	{
+		RefrainPortal.TwitterMood.Get().WithCallback(this.TwitterMoodGetCompleted, this);
+		RefrainPortal.Tweet.Get().WithCallback(this.TweetGetCompleted, this);
+	}
+
+	private TwitterMoodGraphCompleted(response: CHAOS.Portal.Client.IPortalResponse<any>, countries: MoodGraphCountry[]): void
+	{
+		if (response.Error != null)
+		{
+			console.log("Failed to get Twitter mood: " + response.Error.Message);
+			return;
+		}
+
+		var groups = <any[]>(<any>response.Body).Groups;
+
+		for (var i:number = 0; i < groups.length; i++)
+		{
+			for (var o:number = 0; o < countries.length; o++)
+			{
+				if (!countries[o].IsEqualGroup(groups[i])) continue;
+
+				countries[o].UpdateData(groups[i]);
+				break;
+			}
+		}
+
+		this.UpdateGraph(true);
 	}
 
 	private CountrySelectToggled(country:MoodGraphCountry):void
@@ -116,19 +147,28 @@ class MoodViewModel implements IPageViewModel
 			country.Color('#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6));
 		else
 			country.Color(this._graphColors.shift());
-
-		console.log(country.Color());
 	}
 
-	private UpdateGraph():void
+	private UpdateGraph(preventLoop:boolean = false):void
 	{
-		this._graphData.datasets  = new Array<any>();
+		this._graphData.datasets = new Array<any>();
+		var country:MoodGraphCountry;
+		var missingData:MoodGraphCountry[] = [];
 
 		for (var i = 0; i < this.AvailableMoodCountries().length; i++)
 		{
-			if (this.AvailableMoodCountries()[i].IsSelected())
-				this._graphData.datasets .push(this.AvailableMoodCountries()[i].DataSet);
+			country = this.AvailableMoodCountries()[i];
+			if (country.IsSelected())
+			{
+				if (country.HasData())
+					this._graphData.datasets.push(this.AvailableMoodCountries()[i].DataSet);
+				else
+					missingData.push(country);
+			}
 		}
+
+		if(!preventLoop)
+			this.GetGraphData(missingData);
 
 		this._chart.Line(this._graphData, {
 			scaleOverride: true,
@@ -142,7 +182,7 @@ class MoodViewModel implements IPageViewModel
 			pointDot: false,
 			datasetFill: false,
 			animation: false
-	});
+		});
 	}
 
 	private TwitterMoodGetCompleted(response: CHAOS.Portal.Client.IPortalResponse<any>):void
@@ -158,7 +198,9 @@ class MoodViewModel implements IPageViewModel
 		for (var i = 0; i < groups.length; i++)
 			this._moodData[MoodViewModel.Capitalize(<string>groups[i].Value)] = groups[i].Results[0].Valence;
 
-		(<any>this._map).data.setStyle((f:any) => this.SetCountryStyle(f));
+		(<any>this._map).data.setStyle((f: any) => this.SetCountryStyle(f));
+
+		this.InitializeGraphCountries(groups);
 	}
 
 	private TweetGetCompleted(response: CHAOS.Portal.Client.IPortalResponse<any>): void
@@ -245,6 +287,7 @@ class MoodViewModel implements IPageViewModel
 class MoodGraphCountry
 {
 	public Name: string;
+	public CodeName: string;
 	public CountryCode:string;
 	public Color: KnockoutObservable<string> = ko.observable<string>();
 
@@ -252,21 +295,37 @@ class MoodGraphCountry
 
 	public IsSelected: KnockoutObservable<boolean> = ko.observable(false);
 
-	private _updateCallback: (country: MoodGraphCountry)=>void;
+	private _updateCallback: (country: MoodGraphCountry) => void;
 
 	constructor(resultGroup: any, updateCallback: (country: MoodGraphCountry) => void)
 	{
 		this.Name = MoodViewModel.Capitalize(resultGroup.Value);
+		this.CodeName = resultGroup.Value;
 		this._updateCallback = updateCallback;
 		this.CountryCode = CountryInfo[this.Name];
 
 		this.DataSet = {};
 		this.DataSet.data = new Array<number>();
 
+		this.Color.subscribe((value: string) => this.DataSet.strokeColor = value);
+	}
+
+	public IsEqualGroup(resultGroup: any):boolean
+	{
+		return resultGroup.Value.toString() == this.CodeName.toString();
+	}
+
+	public HasData():boolean
+	{
+		return this.DataSet.data.length != 0;
+	}
+
+	public UpdateData(resultGroup:any):void
+	{
+		this.DataSet.data.splice(0);
+
 		for (var o = 0; o < resultGroup.Results.length; o++)
 			this.DataSet.data.push(resultGroup.Results[o].Valence);
-
-		this.Color.subscribe((value:string) => this.DataSet.strokeColor = value);
 	}
 
 	public ToggleSelect():void

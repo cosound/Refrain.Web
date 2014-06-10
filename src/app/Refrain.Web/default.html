@@ -271,9 +271,8 @@
 						<span id="MoodScalePositive">Positive</span>
 					</p>
 				</div>
-				<!-- ko if: AvailableMoodCountries().length != 0-->
-				<h1>Mood Timeline</h1>
-				<div>
+				<h1 data-bind="visible: AvailableMoodCountries().length != 0">Mood Timeline</h1>
+				<div data-bind="visible: AvailableMoodCountries().length != 0">
 					<h2>24 hour timeline of the mood of Europe in selected countries based on Tweets linked to the Eurovision Song Contest.</h2>
 					<div id="MoodTimeline">
 						<div id="MoodTimelineScale">
@@ -290,7 +289,6 @@
 						</a>
 					</div>
 				</div>
-				<!-- /ko -->
 				<!-- ko if: SelectedTweets().length != 0-->
 				<h1>Tweets</h1>
 				<div>
