@@ -441,13 +441,15 @@ var MoodViewModel = (function () {
                 timezone: "browser",
                 timeformat: "%H:%M",
                 color: "grey",
-                minTickSize: [4, "hour"]
+                minTickSize: [4, "hour"],
+                panRange: this.GetPanXRange()
             },
             yaxis: {
                 min: -1,
                 max: 1,
                 color: "#0088EE",
-                ticks: [[-1, "Negative"], [-0.75, ""], [-0.5, ""], [-0.25, ""], [0, "Neutral"], [0.25, ""], [0.5, ""], [0.75, ""], [1, "Positive"]]
+                ticks: [[-1, "Negative"], [-0.75, ""], [-0.5, ""], [-0.25, ""], [0, "Neutral"], [0.25, ""], [0.5, ""], [0.75, ""], [1, "Positive"]],
+                panRange: [-1, 1]
             },
             grid: {
                 borderColor: "white"
@@ -456,8 +458,20 @@ var MoodViewModel = (function () {
                 drawSeries: [function (p, c, s) {
                         return s.Country.Color(s.color);
                     }]
+            },
+            zoom: {
+                interactive: true
+            },
+            pan: {
+                interactive: true
             }
         };
+    };
+
+    MoodViewModel.prototype.GetPanXRange = function () {
+        var min = this.MoodGraphCurrentTime().getTime();
+
+        return [min, min + 24 * 60 * 60 * 1000];
     };
 
     MoodViewModel.prototype.InitializeGraphCountries = function (groups) {
@@ -589,6 +603,8 @@ var MoodViewModel = (function () {
     MoodViewModel.prototype.RefreshGraphData = function () {
         var countries = [];
         var country;
+
+        this._graphOptions.xaxis.panRange = this.GetPanXRange();
 
         for (var i = 0; i < this.AvailableMoodCountries().length; i++) {
             country = this.AvailableMoodCountries()[i];

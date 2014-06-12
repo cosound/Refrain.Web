@@ -49,21 +49,36 @@ class MoodViewModel implements IPageViewModel
 				timezone: "browser",
 				timeformat: "%H:%M",
 				color: "grey",
-				minTickSize: [4, "hour"]
+				minTickSize: [4, "hour"],
+				panRange: this.GetPanXRange()
 			},
 			yaxis: {
 				min: -1,
 				max: 1,
 				color: "#0088EE",
-				ticks: [[-1, "Negative"], [-0.75, ""], [-0.5, ""], [-0.25, ""], [0, "Neutral"], [0.25, ""], [0.5, ""], [0.75, ""], [1, "Positive"]]
+				ticks: [[-1, "Negative"], [-0.75, ""], [-0.5, ""], [-0.25, ""], [0, "Neutral"], [0.25, ""], [0.5, ""], [0.75, ""], [1, "Positive"]],
+				panRange: [-1, 1]
 			},
 			grid: {
 				borderColor: "white"
 			},
 			hooks: {
 				drawSeries: [(p: any, c: any, s: any) => s.Country.Color(s.color)]
+			},
+			zoom: {
+				interactive: true
+			},
+			pan: {
+				interactive: true
 			}
 		};
+	}
+
+	private GetPanXRange():number[]
+	{
+		var min = this.MoodGraphCurrentTime().getTime();
+
+		return [min, min + 24 * 60 * 60 * 1000];
 	}
 
 	private InitializeGraphCountries(groups: any[]): void
@@ -75,7 +90,7 @@ class MoodViewModel implements IPageViewModel
 
 		this.AvailableMoodCountries.sort((a, b) => a.Name.localeCompare(b.Name));
 
-		var selectedCountries:MoodGraphCountry[] = []
+		var selectedCountries:MoodGraphCountry[] = [];
 
 		for (i = 0; i < 3; i++)
 		{
@@ -197,7 +212,9 @@ class MoodViewModel implements IPageViewModel
 	private RefreshGraphData():void
 	{
 		var countries: MoodGraphCountry[] = [];
-		var country:MoodGraphCountry;
+		var country: MoodGraphCountry;
+
+		(<any>this._graphOptions.xaxis).panRange = this.GetPanXRange();
 
 		for (var i = 0; i < this.AvailableMoodCountries().length; i++)
 		{
