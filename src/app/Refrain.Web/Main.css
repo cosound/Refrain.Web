@@ -536,6 +536,21 @@ input[type="checkbox"]:checked + label span, input[type="radio"]:checked + label
 	text-align:right;
 }
 
+#GraphDateSelector {
+	background-color: #0099FF;
+}
+
+#GraphDateSelector span:nth-child(2) {
+	display: inline-block;
+	width: 425px;
+	text-align: center;
+}
+
+#GraphDateSelector a:nth-child(3) {
+	display: inline-block;
+	float: right;
+}
+
 #MoodTimelineGraph {
 	background-color: #0099FF;
 

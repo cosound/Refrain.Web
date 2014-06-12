@@ -275,6 +275,11 @@
 				<h1 data-bind="visible: AvailableMoodCountries().length != 0">Mood Timeline</h1>
 				<div data-bind="visible: AvailableMoodCountries().length != 0">
 					<h2>24 hour timeline of the mood of Europe in selected countries based on Tweets linked to the Eurovision Song Contest.</h2>
+					<div id="GraphDateSelector">
+						<a href="#" class="button" data-bind="click: MoodGraphPrevious">Previous</a>
+						<span data-bind="text: MoodGraphCurrentTime().getDate() + ' ' + ['January', 'Feburary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][MoodGraphCurrentTime().getMonth()] + ' ' + MoodGraphCurrentTime().getFullYear()"></span>
+						<a href="#" class="button" data-bind="click: MoodGraphNext">Next</a>
+					</div>
 					<div id="MoodTimelineGraph"></div>
 					<div data-bind="foreach: AvailableMoodCountries">
 						<a class="MoodCountry" href="#" data-bind="click: ToggleSelect, css: {Selected: IsSelected}, style: {backgroundColor: IsSelected() ? Color : 'inherit'}">

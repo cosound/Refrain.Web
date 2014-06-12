@@ -4,7 +4,8 @@ class MoodViewModel implements IPageViewModel
 {
 	public SelectedTweets: KnockoutObservableArray<string> = ko.observableArray<string>();
 	public CanShowMoreTweets: KnockoutObservable<boolean> = ko.observable(false);
-	public AvailableMoodCountries: KnockoutObservableArray<MoodGraphCountry> = ko.observableArray < MoodGraphCountry>();
+	public AvailableMoodCountries: KnockoutObservableArray<MoodGraphCountry> = ko.observableArray<MoodGraphCountry>();
+	public MoodGraphCurrentTime: KnockoutObservable<Date> = ko.observable<Date>(new Date(2014, 4, 6, 6, 0));
 
 	private _map: google.maps.Map;
 	private _moodData: { [countryCode: string]: number } = {};
@@ -105,11 +106,29 @@ class MoodViewModel implements IPageViewModel
 		this._updateHandler = setInterval(() => this.Update(), 5 * 60 * 1000);
 	}
 
+	public MoodGraphPrevious():void
+	{
+		this.MoodGraphCurrentTime().setDate(this.MoodGraphCurrentTime().getDate() - 1);
+
+		this.MoodGraphCurrentTime(this.MoodGraphCurrentTime());
+
+		this.RefreshGraphData();
+	}
+
+	public MoodGraphNext(): void
+	{
+		this.MoodGraphCurrentTime().setDate(this.MoodGraphCurrentTime().getDate() + 1);
+
+		this.MoodGraphCurrentTime(this.MoodGraphCurrentTime());
+
+		this.RefreshGraphData();
+	}
+
 	private GetGraphData(countries:MoodGraphCountry[]):void
 	{
 		if (countries.length == 0) return;
 
-		var start = new Date(2014, 4, 6, 6, 0);
+		var start = this.MoodGraphCurrentTime();
 		var end = new Date(start.getTime() + 24 * 60 * 60 * 1000);
 
 		RefrainPortal.TwitterMood.Get(countries.map((v, i) => v.CodeName.replace("_", " ")), start, end, 999).WithCallback(r => this.TwitterMoodGraphCompleted(r, countries), this);
@@ -137,7 +156,10 @@ class MoodViewModel implements IPageViewModel
 			{
 				if (!countries[o].IsEqualGroup(groups[i])) continue;
 
-				this._graphData.push(countries[o].UpdateData(groups[i]));
+				if (countries[o].HasData())
+					countries[o].UpdateData(groups[i]);
+				else
+					this._graphData.push(countries[o].UpdateData(groups[i]));
 
 				break;
 			}
@@ -170,6 +192,24 @@ class MoodViewModel implements IPageViewModel
 
 			this.UpdateGraph();
 		}
+	}
+
+	private RefreshGraphData():void
+	{
+		var countries: MoodGraphCountry[] = [];
+		var country:MoodGraphCountry;
+
+		for (var i = 0; i < this.AvailableMoodCountries().length; i++)
+		{
+			country = this.AvailableMoodCountries()[i];
+			
+			if (country.IsSelected())
+				countries.push(country);
+			else
+				country.ClearData();
+		}
+
+		this.GetGraphData(countries);
 	}
 
 	private UpdateGraph():void
@@ -309,9 +349,14 @@ class MoodGraphCountry
 		return this.Data.data.length != 0;
 	}
 
-	public UpdateData(resultGroup: any): jquery.flot.dataSeries
+	public ClearData():void
 	{
 		this.Data.data.splice(0);
+	}
+
+	public UpdateData(resultGroup: any): jquery.flot.dataSeries
+	{
+		this.ClearData();
 
 		for (var o = 0; o < resultGroup.Results.length; o++)
 			this.Data.data.push([resultGroup.Results[o].DateCreated * 1000, resultGroup.Results[o].Valence]);
