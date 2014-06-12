@@ -6,6 +6,7 @@ class MoodViewModel implements IPageViewModel
 	public CanShowMoreTweets: KnockoutObservable<boolean> = ko.observable(false);
 	public AvailableMoodCountries: KnockoutObservableArray<MoodGraphCountry> = ko.observableArray<MoodGraphCountry>();
 	public MoodGraphCurrentTime: KnockoutObservable<Date> = ko.observable<Date>(new Date(2014, 4, 6, 6, 0));
+	public MoodMapCurrentTime: KnockoutObservable<Date> = ko.observable<Date>(new Date(2014, 4, 6, 18, 0));
 
 	private _map: google.maps.Map;
 	private _moodData: { [countryCode: string]: number } = {};
@@ -103,7 +104,6 @@ class MoodViewModel implements IPageViewModel
 				country.IsSelected(true);
 				selectedCountries.push(country);
 			}
-				
 		}
 
 		this.GetGraphData(selectedCountries);
@@ -118,7 +118,40 @@ class MoodViewModel implements IPageViewModel
 	{
 		this.Update();
 
-		this._updateHandler = setInterval(() => this.Update(), 5 * 60 * 1000);
+		this.MoodMapCurrentTime.subscribe(v => this.UpdateMoodMap());
+
+		RefrainPortal.TwitterMood.Get().WithCallback(this.TwitterMoodGetForGraphCountriesCompleted, this);
+		
+		//this._updateHandler = setInterval(() => this.Update(), 5 * 60 * 1000);
+
+	}
+
+	public MoodMapNext():void
+	{
+		this.MoodMapCurrentTime().setMinutes(this.MoodMapCurrentTime().getMinutes() + 5);
+
+		this.MoodMapCurrentTime(this.MoodMapCurrentTime());
+	}
+
+	public MoodMapNextBig(): void
+	{
+		this.MoodMapCurrentTime().setHours(this.MoodMapCurrentTime().getHours() + 6);
+
+		this.MoodMapCurrentTime(this.MoodMapCurrentTime());
+	}
+
+	public MoodMapPrevious(): void
+	{
+		this.MoodMapCurrentTime().setMinutes(this.MoodMapCurrentTime().getMinutes() - 5);
+
+		this.MoodMapCurrentTime(this.MoodMapCurrentTime());
+	}
+
+	public MoodMapPreviousBig(): void
+	{
+		this.MoodMapCurrentTime().setHours(this.MoodMapCurrentTime().getHours() - 6);
+
+		this.MoodMapCurrentTime(this.MoodMapCurrentTime());
 	}
 
 	public MoodGraphPrevious():void
@@ -146,13 +179,18 @@ class MoodViewModel implements IPageViewModel
 		var start = this.MoodGraphCurrentTime();
 		var end = new Date(start.getTime() + 24 * 60 * 60 * 1000);
 
-		RefrainPortal.TwitterMood.Get(countries.map((v, i) => v.CodeName.replace("_", " ")), start, end, 999).WithCallback(r => this.TwitterMoodGraphCompleted(r, countries), this);
+		RefrainPortal.TwitterMood.Get(countries.map((v, i) => v.CodeName), start, end, 999).WithCallback(r => this.TwitterMoodGraphCompleted(r, countries), this);
 	}
 
 	private Update():void
 	{
-		RefrainPortal.TwitterMood.Get().WithCallback(this.TwitterMoodGetCompleted, this);
+		this.UpdateMoodMap();
 		RefrainPortal.Tweet.Get().WithCallback(this.TweetGetCompleted, this);
+	}
+
+	private UpdateMoodMap():void
+	{
+		RefrainPortal.TwitterMood.Get(null, this.MoodMapCurrentTime()).WithCallback(this.TwitterMoodGetCompleted, this);
 	}
 
 	private TwitterMoodGraphCompleted(response: CHAOS.Portal.Client.IPortalResponse<any>, countries: MoodGraphCountry[]): void
@@ -246,10 +284,20 @@ class MoodViewModel implements IPageViewModel
 
 		for (var i = 0; i < groups.length; i++)
 			this._moodData[MoodViewModel.Capitalize(<string>groups[i].Value)] = groups[i].Results[0].Valence;
-
+		
+		(<any>this._map).data.setStyle({});
 		(<any>this._map).data.setStyle((f: any) => this.SetCountryStyle(f));
+	}
 
-		this.InitializeGraphCountries(groups);
+	private TwitterMoodGetForGraphCountriesCompleted(response: CHAOS.Portal.Client.IPortalResponse<any>): void
+	{
+		if (response.Error != null)
+		{
+			console.log("Failed to get Twitter mood: " + response.Error.Message);
+			return;
+		}
+
+		this.InitializeGraphCountries(<any[]>(<any>response.Body).Groups);
 	}
 
 	private TweetGetCompleted(response: CHAOS.Portal.Client.IPortalResponse<any>): void

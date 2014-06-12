@@ -536,6 +536,18 @@ input[type="checkbox"]:checked + label span, input[type="radio"]:checked + label
 	text-align:right;
 }
 
+#MoodDateSelector {
+	background-color: #0099FF;
+}
+
+#MoodDateSelector .Date {
+	text-align: center;
+}
+
+#MoodDateSelector a {
+	width: 194px;
+}
+
 #GraphDateSelector {
 	background-color: #0099FF;
 }

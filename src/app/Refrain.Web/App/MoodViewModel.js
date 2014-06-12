@@ -4,6 +4,7 @@
         this.CanShowMoreTweets = ko.observable(false);
         this.AvailableMoodCountries = ko.observableArray();
         this.MoodGraphCurrentTime = ko.observable(new Date(2014, 4, 6, 6, 0));
+        this.MoodMapCurrentTime = ko.observable(new Date(2014, 4, 6, 18, 0));
         this._moodData = {};
         this._updateHandler = null;
     }
@@ -34,13 +35,15 @@
                 timezone: "browser",
                 timeformat: "%H:%M",
                 color: "grey",
-                minTickSize: [4, "hour"]
+                minTickSize: [4, "hour"],
+                panRange: this.GetPanXRange()
             },
             yaxis: {
                 min: -1,
                 max: 1,
                 color: "#0088EE",
-                ticks: [[-1, "Negative"], [-0.75, ""], [-0.5, ""], [-0.25, ""], [0, "Neutral"], [0.25, ""], [0.5, ""], [0.75, ""], [1, "Positive"]]
+                ticks: [[-1, "Negative"], [-0.75, ""], [-0.5, ""], [-0.25, ""], [0, "Neutral"], [0.25, ""], [0.5, ""], [0.75, ""], [1, "Positive"]],
+                panRange: [-1, 1]
             },
             grid: {
                 borderColor: "white"
@@ -49,8 +52,20 @@
                 drawSeries: [function (p, c, s) {
                         return s.Country.Color(s.color);
                     }]
+            },
+            zoom: {
+                interactive: true
+            },
+            pan: {
+                interactive: true
             }
         };
+    };
+
+    MoodViewModel.prototype.GetPanXRange = function () {
+        var min = this.MoodGraphCurrentTime().getTime();
+
+        return [min, min + 24 * 60 * 60 * 1000];
     };
 
     MoodViewModel.prototype.InitializeGraphCountries = function (groups) {
@@ -92,9 +107,35 @@
         var _this = this;
         this.Update();
 
-        this._updateHandler = setInterval(function () {
-            return _this.Update();
-        }, 5 * 60 * 1000);
+        this.MoodMapCurrentTime.subscribe(function (v) {
+            return _this.UpdateMoodMap();
+        });
+
+        RefrainPortal.TwitterMood.Get().WithCallback(this.TwitterMoodGetForGraphCountriesCompleted, this);
+    };
+
+    MoodViewModel.prototype.MoodMapNext = function () {
+        this.MoodMapCurrentTime().setMinutes(this.MoodMapCurrentTime().getMinutes() + 5);
+
+        this.MoodMapCurrentTime(this.MoodMapCurrentTime());
+    };
+
+    MoodViewModel.prototype.MoodMapNextBig = function () {
+        this.MoodMapCurrentTime().setHours(this.MoodMapCurrentTime().getHours() + 6);
+
+        this.MoodMapCurrentTime(this.MoodMapCurrentTime());
+    };
+
+    MoodViewModel.prototype.MoodMapPrevious = function () {
+        this.MoodMapCurrentTime().setMinutes(this.MoodMapCurrentTime().getMinutes() - 5);
+
+        this.MoodMapCurrentTime(this.MoodMapCurrentTime());
+    };
+
+    MoodViewModel.prototype.MoodMapPreviousBig = function () {
+        this.MoodMapCurrentTime().setHours(this.MoodMapCurrentTime().getHours() - 6);
+
+        this.MoodMapCurrentTime(this.MoodMapCurrentTime());
     };
 
     MoodViewModel.prototype.MoodGraphPrevious = function () {
@@ -122,15 +163,19 @@
         var end = new Date(start.getTime() + 24 * 60 * 60 * 1000);
 
         RefrainPortal.TwitterMood.Get(countries.map(function (v, i) {
-            return v.CodeName.replace("_", " ");
+            return v.CodeName;
         }), start, end, 999).WithCallback(function (r) {
             return _this.TwitterMoodGraphCompleted(r, countries);
         }, this);
     };
 
     MoodViewModel.prototype.Update = function () {
-        RefrainPortal.TwitterMood.Get().WithCallback(this.TwitterMoodGetCompleted, this);
+        this.UpdateMoodMap();
         RefrainPortal.Tweet.Get().WithCallback(this.TweetGetCompleted, this);
+    };
+
+    MoodViewModel.prototype.UpdateMoodMap = function () {
+        RefrainPortal.TwitterMood.Get(null, this.MoodMapCurrentTime()).WithCallback(this.TwitterMoodGetCompleted, this);
     };
 
     MoodViewModel.prototype.TwitterMoodGraphCompleted = function (response, countries) {
@@ -183,6 +228,8 @@
         var countries = [];
         var country;
 
+        this._graphOptions.xaxis.panRange = this.GetPanXRange();
+
         for (var i = 0; i < this.AvailableMoodCountries().length; i++) {
             country = this.AvailableMoodCountries()[i];
 
@@ -211,11 +258,19 @@
         for (var i = 0; i < groups.length; i++)
             this._moodData[MoodViewModel.Capitalize(groups[i].Value)] = groups[i].Results[0].Valence;
 
+        this._map.data.setStyle({});
         this._map.data.setStyle(function (f) {
             return _this.SetCountryStyle(f);
         });
+    };
 
-        this.InitializeGraphCountries(groups);
+    MoodViewModel.prototype.TwitterMoodGetForGraphCountriesCompleted = function (response) {
+        if (response.Error != null) {
+            console.log("Failed to get Twitter mood: " + response.Error.Message);
+            return;
+        }
+
+        this.InitializeGraphCountries(response.Body.Groups);
     };
 
     MoodViewModel.prototype.TweetGetCompleted = function (response) {
