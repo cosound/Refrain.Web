@@ -8,7 +8,7 @@
         this.Title = similarity.SongTitle;
         this.Artist = similarity.ArtistName;
         this.CountryName = similarity.CountryName;
-        this.CountryCode = CountryInfo[similarity.CountryName];
+        this.CountryCode = CountryInfo[similarity.CountryName] ? CountryInfo[similarity.CountryName] : null;
         this.Year = similarity.Year;
 
         if (similarity.YoutubeUri)

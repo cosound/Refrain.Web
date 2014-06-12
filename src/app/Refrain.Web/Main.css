@@ -542,7 +542,7 @@ input[type="checkbox"]:checked + label span, input[type="radio"]:checked + label
 
 #GraphDateSelector span:nth-child(2) {
 	display: inline-block;
-	width: 425px;
+	width: 420px;
 	text-align: center;
 }
 

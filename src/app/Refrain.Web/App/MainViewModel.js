@@ -4,12 +4,19 @@
         this.CurrentPage = ko.observable();
         this.CurrentPageViewModel = ko.observable();
         this._client = CHAOS.Portal.Client.Initialize("http://api.refrain.dk/");
+        twttr.events.bind('tweet', function (ev) {
+            return _this.LogTweet(ev);
+        });
 
         $(window).bind("hashchange", function (e) {
             return _this.HashChange();
         });
         this.HashChange();
     }
+    MainViewModel.prototype.LogTweet = function (event) {
+        ga('send', 'event', 'Share', 'Twitter', window.location.hash);
+    };
+
     MainViewModel.prototype.HashChange = function () {
         var _this = this;
         var hash = window.location.hash.length == 0 ? [""] : window.location.hash.substr(1).split("/");
@@ -20,6 +27,9 @@
 
         if (page == this.CurrentPage())
             return;
+
+        if (this.CurrentPageViewModel() != null)
+            this.CurrentPageViewModel().Dispose();
 
         this.CurrentPage(null);
 

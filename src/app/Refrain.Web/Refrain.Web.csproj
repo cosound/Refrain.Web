@@ -74,6 +74,7 @@
     <TypeScriptCompile Include="TypescriptDefinitions\facebook.d.ts" />
     <TypeScriptCompile Include="TypescriptDefinitions\google.maps.d.ts" />
     <TypeScriptCompile Include="TypescriptDefinitions\jquery.d.ts" />
+    <TypeScriptCompile Include="TypescriptDefinitions\jquery.flot.d.ts" />
     <TypeScriptCompile Include="TypescriptDefinitions\knockout.d.ts" />
     <TypeScriptCompile Include="TypescriptDefinitions\PortalClient.d.ts" />
     <TypeScriptCompile Include="TypescriptDefinitions\youtube.d.ts" />

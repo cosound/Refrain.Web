@@ -12,7 +12,7 @@
         this.CompareHelpVisible = ko.observable(false);
         this.SimilarityHelpVisible = ko.observable(false);
         this.AspectHelpVisible = ko.observable(false);
-        this.CompareType = ko.observable(3);
+        this.CompareType = ko.observable(1);
         this.AspectTempo = ko.observable(true);
         this.AspectRythm = ko.observable(true);
         this.AspectMood = ko.observable(true);
@@ -66,6 +66,9 @@
         this.Aspects.subscribe(function (v) {
             return _this.AspectsChanged(v);
         });
+    };
+
+    MatchViewModel.prototype.Dispose = function () {
     };
 
     MatchViewModel.prototype.PortalReady = function () {
@@ -225,7 +228,15 @@
         this.ShareMessage("I discovered " + this.SelectedSong().Title + " is " + (similarity.Distance < 0.2 ? "similar" : "dissimilar") + " to " + similarity.Title + " at ");
 
         twttr.widgets.load();
-        FB.XFBML.parse();
+    };
+
+    MatchViewModel.prototype.ShareOnFacebook = function () {
+        FB.ui({
+            method: 'share',
+            href: this.ShareUrl()
+        }, function (response) {
+            ga('send', 'event', 'Share', 'Facebook', window.location.hash);
+        });
     };
 
     MatchViewModel.prototype.SongGetCompleted = function (response) {

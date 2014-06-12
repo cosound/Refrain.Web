@@ -9,5 +9,8 @@
 
     DiscoveryViewModel.prototype.PortalReady = function () {
     };
+
+    DiscoveryViewModel.prototype.Dispose = function () {
+    };
     return DiscoveryViewModel;
 })();

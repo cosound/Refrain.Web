@@ -6,5 +6,8 @@
 
     HomeViewModel.prototype.PortalReady = function () {
     };
+
+    HomeViewModel.prototype.Dispose = function () {
+    };
     return HomeViewModel;
 })();

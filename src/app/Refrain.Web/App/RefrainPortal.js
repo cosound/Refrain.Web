@@ -32,13 +32,16 @@
     var TwitterMood = (function () {
         function TwitterMood() {
         }
-        TwitterMood.Get = function (country, serviceCaller) {
+        TwitterMood.Get = function (country, after, before, groupPageSize, serviceCaller) {
             if (typeof country === "undefined") { country = null; }
+            if (typeof after === "undefined") { after = null; }
+            if (typeof before === "undefined") { before = null; }
+            if (typeof groupPageSize === "undefined") { groupPageSize = null; }
             if (typeof serviceCaller === "undefined") { serviceCaller = null; }
             if (serviceCaller == null)
                 serviceCaller = CHAOS.Portal.Client.ServiceCallerService.GetDefaultCaller();
 
-            return serviceCaller.CallService("TwitterMood/Get", 0 /* Get */, { country: country }, true);
+            return serviceCaller.CallService("TwitterMood/Get", 0 /* Get */, { country: country, before: before, after: after, groupPageSize: groupPageSize }, true);
         };
         return TwitterMood;
     })();

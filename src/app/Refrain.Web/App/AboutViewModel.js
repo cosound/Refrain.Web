@@ -6,5 +6,8 @@
 
     AboutViewModel.prototype.PortalReady = function () {
     };
+
+    AboutViewModel.prototype.Dispose = function () {
+    };
     return AboutViewModel;
 })();
