@@ -21,16 +21,16 @@ declare module jquery.flot {
     }
 
     interface hooks {
-        processOptions: { (plot: plot, options: plotOptions): void; } [];
-        processRawData: { (plot: plot, series: dataSeries, data: any[], datapoints: datapoints): void; }[];
-        processDatapoints: { (plot: plot, series: dataSeries, datapoints: datapoints): void; }[];
-        processOffset: { (plot: plot, offset: canvasPoint): void; }[];
-        drawBackground: { (plot: plot, context: CanvasRenderingContext2D): void; }[];
-        drawSeries: { (plot: plot, context: CanvasRenderingContext2D, series: dataSeries): void; }[];
-        draw: { (plot: plot, context: CanvasRenderingContext2D): void; }[];
-        bindEvents: { (plot: plot, eventHolder: JQuery): void; }[];
-        drawOverlay: { (plot: plot, context: CanvasRenderingContext2D): void; }[];
-        shutdown: { (plot: plot, eventHolder: JQuery): void; }[];
+        processOptions?: { (plot: plot, options: plotOptions): void; } [];
+		processRawData?: { (plot: plot, series: dataSeries, data: any[], datapoints: datapoints): void; }[];
+		processDatapoints?: { (plot: plot, series: dataSeries, datapoints: datapoints): void; }[];
+		processOffset?: { (plot: plot, offset: canvasPoint): void; }[];
+		drawBackground?: { (plot: plot, context: CanvasRenderingContext2D): void; }[];
+		drawSeries?: { (plot: plot, context: CanvasRenderingContext2D, series: dataSeries): void; }[];
+		draw?: { (plot: plot, context: CanvasRenderingContext2D): void; }[];
+		bindEvents?: { (plot: plot, eventHolder: JQuery): void; }[];
+		drawOverlay?: { (plot: plot, context: CanvasRenderingContext2D): void; }[];
+		shutdown?: { (plot: plot, eventHolder: JQuery): void; }[];
     }
 
     interface interaction {

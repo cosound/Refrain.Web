@@ -11,7 +11,6 @@ class MoodViewModel implements IPageViewModel
 	private _tweets: string[];
 	private _graphData: jquery.flot.dataSeries[];
 	private _graphOptions: jquery.flot.plotOptions;
-	private _graphColors: string[] = ["#f5f5c8", "#ff0000", "#f368c0", "#88f7c0", "#5b1c2d", "#b9f30d", "#ffdc8d", "#250792", "#ac2208"];
 
 	private _updateHandler: number = null;
 
@@ -59,6 +58,9 @@ class MoodViewModel implements IPageViewModel
 			},
 			grid: {
 				borderColor: "white"
+			},
+			hooks: {
+				drawSeries: [(p: any, c: any, s: any) => s.Country.Color(s.color)]
 			}
 		};
 	}
@@ -72,6 +74,8 @@ class MoodViewModel implements IPageViewModel
 
 		this.AvailableMoodCountries.sort((a, b) => a.Name.localeCompare(b.Name));
 
+		var selectedCountries:MoodGraphCountry[] = []
+
 		for (i = 0; i < 3; i++)
 		{
 			var country = this.AvailableMoodCountries()[Math.floor(Math.random() * this.AvailableMoodCountries().length)];
@@ -80,12 +84,13 @@ class MoodViewModel implements IPageViewModel
 				i--;
 			else
 			{
-				this.SetColorOnCountry(country);
 				country.IsSelected(true);
+				selectedCountries.push(country);
 			}
+				
 		}
 
-		this.UpdateGraph();
+		this.GetGraphData(selectedCountries);
 	}
 
 	public Dispose(): void
@@ -107,7 +112,7 @@ class MoodViewModel implements IPageViewModel
 		var start = new Date(2014, 4, 6, 6, 0);
 		var end = new Date(start.getTime() + 24 * 60 * 60 * 1000);
 
-		RefrainPortal.TwitterMood.Get(countries.map((v, i) => v.CodeName), start, end, 999).WithCallback(r => this.TwitterMoodGraphCompleted(r, countries), this);
+		RefrainPortal.TwitterMood.Get(countries.map((v, i) => v.CodeName.replace("_", " ")), start, end, 999).WithCallback(r => this.TwitterMoodGraphCompleted(r, countries), this);
 	}
 
 	private Update():void
@@ -132,70 +137,44 @@ class MoodViewModel implements IPageViewModel
 			{
 				if (!countries[o].IsEqualGroup(groups[i])) continue;
 
-				countries[o].UpdateData(groups[i]);
+				this._graphData.push(countries[o].UpdateData(groups[i]));
+
 				break;
 			}
 		}
 
-		this.UpdateGraph(true);
+		this.UpdateGraph();
 	}
 
 	private CountrySelectToggled(country:MoodGraphCountry):void
 	{
 		if (country.IsSelected())
-			this.SetColorOnCountry(country);
-		else
-			this._graphColors.unshift(country.Color());
-
-		this.UpdateGraph();
-	}
-
-	private SetColorOnCountry(country:MoodGraphCountry):void
-	{
-		if (this._graphColors.length == 0)
-			country.Color('#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6));
-		else
-			country.Color(this._graphColors.shift());
-	}
-
-	private UpdateGraph(preventLoop:boolean = false):void
-	{
-		this._graphData.splice(0);
-		var country:MoodGraphCountry;
-		var missingData: MoodGraphCountry[] = [];
-
-		for (var i = 0; i < this.AvailableMoodCountries().length; i++)
 		{
-			country = this.AvailableMoodCountries()[i];
-			if (country.IsSelected())
+			if (country.HasData())
 			{
-				if (country.HasData())
-					this._graphData.push(country.Data);
-				else
-					missingData.push(country);
+				this._graphData.push(country.Data);
+
+				this.UpdateGraph();
 			}
+			else
+				this.GetGraphData([country]);
+		} else
+		{
+			for (var i = 0; i < this._graphData.length; i++)
+			{
+				if ((<any>this._graphData[i]).Country != country) continue;
+
+				this._graphData.splice(i, 1);
+				break;
+			}
+
+			this.UpdateGraph();
 		}
-
-		//this.AddGraphLabels(this._graphPointPerDay, this._graphData.labels);
-
-		if(!preventLoop)
-			this.GetGraphData(missingData);
-
-		$.plot("#MoodTimelineGraph", this._graphData, this._graphOptions);
 	}
 
-	private AddGraphLabels(range:number, labels:string[]):void
+	private UpdateGraph():void
 	{
-		/*var noon = Math.floor(range / 4);
-		var evening = Math.floor(range / 2);
-		var midnight = Math.floor(range / 4 * 3);
-		var night = range - 1;
-
-		this._graphData.labels.splice(0);
-		this._graphData.labels.push("6:00");
-
-		for (var i = 1; i < range; i++)
-			this._graphData.labels.push(i == noon ? "12:00" : i == evening ? "18:00" : i == midnight ? "0:00" : i == night ? "6:00" : "");*/
+		$.plot("#MoodTimelineGraph", this._graphData, this._graphOptions);
 	}
 
 	private TwitterMoodGetCompleted(response: CHAOS.Portal.Client.IPortalResponse<any>):void
@@ -317,9 +296,7 @@ class MoodGraphCountry
 		this._updateCallback = updateCallback;
 		this.CountryCode = CountryInfo[this.Name];
 
-		this.Data = {data:[]};
-
-		this.Color.subscribe((value: string) => this.Data.color = value);
+		this.Data = { data: [], Country: this };
 	}
 
 	public IsEqualGroup(resultGroup: any):boolean
@@ -332,12 +309,14 @@ class MoodGraphCountry
 		return this.Data.data.length != 0;
 	}
 
-	public UpdateData(resultGroup:any):void
+	public UpdateData(resultGroup: any): jquery.flot.dataSeries
 	{
 		this.Data.data.splice(0);
 
 		for (var o = 0; o < resultGroup.Results.length; o++)
 			this.Data.data.push([resultGroup.Results[o].DateCreated * 1000, resultGroup.Results[o].Valence]);
+
+		return this.Data;
 	}
 
 	public ToggleSelect():void
