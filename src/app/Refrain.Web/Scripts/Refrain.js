@@ -411,8 +411,7 @@ var MoodViewModel = (function () {
         this.CanShowMoreTweets = ko.observable(false);
         this.AvailableMoodCountries = ko.observableArray();
         this._moodData = {};
-        this._graphColors = ["#f5f5c8", "#ff0000", "#f368c0", "#d20935", "#88f7c0", "#5b1c2d", "#b9f30d", "#ffdc8d", "#250792", "#ac2208"];
-        this._graphPointPerDay = 400;
+        this._graphColors = ["#f5f5c8", "#ff0000", "#f368c0", "#88f7c0", "#5b1c2d", "#b9f30d", "#ffdc8d", "#250792", "#ac2208"];
         this._updateHandler = null;
     }
     MoodViewModel.prototype.Initialize = function () {
@@ -432,15 +431,28 @@ var MoodViewModel = (function () {
     };
 
     MoodViewModel.prototype.InitializeGraph = function () {
-        var context = $("#MoodTimelineGraph").get(0).getContext("2d");
-        this._chart = new Chart(context);
-
-        this._graphData = {};
-        this._graphData.labels = new Array();
-
-        for (var i = 0; i < this._graphPointPerDay; i++) {
-            this._graphData.labels.push("");
-        }
+        this._graphData = [];
+        this._graphOptions = {
+            lines: {
+                show: true
+            },
+            xaxis: {
+                mode: "time",
+                timezone: "browser",
+                timeformat: "%H:%M",
+                color: "grey",
+                minTickSize: [4, "hour"]
+            },
+            yaxis: {
+                min: -1,
+                max: 1,
+                color: "#0088EE",
+                ticks: [[-1, "Negative"], [-0.75, ""], [-0.5, ""], [-0.25, ""], [0, "Neutral"], [0.25, ""], [0.5, ""], [0.75, ""], [1, "Positive"]]
+            },
+            grid: {
+                borderColor: "white"
+            }
+        };
     };
 
     MoodViewModel.prototype.InitializeGraphCountries = function (groups) {
@@ -490,13 +502,12 @@ var MoodViewModel = (function () {
         if (countries.length == 0)
             return;
 
-        var before = new Date("2014-05-06");
-        var after = new Date("2014-05-06");
-        after.setDate(before.getDate() - 1);
+        var start = new Date(2014, 4, 6, 6, 0);
+        var end = new Date(start.getTime() + 24 * 60 * 60 * 1000);
 
         RefrainPortal.TwitterMood.Get(countries.map(function (v, i) {
             return v.CodeName;
-        }), before, after, this._graphPointPerDay).WithCallback(function (r) {
+        }), start, end, 999).WithCallback(function (r) {
             return _this.TwitterMoodGraphCompleted(r, countries);
         }, this);
     };
@@ -545,7 +556,7 @@ var MoodViewModel = (function () {
 
     MoodViewModel.prototype.UpdateGraph = function (preventLoop) {
         if (typeof preventLoop === "undefined") { preventLoop = false; }
-        this._graphData.datasets = new Array();
+        this._graphData.splice(0);
         var country;
         var missingData = [];
 
@@ -553,7 +564,7 @@ var MoodViewModel = (function () {
             country = this.AvailableMoodCountries()[i];
             if (country.IsSelected()) {
                 if (country.HasData())
-                    this._graphData.datasets.push(this.AvailableMoodCountries()[i].DataSet);
+                    this._graphData.push(country.Data);
                 else
                     missingData.push(country);
             }
@@ -562,19 +573,10 @@ var MoodViewModel = (function () {
         if (!preventLoop)
             this.GetGraphData(missingData);
 
-        this._chart.Line(this._graphData, {
-            scaleOverride: true,
-            scaleSteps: 8,
-            scaleStepWidth: 0.25,
-            scaleStartValue: -1,
-            scaleShowLabels: false,
-            scaleFontColor: "#fff",
-            scaleLineColor: "#fff",
-            scaleShowGridLines: false,
-            pointDot: false,
-            datasetFill: false,
-            animation: false
-        });
+        $.plot("#MoodTimelineGraph", this._graphData, this._graphOptions);
+    };
+
+    MoodViewModel.prototype.AddGraphLabels = function (range, labels) {
     };
 
     MoodViewModel.prototype.TwitterMoodGetCompleted = function (response) {
@@ -681,11 +683,10 @@ var MoodGraphCountry = (function () {
         this._updateCallback = updateCallback;
         this.CountryCode = CountryInfo[this.Name];
 
-        this.DataSet = {};
-        this.DataSet.data = new Array();
+        this.Data = { data: [] };
 
         this.Color.subscribe(function (value) {
-            return _this.DataSet.strokeColor = value;
+            return _this.Data.color = value;
         });
     }
     MoodGraphCountry.prototype.IsEqualGroup = function (resultGroup) {
@@ -693,14 +694,14 @@ var MoodGraphCountry = (function () {
     };
 
     MoodGraphCountry.prototype.HasData = function () {
-        return this.DataSet.data.length != 0;
+        return this.Data.data.length != 0;
     };
 
     MoodGraphCountry.prototype.UpdateData = function (resultGroup) {
-        this.DataSet.data.splice(0);
+        this.Data.data.splice(0);
 
         for (var o = 0; o < resultGroup.Results.length; o++)
-            this.DataSet.data.push(resultGroup.Results[o].Valence);
+            this.Data.data.push([resultGroup.Results[o].DateCreated * 1000, resultGroup.Results[o].Valence]);
     };
 
     MoodGraphCountry.prototype.ToggleSelect = function () {
@@ -743,10 +744,10 @@ var RefrainPortal;
     var TwitterMood = (function () {
         function TwitterMood() {
         }
-        TwitterMood.Get = function (country, before, after, groupPageSize, serviceCaller) {
+        TwitterMood.Get = function (country, after, before, groupPageSize, serviceCaller) {
             if (typeof country === "undefined") { country = null; }
-            if (typeof before === "undefined") { before = null; }
             if (typeof after === "undefined") { after = null; }
+            if (typeof before === "undefined") { before = null; }
             if (typeof groupPageSize === "undefined") { groupPageSize = null; }
             if (typeof serviceCaller === "undefined") { serviceCaller = null; }
             if (serviceCaller == null)

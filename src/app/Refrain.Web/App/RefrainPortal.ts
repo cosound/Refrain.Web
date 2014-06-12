@@ -24,7 +24,7 @@
 
 	export class TwitterMood
 	{
-		public static Get(country: string[]= null, before:Date = null, after:Date = null, groupPageSize:number = null, serviceCaller: CHAOS.Portal.Client.IServiceCaller = null): CHAOS.Portal.Client.ICallState<any>
+		public static Get(country: string[]= null, after: Date = null, before: Date = null, groupPageSize:number = null, serviceCaller: CHAOS.Portal.Client.IServiceCaller = null): CHAOS.Portal.Client.ICallState<any>
 		{
 			if (serviceCaller == null)
 				serviceCaller = CHAOS.Portal.Client.ServiceCallerService.GetDefaultCaller();

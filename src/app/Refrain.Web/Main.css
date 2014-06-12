@@ -536,38 +536,15 @@ input[type="checkbox"]:checked + label span, input[type="radio"]:checked + label
 	text-align:right;
 }
 
-#MoodTimeline {
-	background-color: #0099FF;
-	height: 400px
-}
-
-#MoodTimelineScale {
-	display: inline-block;
-	font-size: 16px;
-	height: 100%;
-	position: relative;
-	margin-left: 5px
-}
-
-#MoodTimelineScalePositive {
-	display: block;
-}
-
-#MoodTimelineScaleNeutral {
-	display: block;
-	position: absolute;
-	top: 177px;
-}
-
-#MoodTimelineScaleNegative {
-	display: block;
-	position: absolute;
-	top: 350px;
-}
-
 #MoodTimelineGraph {
-	display: inline-block;
-	float: right;
+	background-color: #0099FF;
+
+	width: 880px;
+	height: 450px;
+}
+
+.flot-tick-label {
+	color: white;
 }
 
 #MoodTweetsHeadline {

@@ -22,7 +22,8 @@
 		<script type="text/javascript" src="//connect.facebook.net/en_US/all.js"></script>
 		<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
 		<script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
-		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.2/jquery.flot.min.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.2/jquery.flot.time.min.js"></script>
 		<script type="text/javascript" src="Scripts/Refrain.js?v=10"></script>
 		<script type="text/javascript" src="Scripts/PortalClient.min.js"></script>
 		<script type="text/javascript">
@@ -274,14 +275,7 @@
 				<h1 data-bind="visible: AvailableMoodCountries().length != 0">Mood Timeline</h1>
 				<div data-bind="visible: AvailableMoodCountries().length != 0">
 					<h2>24 hour timeline of the mood of Europe in selected countries based on Tweets linked to the Eurovision Song Contest.</h2>
-					<div id="MoodTimeline">
-						<div id="MoodTimelineScale">
-							<span id="MoodTimelineScalePositive">Positive</span>
-							<span id="MoodTimelineScaleNeutral">Neutral</span>
-							<span id="MoodTimelineScaleNegative">Negative</span>
-						</div>
-						<canvas id="MoodTimelineGraph" width="796" height="400"></canvas>
-					</div>
+					<div id="MoodTimelineGraph"></div>
 					<div data-bind="foreach: AvailableMoodCountries">
 						<a class="MoodCountry" href="#" data-bind="click: ToggleSelect, css: {Selected: IsSelected}, style: {backgroundColor: IsSelected() ? Color : 'inherit'}">
 							<img src="Images/Blank.gif" class="flag" data-bind="css: 'flag-' + CountryCode" />
