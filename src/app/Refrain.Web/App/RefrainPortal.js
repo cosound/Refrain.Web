@@ -11,6 +11,14 @@
 
             return serviceCaller.CallService("Search/Get", 0 /* Get */, { query: query, pageSize: pageSize }, true);
         };
+
+        Search.By = function (id, serviceCaller) {
+            if (typeof serviceCaller === "undefined") { serviceCaller = null; }
+            if (serviceCaller == null)
+                serviceCaller = CHAOS.Portal.Client.ServiceCallerService.GetDefaultCaller();
+
+            return serviceCaller.CallService("Search/By", 0 /* Get */, { id: id }, true);
+        };
         return Search;
     })();
     RefrainPortal.Search = Search;

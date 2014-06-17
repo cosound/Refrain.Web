@@ -1,7 +1,7 @@
 ﻿var SongSimilarity = (function () {
     function SongSimilarity(similarity, selector) {
         this.Year = null;
-        this.YoutubeId = null;
+        this.YoutubeUri = null;
         this.SpotifyId = null;
         this.IsSelected = ko.observable(false);
         this.Id = similarity.SongId;
@@ -12,7 +12,7 @@
         this.Year = similarity.Year;
 
         if (similarity.YoutubeUri)
-            this.YoutubeId = similarity.YoutubeUri.match(/[?&]v=([^&]+)/)[1];
+            this.YoutubeUri = similarity.YoutubeUri;
         if (similarity.SpotifyId)
             this.SpotifyId = similarity.SpotifyId;
 

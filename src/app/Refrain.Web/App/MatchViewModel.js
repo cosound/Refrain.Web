@@ -7,6 +7,10 @@
         this.SelectedMatch = ko.observable();
         this.SelectedSong = ko.observable();
         this.SelectedSimilarity = ko.observable();
+        this.SelectedOldSimilarity = ko.observable();
+        this.SelectedSongSimilarity = ko.computed(function () {
+            return _this.SelectedSimilarity() ? _this.SelectedSimilarity() : _this.SelectedOldSimilarity() ? _this.SelectedOldSimilarity() : null;
+        });
         this.ShareUrl = ko.observable();
         this.ShareMessage = ko.observable();
         this.CompareHelpVisible = ko.observable(false);
@@ -164,6 +168,7 @@
             this.SelectedMatch().IsSelected(false);
 
         this.SelectedSimilarity(null);
+        this.SelectedOldSimilarity(null);
         this.SelectedSong(null);
         this._songPlayer = null;
         this._compareSongPlayer = null;
@@ -195,6 +200,7 @@
 
         similarity.IsSelected(true);
 
+        this.SelectedOldSimilarity(null);
         this.SelectedSimilarity(null);
         this.SelectedSimilarity(similarity);
 
@@ -202,23 +208,8 @@
 
         $('html, body').animate({ scrollTop: $("#ExploreHeadline").offset().top }, 1000);
 
-        this._songPlayer = null;
-        if (this.SelectedSong().YoutubeId) {
-            if (this._songPlayer == null)
-                this._songPlayer = new YT.Player($("#SelectedFullInfo .YouTubePlayer")[0], { height: 300, width: 400, videoId: this.SelectedSong().YoutubeId });
-            else if (this._songPlayer.getVideoUrl().match(/[?&]v=([^&]+)/)[1] != this.SelectedSong().YoutubeId)
-                this._songPlayer.cueVideoById(this.SelectedSong().YoutubeId);
-        } else
-            this._songPlayer = null;
-
-        this._compareSongPlayer = null;
-        if (this.SelectedSimilarity().YoutubeId) {
-            if (this._compareSongPlayer == null)
-                this._compareSongPlayer = new YT.Player($("#CompareFullInfo .YouTubePlayer")[0], { height: 300, width: 400, videoId: this.SelectedSimilarity().YoutubeId });
-            else
-                this._compareSongPlayer.cueVideoById(this.SelectedSimilarity().YoutubeId);
-        } else
-            this._compareSongPlayer = null;
+        this.LoadSongPlayer(this.SelectedSong());
+        this.LoadComparePlayer(this.SelectedSimilarity());
 
         if (window.location.hostname != "localhost")
             this.ShareUrl(window.location.toString());
@@ -228,6 +219,48 @@
         this.ShareMessage("I discovered " + this.SelectedSong().Title + " is " + (similarity.Distance < 0.2 ? "similar" : "dissimilar") + " to " + similarity.Title + " at ");
 
         twttr.widgets.load();
+    };
+
+    MatchViewModel.prototype.SelectOldSimilarity = function (similarity) {
+        if (this.SelectedSimilarity() != null)
+            this.SelectedSimilarity().IsSelected(false);
+
+        this.SelectedSimilarity(null);
+        this.SelectedOldSimilarity(new SimpleSongViewModel(similarity));
+
+        $('html, body').animate({ scrollTop: $("#ExploreHeadline").offset().top }, 1000);
+
+        this.LoadSongPlayer(this.SelectedSong());
+        this.LoadComparePlayer(this.SelectedOldSimilarity());
+
+        this.ShareUrl(null);
+        this.ShareMessage(null);
+    };
+
+    MatchViewModel.prototype.LoadSongPlayer = function (song) {
+        this._songPlayer = null;
+        if (song.YoutubeUri) {
+            var youtubeId = song.YoutubeUri.match(/[?&]v=([^&]+)/)[1];
+
+            if (this._songPlayer == null)
+                this._songPlayer = new YT.Player($("#SelectedFullInfo .YouTubePlayer")[0], { height: 300, width: 400, videoId: youtubeId });
+            else if (this._songPlayer.getVideoUrl().match(/[?&]v=([^&]+)/)[1] != youtubeId)
+                this._songPlayer.cueVideoById(youtubeId);
+        } else
+            this._songPlayer = null;
+    };
+
+    MatchViewModel.prototype.LoadComparePlayer = function (song) {
+        this._compareSongPlayer = null;
+        if (song.YoutubeUri) {
+            var youtubeId = song.YoutubeUri.match(/[?&]v=([^&]+)/)[1];
+
+            if (this._compareSongPlayer == null)
+                this._compareSongPlayer = new YT.Player($("#CompareFullInfo .YouTubePlayer")[0], { height: 300, width: 400, videoId: youtubeId });
+            else
+                this._compareSongPlayer.cueVideoById(youtubeId);
+        } else
+            this._compareSongPlayer = null;
     };
 
     MatchViewModel.prototype.ShareOnFacebook = function () {
@@ -263,9 +296,26 @@
                     return;
                 }
             }
+
+            RefrainPortal.Search.By(this._campareSongId).WithCallback(this.SearchByCompleted, this);
+
+            this._campareSongId = null;
+        } else
+            $('html, body').animate({ scrollTop: $("#SelectMatchHeadline").offset().top }, 1000);
+    };
+
+    MatchViewModel.prototype.SearchByCompleted = function (response) {
+        if (response.Error != null) {
+            console.log("Failed to get song via Search/By: " + response.Error.Message);
+            return;
         }
 
-        $('html, body').animate({ scrollTop: $("#SelectMatchHeadline").offset().top }, 1000);
+        if (response.Body.Count != 1) {
+            console.log("Failed to get song via Search/By, number songs returned: " + response.Body.Count);
+            return;
+        }
+
+        this.SelectOldSimilarity(response.Body.Results[0]);
     };
     return MatchViewModel;
 })();

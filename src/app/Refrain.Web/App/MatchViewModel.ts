@@ -179,6 +179,7 @@
 			this.SelectedMatch().IsSelected(false);
 
 		this.SelectedSimilarity(null);
+		this.SelectedOldSimilarity(null);
 		this.SelectedSong(null);
 		this._songPlayer = null;
 		this._compareSongPlayer = null;
@@ -323,6 +324,8 @@
 			}
 
 			RefrainPortal.Search.By(this._campareSongId).WithCallback(this.SearchByCompleted, this);
+
+			this._campareSongId = null;
 		}
 		else
 			$('html, body').animate({ scrollTop: $("#SelectMatchHeadline").offset().top }, 1000);
