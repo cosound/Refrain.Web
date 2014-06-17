@@ -3,6 +3,8 @@
         this.CountryName = null;
         this.CountryCode = null;
         this.Year = null;
+        this.YoutubeUri = null;
+        this.SpotifyId = null;
         this.IsSelected = ko.observable(false);
         this.Id = match.Id;
         this.Title = match.Text;
@@ -10,6 +12,11 @@
         this.CountryName = match.CountryName;
         this.CountryCode = CountryInfo[match.CountryName];
         this.Year = match.ContestYear;
+
+        if (match.YoutubeUri)
+            this.YoutubeUri = match.YoutubeUri;
+        if (match.SpotifyId)
+            this.SpotifyId = match.SpotifyId;
 
         this._selector = selector;
     }

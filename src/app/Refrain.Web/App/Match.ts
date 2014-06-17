@@ -5,7 +5,10 @@
 	public Artist: string;
 	public CountryName: string = null;
 	public CountryCode: string = null;
-	public Year:number = null;
+	public Year: number = null;
+
+	public YoutubeUri: string = null;
+	public SpotifyId: string = null;
 	
 	public IsSelected: KnockoutObservable<boolean> = ko.observable(false);
 
@@ -19,6 +22,11 @@
 		this.CountryName = match.CountryName;
 		this.CountryCode = CountryInfo[match.CountryName];
 		this.Year = match.ContestYear;
+
+		if (match.YoutubeUri)
+			this.YoutubeUri = match.YoutubeUri;
+		if (match.SpotifyId)
+			this.SpotifyId = match.SpotifyId;
 
 		this._selector = selector;
 	}

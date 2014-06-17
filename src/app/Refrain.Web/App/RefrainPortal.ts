@@ -59,6 +59,9 @@
 		ArtistName: string;
 		CountryName: string;
 		ContestYear: number;
+		YoutubeUri: string;
+		SpotifyId: string;
+		IsEurovision:boolean;
 	}
 
 	export interface ISimpleSong
