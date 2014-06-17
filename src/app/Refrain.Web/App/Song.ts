@@ -6,7 +6,7 @@
 	public CountryName: string;
 	public CountryCode: string;
 	public Year: number = null;
-	public YoutubeId:string = null;
+	public YoutubeUri:string = null;
 	public SpotifyId:string = null;
 	public MostSimilar: KnockoutObservableArray<SongSimilarity> = ko.observableArray <SongSimilarity>();
 	public LeastSimilar: KnockoutObservableArray<SongSimilarity> = ko.observableArray<SongSimilarity>();
@@ -24,7 +24,7 @@
 		this.Year = song.Year;
 
 		if (song.YoutubeUri)
-			this.YoutubeId = song.YoutubeUri.match(/[?&]v=([^&]+)/)[1];
+			this.YoutubeUri = song.YoutubeUri;
 		if (song.SpotifyId)
 			this.SpotifyId = song.SpotifyId;
 

@@ -143,6 +143,10 @@ var MatchViewModel = (function () {
         this.SelectedMatch = ko.observable();
         this.SelectedSong = ko.observable();
         this.SelectedSimilarity = ko.observable();
+        this.SelectedOldSimilarity = ko.observable();
+        this.SelectedSongSimilarity = ko.computed(function () {
+            return _this.SelectedSimilarity() ? _this.SelectedSimilarity() : _this.SelectedOldSimilarity() ? _this.SelectedOldSimilarity() : null;
+        });
         this.ShareUrl = ko.observable();
         this.ShareMessage = ko.observable();
         this.CompareHelpVisible = ko.observable(false);
@@ -331,6 +335,7 @@ var MatchViewModel = (function () {
 
         similarity.IsSelected(true);
 
+        this.SelectedOldSimilarity(null);
         this.SelectedSimilarity(null);
         this.SelectedSimilarity(similarity);
 
@@ -338,23 +343,8 @@ var MatchViewModel = (function () {
 
         $('html, body').animate({ scrollTop: $("#ExploreHeadline").offset().top }, 1000);
 
-        this._songPlayer = null;
-        if (this.SelectedSong().YoutubeId) {
-            if (this._songPlayer == null)
-                this._songPlayer = new YT.Player($("#SelectedFullInfo .YouTubePlayer")[0], { height: 300, width: 400, videoId: this.SelectedSong().YoutubeId });
-            else if (this._songPlayer.getVideoUrl().match(/[?&]v=([^&]+)/)[1] != this.SelectedSong().YoutubeId)
-                this._songPlayer.cueVideoById(this.SelectedSong().YoutubeId);
-        } else
-            this._songPlayer = null;
-
-        this._compareSongPlayer = null;
-        if (this.SelectedSimilarity().YoutubeId) {
-            if (this._compareSongPlayer == null)
-                this._compareSongPlayer = new YT.Player($("#CompareFullInfo .YouTubePlayer")[0], { height: 300, width: 400, videoId: this.SelectedSimilarity().YoutubeId });
-            else
-                this._compareSongPlayer.cueVideoById(this.SelectedSimilarity().YoutubeId);
-        } else
-            this._compareSongPlayer = null;
+        this.LoadSongPlayer(this.SelectedSong());
+        this.LoadComparePlayer(this.SelectedSimilarity());
 
         if (window.location.hostname != "localhost")
             this.ShareUrl(window.location.toString());
@@ -364,6 +354,48 @@ var MatchViewModel = (function () {
         this.ShareMessage("I discovered " + this.SelectedSong().Title + " is " + (similarity.Distance < 0.2 ? "similar" : "dissimilar") + " to " + similarity.Title + " at ");
 
         twttr.widgets.load();
+    };
+
+    MatchViewModel.prototype.SelectOldSimilarity = function (similarity) {
+        if (this.SelectedSimilarity() != null)
+            this.SelectedSimilarity().IsSelected(false);
+
+        this.SelectedSimilarity(null);
+        this.SelectedOldSimilarity(new SimpleSongViewModel(similarity));
+
+        $('html, body').animate({ scrollTop: $("#ExploreHeadline").offset().top }, 1000);
+
+        this.LoadSongPlayer(this.SelectedSong());
+        this.LoadComparePlayer(this.SelectedOldSimilarity());
+
+        this.ShareUrl(null);
+        this.ShareMessage(null);
+    };
+
+    MatchViewModel.prototype.LoadSongPlayer = function (song) {
+        this._songPlayer = null;
+        if (song.YoutubeUri) {
+            var youtubeId = song.YoutubeUri.match(/[?&]v=([^&]+)/)[1];
+
+            if (this._songPlayer == null)
+                this._songPlayer = new YT.Player($("#SelectedFullInfo .YouTubePlayer")[0], { height: 300, width: 400, videoId: youtubeId });
+            else if (this._songPlayer.getVideoUrl().match(/[?&]v=([^&]+)/)[1] != youtubeId)
+                this._songPlayer.cueVideoById(youtubeId);
+        } else
+            this._songPlayer = null;
+    };
+
+    MatchViewModel.prototype.LoadComparePlayer = function (song) {
+        this._compareSongPlayer = null;
+        if (song.YoutubeUri) {
+            var youtubeId = song.YoutubeUri.match(/[?&]v=([^&]+)/)[1];
+
+            if (this._compareSongPlayer == null)
+                this._compareSongPlayer = new YT.Player($("#CompareFullInfo .YouTubePlayer")[0], { height: 300, width: 400, videoId: youtubeId });
+            else
+                this._compareSongPlayer.cueVideoById(youtubeId);
+        } else
+            this._compareSongPlayer = null;
     };
 
     MatchViewModel.prototype.ShareOnFacebook = function () {
@@ -399,9 +431,24 @@ var MatchViewModel = (function () {
                     return;
                 }
             }
+
+            RefrainPortal.Search.By(this._campareSongId).WithCallback(this.SearchByCompleted, this);
+        } else
+            $('html, body').animate({ scrollTop: $("#SelectMatchHeadline").offset().top }, 1000);
+    };
+
+    MatchViewModel.prototype.SearchByCompleted = function (response) {
+        if (response.Error != null) {
+            console.log("Failed to get song via Search/By: " + response.Error.Message);
+            return;
         }
 
-        $('html, body').animate({ scrollTop: $("#SelectMatchHeadline").offset().top }, 1000);
+        if (response.Body.Count != 1) {
+            console.log("Failed to get song via Search/By, number songs returned: " + response.Body.Count);
+            return;
+        }
+
+        this.SelectOldSimilarity(response.Body.Results[0]);
     };
     return MatchViewModel;
 })();
@@ -806,6 +853,14 @@ var RefrainPortal;
 
             return serviceCaller.CallService("Search/Get", 0 /* Get */, { query: query, pageSize: pageSize }, true);
         };
+
+        Search.By = function (id, serviceCaller) {
+            if (typeof serviceCaller === "undefined") { serviceCaller = null; }
+            if (serviceCaller == null)
+                serviceCaller = CHAOS.Portal.Client.ServiceCallerService.GetDefaultCaller();
+
+            return serviceCaller.CallService("Search/By", 0 /* Get */, { id: id }, true);
+        };
         return Search;
     })();
     RefrainPortal.Search = Search;
@@ -861,7 +916,7 @@ var RefrainPortal;
 var Song = (function () {
     function Song(song, selector) {
         this.Year = null;
-        this.YoutubeId = null;
+        this.YoutubeUri = null;
         this.SpotifyId = null;
         this.MostSimilar = ko.observableArray();
         this.LeastSimilar = ko.observableArray();
@@ -875,7 +930,7 @@ var Song = (function () {
         this.Year = song.Year;
 
         if (song.YoutubeUri)
-            this.YoutubeId = song.YoutubeUri.match(/[?&]v=([^&]+)/)[1];
+            this.YoutubeUri = song.YoutubeUri;
         if (song.SpotifyId)
             this.SpotifyId = song.SpotifyId;
 
@@ -912,7 +967,7 @@ var Song = (function () {
 var SongSimilarity = (function () {
     function SongSimilarity(similarity, selector) {
         this.Year = null;
-        this.YoutubeId = null;
+        this.YoutubeUri = null;
         this.SpotifyId = null;
         this.IsSelected = ko.observable(false);
         this.Id = similarity.SongId;
@@ -923,7 +978,7 @@ var SongSimilarity = (function () {
         this.Year = similarity.Year;
 
         if (similarity.YoutubeUri)
-            this.YoutubeId = similarity.YoutubeUri.match(/[?&]v=([^&]+)/)[1];
+            this.YoutubeUri = similarity.YoutubeUri;
         if (similarity.SpotifyId)
             this.SpotifyId = similarity.SpotifyId;
 
@@ -946,4 +1001,23 @@ var SongSimilarity = (function () {
         return false;
     };
     return SongSimilarity;
+})();
+var SimpleSongViewModel = (function () {
+    function SimpleSongViewModel(song) {
+        this.Year = null;
+        this.YoutubeUri = null;
+        this.SpotifyId = null;
+        this.Id = song.Id;
+        this.Title = song.Text;
+        this.Artist = song.ArtistName;
+        this.CountryName = song.CountryName;
+        this.CountryCode = CountryInfo[song.CountryName] ? CountryInfo[song.CountryName] : null;
+        this.Year = song.ContestYear;
+
+        if (song.YoutubeUri)
+            this.YoutubeUri = song.YoutubeUri;
+        if (song.SpotifyId)
+            this.SpotifyId = song.SpotifyId;
+    }
+    return SimpleSongViewModel;
 })();

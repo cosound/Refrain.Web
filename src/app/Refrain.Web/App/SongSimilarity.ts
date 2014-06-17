@@ -7,7 +7,7 @@
 	public CountryCode: string;
 	public Year: number = null;
 
-	public YoutubeId: string = null;
+	public YoutubeUri: string = null;
 	public SpotifyId: string = null;
 
 	public Distance: number;
@@ -33,7 +33,7 @@
 		this.Year = similarity.Year;
 
 		if (similarity.YoutubeUri)
-			this.YoutubeId = similarity.YoutubeUri.match(/[?&]v=([^&]+)/)[1];
+			this.YoutubeUri = similarity.YoutubeUri;
 		if (similarity.SpotifyId)
 			this.SpotifyId = similarity.SpotifyId;
 

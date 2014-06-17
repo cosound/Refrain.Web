@@ -6,6 +6,8 @@
 	public SelectedMatch: KnockoutObservable<Match> = ko.observable<Match>();
 	public SelectedSong: KnockoutObservable<Song> = ko.observable<Song>();
 	public SelectedSimilarity: KnockoutObservable<SongSimilarity> = ko.observable<SongSimilarity>();
+	public SelectedOldSimilarity: KnockoutObservable<ISongViewModel> = ko.observable<ISongViewModel>();
+	public SelectedSongSimilarity: KnockoutComputed<ISongViewModel> = ko.computed<ISongViewModel>(() => this.SelectedSimilarity() ? this.SelectedSimilarity() : this.SelectedOldSimilarity() ? this.SelectedOldSimilarity() : null);
 
 	public ShareUrl: KnockoutObservable<string> = ko.observable<string>();
 	public ShareMessage: KnockoutObservable<string> = ko.observable<string>();
@@ -208,6 +210,7 @@
 
 		similarity.IsSelected(true);
 
+		this.SelectedOldSimilarity(null);
 		this.SelectedSimilarity(null);
 		this.SelectedSimilarity(similarity);
 
@@ -215,27 +218,8 @@
 
 		$('html, body').animate({ scrollTop: $("#ExploreHeadline").offset().top }, 1000);
 
-		this._songPlayer = null;
-		if (this.SelectedSong().YoutubeId)
-		{
-			if (this._songPlayer == null)
-				this._songPlayer = new YT.Player($("#SelectedFullInfo .YouTubePlayer")[0], { height: 300, width: 400, videoId: this.SelectedSong().YoutubeId });
-			else if (this._songPlayer.getVideoUrl().match(/[?&]v=([^&]+)/)[1] != this.SelectedSong().YoutubeId)
-				this._songPlayer.cueVideoById(this.SelectedSong().YoutubeId);
-		}
-		else
-			this._songPlayer = null;
-
-		this._compareSongPlayer = null;
-		if (this.SelectedSimilarity().YoutubeId)
-		{
-			if (this._compareSongPlayer == null)
-				this._compareSongPlayer = new YT.Player($("#CompareFullInfo .YouTubePlayer")[0], { height: 300, width: 400, videoId: this.SelectedSimilarity().YoutubeId });
-			else
-				this._compareSongPlayer.cueVideoById(this.SelectedSimilarity().YoutubeId);
-		}
-		else
-			this._compareSongPlayer = null;
+		this.LoadSongPlayer(this.SelectedSong());
+		this.LoadComparePlayer(this.SelectedSimilarity());
 
 		if (window.location.hostname != "localhost")
 			this.ShareUrl(window.location.toString());
@@ -245,6 +229,55 @@
 		this.ShareMessage("I discovered " + this.SelectedSong().Title + " is " + (similarity.Distance < 0.2 ? "similar" : "dissimilar") + " to " + similarity.Title + " at " );
 
 		twttr.widgets.load();
+	}
+
+	private SelectOldSimilarity(similarity: RefrainPortal.ISimpleSong): void
+	{
+		if (this.SelectedSimilarity() != null)
+			this.SelectedSimilarity().IsSelected(false);
+
+		this.SelectedSimilarity(null);
+		this.SelectedOldSimilarity(new SimpleSongViewModel(similarity));
+
+		$('html, body').animate({ scrollTop: $("#ExploreHeadline").offset().top }, 1000);
+
+		this.LoadSongPlayer(this.SelectedSong());
+		this.LoadComparePlayer(this.SelectedOldSimilarity());
+
+		this.ShareUrl(null);
+		this.ShareMessage(null);
+	}
+
+	private LoadSongPlayer(song: ISongViewModel):void
+	{
+		this._songPlayer = null;
+		if (song.YoutubeUri)
+		{
+			var youtubeId = song.YoutubeUri.match(/[?&]v=([^&]+)/)[1];
+
+			if (this._songPlayer == null)
+				this._songPlayer = new YT.Player($("#SelectedFullInfo .YouTubePlayer")[0], { height: 300, width: 400, videoId: youtubeId });
+			else if (this._songPlayer.getVideoUrl().match(/[?&]v=([^&]+)/)[1] != youtubeId)
+				this._songPlayer.cueVideoById(youtubeId);
+		}
+		else
+			this._songPlayer = null;
+	}
+
+	private LoadComparePlayer(song: ISongViewModel): void
+	{
+		this._compareSongPlayer = null;
+		if (song.YoutubeUri)
+		{
+			var youtubeId = song.YoutubeUri.match(/[?&]v=([^&]+)/)[1];
+
+			if (this._compareSongPlayer == null)
+				this._compareSongPlayer = new YT.Player($("#CompareFullInfo .YouTubePlayer")[0], { height: 300, width: 400, videoId: youtubeId});
+			else
+				this._compareSongPlayer.cueVideoById(youtubeId);
+		}
+		else
+			this._compareSongPlayer = null;
 	}
 
 	public ShareOnFacebook():void
@@ -288,9 +321,28 @@
 					return;
 				}
 			}
+
+			RefrainPortal.Search.By(this._campareSongId).WithCallback(this.SearchByCompleted, this);
+		}
+		else
+			$('html, body').animate({ scrollTop: $("#SelectMatchHeadline").offset().top }, 1000);
+	}
+
+	private SearchByCompleted(response: CHAOS.Portal.Client.IPortalResponse<RefrainPortal.ISimpleSong>):void
+	{
+		if (response.Error != null)
+		{
+			console.log("Failed to get song via Search/By: " + response.Error.Message);
+			return;
 		}
 
-		$('html, body').animate({ scrollTop: $("#SelectMatchHeadline").offset().top }, 1000);
+		if (response.Body.Count != 1)
+		{
+			console.log("Failed to get song via Search/By, number songs returned: " + response.Body.Count);
+			return;
+		}
+
+		this.SelectOldSimilarity(response.Body.Results[0]);
 	}
 }
 

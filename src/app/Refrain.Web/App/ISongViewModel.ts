@@ -3,6 +3,6 @@
 	Id: string;
 	Title: string;
 	Artist: string;
-	YoutubeId: string;
+	YoutubeUri: string;
 	SpotifyId: string;
 }

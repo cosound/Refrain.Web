@@ -9,6 +9,14 @@
 
 			return serviceCaller.CallService("Search/Get", CHAOS.Portal.Client.HttpMethod.Get, { query: query, pageSize: pageSize }, true);
 		}
+
+		public static By(id: string, serviceCaller: CHAOS.Portal.Client.IServiceCaller = null): CHAOS.Portal.Client.ICallState<ISimpleSong>
+		{
+			if (serviceCaller == null)
+				serviceCaller = CHAOS.Portal.Client.ServiceCallerService.GetDefaultCaller();
+
+			return serviceCaller.CallService("Search/By", CHAOS.Portal.Client.HttpMethod.Get, { id: id }, true);
+		}
 	}
 
 	export class Song
@@ -53,6 +61,18 @@
 		ContestYear: number;
 	}
 
+	export interface ISimpleSong
+	{
+		Id: string;
+		Text: string;
+		ArtistName: string;
+		CountryName: string;
+		ContestYear: number;
+		YoutubeUri: string;
+		SpotifyId: string;
+		IsEurovision:boolean;
+	}
+
 	export interface ISong
 	{
 		Id: string;
@@ -60,8 +80,8 @@
 		ArtistName: string;
 		CountryName: string;
 		Year: number;
-		YoutubeUri:string;
-		SpotifyId:string;
+		YoutubeUri: string;
+		SpotifyId: string;
 		Similarity: ISimilarity;
 	}
 

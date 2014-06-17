@@ -25,7 +25,7 @@
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.2/jquery.flot.min.js"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.2/jquery.flot.time.min.js"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.2/jquery.flot.navigate.min.js"></script>
-		<script type="text/javascript" src="Scripts/Refrain.js?v=13"></script>
+		<script type="text/javascript" src="Scripts/Refrain.js?v=14"></script>
 		<script type="text/javascript" src="Scripts/PortalClient.min.js"></script>
 		<script type="text/javascript">
 			(function (i, s, o, g, r, a, m) {
@@ -134,10 +134,10 @@
 					<p class="SongTitle" data-bind="visible: CountryName || Year">
 						<span data-bind="visible: CountryName"><img src="Images/Blank.gif" class="flag" data-bind="if: CountryName, attr: { alt: CountryName }, css: (!CountryCode && !YoutubeId ? 'SpotifyFlag' : 'flag-' +  CountryCode )" /> <span data-bind="text: CountryName"></span></span><span data-bind="visible: CountryName && Year">, </span><span data-bind="visible: Year, text: Year"></span>
 					</p>
-					<!-- ko if: YoutubeId -->
+					<!-- ko if: YoutubeUri -->
 					<div class="YouTubePlayer"></div>
 					<!-- /ko -->
-					<!-- ko if: !YoutubeId && SpotifyId -->
+					<!-- ko if: !YoutubeUri && SpotifyId -->
 					<iframe data-bind="attr: {src: 'https://embed.spotify.com/?uri=spotify:track:' +  SpotifyId}" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
 					<!-- /ko-->
 				</script>
@@ -204,16 +204,17 @@
 					<!-- /ko -->
 				</div>
 				<!-- /ko -->
-				<!-- ko if: SelectedSimilarity -->
+				<!-- ko if: SelectedSongSimilarity -->
 				<h1 id="ExploreHeadline">Explore and Share Match</h1>
 				<div>
 					<div>
 						<div id="SelectedFullInfo" class="SongFullInfo" data-bind="template: {name: 'SongFullInfoTemplate', data: SelectedSong}"></div>
 						<img class="CompareIcon" src="Images/linkblue_40.png" />
-						<div id="CompareFullInfo" class="SongFullInfo" data-bind="template: {name: 'SongFullInfoTemplate', data: SelectedSimilarity}"></div>
+						<div id="CompareFullInfo" class="SongFullInfo" data-bind="template: {name: 'SongFullInfoTemplate', data: SelectedSongSimilarity}"></div>
 					</div>
+					<!-- ko if: SelectedSimilarity -->
 					<div id="ShareContainer">
-						Share your discovery with your friends: 
+						Share your discovery with your friends:
 						<a id="ShareMatchOnTwitter" href="https://twitter.com/share" class="twitter-hashtag-button" data-size="large" data-lang="en" data-related="refraindk" data-count="none" data-hashtags="refraindk,match" data-bind="attr: {'data-url': ShareUrl, 'data-text': ShareMessage}">Tweet #refraindk</a>
 						<a id="ShareMatchOnFacebook" href="#" data-bind="click: ShareOnFacebook"><img src="Images/Blank.gif" alt="Share on Facebook" /></a>
 					</div>
@@ -252,6 +253,12 @@
 							<span id="MaxGraph">100%</span>
 						</div>
 					</div>
+					<!-- /ko -->
+					<!-- ko if: SelectedOldSimilarity -->
+					<div>
+						Similarity data is no longer available for this comparison.
+					</div>
+					<!-- /ko -->
 				</div>
 				<!-- /ko -->
 				<h1 id="ExploreHeadline">Shared Discoveries</h1>
