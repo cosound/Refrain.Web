@@ -719,8 +719,10 @@ var MoodViewModel = (function () {
 
         var groups = response.Body.Groups;
 
-        for (var i = 0; i < groups.length; i++)
-            this._moodData[MoodViewModel.Capitalize(groups[i].Value)] = groups[i].Results[0].Valence;
+        for (var i = 0; i < groups.length; i++) {
+            var valence = groups[i].Results.length > 0 ? groups[i].Results[0].Valence : 0;
+            this._moodData[MoodViewModel.Capitalize(groups[i].Value)] = valence;
+        }
 
         this._map.data.setStyle({});
         this._map.data.setStyle(function (f) {
@@ -923,6 +925,25 @@ var RefrainPortal;
     })();
     RefrainPortal.Tweet = Tweet;
 })(RefrainPortal || (RefrainPortal = {}));
+var SimpleSongViewModel = (function () {
+    function SimpleSongViewModel(song) {
+        this.Year = null;
+        this.YoutubeUri = null;
+        this.SpotifyId = null;
+        this.Id = song.Id;
+        this.Title = song.Text;
+        this.Artist = song.ArtistName;
+        this.CountryName = song.CountryName;
+        this.CountryCode = CountryInfo[song.CountryName] ? CountryInfo[song.CountryName] : null;
+        this.Year = song.ContestYear;
+
+        if (song.YoutubeUri)
+            this.YoutubeUri = song.YoutubeUri;
+        if (song.SpotifyId)
+            this.SpotifyId = song.SpotifyId;
+    }
+    return SimpleSongViewModel;
+})();
 var Song = (function () {
     function Song(song, selector) {
         this.Year = null;
@@ -1011,23 +1032,4 @@ var SongSimilarity = (function () {
         return false;
     };
     return SongSimilarity;
-})();
-var SimpleSongViewModel = (function () {
-    function SimpleSongViewModel(song) {
-        this.Year = null;
-        this.YoutubeUri = null;
-        this.SpotifyId = null;
-        this.Id = song.Id;
-        this.Title = song.Text;
-        this.Artist = song.ArtistName;
-        this.CountryName = song.CountryName;
-        this.CountryCode = CountryInfo[song.CountryName] ? CountryInfo[song.CountryName] : null;
-        this.Year = song.ContestYear;
-
-        if (song.YoutubeUri)
-            this.YoutubeUri = song.YoutubeUri;
-        if (song.SpotifyId)
-            this.SpotifyId = song.SpotifyId;
-    }
-    return SimpleSongViewModel;
 })();

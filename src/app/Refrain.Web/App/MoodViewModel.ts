@@ -283,7 +283,11 @@ class MoodViewModel implements IPageViewModel
 		var groups = <any[]>(<any>response.Body).Groups;
 
 		for (var i = 0; i < groups.length; i++)
-			this._moodData[MoodViewModel.Capitalize(<string>groups[i].Value)] = groups[i].Results[0].Valence;
+		{
+			var valence = groups[i].Results.length > 0 ? groups[i].Results[0].Valence : 0;
+			this._moodData[MoodViewModel.Capitalize(<string>groups[i].Value)] = valence;
+		}
+			
 		
 		(<any>this._map).data.setStyle({});
 		(<any>this._map).data.setStyle((f: any) => this.SetCountryStyle(f));
