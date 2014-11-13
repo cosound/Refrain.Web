@@ -534,7 +534,7 @@ var MoodViewModel = (function () {
 
     MoodViewModel.prototype.InitializeGraphCountries = function (groups) {
         var _this = this;
-        if (this.AvailableMoodCountries().length != 0)
+        if (this.AvailableMoodCountries().length != 0 || groups.length == 0)
             return;
 
         for (var i = 0; i < groups.length; i++)
@@ -548,7 +548,7 @@ var MoodViewModel = (function () {
 
         var selectedCountries = [];
 
-        for (i = 0; i < 3; i++) {
+        for (i = 0; i < Math.min(3, groups.length); i++) {
             var country = this.AvailableMoodCountries()[Math.floor(Math.random() * this.AvailableMoodCountries().length)];
 
             if (country.IsSelected())
@@ -735,6 +735,9 @@ var MoodViewModel = (function () {
             console.log("Failed to get Twitter mood: " + response.Error.Message);
             return;
         }
+
+        if (response.Body == null || response.Body.Groups == null)
+            return;
 
         this.InitializeGraphCountries(response.Body.Groups);
     };
@@ -925,25 +928,6 @@ var RefrainPortal;
     })();
     RefrainPortal.Tweet = Tweet;
 })(RefrainPortal || (RefrainPortal = {}));
-var SimpleSongViewModel = (function () {
-    function SimpleSongViewModel(song) {
-        this.Year = null;
-        this.YoutubeUri = null;
-        this.SpotifyId = null;
-        this.Id = song.Id;
-        this.Title = song.Text;
-        this.Artist = song.ArtistName;
-        this.CountryName = song.CountryName;
-        this.CountryCode = CountryInfo[song.CountryName] ? CountryInfo[song.CountryName] : null;
-        this.Year = song.ContestYear;
-
-        if (song.YoutubeUri)
-            this.YoutubeUri = song.YoutubeUri;
-        if (song.SpotifyId)
-            this.SpotifyId = song.SpotifyId;
-    }
-    return SimpleSongViewModel;
-})();
 var Song = (function () {
     function Song(song, selector) {
         this.Year = null;
@@ -1032,4 +1016,23 @@ var SongSimilarity = (function () {
         return false;
     };
     return SongSimilarity;
+})();
+var SimpleSongViewModel = (function () {
+    function SimpleSongViewModel(song) {
+        this.Year = null;
+        this.YoutubeUri = null;
+        this.SpotifyId = null;
+        this.Id = song.Id;
+        this.Title = song.Text;
+        this.Artist = song.ArtistName;
+        this.CountryName = song.CountryName;
+        this.CountryCode = CountryInfo[song.CountryName] ? CountryInfo[song.CountryName] : null;
+        this.Year = song.ContestYear;
+
+        if (song.YoutubeUri)
+            this.YoutubeUri = song.YoutubeUri;
+        if (song.SpotifyId)
+            this.SpotifyId = song.SpotifyId;
+    }
+    return SimpleSongViewModel;
 })();

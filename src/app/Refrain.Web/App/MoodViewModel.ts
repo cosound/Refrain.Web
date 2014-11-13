@@ -84,16 +84,16 @@ class MoodViewModel implements IPageViewModel
 
 	private InitializeGraphCountries(groups: any[]): void
 	{
-		if (this.AvailableMoodCountries().length != 0) return;
+		if (this.AvailableMoodCountries().length != 0 || groups.length == 0) return;
 
 		for (var i = 0; i < groups.length; i++)
 			this.AvailableMoodCountries.push(new MoodGraphCountry(groups[i], (country) => this.CountrySelectToggled(country)));
 
 		this.AvailableMoodCountries.sort((a, b) => a.Name.localeCompare(b.Name));
 
-		var selectedCountries:MoodGraphCountry[] = [];
+		var selectedCountries: MoodGraphCountry[] = [];
 
-		for (i = 0; i < 3; i++)
+		for (i = 0; i < Math.min(3, groups.length); i++)
 		{
 			var country = this.AvailableMoodCountries()[Math.floor(Math.random() * this.AvailableMoodCountries().length)];
 
@@ -123,7 +123,6 @@ class MoodViewModel implements IPageViewModel
 		RefrainPortal.TwitterMood.Get().WithCallback(this.TwitterMoodGetForGraphCountriesCompleted, this);
 		
 		//this._updateHandler = setInterval(() => this.Update(), 5 * 60 * 1000);
-
 	}
 
 	public MoodMapNext():void
@@ -300,6 +299,8 @@ class MoodViewModel implements IPageViewModel
 			console.log("Failed to get Twitter mood: " + response.Error.Message);
 			return;
 		}
+
+		if (response.Body == null || (<any>response.Body).Groups == null) return;
 
 		this.InitializeGraphCountries(<any[]>(<any>response.Body).Groups);
 	}
