@@ -286,7 +286,6 @@ class MoodViewModel implements IPageViewModel
 			var valence = groups[i].Results.length > 0 ? groups[i].Results[0].Valence : 0;
 			this._moodData[MoodViewModel.Capitalize(<string>groups[i].Value)] = valence;
 		}
-			
 		
 		(<any>this._map).data.setStyle({});
 		(<any>this._map).data.setStyle((f: any) => this.SetCountryStyle(f));
@@ -354,10 +353,11 @@ class MoodViewModel implements IPageViewModel
 
 	private SetCountryStyle(feature:any):any
 	{
-		if (this._moodData[feature.j.name] == null)
+		var name = feature.k.name;
+		if (this._moodData[name] == null)
 			return { visible: false };
 
-		var mood = this._moodData[feature.j.name];
+		var mood = this._moodData[name];
 
 		var color = "#" + (mood < 0
 			? this.HexFromRGB(255 + 51 * mood, 255 + 255 * mood, 255 + 102 * mood)
