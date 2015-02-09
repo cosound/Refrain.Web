@@ -25,7 +25,7 @@ class MoodViewModel implements IPageViewModel
 	{
 		var mapStyle = [{ "featureType": "road", "elementType": "geometry", "stylers": [{ "visibility": "off" }] }, { "featureType": "poi", "elementType": "geometry", "stylers": [{ "visibility": "off" }] }, { "featureType": "landscape", "elementType": "geometry", "stylers": [{ "color": "#fffffa" }] }, { "featureType": "water", "stylers": [{ "lightness": 50 }] }, { "featureType": "road", "elementType": "labels", "stylers": [{ "visibility": "off" }] }, { "featureType": "transit", "stylers": [{ "visibility": "off" }] }, { "featureType": "administrative", "elementType": "geometry", "stylers": [{ "lightness": 40 }] }];
 
-		this._map = new google.maps.Map(document.getElementById('map-canvas'), {
+		this._map = new google.maps.Map(document.getElementById('map-canvas'), <any>{
 			zoom: 4,
 			center: new google.maps.LatLng(51.5, 13.7),
 			disableDefaultUI: true,
@@ -337,7 +337,14 @@ class MoodViewModel implements IPageViewModel
 			this.SelectedTweets.push(this.GetTweetEmbed(this._tweets.shift()));
 
 		this.CanShowMoreTweets(this._tweets.length != 0);
-		twttr.widgets.load(document.getElementById("MoodTweets"));
+
+		try
+		{
+			twttr.widgets.load(document.getElementById("MoodTweets"));
+		} catch (error)
+		{
+			console.log("Twitter caused an error: " + error.message);
+		}
 	}
 
 	private GetTweetEmbed(rawCode:string):string

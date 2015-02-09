@@ -14,7 +14,14 @@ var DiscoveryViewModel = (function () {
     function DiscoveryViewModel() {
     }
     DiscoveryViewModel.prototype.Initialize = function () {
-        twttr.ready(function () { return twttr.widgets.load(); });
+        twttr.ready(function () {
+            try {
+                twttr.widgets.load();
+            }
+            catch (error) {
+                console.log("Twitter caused an error: " + error.message);
+            }
+        });
     };
     DiscoveryViewModel.prototype.PortalReady = function () {
     };
@@ -39,7 +46,14 @@ var MainViewModel = (function () {
         this.CurrentPage = ko.observable();
         this.CurrentPageViewModel = ko.observable();
         this._client = CHAOS.Portal.Client.Initialize("http://api.refrain.dk/");
-        twttr.events.bind('tweet', function (ev) { return _this.LogTweet(ev); });
+        twttr.ready(function () {
+            try {
+                twttr.events.bind('tweet', function (ev) { return _this.LogTweet(ev); });
+            }
+            catch (error) {
+                console.log("Twitter caused an error: " + error.message);
+            }
+        });
         $(window).bind("hashchange", function (e) { return _this.HashChange(); });
         this.HashChange();
     }
@@ -143,7 +157,14 @@ var MatchViewModel = (function () {
     }
     MatchViewModel.prototype.Initialize = function (songId, compareType, aspects, campareSongId) {
         var _this = this;
-        twttr.ready(function () { return twttr.widgets.load(); });
+        twttr.ready(function () {
+            try {
+                twttr.widgets.load();
+            }
+            catch (error) {
+                console.log("Twitter caused an error: " + error.message);
+            }
+        });
         this._campareSongId = campareSongId;
         this._updatingInput = true;
         if (compareType)
@@ -268,7 +289,12 @@ var MatchViewModel = (function () {
         else
             this.ShareUrl("http://refrain.dk" + window.location.pathname + window.location.hash);
         this.ShareMessage("I discovered " + this.SelectedSong().Title + " is " + (similarity.Distance < 0.2 ? "similar" : "dissimilar") + " to " + similarity.Title + " at ");
-        twttr.widgets.load();
+        try {
+            twttr.widgets.load();
+        }
+        catch (error) {
+            console.log("Twitter caused an error: " + error.message);
+        }
     };
     MatchViewModel.prototype.SelectOldSimilarity = function (similarity) {
         if (this.SelectedSimilarity() != null)
@@ -582,7 +608,12 @@ var MoodViewModel = (function () {
         for (var i = 0; i < 5 && this._tweets.length > 0; i++)
             this.SelectedTweets.push(this.GetTweetEmbed(this._tweets.shift()));
         this.CanShowMoreTweets(this._tweets.length != 0);
-        twttr.widgets.load(document.getElementById("MoodTweets"));
+        try {
+            twttr.widgets.load(document.getElementById("MoodTweets"));
+        }
+        catch (error) {
+            console.log("Twitter caused an error: " + error.message);
+        }
     };
     MoodViewModel.prototype.GetTweetEmbed = function (rawCode) {
         var code = decodeURIComponent(rawCode.replace(/\+/g, '%20'));

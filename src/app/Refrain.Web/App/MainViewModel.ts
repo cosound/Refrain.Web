@@ -8,7 +8,16 @@
 	constructor()
 	{
 		this._client = CHAOS.Portal.Client.Initialize("http://api.refrain.dk/");
-		twttr.events.bind('tweet', (ev: any) => this.LogTweet(ev));
+		twttr.ready(() =>
+		{
+			try
+			{
+				twttr.events.bind('tweet',(ev: any) => this.LogTweet(ev));
+			} catch (error)
+			{
+				console.log("Twitter caused an error: " + error.message);
+			}
+		});
 
 		$(window).bind("hashchange", (e: Event) => this.HashChange());
 		this.HashChange();

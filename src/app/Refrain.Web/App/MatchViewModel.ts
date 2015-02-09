@@ -43,7 +43,16 @@
 
 	public Initialize(songId:string, compareType:string, aspects:string, campareSongId:string): void
 	{
-		twttr.ready(() => twttr.widgets.load());
+		twttr.ready(() =>
+		{
+			try
+			{
+				twttr.widgets.load();
+			} catch (error)
+			{
+				console.log("Twitter caused an error: " + error.message);
+			}
+		});
 
 		this._campareSongId = campareSongId;
 
@@ -229,7 +238,13 @@
 
 		this.ShareMessage("I discovered " + this.SelectedSong().Title + " is " + (similarity.Distance < 0.2 ? "similar" : "dissimilar") + " to " + similarity.Title + " at " );
 
-		twttr.widgets.load();
+		try
+		{
+			twttr.widgets.load();
+		} catch (error)
+		{
+			console.log("Twitter caused an error: " + error.message);
+		}
 	}
 
 	private SelectOldSimilarity(similarity: RefrainPortal.ISimpleSong): void
