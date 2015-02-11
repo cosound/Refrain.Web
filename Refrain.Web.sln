@@ -1,9 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30324.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Refrain.Web", "src\app\Refrain.Web\Refrain.Web.csproj", "{490ACED3-A367-4D34-8CF0-D5DC506F3892}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6CED073D-047D-4A94-90B4-09A9C8D7848F}"
+	ProjectSection(SolutionItems) = preProject
+		build.bat = build.bat
+		gruntfile.js = gruntfile.js
+		package.json = package.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
