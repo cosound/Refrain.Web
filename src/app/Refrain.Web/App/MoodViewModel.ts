@@ -39,11 +39,17 @@ class MoodViewModel implements IPageViewModel
 	}
 
 	private InitializeGraph(): void
-	{
+	{	
 		this._graphData = [];
 		this._graphOptions = {
 			lines: {
 				show: true
+			},
+			series: {
+				curvedLines: {
+					active: true,
+					apply: true
+				}
 			},
 			xaxis: {
 				mode: "time",
@@ -178,7 +184,7 @@ class MoodViewModel implements IPageViewModel
 		var start = this.MoodGraphCurrentTime();
 		var end = new Date(start.getTime() + 24 * 60 * 60 * 1000);
 
-		RefrainPortal.TwitterMood.Get(countries.map((v, i) => v.CodeName), start, end, 999).WithCallback(r => this.TwitterMoodGraphCompleted(r, countries), this);
+		RefrainPortal.TwitterMood.Get(countries.map((v, i) => v.CodeName), start, end, 999).WithCallback(r => this.TwitterMoodGraphCompleted(r, countries, start, end), this);
 	}
 
 	private Update():void
@@ -192,7 +198,7 @@ class MoodViewModel implements IPageViewModel
 		RefrainPortal.TwitterMood.Get(null, this.MoodMapCurrentTime()).WithCallback(this.TwitterMoodGetCompleted, this);
 	}
 
-	private TwitterMoodGraphCompleted(response: CHAOS.Portal.Client.IPortalResponse<any>, countries: MoodGraphCountry[]): void
+	private TwitterMoodGraphCompleted(response: CHAOS.Portal.Client.IPortalResponse<any>, countries: MoodGraphCountry[], start:Date, end:Date): void
 	{
 		if (response.Error != null)
 		{
@@ -209,9 +215,9 @@ class MoodViewModel implements IPageViewModel
 				if (!countries[o].IsEqualGroup(groups[i])) continue;
 
 				if (countries[o].HasData())
-					countries[o].UpdateData(groups[i]);
+					countries[o].UpdateData(groups[i], start, end);
 				else
-					this._graphData.push(countries[o].UpdateData(groups[i]));
+					this._graphData.push(countries[o].UpdateData(groups[i], start, end));
 
 				break;
 			}
@@ -406,6 +412,8 @@ class MoodGraphCountry
 
 	private _updateCallback: (country: MoodGraphCountry) => void;
 
+	private _dataPointSpacing:number = 300000;
+
 	constructor(resultGroup: any, updateCallback: (country: MoodGraphCountry) => void)
 	{
 		this.Name = MoodViewModel.Capitalize(resultGroup.Value);
@@ -413,7 +421,7 @@ class MoodGraphCountry
 		this._updateCallback = updateCallback;
 		this.CountryCode = CountryInfo[this.Name];
 
-		this.Data = { data: [], Country: this };
+		this.Data = { data: <Array<any>>[], Country: this };
 	}
 
 	public IsEqualGroup(resultGroup: any):boolean
@@ -431,12 +439,26 @@ class MoodGraphCountry
 		this.Data.data.splice(0);
 	}
 
-	public UpdateData(resultGroup: any): jquery.flot.dataSeries
+	public UpdateData(resultGroup: IGroup<IMoodData<any>>, start:Date, end:Date): jquery.flot.dataSeries
 	{
 		this.ClearData();
 
-		for (var o = 0; o < resultGroup.Results.length; o++)
-			this.Data.data.push([resultGroup.Results[o].DateCreated * 1000, resultGroup.Results[o].Valence]);
+		var startNumber = start.getTime();
+		var endNumber = end.getTime();
+
+		if (resultGroup.Results.length === 0)
+			this.Data.data.push([startNumber, 0], [endNumber, 0]);
+		else
+		{
+			if (resultGroup.Results[0].DateCreated !== startNumber)
+				this.Data.data.push([startNumber, 0]);
+
+			for (var o = 0; o < resultGroup.Results.length; o++)
+				this.Data.data.push([resultGroup.Results[o].DateCreated * 1000, resultGroup.Results[o].Valence]);
+
+			if (resultGroup.Results[resultGroup.Results.length - 1].DateCreated !== endNumber)
+				this.Data.data.push([endNumber, 0]);
+		}
 
 		return this.Data;
 	}
@@ -446,4 +468,45 @@ class MoodGraphCountry
 		this.IsSelected(!this.IsSelected());
 		this._updateCallback(this);
 	}
+
+	private CreateMissingPoints(startValue: number, endValue: number, start: number, end: number, includeStart: boolean, includeEnd: boolean):number[][]
+	{
+		var numberOfMissing = Math.floor((end - start) / this._dataPointSpacing);
+		var change = (endValue - startValue) / numberOfMissing;
+
+		if (!includeStart)
+		{
+			numberOfMissing--;
+			startValue += change;
+		}
+
+		if (includeEnd) numberOfMissing++;
+
+		var results = new Array<number[]>(numberOfMissing);
+
+		for (var i = 0; i < numberOfMissing; i++)
+		{
+			results[i] = [start]
+		}
+			
+		
+		return results;
+	}
+}
+
+interface IGroup<T>
+{
+	Value: string;
+	Count: number;
+	TotalCount: number;
+	Results:T[];
+}
+
+interface IMoodData<T>
+{
+	Id: string;
+	Country: string;
+	Valence: number;
+	DateCreated: number;
+	Tweets:T[];
 }

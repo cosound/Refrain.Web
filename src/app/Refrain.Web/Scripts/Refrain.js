@@ -406,6 +406,12 @@ var MoodViewModel = (function () {
             lines: {
                 show: true
             },
+            series: {
+                curvedLines: {
+                    active: true,
+                    apply: true
+                }
+            },
             xaxis: {
                 mode: "time",
                 timezone: "browser",
@@ -500,7 +506,7 @@ var MoodViewModel = (function () {
             return;
         var start = this.MoodGraphCurrentTime();
         var end = new Date(start.getTime() + 24 * 60 * 60 * 1000);
-        RefrainPortal.TwitterMood.Get(countries.map(function (v, i) { return v.CodeName; }), start, end, 999).WithCallback(function (r) { return _this.TwitterMoodGraphCompleted(r, countries); }, this);
+        RefrainPortal.TwitterMood.Get(countries.map(function (v, i) { return v.CodeName; }), start, end, 999).WithCallback(function (r) { return _this.TwitterMoodGraphCompleted(r, countries, start, end); }, this);
     };
     MoodViewModel.prototype.Update = function () {
         this.UpdateMoodMap();
@@ -509,7 +515,7 @@ var MoodViewModel = (function () {
     MoodViewModel.prototype.UpdateMoodMap = function () {
         RefrainPortal.TwitterMood.Get(null, this.MoodMapCurrentTime()).WithCallback(this.TwitterMoodGetCompleted, this);
     };
-    MoodViewModel.prototype.TwitterMoodGraphCompleted = function (response, countries) {
+    MoodViewModel.prototype.TwitterMoodGraphCompleted = function (response, countries, start, end) {
         if (response.Error != null) {
             console.log("Failed to get Twitter mood: " + response.Error.Message);
             return;
@@ -520,9 +526,9 @@ var MoodViewModel = (function () {
                 if (!countries[o].IsEqualGroup(groups[i]))
                     continue;
                 if (countries[o].HasData())
-                    countries[o].UpdateData(groups[i]);
+                    countries[o].UpdateData(groups[i], start, end);
                 else
-                    this._graphData.push(countries[o].UpdateData(groups[i]));
+                    this._graphData.push(countries[o].UpdateData(groups[i], start, end));
                 break;
             }
         }
@@ -652,6 +658,7 @@ var MoodGraphCountry = (function () {
     function MoodGraphCountry(resultGroup, updateCallback) {
         this.Color = ko.observable();
         this.IsSelected = ko.observable(false);
+        this._dataPointSpacing = 300000;
         this.Name = MoodViewModel.Capitalize(resultGroup.Value);
         this.CodeName = resultGroup.Value;
         this._updateCallback = updateCallback;
@@ -667,15 +674,40 @@ var MoodGraphCountry = (function () {
     MoodGraphCountry.prototype.ClearData = function () {
         this.Data.data.splice(0);
     };
-    MoodGraphCountry.prototype.UpdateData = function (resultGroup) {
+    MoodGraphCountry.prototype.UpdateData = function (resultGroup, start, end) {
         this.ClearData();
-        for (var o = 0; o < resultGroup.Results.length; o++)
-            this.Data.data.push([resultGroup.Results[o].DateCreated * 1000, resultGroup.Results[o].Valence]);
+        var startNumber = start.getTime();
+        var endNumber = end.getTime();
+        if (resultGroup.Results.length === 0)
+            this.Data.data.push([startNumber, 0], [endNumber, 0]);
+        else {
+            if (resultGroup.Results[0].DateCreated !== startNumber)
+                this.Data.data.push([startNumber, 0]);
+            for (var o = 0; o < resultGroup.Results.length; o++)
+                this.Data.data.push([resultGroup.Results[o].DateCreated * 1000, resultGroup.Results[o].Valence]);
+            if (resultGroup.Results[resultGroup.Results.length - 1].DateCreated !== endNumber)
+                this.Data.data.push([endNumber, 0]);
+        }
         return this.Data;
     };
     MoodGraphCountry.prototype.ToggleSelect = function () {
         this.IsSelected(!this.IsSelected());
         this._updateCallback(this);
+    };
+    MoodGraphCountry.prototype.CreateMissingPoints = function (startValue, endValue, start, end, includeStart, includeEnd) {
+        var numberOfMissing = Math.floor((end - start) / this._dataPointSpacing);
+        var change = (endValue - startValue) / numberOfMissing;
+        if (!includeStart) {
+            numberOfMissing--;
+            startValue += change;
+        }
+        if (includeEnd)
+            numberOfMissing++;
+        var results = new Array(numberOfMissing);
+        for (var i = 0; i < numberOfMissing; i++) {
+            results[i] = [start];
+        }
+        return results;
     };
     return MoodGraphCountry;
 })();
@@ -743,6 +775,24 @@ var RefrainPortal;
     })();
     RefrainPortal.Tweet = Tweet;
 })(RefrainPortal || (RefrainPortal = {}));
+var SimpleSongViewModel = (function () {
+    function SimpleSongViewModel(song) {
+        this.Year = null;
+        this.YoutubeUri = null;
+        this.SpotifyId = null;
+        this.Id = song.Id;
+        this.Title = song.Text;
+        this.Artist = song.ArtistName;
+        this.CountryName = song.CountryName;
+        this.CountryCode = CountryInfo[song.CountryName] ? CountryInfo[song.CountryName] : null;
+        this.Year = song.ContestYear;
+        if (song.YoutubeUri)
+            this.YoutubeUri = song.YoutubeUri;
+        if (song.SpotifyId)
+            this.SpotifyId = song.SpotifyId;
+    }
+    return SimpleSongViewModel;
+})();
 var Song = (function () {
     function Song(song, selector) {
         this.Year = null;
@@ -822,22 +872,4 @@ var SongSimilarity = (function () {
         return false;
     };
     return SongSimilarity;
-})();
-var SimpleSongViewModel = (function () {
-    function SimpleSongViewModel(song) {
-        this.Year = null;
-        this.YoutubeUri = null;
-        this.SpotifyId = null;
-        this.Id = song.Id;
-        this.Title = song.Text;
-        this.Artist = song.ArtistName;
-        this.CountryName = song.CountryName;
-        this.CountryCode = CountryInfo[song.CountryName] ? CountryInfo[song.CountryName] : null;
-        this.Year = song.ContestYear;
-        if (song.YoutubeUri)
-            this.YoutubeUri = song.YoutubeUri;
-        if (song.SpotifyId)
-            this.SpotifyId = song.SpotifyId;
-    }
-    return SimpleSongViewModel;
 })();
