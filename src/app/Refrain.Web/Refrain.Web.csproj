@@ -43,6 +43,7 @@
     <Content Include="default.html" />
     <Content Include="Images\SpotifyLogo.png" />
     <Content Include="Main.css" />
+    <Content Include="Scripts\curvedLines.js" />
     <Content Include="Scripts\PortalClient.min.js" />
     <Content Include="Scripts\Refrain.js" />
     <Content Include="web.config" />
