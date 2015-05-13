@@ -447,7 +447,7 @@ var MoodViewModel = (function () {
     };
     MoodViewModel.prototype.InitializeGraphCountries = function (groups) {
         var _this = this;
-        if (this.AvailableMoodCountries().length != 0 || groups.length == 0)
+        if (this.AvailableMoodCountries().length !== 0 || groups.length === 0)
             return;
         for (var i = 0; i < groups.length; i++)
             this.AvailableMoodCountries.push(new MoodGraphCountry(groups[i], function (country) { return _this.CountrySelectToggled(country); }));
@@ -521,18 +521,26 @@ var MoodViewModel = (function () {
             return;
         }
         var groups = response.Body.Groups;
-        for (var i = 0; i < groups.length; i++) {
-            for (var o = 0; o < countries.length; o++) {
+        var data = null;
+        for (var o = 0; o < countries.length; o++) {
+            data = null;
+            for (var i = 0; i < groups.length; i++) {
                 if (!countries[o].IsEqualGroup(groups[i]))
                     continue;
-                if (countries[o].HasData())
-                    countries[o].UpdateData(groups[i], start, end);
-                else
-                    this._graphData.push(countries[o].UpdateData(groups[i], start, end));
+                data = groups[i].Results;
                 break;
             }
+            if (data == null)
+                data = [{ DateCreated: start.getTime() / 1000, Valence: 0 }, { DateCreated: end.getTime() / 1000, Valence: 0 }];
+            this.UpdateMoodData(countries[o], data, start, end);
         }
         this.UpdateGraph();
+    };
+    MoodViewModel.prototype.UpdateMoodData = function (country, data, start, end) {
+        if (country.HasData())
+            country.UpdateData(data, start, end);
+        else
+            this._graphData.push(country.UpdateData(data, start, end));
     };
     MoodViewModel.prototype.CountrySelectToggled = function (country) {
         if (country.IsSelected()) {
@@ -545,7 +553,7 @@ var MoodViewModel = (function () {
         }
         else {
             for (var i = 0; i < this._graphData.length; i++) {
-                if (this._graphData[i].Country != country)
+                if (this._graphData[i].Country !== country)
                     continue;
                 this._graphData.splice(i, 1);
                 break;
@@ -629,7 +637,7 @@ var MoodViewModel = (function () {
         return country.replace("_", " ").replace(/(?:^|\s)\S/g, function (a) { return a.toUpperCase(); });
     };
     MoodViewModel.prototype.SetCountryStyle = function (feature) {
-        var name = feature.k.name;
+        var name = feature.A.name;
         if (this._moodData[name] == null)
             return { visible: false };
         var mood = this._moodData[name];
@@ -674,18 +682,18 @@ var MoodGraphCountry = (function () {
     MoodGraphCountry.prototype.ClearData = function () {
         this.Data.data.splice(0);
     };
-    MoodGraphCountry.prototype.UpdateData = function (resultGroup, start, end) {
+    MoodGraphCountry.prototype.UpdateData = function (data, start, end) {
         this.ClearData();
         var startNumber = start.getTime();
         var endNumber = end.getTime();
-        if (resultGroup.Results.length === 0)
+        if (data.length === 0)
             this.Data.data.push([startNumber, 0], [endNumber, 0]);
         else {
-            if (resultGroup.Results[0].DateCreated !== startNumber)
+            if (data[0].DateCreated !== startNumber)
                 this.Data.data.push([startNumber, 0]);
-            for (var o = 0; o < resultGroup.Results.length; o++)
-                this.Data.data.push([resultGroup.Results[o].DateCreated * 1000, resultGroup.Results[o].Valence]);
-            if (resultGroup.Results[resultGroup.Results.length - 1].DateCreated !== endNumber)
+            for (var o = 0; o < data.length; o++)
+                this.Data.data.push([data[o].DateCreated * 1000, data[o].Valence]);
+            if (data[data.length - 1].DateCreated !== endNumber)
                 this.Data.data.push([endNumber, 0]);
         }
         return this.Data;
@@ -775,24 +783,6 @@ var RefrainPortal;
     })();
     RefrainPortal.Tweet = Tweet;
 })(RefrainPortal || (RefrainPortal = {}));
-var SimpleSongViewModel = (function () {
-    function SimpleSongViewModel(song) {
-        this.Year = null;
-        this.YoutubeUri = null;
-        this.SpotifyId = null;
-        this.Id = song.Id;
-        this.Title = song.Text;
-        this.Artist = song.ArtistName;
-        this.CountryName = song.CountryName;
-        this.CountryCode = CountryInfo[song.CountryName] ? CountryInfo[song.CountryName] : null;
-        this.Year = song.ContestYear;
-        if (song.YoutubeUri)
-            this.YoutubeUri = song.YoutubeUri;
-        if (song.SpotifyId)
-            this.SpotifyId = song.SpotifyId;
-    }
-    return SimpleSongViewModel;
-})();
 var Song = (function () {
     function Song(song, selector) {
         this.Year = null;
@@ -872,4 +862,22 @@ var SongSimilarity = (function () {
         return false;
     };
     return SongSimilarity;
+})();
+var SimpleSongViewModel = (function () {
+    function SimpleSongViewModel(song) {
+        this.Year = null;
+        this.YoutubeUri = null;
+        this.SpotifyId = null;
+        this.Id = song.Id;
+        this.Title = song.Text;
+        this.Artist = song.ArtistName;
+        this.CountryName = song.CountryName;
+        this.CountryCode = CountryInfo[song.CountryName] ? CountryInfo[song.CountryName] : null;
+        this.Year = song.ContestYear;
+        if (song.YoutubeUri)
+            this.YoutubeUri = song.YoutubeUri;
+        if (song.SpotifyId)
+            this.SpotifyId = song.SpotifyId;
+    }
+    return SimpleSongViewModel;
 })();

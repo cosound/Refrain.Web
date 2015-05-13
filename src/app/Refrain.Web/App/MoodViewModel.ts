@@ -90,7 +90,7 @@ class MoodViewModel implements IPageViewModel
 
 	private InitializeGraphCountries(groups: any[]): void
 	{
-		if (this.AvailableMoodCountries().length != 0 || groups.length == 0) return;
+		if (this.AvailableMoodCountries().length !== 0 || groups.length === 0) return;
 
 		for (var i = 0; i < groups.length; i++)
 			this.AvailableMoodCountries.push(new MoodGraphCountry(groups[i], (country) => this.CountrySelectToggled(country)));
@@ -207,23 +207,33 @@ class MoodViewModel implements IPageViewModel
 		}
 
 		var groups = <any[]>(<any>response.Body).Groups;
+		var data:IMoodData<any>[] = null;
 
-		for (var i:number = 0; i < groups.length; i++)
+		for (var o:number = 0; o < countries.length; o++)
 		{
-			for (var o:number = 0; o < countries.length; o++)
+			data = null;
+			for (var i: number = 0; i < groups.length; i++)
 			{
 				if (!countries[o].IsEqualGroup(groups[i])) continue;
-
-				if (countries[o].HasData())
-					countries[o].UpdateData(groups[i], start, end);
-				else
-					this._graphData.push(countries[o].UpdateData(groups[i], start, end));
-
+				data = groups[i].Results;
 				break;
 			}
+
+			if (data == null)
+				data = [{ DateCreated: start.getTime() / 1000, Valence: 0 }, { DateCreated: end.getTime() / 1000, Valence: 0 }];
+
+			this.UpdateMoodData(countries[o], data, start, end);
 		}
 
 		this.UpdateGraph();
+	}
+
+	private UpdateMoodData(country:MoodGraphCountry, data:IMoodData<any>[], start:Date, end:Date):void
+	{
+		if (country.HasData())
+			country.UpdateData(data, start, end);
+		else
+			this._graphData.push(country.UpdateData(data, start, end));
 	}
 
 	private CountrySelectToggled(country:MoodGraphCountry):void
@@ -242,7 +252,7 @@ class MoodViewModel implements IPageViewModel
 		{
 			for (var i = 0; i < this._graphData.length; i++)
 			{
-				if ((<any>this._graphData[i]).Country != country) continue;
+				if ((<any>this._graphData[i]).Country !== country) continue;
 
 				this._graphData.splice(i, 1);
 				break;
@@ -366,7 +376,7 @@ class MoodViewModel implements IPageViewModel
 
 	private SetCountryStyle(feature:any):any
 	{
-		var name = feature.k.name;
+		var name = feature.A.name;
 		if (this._moodData[name] == null)
 			return { visible: false };
 
@@ -439,24 +449,24 @@ class MoodGraphCountry
 		this.Data.data.splice(0);
 	}
 
-	public UpdateData(resultGroup: IGroup<IMoodData<any>>, start:Date, end:Date): jquery.flot.dataSeries
+	public UpdateData(data: IMoodData<any>[], start:Date, end:Date): jquery.flot.dataSeries
 	{
 		this.ClearData();
 
 		var startNumber = start.getTime();
 		var endNumber = end.getTime();
 
-		if (resultGroup.Results.length === 0)
+		if (data.length === 0)
 			this.Data.data.push([startNumber, 0], [endNumber, 0]);
 		else
 		{
-			if (resultGroup.Results[0].DateCreated !== startNumber)
+			if (data[0].DateCreated !== startNumber)
 				this.Data.data.push([startNumber, 0]);
 
-			for (var o = 0; o < resultGroup.Results.length; o++)
-				this.Data.data.push([resultGroup.Results[o].DateCreated * 1000, resultGroup.Results[o].Valence]);
+			for (var o = 0; o < data.length; o++)
+				this.Data.data.push([data[o].DateCreated * 1000, data[o].Valence]);
 
-			if (resultGroup.Results[resultGroup.Results.length - 1].DateCreated !== endNumber)
+			if (data[data.length - 1].DateCreated !== endNumber)
 				this.Data.data.push([endNumber, 0]);
 		}
 
@@ -486,9 +496,8 @@ class MoodGraphCountry
 
 		for (var i = 0; i < numberOfMissing; i++)
 		{
-			results[i] = [start]
+			results[i] = [start];
 		}
-			
 		
 		return results;
 	}
@@ -504,9 +513,9 @@ interface IGroup<T>
 
 interface IMoodData<T>
 {
-	Id: string;
-	Country: string;
+	Id?: string;
+	Country?: string;
 	Valence: number;
 	DateCreated: number;
-	Tweets:T[];
+	Tweets?:T[];
 }

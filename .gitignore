@@ -2,6 +2,7 @@ _ReSharper*
 bin
 !/bin
 !/build
+/dist
 obj
 .DS_Store
 Thumbs.db
