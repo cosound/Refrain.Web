@@ -531,7 +531,7 @@ var MoodViewModel = (function () {
                 break;
             }
             if (data == null)
-                data = [{ DateCreated: start.getTime() / 1000, Valence: 0 }, { DateCreated: end.getTime() / 1000, Valence: 0 }];
+                data = [];
             this.UpdateMoodData(countries[o], data, start, end);
         }
         this.UpdateGraph();
@@ -695,6 +695,7 @@ var MoodGraphCountry = (function () {
                 this.Data.data.push([data[o].DateCreated * 1000, data[o].Valence]);
             if (data[data.length - 1].DateCreated !== endNumber)
                 this.Data.data.push([endNumber, 0]);
+            this.CreateMissingPoints(this.Data.data);
         }
         return this.Data;
     };
@@ -702,20 +703,21 @@ var MoodGraphCountry = (function () {
         this.IsSelected(!this.IsSelected());
         this._updateCallback(this);
     };
-    MoodGraphCountry.prototype.CreateMissingPoints = function (startValue, endValue, start, end, includeStart, includeEnd) {
-        var numberOfMissing = Math.floor((end - start) / this._dataPointSpacing);
-        var change = (endValue - startValue) / numberOfMissing;
-        if (!includeStart) {
-            numberOfMissing--;
-            startValue += change;
+    MoodGraphCountry.prototype.CreateMissingPoints = function (data) {
+        var previous = data[0];
+        var current = data[0];
+        for (var i = 1; i < data.length; i++) {
+            previous = current;
+            current = data[i];
+            if (current[0] - previous[0] > this._dataPointSpacing * 2) {
+                data.splice(i, 0, [previous[0] + this._dataPointSpacing, 0], [current[0] - this._dataPointSpacing, 0]);
+                i += 2;
+                if (current[0] - previous[0] > this._dataPointSpacing * 10) {
+                    data.splice(i - 1, 0, [previous[0] + this._dataPointSpacing * 3, 0], [current[0] - this._dataPointSpacing * 3, 0]);
+                    i += 2;
+                }
+            }
         }
-        if (includeEnd)
-            numberOfMissing++;
-        var results = new Array(numberOfMissing);
-        for (var i = 0; i < numberOfMissing; i++) {
-            results[i] = [start];
-        }
-        return results;
     };
     return MoodGraphCountry;
 })();

@@ -219,8 +219,7 @@ class MoodViewModel implements IPageViewModel
 				break;
 			}
 
-			if (data == null)
-				data = [{ DateCreated: start.getTime() / 1000, Valence: 0 }, { DateCreated: end.getTime() / 1000, Valence: 0 }];
+			if (data == null) data = [];
 
 			this.UpdateMoodData(countries[o], data, start, end);
 		}
@@ -464,10 +463,12 @@ class MoodGraphCountry
 				this.Data.data.push([startNumber, 0]);
 
 			for (var o = 0; o < data.length; o++)
-				this.Data.data.push([data[o].DateCreated * 1000, data[o].Valence]);
+				this.Data.data.push([data[o].DateCreated * 1000, data[o].Valence]);	
 
 			if (data[data.length - 1].DateCreated !== endNumber)
 				this.Data.data.push([endNumber, 0]);
+
+			this.CreateMissingPoints(this.Data.data);
 		}
 
 		return this.Data;
@@ -479,27 +480,30 @@ class MoodGraphCountry
 		this._updateCallback(this);
 	}
 
-	private CreateMissingPoints(startValue: number, endValue: number, start: number, end: number, includeStart: boolean, includeEnd: boolean):number[][]
+	private CreateMissingPoints(data:number[][]):void
 	{
-		var numberOfMissing = Math.floor((end - start) / this._dataPointSpacing);
-		var change = (endValue - startValue) / numberOfMissing;
+		var previous = data[0];
+		var current = data[0];
 
-		if (!includeStart)
+		for (var i = 1; i < data.length; i++)
 		{
-			numberOfMissing--;
-			startValue += change;
+			previous = current;
+			current = data[i];
+
+			if (current[0] - previous[0] > this._dataPointSpacing * 2)
+			{
+				data.splice(i, 0, [previous[0] + this._dataPointSpacing, 0], [current[0] - this._dataPointSpacing, 0]);
+
+				i += 2;
+
+				if (current[0] - previous[0] > this._dataPointSpacing * 10)
+				{
+					data.splice(i - 1, 0, [previous[0] + this._dataPointSpacing * 3, 0], [current[0] - this._dataPointSpacing * 3, 0]);
+
+					i += 2;
+				}
+			}
 		}
-
-		if (includeEnd) numberOfMissing++;
-
-		var results = new Array<number[]>(numberOfMissing);
-
-		for (var i = 0; i < numberOfMissing; i++)
-		{
-			results[i] = [start];
-		}
-		
-		return results;
 	}
 }
 
