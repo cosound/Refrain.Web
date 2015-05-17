@@ -493,6 +493,29 @@ input[type="checkbox"]:checked + label span, input[type="radio"]:checked + label
 	display: block;
 }
 
+#SimilarityGraphRaters {
+	display: inline-block;
+	margin-top: 10px;
+	margin-left: 5px;
+	vertical-align: top;
+}
+
+#SimilarityGraphRaters .RateGood {
+	color: green;
+}
+
+#SimilarityGraphRaters .RateBad {
+	color: red;
+}
+
+#SimilarityGraphRaters .HasRated .Selected {
+	background-color: white;
+}
+
+#SimilarityGraphRaters .HasRated {
+	cursor: not-allowed;
+}
+
 #MinMaxGraph {
 	margin-left: 103px;
 	width: 500px;

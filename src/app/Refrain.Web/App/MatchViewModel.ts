@@ -22,9 +22,19 @@
 	public AspectMood:KnockoutObservable<boolean> = ko.observable(true);
 	public AspectMelody:KnockoutObservable<boolean> = ko.observable(true);
 	public AspectEnergy:KnockoutObservable<boolean> = ko.observable(true);
-	public AspectTimbre:KnockoutObservable<boolean> = ko.observable(true);
+	public AspectTimbre: KnockoutObservable<boolean> = ko.observable(true);
 
-	private Aspects:KnockoutComputed<string>;
+	public RateMatch: MetricRater;
+	public MetricRaters: MetricRater[];
+
+	public RaterTempo:MetricRater;
+	public RaterRythm:MetricRater;
+	public RaterMood:MetricRater;
+	public RaterMelody:MetricRater;
+	public RaterEnergy:MetricRater;
+	public RaterTimbre:MetricRater;
+
+	private Aspects: KnockoutComputed<string>;
 
 	private _queryDelayHandle: number;
 	private _campareSongId: string;
@@ -38,7 +48,16 @@
 
 	constructor()
 	{
-		this.Aspects = ko.computed(() => (this.AspectTempo() ? "1" : "0") + (this.AspectRythm() ? "1" : "0") + (this.AspectMood() ? "1" : "0") + (this.AspectMelody() ? "1" : "0") + (this.AspectEnergy() ? "1" : "0") + (this.AspectTimbre() ? "1" : "0"));	
+		this.Aspects = ko.computed(() => (this.AspectTempo() ? "1" : "0") + (this.AspectRythm() ? "1" : "0") + (this.AspectMood() ? "1" : "0") + (this.AspectMelody() ? "1" : "0") + (this.AspectEnergy() ? "1" : "0") + (this.AspectTimbre() ? "1" : "0"));
+		this.RateMatch = new MetricRater(0, null, this.SelectedSong, this.SelectedSimilarity, this.Aspects);
+		this.RaterTempo = new MetricRater(1, this.AspectTempo, this.SelectedSong, this.SelectedSimilarity, this.Aspects);
+		this.RaterRythm = new MetricRater(2, this.AspectRythm, this.SelectedSong, this.SelectedSimilarity, this.Aspects);
+		this.RaterMood = new MetricRater(3, this.AspectMood, this.SelectedSong, this.SelectedSimilarity, this.Aspects);
+		this.RaterMelody = new MetricRater(4, this.AspectMelody, this.SelectedSong, this.SelectedSimilarity, this.Aspects);
+		this.RaterEnergy = new MetricRater(5, this.AspectEnergy, this.SelectedSong, this.SelectedSimilarity, this.Aspects);
+		this.RaterTimbre = new MetricRater(6, this.AspectTimbre, this.SelectedSong, this.SelectedSimilarity, this.Aspects);
+
+		this.MetricRaters = [this.RaterTempo, this.RaterRythm, this.RaterMood, this.RaterMelody, this.RaterEnergy, this.RaterTimbre, ];
 	}
 
 	public Initialize(songId:string, compareType:string, aspects:string, campareSongId:string): void
@@ -301,7 +320,7 @@
 		FB.ui({
 			method: 'share',
 			href: this.ShareUrl(),
-		}, (response) =>
+		}, (response:any) =>
 		{
 			ga('send', 'event', 'Share', 'Facebook', window.location.hash);
 		});
@@ -361,6 +380,53 @@
 		}
 
 		this.SelectOldSimilarity(response.Body.Results[0]);
+	}
+}
+
+class MetricRater
+{
+	private _metricIndex: number;
+	private _metricIsSelected: KnockoutObservable<boolean>;
+	private _selectedSong: KnockoutObservable<Song>;
+	private _selectedComparison: KnockoutObservable<ISongViewModel>;
+	private _metricFilter: KnockoutObservable<string>;
+	
+	public CanRate: KnockoutComputed<boolean>;
+	public HasRated: KnockoutObservable<boolean> = ko.observable(false);
+	public RatedGood:KnockoutObservable<boolean> = ko.observable(false);
+	public RatedBad:KnockoutObservable<boolean> = ko.observable(false);
+	
+	constructor(metricIndex:number, metricIsSelected:KnockoutObservable<boolean>, selectedSong:KnockoutObservable<Song>, selectedComparison:KnockoutObservable<ISongViewModel>, metricFilter:KnockoutObservable<string>)
+	{
+		this._metricFilter = metricFilter;
+		this._selectedComparison = selectedComparison;
+		this._selectedSong = selectedSong;
+		this._metricIsSelected = metricIsSelected;
+		this._metricIndex = metricIndex;
+
+		this.CanRate = ko.computed(() => (this._metricIsSelected == null || this._metricIsSelected()) && !this.HasRated());
+	}
+
+	public RateGood():void
+	{
+		this.Rate(1);
+	}
+
+	public RateBad():void
+	{
+		this.Rate(-1);
+	}
+
+	private Rate(rating:number)
+	{
+		this.HasRated(true);
+		this.RatedGood(rating > 0);
+		this.RatedBad(rating < 0);
+
+		RefrainPortal.MetricRating.Set(this._selectedSong().Id, this._selectedComparison().Id, this._metricFilter(), this._metricIndex, rating).WithCallback(response =>
+		{
+			if(response.Error != null) throw new Error("Failed to rate: " + response.Error.Message);
+		});
 	}
 }
 

@@ -52,6 +52,17 @@
 		}
 	}
 
+	export class MetricRating
+	{
+		public static Set(songId1:string, songId2:string, metricFilter:string, metricIndex:number, rating:number, serviceCaller: CHAOS.Portal.Client.IServiceCaller = null):CHAOS.Portal.Client.ICallState<any>
+		{
+			if (serviceCaller == null)
+				serviceCaller = CHAOS.Portal.Client.ServiceCallerService.GetDefaultCaller();
+
+			return serviceCaller.CallService("MetricRating/Set", CHAOS.Portal.Client.HttpMethod.Get, { songId1: songId1, songId2: songId2, metricFilter: metricFilter, metricIndex: metricIndex, rating: rating }, true);
+		}
+	}
+
 	export interface ISearchMatch
 	{
 		Id:string;

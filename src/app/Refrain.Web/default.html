@@ -120,7 +120,7 @@
 				<p>Copyright &copy; 2014 CoSound. <a href="#About">See Copyright, Disclaimer and Cookies Policy</a>.</p>
 				<!-- /ko -->
 				<!-- ko if: $parent.CurrentPage() == "Match" -->
-				<script id="SongMatchTempalte" type="text/html">
+				<script id="SongMatchTemplate" type="text/html">
 					<div class="SongMatch" data-bind="click: Select, css: {Selected: IsSelected}">
 						<span class="SimilarityPercent" data-bind="visible: $data.Distance != undefined"><span data-bind="text: $data.Distance == 0 ? '100' : (100 - $data.Distance * 100).toFixed(1)"></span>%</span>
 						<img src="Images/Blank.gif" class="flag" data-bind="if: CountryName, attr: { alt: CountryName }, css: (!CountryCode && !$data.YoutubeUri ? 'SpotifyFlag' : 'flag-' +  CountryCode)" /> 
@@ -152,7 +152,7 @@
 						<p><a href="#" data-bind="click: function() { SearchAndUpdateQuery('2012 love')}">"2012 love"</a> Songs with love in the title from 2012</p>
 						<p><a href="#" data-bind="click: function() { SearchAndUpdateQuery('Finland')}">"Finland"</a> Finlands entrances</p>
 					</div>
-					<div data-bind="template: {name: 'SongMatchTempalte', foreach: Matches}"></div>
+					<div data-bind="template: {name: 'SongMatchTemplate', foreach: Matches}"></div>
 					<a class="MoreButton" href="#" data-bind="click: ShowExtraMatches, visible: ExtraMatches().length != 0"><span class="buttonsqpink">&#9660;</span> More</a>
 				</div>
 				<!-- ko if: SelectedSong -->
@@ -197,10 +197,10 @@
 					</div>
 					<!-- ko with: SelectedSong -->
 					<h2 class="SimililarityHeadline">"<span class="QuotedTitle" data-bind="text: Title"></span>" is most similar to</h2>
-					<div data-bind="template: {name: 'SongMatchTempalte', foreach: MostSimilar}"></div>
+					<div data-bind="template: {name: 'SongMatchTemplate', foreach: MostSimilar}"></div>
 					<a class="MoreButton" href="#" data-bind="click: ShowExtraMostSimilar, visible: ExtraMostSimilar().length != 0"><span class="buttonsqpink">&#9660;</span> More</a>
 					<h2 class="SimililarityHeadline">"<span class="QuotedTitle" data-bind="text: Title"></span>" is least similar to</h2>
-					<div data-bind="template: {name: 'SongMatchTempalte', foreach: LeastSimilar}"></div>
+					<div data-bind="template: {name: 'SongMatchTemplate', foreach: LeastSimilar}"></div>
 					<a class="MoreButton" href="#" data-bind="click: ShowExtraLeastSimilar, visible: ExtraLeastSimilar().length != 0"><span class="buttonsqpink">&#9660;</span> More</a>
 					<!-- /ko -->
 				</div>
@@ -248,6 +248,12 @@
 							<p class="SimilarityBar" data-bind="style: {width: Melody * 100 + '%'}">&nbsp;</p>
 							<p class="SimilarityBar" data-bind="style: {width: Energy * 100 + '%'}">&nbsp;</p>
 							<p class="SimilarityBar" data-bind="style: {width: Timbre * 100 + '%'}">&nbsp;</p>
+						</div>
+						<div id="SimilarityGraphRaters" data-bind="foreach: MetricRaters">
+							<p data-bind="css: {HasRated: HasRated}">
+								<a href="#" data-bind="click: RateGood, css: { Selected: RatedGood }" class="RateGood">Good</a>
+								<a href="#" data-bind="click: RateBad, css: { Selected: RatedBad }" class="RateBad">Bad</a>
+							</p>
 						</div>
 						<div id="MinMaxGraph">
 							<span id="MinGraph">0%</span>

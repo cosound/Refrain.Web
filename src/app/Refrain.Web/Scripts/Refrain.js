@@ -154,6 +154,14 @@ var MatchViewModel = (function () {
         this._countryInfos = ko.observable();
         this._updatingInput = false;
         this.Aspects = ko.computed(function () { return (_this.AspectTempo() ? "1" : "0") + (_this.AspectRythm() ? "1" : "0") + (_this.AspectMood() ? "1" : "0") + (_this.AspectMelody() ? "1" : "0") + (_this.AspectEnergy() ? "1" : "0") + (_this.AspectTimbre() ? "1" : "0"); });
+        this.RateMatch = new MetricRater(0, null, this.SelectedSong, this.SelectedSimilarity, this.Aspects);
+        this.RaterTempo = new MetricRater(1, this.AspectTempo, this.SelectedSong, this.SelectedSimilarity, this.Aspects);
+        this.RaterRythm = new MetricRater(2, this.AspectRythm, this.SelectedSong, this.SelectedSimilarity, this.Aspects);
+        this.RaterMood = new MetricRater(3, this.AspectMood, this.SelectedSong, this.SelectedSimilarity, this.Aspects);
+        this.RaterMelody = new MetricRater(4, this.AspectMelody, this.SelectedSong, this.SelectedSimilarity, this.Aspects);
+        this.RaterEnergy = new MetricRater(5, this.AspectEnergy, this.SelectedSong, this.SelectedSimilarity, this.Aspects);
+        this.RaterTimbre = new MetricRater(6, this.AspectTimbre, this.SelectedSong, this.SelectedSimilarity, this.Aspects);
+        this.MetricRaters = [this.RaterTempo, this.RaterRythm, this.RaterMood, this.RaterMelody, this.RaterEnergy, this.RaterTimbre,];
     }
     MatchViewModel.prototype.Initialize = function (songId, compareType, aspects, campareSongId) {
         var _this = this;
@@ -377,6 +385,36 @@ var MatchViewModel = (function () {
         this.SelectOldSimilarity(response.Body.Results[0]);
     };
     return MatchViewModel;
+})();
+var MetricRater = (function () {
+    function MetricRater(metricIndex, metricIsSelected, selectedSong, selectedComparison, metricFilter) {
+        var _this = this;
+        this.HasRated = ko.observable(false);
+        this.RatedGood = ko.observable(false);
+        this.RatedBad = ko.observable(false);
+        this._metricFilter = metricFilter;
+        this._selectedComparison = selectedComparison;
+        this._selectedSong = selectedSong;
+        this._metricIsSelected = metricIsSelected;
+        this._metricIndex = metricIndex;
+        this.CanRate = ko.computed(function () { return (_this._metricIsSelected == null || _this._metricIsSelected()) && !_this.HasRated(); });
+    }
+    MetricRater.prototype.RateGood = function () {
+        this.Rate(1);
+    };
+    MetricRater.prototype.RateBad = function () {
+        this.Rate(-1);
+    };
+    MetricRater.prototype.Rate = function (rating) {
+        this.HasRated(true);
+        this.RatedGood(rating > 0);
+        this.RatedBad(rating < 0);
+        RefrainPortal.MetricRating.Set(this._selectedSong().Id, this._selectedComparison().Id, this._metricFilter(), this._metricIndex, rating).WithCallback(function (response) {
+            if (response.Error != null)
+                throw new Error("Failed to rate: " + response.Error.Message);
+        });
+    };
+    return MetricRater;
 })();
 var MoodViewModel = (function () {
     function MoodViewModel() {
@@ -784,7 +822,37 @@ var RefrainPortal;
         return Tweet;
     })();
     RefrainPortal.Tweet = Tweet;
+    var MetricRating = (function () {
+        function MetricRating() {
+        }
+        MetricRating.Set = function (songId1, songId2, metricFilter, metricIndex, rating, serviceCaller) {
+            if (serviceCaller === void 0) { serviceCaller = null; }
+            if (serviceCaller == null)
+                serviceCaller = CHAOS.Portal.Client.ServiceCallerService.GetDefaultCaller();
+            return serviceCaller.CallService("MetricRating/Set", 0 /* Get */, { songId1: songId1, songId2: songId2, metricFilter: metricFilter, metricIndex: metricIndex, rating: rating }, true);
+        };
+        return MetricRating;
+    })();
+    RefrainPortal.MetricRating = MetricRating;
 })(RefrainPortal || (RefrainPortal = {}));
+var SimpleSongViewModel = (function () {
+    function SimpleSongViewModel(song) {
+        this.Year = null;
+        this.YoutubeUri = null;
+        this.SpotifyId = null;
+        this.Id = song.Id;
+        this.Title = song.Text;
+        this.Artist = song.ArtistName;
+        this.CountryName = song.CountryName;
+        this.CountryCode = CountryInfo[song.CountryName] ? CountryInfo[song.CountryName] : null;
+        this.Year = song.ContestYear;
+        if (song.YoutubeUri)
+            this.YoutubeUri = song.YoutubeUri;
+        if (song.SpotifyId)
+            this.SpotifyId = song.SpotifyId;
+    }
+    return SimpleSongViewModel;
+})();
 var Song = (function () {
     function Song(song, selector) {
         this.Year = null;
@@ -864,22 +932,4 @@ var SongSimilarity = (function () {
         return false;
     };
     return SongSimilarity;
-})();
-var SimpleSongViewModel = (function () {
-    function SimpleSongViewModel(song) {
-        this.Year = null;
-        this.YoutubeUri = null;
-        this.SpotifyId = null;
-        this.Id = song.Id;
-        this.Title = song.Text;
-        this.Artist = song.ArtistName;
-        this.CountryName = song.CountryName;
-        this.CountryCode = CountryInfo[song.CountryName] ? CountryInfo[song.CountryName] : null;
-        this.Year = song.ContestYear;
-        if (song.YoutubeUri)
-            this.YoutubeUri = song.YoutubeUri;
-        if (song.SpotifyId)
-            this.SpotifyId = song.SpotifyId;
-    }
-    return SimpleSongViewModel;
 })();
