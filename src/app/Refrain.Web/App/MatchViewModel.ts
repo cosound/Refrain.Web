@@ -24,7 +24,7 @@
 	public AspectEnergy:KnockoutObservable<boolean> = ko.observable(true);
 	public AspectTimbre: KnockoutObservable<boolean> = ko.observable(true);
 
-	public RateMatch: MetricRater;
+	public RaterMatch: MetricRater;
 	public MetricRaters: MetricRater[];
 
 	public RaterTempo:MetricRater;
@@ -49,7 +49,7 @@
 	constructor()
 	{
 		this.Aspects = ko.computed(() => (this.AspectTempo() ? "1" : "0") + (this.AspectRythm() ? "1" : "0") + (this.AspectMood() ? "1" : "0") + (this.AspectMelody() ? "1" : "0") + (this.AspectEnergy() ? "1" : "0") + (this.AspectTimbre() ? "1" : "0"));
-		this.RateMatch = new MetricRater(0, null, this.SelectedSong, this.SelectedSimilarity, this.Aspects);
+		this.RaterMatch = new MetricRater(0, null, this.SelectedSong, this.SelectedSimilarity, this.Aspects);
 		this.RaterTempo = new MetricRater(1, this.AspectTempo, this.SelectedSong, this.SelectedSimilarity, this.Aspects);
 		this.RaterRythm = new MetricRater(2, this.AspectRythm, this.SelectedSong, this.SelectedSimilarity, this.Aspects);
 		this.RaterMood = new MetricRater(3, this.AspectMood, this.SelectedSong, this.SelectedSimilarity, this.Aspects);

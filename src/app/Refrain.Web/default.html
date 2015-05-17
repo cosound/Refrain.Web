@@ -14,7 +14,7 @@
 		<meta property="fb:app_id" content="1502662549961564" />
 
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
-		<link type="text/css" rel="stylesheet" href="Main.css?v=17"/>
+		<link type="text/css" rel="stylesheet" href="Main.css?v=18"/>
 		<link type="text/css" rel="stylesheet" href="Flags.css?v=4"/>
 		
 		<script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
@@ -27,7 +27,7 @@
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.time.min.js"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.navigate.min.js"></script>
 		<script type="text/javascript" src="Scripts/curvedLines.js"></script>
-		<script type="text/javascript" src="Scripts/Refrain.js?v=23"></script>
+		<script type="text/javascript" src="Scripts/Refrain.js?v=24"></script>
 		<script type="text/javascript" src="Scripts/PortalClient.min.js"></script>
 		<script type="text/javascript">
 			(function (i, s, o, g, r, a, m) {
@@ -221,9 +221,10 @@
 						<a id="ShareMatchOnFacebook" href="#" data-bind="click: ShareOnFacebook"><img src="Images/Blank.gif" alt="Share on Facebook" /></a>
 					</div>
 					<div id="SimilarityContainer">
-						<p>Importance of music aspects in match <a class="buttonsqpink" href="#" data-bind="click: ToggleSimilarityHelp">?</a></p>
+						<p>Importance of music aspects in match <a class="buttonsqpink" href="#" data-bind="click: ToggleSimilarityHelp">?</a>
+						</p>
 						<div class="HelpText" data-bind="visible: SimilarityHelpVisible">
-							Relative importance of different music aspects in match. 0% is no importance, 100% is maximum importance.  If only one aspect selected no relative importance is shown.
+							Relative importance of different music aspects in match. 0% is no importance, 100% is maximum importance. If only one aspect selected no relative importance is shown.
 							<ul>
 								<li>Tempo is the perceived number of beats per minute.</li>
 								<li>Rhythm defines the rhythmic structure.</li>
@@ -232,7 +233,8 @@
 								<li>Energy defines the energy level of the song.</li>
 								<li>Timbre defines the characteristic color of the music. Timbre is what makes notes of two instruments with same pitch and loudness sounding different.</li>
 							</ul>
-							The comparison is based on automated analysis that involves some uncertainty; however,  the analysis is continuously improved based on your shares and feedback.
+							The comparison is based on automated analysis that involves some uncertainty; however, the analysis is continuously improved based on your shares and feedback. <br/>
+							Provide feedback by using the thumbs up/down buttons.
 						</div>
 						<div id="SimilarityGraphLegend">
 							<p>Tempo</p>
@@ -263,6 +265,15 @@
 							<span id="MinGraph">0%</span>
 							<span id="MaxGraph">100%</span>
 						</div>
+					</div>
+					<div id="RateContainer">
+						<p data-bind="with: RaterMatch">
+							<span data-bind="visible: !HasRated()">Do you think these songs are <a class="Good" href="#" data-bind="click: RateGood">similar</a> or <a class="Bad" href="#" data-bind="click: RateGood">different</a>?</span>
+							<span data-bind="visible: HasRated">Thanks for helping us improving Refrain!</span>
+						</p>
+						<p>
+							<a target="_blank" href="https://cockpit.cosound.dk/experiments/">Click here to help us improve Refrain further by answering a few questions</a>
+						</p>
 					</div>
 					<!-- /ko -->
 					<!-- ko if: SelectedOldSimilarity -->

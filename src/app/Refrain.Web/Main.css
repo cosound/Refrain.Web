@@ -527,6 +527,20 @@ input[type="checkbox"]:checked + label span, input[type="radio"]:checked + label
 	float: right;
 }
 
+#RateContainer
+{
+	margin: 10px;
+	padding: 10px;
+
+	clear: both;
+
+	background-color: #0099FF;
+}
+
+#RateContainer a {
+	text-decoration: underline;
+}
+
 /* Mood */
 
 #map-canvas {
