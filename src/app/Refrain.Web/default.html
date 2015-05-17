@@ -12,7 +12,8 @@
 		<meta property="og:description" content="Match selected Eurovision Song Contest songs with the realm of Eurovision Song Contest songs or the collection of western pop music. Or see the current mood of Europe based on Twitter tweets related to the European Song Contest." />
 		<meta property="og:image" content="http://www.refrain.dk/Images/MatchThumb.png" />
 		<meta property="fb:app_id" content="1502662549961564" />
-		
+
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
 		<link type="text/css" rel="stylesheet" href="Main.css?v=17"/>
 		<link type="text/css" rel="stylesheet" href="Flags.css?v=4"/>
 		
@@ -250,9 +251,12 @@
 							<p class="SimilarityBar" data-bind="style: {width: Timbre * 100 + '%'}">&nbsp;</p>
 						</div>
 						<div id="SimilarityGraphRaters" data-bind="foreach: MetricRaters">
-							<p data-bind="css: {HasRated: HasRated}">
-								<a href="#" data-bind="click: RateGood, css: { Selected: RatedGood }" class="RateGood">Good</a>
-								<a href="#" data-bind="click: RateBad, css: { Selected: RatedBad }" class="RateBad">Bad</a>
+							<p data-bind="visible: !HasRated()">
+								<button data-bind="click: RateGood" class="Good"><i class="fa fa-thumbs-up"></i></button>
+								<button data-bind="click: RateBad" class="Bad"><i class="fa fa-thumbs-down"></i></button>
+							</p>
+							<p data-bind="visible: HasRated">
+								Thanks!
 							</p>
 						</div>
 						<div id="MinMaxGraph">
