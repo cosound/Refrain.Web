@@ -14,7 +14,7 @@
 		<meta property="fb:app_id" content="1502662549961564" />
 
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
-		<link type="text/css" rel="stylesheet" href="Main.css?v=18"/>
+		<link type="text/css" rel="stylesheet" href="Main.css?v=19"/>
 		<link type="text/css" rel="stylesheet" href="Flags.css?v=4"/>
 		
 		<script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
@@ -27,7 +27,7 @@
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.time.min.js"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.navigate.min.js"></script>
 		<script type="text/javascript" src="Scripts/curvedLines.js"></script>
-		<script type="text/javascript" src="Scripts/Refrain.js?v=24"></script>
+		<script type="text/javascript" src="Scripts/Refrain.js?v=25"></script>
 		<script type="text/javascript" src="Scripts/PortalClient.min.js"></script>
 		<script type="text/javascript">
 			(function (i, s, o, g, r, a, m) {
@@ -299,6 +299,10 @@
 							<span data-bind="text: getDate() + ' ' + ['January', 'Feburary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][getMonth()] + ' ' + getFullYear() + ' ' + getHours() + ':' + (getMinutes() < 10 ? '0' : '') + getMinutes()"></span>
 						</p>
 						<p>
+							<a href="#" class="button big" data-bind="click: MoodMapGotoEuroVision2014">Eurovision 2014</a>
+							<a href="#" class="button big" data-bind="click: MoodMapGotoEuroVision2015">Eurovision 2015</a>
+						</p>
+						<p>
 							<a href="#" class="button" data-bind="click: MoodMapPreviousBig">-6 hours</a>
 							<a href="#" class="button" data-bind="click: MoodMapPrevious">-5 minutes</a>
 							<a href="#" class="button" data-bind="click: MoodMapNext">+5 minutes</a>
@@ -320,13 +324,16 @@
 						<a href="#" class="button" data-bind="click: MoodGraphPrevious">Previous</a>
 						<span data-bind="text: MoodGraphCurrentTime().getDate() + ' ' + ['January', 'Feburary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][MoodGraphCurrentTime().getMonth()] + ' ' + MoodGraphCurrentTime().getFullYear()"></span>
 						<a href="#" class="button" data-bind="click: MoodGraphNext">Next</a>
+						<p>
+							<a href="#" class="button big" data-bind="click: MoodGraphGotoEuroVision2014">Eurovision 2014</a>
+							<a href="#" class="button big" data-bind="click: MoodGraphGotoEuroVision2015">Eurovision 2015</a>
+						</p>
 					</div>
 					<div id="MoodTimelineGraphContainer">
 						<div id="MoodTimelineGraph"></div>
 						<div class="Loading" data-bind="visible: IsLoadingGraph">
 							<i class="fa fa-spinner fa-pulse"></i> Loading
 						</div>
-						
 					</div>
 					<div data-bind="foreach: AvailableMoodCountries">
 						<a class="MoodCountry" href="#" data-bind="click: ToggleSelect, css: {Selected: IsSelected}, style: {backgroundColor: IsSelected() ? Color : 'inherit'}">

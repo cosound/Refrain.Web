@@ -19,7 +19,8 @@ class MoodViewModel implements IPageViewModel
 
 	constructor()
 	{
-		
+		this.MoodMapGotoEuroVision2015();
+		this.MoodGraphGotoEuroVision2015(false);
 	}
 
 	public Initialize():void
@@ -160,6 +161,16 @@ class MoodViewModel implements IPageViewModel
 		this.MoodMapCurrentTime(this.MoodMapCurrentTime());
 	}
 
+	public MoodMapGotoEuroVision2014():void
+	{
+		this.MoodMapCurrentTime(new Date(2014, 4, 6, 18, 0));
+	}
+
+	public MoodMapGotoEuroVision2015(): void
+	{
+		this.MoodMapCurrentTime(this.GetNowIfFuture(new Date(2015, 4, 23, 18, 0)));
+	}
+
 	public MoodGraphPrevious():void
 	{
 		this.MoodGraphCurrentTime().setDate(this.MoodGraphCurrentTime().getDate() - 1);
@@ -176,6 +187,27 @@ class MoodViewModel implements IPageViewModel
 		this.MoodGraphCurrentTime(this.MoodGraphCurrentTime());
 
 		this.RefreshGraphData();
+	}
+
+	public MoodGraphGotoEuroVision2014(): void
+	{
+		this.MoodGraphCurrentTime(new Date(2014, 4, 6, 6, 0));
+		this.RefreshGraphData();
+	}
+
+	public MoodGraphGotoEuroVision2015(shouldRefresh:boolean = true): void
+	{
+		this.MoodGraphCurrentTime(this.GetNowIfFuture(new Date(2015, 4, 23, 6, 0)));
+
+		if(shouldRefresh)
+			this.RefreshGraphData();
+	}
+
+	private GetNowIfFuture(date:Date):Date
+	{
+		var now = new Date();
+
+		return date.getTime() > now.getTime() ? now : date;
 	}
 
 	private GetGraphData(countries:MoodGraphCountry[]):void
@@ -300,6 +332,7 @@ class MoodViewModel implements IPageViewModel
 		}
 
 		var groups = <any[]>(<any>response.Body).Groups;
+		this._moodData = {};
 
 		for (var i = 0; i < groups.length; i++)
 		{

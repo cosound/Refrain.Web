@@ -426,6 +426,8 @@ var MoodViewModel = (function () {
         this.IsLoadingGraph = ko.observable(false);
         this._moodData = {};
         this._updateHandler = null;
+        this.MoodMapGotoEuroVision2015();
+        this.MoodGraphGotoEuroVision2015(false);
     }
     MoodViewModel.prototype.Initialize = function () {
         var mapStyle = [{ "featureType": "road", "elementType": "geometry", "stylers": [{ "visibility": "off" }] }, { "featureType": "poi", "elementType": "geometry", "stylers": [{ "visibility": "off" }] }, { "featureType": "landscape", "elementType": "geometry", "stylers": [{ "color": "#fffffa" }] }, { "featureType": "water", "stylers": [{ "lightness": 50 }] }, { "featureType": "road", "elementType": "labels", "stylers": [{ "visibility": "off" }] }, { "featureType": "transit", "stylers": [{ "visibility": "off" }] }, { "featureType": "administrative", "elementType": "geometry", "stylers": [{ "lightness": 40 }] }];
@@ -529,6 +531,12 @@ var MoodViewModel = (function () {
         this.MoodMapCurrentTime().setHours(this.MoodMapCurrentTime().getHours() - 6);
         this.MoodMapCurrentTime(this.MoodMapCurrentTime());
     };
+    MoodViewModel.prototype.MoodMapGotoEuroVision2014 = function () {
+        this.MoodMapCurrentTime(new Date(2014, 4, 6, 18, 0));
+    };
+    MoodViewModel.prototype.MoodMapGotoEuroVision2015 = function () {
+        this.MoodMapCurrentTime(this.GetNowIfFuture(new Date(2015, 4, 23, 18, 0)));
+    };
     MoodViewModel.prototype.MoodGraphPrevious = function () {
         this.MoodGraphCurrentTime().setDate(this.MoodGraphCurrentTime().getDate() - 1);
         this.MoodGraphCurrentTime(this.MoodGraphCurrentTime());
@@ -538,6 +546,20 @@ var MoodViewModel = (function () {
         this.MoodGraphCurrentTime().setDate(this.MoodGraphCurrentTime().getDate() + 1);
         this.MoodGraphCurrentTime(this.MoodGraphCurrentTime());
         this.RefreshGraphData();
+    };
+    MoodViewModel.prototype.MoodGraphGotoEuroVision2014 = function () {
+        this.MoodGraphCurrentTime(new Date(2014, 4, 6, 6, 0));
+        this.RefreshGraphData();
+    };
+    MoodViewModel.prototype.MoodGraphGotoEuroVision2015 = function (shouldRefresh) {
+        if (shouldRefresh === void 0) { shouldRefresh = true; }
+        this.MoodGraphCurrentTime(this.GetNowIfFuture(new Date(2015, 4, 23, 6, 0)));
+        if (shouldRefresh)
+            this.RefreshGraphData();
+    };
+    MoodViewModel.prototype.GetNowIfFuture = function (date) {
+        var now = new Date();
+        return date.getTime() > now.getTime() ? now : date;
     };
     MoodViewModel.prototype.GetGraphData = function (countries) {
         var _this = this;
@@ -625,6 +647,7 @@ var MoodViewModel = (function () {
             return;
         }
         var groups = response.Body.Groups;
+        this._moodData = {};
         for (var i = 0; i < groups.length; i++) {
             var valence = groups[i].Results.length > 0 ? groups[i].Results[0].Valence : 0;
             this._moodData[MoodViewModel.Capitalize(groups[i].Value)] = valence;
