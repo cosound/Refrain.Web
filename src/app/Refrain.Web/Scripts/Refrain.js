@@ -423,6 +423,7 @@ var MoodViewModel = (function () {
         this.AvailableMoodCountries = ko.observableArray();
         this.MoodGraphCurrentTime = ko.observable(new Date(2014, 4, 6, 6, 0));
         this.MoodMapCurrentTime = ko.observable(new Date(2014, 4, 6, 18, 0));
+        this.IsLoadingGraph = ko.observable(false);
         this._moodData = {};
         this._updateHandler = null;
     }
@@ -542,6 +543,7 @@ var MoodViewModel = (function () {
         var _this = this;
         if (countries.length == 0)
             return;
+        this.IsLoadingGraph(true);
         var start = this.MoodGraphCurrentTime();
         var end = new Date(start.getTime() + 24 * 60 * 60 * 1000);
         RefrainPortal.TwitterMood.Get(countries.map(function (v, i) { return v.CodeName; }), start, end, 999).WithCallback(function (r) { return _this.TwitterMoodGraphCompleted(r, countries, start, end); }, this);
@@ -614,6 +616,7 @@ var MoodViewModel = (function () {
     };
     MoodViewModel.prototype.UpdateGraph = function () {
         $.plot("#MoodTimelineGraph", this._graphData, this._graphOptions);
+        this.IsLoadingGraph(false);
     };
     MoodViewModel.prototype.TwitterMoodGetCompleted = function (response) {
         var _this = this;

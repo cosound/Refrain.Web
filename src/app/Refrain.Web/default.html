@@ -272,7 +272,7 @@
 							<span data-bind="visible: HasRated">Thanks for helping us improving Refrain!</span>
 						</p>
 						<p>
-							<a target="_blank" href="https://cockpit.cosound.dk/experiments/">Click here to help us improve Refrain further by answering a few questions</a>
+							<a target="_blank" href="https://cockpit.cosound.dk/refrain/#ExperimentList/6a966684-2db0-4928-0001-000000099999">Click here to help us improve Refrain further by answering a few questions</a>
 						</p>
 					</div>
 					<!-- /ko -->
@@ -283,7 +283,7 @@
 					<!-- /ko -->
 				</div>
 				<!-- /ko -->
-				<h1 id="ExploreHeadline">Shared Discoveries</h1>
+				<h1 id="SharedHeadline">Shared Discoveries</h1>
 				<div>
 					<div class="TwitterTimeline">
 						<a class="twitter-timeline" href="https://twitter.com/search?q=%23refraindk+%23match" data-widget-id="462943736947679232">Tweets about "#refraindk #match"</a>	
@@ -321,7 +321,13 @@
 						<span data-bind="text: MoodGraphCurrentTime().getDate() + ' ' + ['January', 'Feburary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][MoodGraphCurrentTime().getMonth()] + ' ' + MoodGraphCurrentTime().getFullYear()"></span>
 						<a href="#" class="button" data-bind="click: MoodGraphNext">Next</a>
 					</div>
-					<div id="MoodTimelineGraph"></div>
+					<div id="MoodTimelineGraphContainer">
+						<div id="MoodTimelineGraph"></div>
+						<div class="Loading" data-bind="visible: IsLoadingGraph">
+							<i class="fa fa-spinner fa-pulse"></i> Loading
+						</div>
+						
+					</div>
 					<div data-bind="foreach: AvailableMoodCountries">
 						<a class="MoodCountry" href="#" data-bind="click: ToggleSelect, css: {Selected: IsSelected}, style: {backgroundColor: IsSelected() ? Color : 'inherit'}">
 							<img src="Images/Blank.gif" class="flag" data-bind="css: 'flag-' + CountryCode" />

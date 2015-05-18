@@ -598,11 +598,35 @@ input[type="checkbox"]:checked + label span, input[type="radio"]:checked + label
 	float: right;
 }
 
+#MoodTimelineGraphContainer {
+	position: relative;
+	margin: 0;
+	padding: 0;
+}
+
 #MoodTimelineGraph {
 	background-color: #0099FF;
 
 	width: 880px;
 	height: 450px;
+}
+
+#MoodTimelineGraphContainer .Loading {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-o-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+
+	-ms-border-radius: 10px;
+	border-radius: 10px;
+	padding: 10px 15px 13px;
+
+	background-color: #000000;
+	background-color: rgba(0, 0, 0, 0.7);
 }
 
 .flot-tick-label {

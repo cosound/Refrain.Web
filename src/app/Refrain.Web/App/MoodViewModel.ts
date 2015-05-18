@@ -7,6 +7,7 @@ class MoodViewModel implements IPageViewModel
 	public AvailableMoodCountries: KnockoutObservableArray<MoodGraphCountry> = ko.observableArray<MoodGraphCountry>();
 	public MoodGraphCurrentTime: KnockoutObservable<Date> = ko.observable<Date>(new Date(2014, 4, 6, 6, 0));
 	public MoodMapCurrentTime: KnockoutObservable<Date> = ko.observable<Date>(new Date(2014, 4, 6, 18, 0));
+	public IsLoadingGraph:KnockoutObservable<boolean> = ko.observable(false);
 
 	private _map: google.maps.Map;
 	private _moodData: { [countryCode: string]: number } = {};
@@ -181,6 +182,8 @@ class MoodViewModel implements IPageViewModel
 	{
 		if (countries.length == 0) return;
 
+		this.IsLoadingGraph(true);
+
 		var start = this.MoodGraphCurrentTime();
 		var end = new Date(start.getTime() + 24 * 60 * 60 * 1000);
 
@@ -284,6 +287,8 @@ class MoodViewModel implements IPageViewModel
 	private UpdateGraph():void
 	{
 		$.plot("#MoodTimelineGraph", this._graphData, this._graphOptions);
+
+		this.IsLoadingGraph(false);
 	}
 
 	private TwitterMoodGetCompleted(response: CHAOS.Portal.Client.IPortalResponse<any>):void
