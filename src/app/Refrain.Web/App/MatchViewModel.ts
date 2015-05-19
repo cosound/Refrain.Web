@@ -405,6 +405,16 @@ class MetricRater
 		this._metricIndex = metricIndex;
 
 		this.CanRate = ko.computed(() => (this._metricIsSelected == null || this._metricIsSelected()) && !this.HasRated());
+
+		this._selectedSong.subscribe(v => this.Reset());
+		this._selectedComparison.subscribe(v => this.Reset());
+	}
+
+	public Reset():void
+	{
+		this.HasRated(false);
+		this.RatedGood(false);
+		this.RatedBad(false);
 	}
 
 	public RateGood():void
