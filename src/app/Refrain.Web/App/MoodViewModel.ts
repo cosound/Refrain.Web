@@ -197,15 +197,23 @@ class MoodViewModel implements IPageViewModel
 
 	public MoodGraphGotoEuroVision2015(shouldRefresh:boolean = true): void
 	{
-		this.MoodGraphCurrentTime(this.GetNowIfFuture(new Date(2015, 4, 23, 6, 0)));
+		this.MoodGraphCurrentTime(this.GetNowIfFuture(new Date(2015, 4, 23, 6, 0), 6));
 
 		if(shouldRefresh)
 			this.RefreshGraphData();
 	}
 
-	private GetNowIfFuture(date:Date):Date
+	private GetNowIfFuture(date:Date, hour:number = null):Date
 	{
 		var now = new Date();
+		now.setSeconds(0);
+		now.setMinutes(now.getMinutes() - 10);
+
+		if (hour != null)
+		{
+			now.setMinutes(0);
+			now.setHours(hour);
+		}
 
 		return date.getTime() > now.getTime() ? now : date;
 	}
@@ -230,7 +238,10 @@ class MoodViewModel implements IPageViewModel
 
 	private UpdateMoodMap():void
 	{
-		RefrainPortal.TwitterMood.Get(null, this.MoodMapCurrentTime()).WithCallback(this.TwitterMoodGetCompleted, this);
+		var after = this.MoodMapCurrentTime();
+		var before = new Date(after.getTime());
+		before.setMinutes(before.getMinutes() + 7);
+		RefrainPortal.TwitterMood.Get(null, after, before).WithCallback(this.TwitterMoodGetCompleted, this);
 	}
 
 	private TwitterMoodGraphCompleted(response: CHAOS.Portal.Client.IPortalResponse<any>, countries: MoodGraphCountry[], start:Date, end:Date): void

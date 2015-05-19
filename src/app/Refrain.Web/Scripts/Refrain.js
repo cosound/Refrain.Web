@@ -560,12 +560,19 @@ var MoodViewModel = (function () {
     };
     MoodViewModel.prototype.MoodGraphGotoEuroVision2015 = function (shouldRefresh) {
         if (shouldRefresh === void 0) { shouldRefresh = true; }
-        this.MoodGraphCurrentTime(this.GetNowIfFuture(new Date(2015, 4, 23, 6, 0)));
+        this.MoodGraphCurrentTime(this.GetNowIfFuture(new Date(2015, 4, 23, 6, 0), 6));
         if (shouldRefresh)
             this.RefreshGraphData();
     };
-    MoodViewModel.prototype.GetNowIfFuture = function (date) {
+    MoodViewModel.prototype.GetNowIfFuture = function (date, hour) {
+        if (hour === void 0) { hour = null; }
         var now = new Date();
+        now.setSeconds(0);
+        now.setMinutes(now.getMinutes() - 10);
+        if (hour != null) {
+            now.setMinutes(0);
+            now.setHours(hour);
+        }
         return date.getTime() > now.getTime() ? now : date;
     };
     MoodViewModel.prototype.GetGraphData = function (countries) {
@@ -582,7 +589,10 @@ var MoodViewModel = (function () {
         RefrainPortal.Tweet.Get().WithCallback(this.TweetGetCompleted, this);
     };
     MoodViewModel.prototype.UpdateMoodMap = function () {
-        RefrainPortal.TwitterMood.Get(null, this.MoodMapCurrentTime()).WithCallback(this.TwitterMoodGetCompleted, this);
+        var after = this.MoodMapCurrentTime();
+        var before = new Date(after.getTime());
+        before.setMinutes(before.getMinutes() + 7);
+        RefrainPortal.TwitterMood.Get(null, after, before).WithCallback(this.TwitterMoodGetCompleted, this);
     };
     MoodViewModel.prototype.TwitterMoodGraphCompleted = function (response, countries, start, end) {
         if (response.Error != null) {
