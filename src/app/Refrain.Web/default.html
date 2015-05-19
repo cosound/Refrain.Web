@@ -215,10 +215,14 @@
 						<div id="CompareFullInfo" class="SongFullInfo" data-bind="template: {name: 'SongFullInfoTemplate', data: SelectedSongSimilarity}"></div>
 					</div>
 					<!-- ko if: SelectedSimilarity -->
-					<div id="ShareContainer">
-						Share your discovery with your friends:
-						<a id="ShareMatchOnTwitter" href="https://twitter.com/share" class="twitter-hashtag-button" data-size="large" data-lang="en" data-related="refraindk" data-count="none" data-hashtags="refraindk,match" data-bind="attr: {'data-url': ShareUrl, 'data-text': ShareMessage}">Tweet #refraindk</a>
-						<a id="ShareMatchOnFacebook" href="#" data-bind="click: ShareOnFacebook"><img src="Images/Blank.gif" alt="Share on Facebook" /></a>
+					<div id="RateContainer" data-bind="with: RaterMatch">
+						<p>
+							<span data-bind="visible: !HasRated()">Do you think these songs are <a class="Good" href="#" data-bind="click: RateGood">similar</a> or <a class="Bad" href="#" data-bind="click: RateBad">different</a>?</span>
+							<span data-bind="visible: HasRated">Thanks!</span>
+						</p>
+						<p data-bind="visible: HasRated">
+							<span class="buttonsqpink">►</span> <a target="_blank" href="https://cockpit.cosound.dk/refrain/#ExperimentList/00000000-0000-0000-0000-000000000111">Click here to help us improving Refrain</a>
+						</p>
 					</div>
 					<div id="SimilarityContainer">
 						<p>Importance of music aspects in match <a class="buttonsqpink" href="#" data-bind="click: ToggleSimilarityHelp">?</a>
@@ -252,7 +256,7 @@
 							<p class="SimilarityBar" data-bind="style: {width: Energy * 100 + '%'}">&nbsp;</p>
 							<p class="SimilarityBar" data-bind="style: {width: Timbre * 100 + '%'}">&nbsp;</p>
 						</div>
-						<div id="SimilarityGraphRaters" data-bind="foreach: MetricRaters">
+						<!--<div id="SimilarityGraphRaters" data-bind="foreach: MetricRaters">
 							<p data-bind="visible: !HasRated()">
 								<button data-bind="click: RateGood" class="Good"><i class="fa fa-thumbs-up"></i></button>
 								<button data-bind="click: RateBad" class="Bad"><i class="fa fa-thumbs-down"></i></button>
@@ -260,20 +264,16 @@
 							<p data-bind="visible: HasRated">
 								Thanks!
 							</p>
-						</div>
+						</div>-->
 						<div id="MinMaxGraph">
 							<span id="MinGraph">0%</span>
 							<span id="MaxGraph">100%</span>
 						</div>
 					</div>
-					<div id="RateContainer">
-						<p data-bind="with: RaterMatch">
-							<span data-bind="visible: !HasRated()">Do you think these songs are <a class="Good" href="#" data-bind="click: RateGood">similar</a> or <a class="Bad" href="#" data-bind="click: RateBad">different</a>?</span>
-							<span data-bind="visible: HasRated">Thanks for helping us improving Refrain!</span>
-						</p>
-						<p>
-							<a target="_blank" href="https://cockpit.cosound.dk/refrain/#ExperimentList/00000000-0000-0000-0000-000000000111">Click here to help us improve Refrain further by answering a few questions</a>
-						</p>
+					<div id="ShareContainer">
+						Share your discovery with your friends:
+						<a id="ShareMatchOnTwitter" href="https://twitter.com/share" class="twitter-hashtag-button" data-size="large" data-lang="en" data-related="refraindk" data-count="none" data-hashtags="refraindk,match" data-bind="attr: {'data-url': ShareUrl, 'data-text': ShareMessage}">Tweet #refraindk</a>
+						<a id="ShareMatchOnFacebook" href="#" data-bind="click: ShareOnFacebook"><img src="Images/Blank.gif" alt="Share on Facebook" /></a>
 					</div>
 					<!-- /ko -->
 					<!-- ko if: SelectedOldSimilarity -->
