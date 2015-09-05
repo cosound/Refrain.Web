@@ -424,7 +424,7 @@ class MoodViewModel implements IPageViewModel
 
 	private SetCountryStyle(feature:any):any
 	{
-		var name = feature.A.name;
+		var name = feature.getProperty("name");
 		if (this._moodData[name] == null)
 			return { visible: false };
 

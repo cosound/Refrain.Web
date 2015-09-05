@@ -10,3 +10,4 @@ Thumbs.db
 *.suo
 *.xap
 node_modules
+.vs/

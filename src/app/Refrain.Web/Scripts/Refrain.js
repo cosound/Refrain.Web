@@ -718,7 +718,7 @@ var MoodViewModel = (function () {
         return country.replace("_", " ").replace(/(?:^|\s)\S/g, function (a) { return a.toUpperCase(); });
     };
     MoodViewModel.prototype.SetCountryStyle = function (feature) {
-        var name = feature.A.name;
+        var name = feature.getProperty("name");
         if (this._moodData[name] == null)
             return { visible: false };
         var mood = this._moodData[name];
